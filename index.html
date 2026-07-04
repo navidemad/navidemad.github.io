@@ -1,15 +1,36 @@
 <!doctype html>
-<html lang="en">
+<html lang="fr">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Navid Emad — Ruby on Rails & Agentic AI Engineer</title>
-<meta name="description" content="Navid Emad — Lead Ruby on Rails developer and agentic AI workflow engineer. I build production web apps and help companies adopt AI. 127 merged OSS PRs across 18 repos." />
+<title>Navid Emad — Expert Ruby on Rails & IA agentique</title>
+<meta name="description" content="Navid Emad — Lead développeur Ruby on Rails et ingénieur workflows IA agentiques. Je construis des applications web en production et j'aide les entreprises à adopter l'IA. 127 PRs open source fusionnées sur 18 dépôts." />
+<link rel="canonical" href="https://navidemad.github.io/" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://navidemad.github.io/" />
+<meta property="og:title" content="Navid Emad — Expert Ruby on Rails & IA agentique" />
+<meta property="og:description" content="Lead développeur Ruby on Rails · Ingénieur workflows IA agentiques. Sites web en production, adoption de l'IA en entreprise, 127 PRs open source fusionnées." />
+<meta property="og:image" content="https://navidemad.github.io/og-image.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:locale" content="fr_FR" />
+<meta property="og:locale:alternate" content="en_US" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@navidemad" />
+<meta name="twitter:title" content="Navid Emad — Expert Ruby on Rails & IA agentique" />
+<meta name="twitter:description" content="Lead développeur Ruby on Rails · Ingénieur workflows IA agentiques. Sites web en production, adoption de l'IA en entreprise." />
+<meta name="twitter:image" content="https://navidemad.github.io/og-image.png" />
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⌨️</text></svg>" />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Barlow+Condensed:wght@500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
 <style>
+/* Self-hosted fonts (GDPR-friendly: no Google Fonts requests) */
+@font-face { font-family: "Bebas Neue"; font-style: normal; font-weight: 400; font-display: swap; src: url(fonts/bebas-neue-400.woff2) format("woff2"); }
+@font-face { font-family: "Barlow"; font-style: normal; font-weight: 400; font-display: swap; src: url(fonts/barlow-400.woff2) format("woff2"); }
+@font-face { font-family: "Barlow"; font-style: normal; font-weight: 500; font-display: swap; src: url(fonts/barlow-500.woff2) format("woff2"); }
+@font-face { font-family: "Barlow"; font-style: normal; font-weight: 600; font-display: swap; src: url(fonts/barlow-600.woff2) format("woff2"); }
+@font-face { font-family: "Barlow"; font-style: normal; font-weight: 700; font-display: swap; src: url(fonts/barlow-700.woff2) format("woff2"); }
+@font-face { font-family: "Barlow Condensed"; font-style: normal; font-weight: 700; font-display: swap; src: url(fonts/barlow-condensed-700.woff2) format("woff2"); }
+@font-face { font-family: "JetBrains Mono"; font-style: normal; font-weight: 400; font-display: swap; src: url(fonts/jetbrains-mono-400.woff2) format("woff2"); }
+@font-face { font-family: "JetBrains Mono"; font-style: normal; font-weight: 600; font-display: swap; src: url(fonts/jetbrains-mono-600.woff2) format("woff2"); }
 :root {
   --bg: #070b16;
   --bg-2: #0b1224;
@@ -94,6 +115,7 @@ header.top {
 }
 .chip:hover { border-color: rgba(232, 194, 104, 0.5); transform: translateY(-1px); background: rgba(20, 30, 56, 0.8); }
 .chip svg { width: 15px; height: 15px; fill: currentColor; }
+.chip.lang { cursor: pointer; font-family: "JetBrains Mono", monospace; font-size: 12.5px; letter-spacing: 1px; }
 
 /* ---------- hero ---------- */
 .hero { padding: clamp(10px, 3vh, 40px) 0 0; display: flex; align-items: center; gap: 26px; flex: none; }
@@ -187,7 +209,7 @@ h1 {
 .metric:last-child { border-bottom: 0; }
 .metric .row { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; }
 .metric .label { font-size: 14.5px; white-space: nowrap; }
-.metric .detail { margin-left: auto; font-family: "JetBrains Mono", monospace; font-size: 11px; color: var(--ink-faint); font-variant-numeric: tabular-nums; white-space: nowrap; flex: 0 1 auto; overflow: hidden; text-overflow: ellipsis; }
+.metric .detail { margin-left: auto; font-family: "JetBrains Mono", monospace; font-size: 11.5px; color: var(--ink-dim); font-variant-numeric: tabular-nums; white-space: nowrap; flex: 0 1 auto; overflow: hidden; text-overflow: ellipsis; }
 .metric .score { flex: none; }
 .metric .score {
   font-family: "Bebas Neue", sans-serif; font-size: 21px; color: var(--ink); min-width: 30px; text-align: right;
@@ -248,7 +270,7 @@ h1 {
 .cta-row { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
 .btn {
   display: inline-flex; align-items: center; gap: 9px; text-decoration: none;
-  font-weight: 700; font-size: 13.5px; padding: 11px 18px; border-radius: 11px;
+  font-weight: 700; font-size: 13px; padding: 10px 14px; border-radius: 11px;
   transition: transform .18s, box-shadow .18s, background .18s;
 }
 .btn svg { width: 16px; height: 16px; fill: currentColor; }
@@ -289,9 +311,10 @@ h1 {
   <header class="top">
     <div class="crest">
       <span class="live-dot" aria-hidden="true"></span>
-      Open to AI &amp; Rails engagements
+      <span data-i18n="crest">Disponible pour missions IA &amp; Rails</span>
     </div>
     <nav class="top-links">
+      <button class="chip lang" id="lang-toggle" type="button" aria-label="Switch language">EN</button>
       <a class="chip" href="https://github.com/navidemad" target="_blank" rel="noopener">
         <svg viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
         github.com/navidemad
@@ -307,39 +330,39 @@ h1 {
     <div class="hero-copy">
       <div class="hero-main">
       <div class="kicker">whoami --verbose<span class="cursor" aria-hidden="true"></span></div>
-      <h1>Hi! I am Navid</h1>
+      <h1 data-i18n="h1">Salut ! Moi c'est Navid</h1>
       <div class="id-row">
         <span class="pos-badge">LEAD DEV</span>
-        <span><svg class="gem" viewBox="0 0 24 24" fill="#e0115f"><path d="M6 3h12l4 6-10 12L2 9l4-6z"/></svg> Ruby on Rails expert</span>
+        <span><svg class="gem" viewBox="0 0 24 24" fill="#e0115f" aria-hidden="true"><path d="M6 3h12l4 6-10 12L2 9l4-6z"/></svg> <span data-i18n="id1">Expert Ruby on Rails</span></span>
         <span class="sep">|</span>
-        <span>Agentic AI workflow engineer</span>
+        <span data-i18n="id2">Ingénieur workflows IA agentiques</span>
         <span class="sep">|</span>
         <a href="https://github.com/navidemad" target="_blank" rel="noopener">@navidemad</a>
       </div>
       </div>
-      <p class="scout-line"><b>Rails in production · AI for real</b>I build and lead production Ruby on Rails applications, and as an early AI adopter I help companies put it to work — agentic workflows, AI-assisted operations, developer tooling. Need a website, an AI adoption plan, or a lead engineer? Let's talk.</p>
+      <p class="scout-line" data-i18n-html="scout"><b>Rails en production · l'IA pour de vrai</b>Je construis et dirige des applications Ruby on Rails en production. Adopteur précoce de l'IA, j'aide les entreprises à l'exploiter concrètement — workflows agentiques, opérations assistées par IA. Besoin d'un site web, d'un plan d'adoption IA ou d'un lead engineer&nbsp;? Parlons-en.</p>
     </div>
   </section>
 
   <main class="pitch">
     <div class="col left">
       <section class="panel">
-        <h2>Specialties</h2>
-        <div class="attr"><span>Ruby on Rails</span><span class="stars">★★★★★</span></div>
-        <div class="attr"><span>Agentic AI &amp; LLM workflows</span><span class="stars">★★★★★</span></div>
-        <div class="attr"><span>Hotwire · Tailwind frontends</span><span class="stars">★★★★<span class="off">★</span></span></div>
-        <div class="attr"><span>Ship rate</span><span class="val">DAILY / CI</span></div>
+        <h2 data-i18n="specialties">Spécialités</h2>
+        <div class="attr"><span>Ruby on Rails</span><span class="stars" role="img" aria-label="5/5">★★★★★</span></div>
+        <div class="attr"><span data-i18n="spec2">IA agentique &amp; LLM</span><span class="stars" role="img" aria-label="5/5">★★★★★</span></div>
+        <div class="attr"><span data-i18n="spec3">Hotwire · Tailwind</span><span class="stars" role="img" aria-label="4/5">★★★★<span class="off">★</span></span></div>
+        <div class="attr"><span data-i18n="spec4">Livraison</span><span class="val" data-i18n="spec4v">QUOTIDIENNE / CI</span></div>
       </section>
       <section class="panel">
-        <h2>Perks</h2>
+        <h2 data-i18n="perks">Atouts</h2>
         <div class="perks">
-        <div class="ps"><span class="ico">🛠️</span> Maintainer <span class="plus">+</span></div>
-        <div class="ps"><span class="ico">⚡</span> Workhorse <span class="plus">+</span></div>
-        <div class="ps"><span class="ico">🤖</span> Agentic <span class="plus">+</span></div>
-        <div class="ps"><span class="ico">🗣️</span> Polyglot</div>
-        <div class="ps"><span class="ico">🏃</span> Marathoner</div>
-        <div class="ps"><span class="ico">🔁</span> Upstream</div>
-        <div class="ps"><span class="ico">🧭</span> Connector</div>
+        <div class="ps" title="Mainteneur de gems open source / OSS maintainer"><span class="ico" aria-hidden="true">🛠️</span> <span data-i18n="perk1">Mainteneur</span> <span class="plus">+</span></div>
+        <div class="ps" title="Gros volume de livraison / High shipping volume"><span class="ico" aria-hidden="true">⚡</span> <span data-i18n="perk2">Bosseur</span> <span class="plus">+</span></div>
+        <div class="ps" title="Workflows IA agentiques / Agentic AI workflows"><span class="ico" aria-hidden="true">🤖</span> <span data-i18n="perk3">Agentique</span> <span class="plus">+</span></div>
+        <div class="ps" title="Plusieurs langages / Multiple languages"><span class="ico" aria-hidden="true">🗣️</span> <span data-i18n="perk4">Polyglotte</span></div>
+        <div class="ps" title="Régularité sur la durée / Consistency over years"><span class="ico" aria-hidden="true">🏃</span> <span data-i18n="perk5">Marathonien</span></div>
+        <div class="ps" title="Corrige à la source, en amont / Fixes upstream at the source"><span class="ico" aria-hidden="true">🔁</span> Upstream</div>
+        <div class="ps" title="Fait le lien entre équipes et outils / Connects teams and tools"><span class="ico" aria-hidden="true">🧭</span> <span data-i18n="perk7">Connecteur</span></div>
         </div>
       </section>
     </div>
@@ -380,39 +403,46 @@ h1 {
           </div>
           <div class="card-name">NAVID</div>
           <div class="card-stats">
-            <div class="cstat"><span class="v">92</span><span class="k">SHP</span></div>
-            <div class="cstat"><span class="v">88</span><span class="k">DBG</span></div>
-            <div class="cstat"><span class="v">85</span><span class="k">ARC</span></div>
-            <div class="cstat"><span class="v">83</span><span class="k">REV</span></div>
-            <div class="cstat"><span class="v">90</span><span class="k">OSS</span></div>
-            <div class="cstat"><span class="v">94</span><span class="k">AI</span></div>
+            <div class="cstat" title="Livraison / Shipping"><span class="v">92</span><span class="k">SHP</span></div>
+            <div class="cstat" title="Débogage / Debugging"><span class="v">88</span><span class="k">DBG</span></div>
+            <div class="cstat" title="Architecture"><span class="v">85</span><span class="k">ARC</span></div>
+            <div class="cstat" title="Revue de code / Code review"><span class="v">83</span><span class="k">REV</span></div>
+            <div class="cstat" title="Open source"><span class="v">90</span><span class="k">OSS</span></div>
+            <div class="cstat" title="IA agentique / Agentic AI"><span class="v">94</span><span class="k">AI</span></div>
           </div>
         </div>
       </div>
       <div class="cta-row">
-        <a class="btn primary" href="https://x.com/navidemad" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24"><path d="M18.9 2H22l-6.9 7.9L23.3 22h-6.4l-5-6.6L6.2 22H3l7.4-8.5L1 2h6.6l4.5 6 5.8-6zm-1.1 18h1.8L7.6 3.9H5.7L17.8 20z"/></svg>
-          Work with me — DM on X
+        <a class="btn primary" href="mailto:navid.emad@yespark.fr">
+          <svg viewBox="0 0 24 24"><path d="M2 5a2 2 0 012-2h16a2 2 0 012 2v14a2 2 0 01-2 2H4a2 2 0 01-2-2V5zm2 .4V19h16V5.4l-7.3 6a1.5 1.5 0 01-1.9 0L4 5.4zM5.6 5l6.4 5.2L18.4 5H5.6z"/></svg>
+          <span data-i18n="cta_mail">Écrivez-moi</span>
         </a>
-        <a class="btn ghost" href="https://github.com/navidemad" target="_blank" rel="noopener">git checkout profile</a>
+        <a class="btn ghost" href="https://www.linkedin.com/in/navidemad" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.2 8h4.6v14.8H.2V8zm7.7 0h4.4v2h.06c.6-1.15 2.1-2.36 4.3-2.36 4.6 0 5.44 3.03 5.44 6.96v8.2h-4.6v-7.3c0-1.74-.03-3.98-2.42-3.98-2.42 0-2.8 1.9-2.8 3.86v7.42H7.9V8z"/></svg>
+          LinkedIn
+        </a>
+        <a class="btn ghost" href="https://x.com/navidemad" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24"><path d="M18.9 2H22l-6.9 7.9L23.3 22h-6.4l-5-6.6L6.2 22H3l7.4-8.5L1 2h6.6l4.5 6 5.8-6zm-1.1 18h1.8L7.6 3.9H5.7L17.8 20z"/></svg>
+          <span data-i18n="cta_x">DM sur X</span>
+        </a>
       </div>
     </div>
 
     <div class="col right">
       <section class="panel">
-        <h2>GitHub Telemetry <span style="margin-left:auto;letter-spacing:1px;font-size:11px;color:var(--ink-faint)"><span class="live-dot"></span><span id="live-label">LIVE</span></span></h2>
+        <h2 title="Scores sur 100, calculés depuis mes statistiques GitHub / Scores out of 100, from my GitHub stats"><span data-i18n="telemetry">Télémétrie GitHub</span> <span style="margin-left:auto;letter-spacing:1px;font-size:11px;color:var(--ink-faint)"><span class="live-dot" aria-hidden="true"></span><span id="live-label">LIVE</span></span></h2>
         <div id="metrics"></div>
       </section>
     </div>
 
     <div class="col far">
       <section class="panel">
-        <h2>Track Record</h2>
-        <div class="ps"><span class="ico">🥇</span><span><a href="https://github.com/navidemad/capybara-lightpanda" target="_blank" rel="noopener" style="color:var(--ink);text-decoration:none;border-bottom:1px dotted var(--ink-faint)">capybara-lightpanda</a> — maintainer</span></div>
-        <div class="ps"><span class="ico">🕸️</span><span>63 PRs merged into Lightpanda browser (Zig)</span></div>
-        <div class="ps"><span class="ico">💉</span><span>43 PRs on covidliste — France's Covid-19 vaccination drive</span></div>
-        <div class="ps"><span class="ico">🚂</span><span>Merged upstream in Rails core, jsbundling &amp; cssbundling</span></div>
-        <div class="ps"><span class="ico">📡</span><span>Contributions in Datadog &amp; New Relic Ruby agents</span></div>
+        <h2 data-i18n="track">Palmarès</h2>
+        <div class="ps"><span class="ico" aria-hidden="true">🥇</span><span><a href="https://github.com/navidemad/capybara-lightpanda" target="_blank" rel="noopener" style="color:var(--ink);text-decoration:none;border-bottom:1px dotted var(--ink-faint)">capybara-lightpanda</a> — <span data-i18n="tr1">mainteneur</span></span></div>
+        <div class="ps"><span class="ico" aria-hidden="true">🕸️</span><span data-i18n="tr2">63 PRs fusionnées dans le navigateur Lightpanda (Zig)</span></div>
+        <div class="ps"><span class="ico" aria-hidden="true">💉</span><span data-i18n="tr3">43 PRs sur covidliste — la campagne française de vaccination Covid-19</span></div>
+        <div class="ps"><span class="ico" aria-hidden="true">🚂</span><span data-i18n="tr4">Fusionné dans Rails core, jsbundling &amp; cssbundling</span></div>
+        <div class="ps"><span class="ico" aria-hidden="true">📡</span><span data-i18n="tr5">Contributions aux agents Ruby de Datadog &amp; New Relic</span></div>
       </section>
     </div>
   </main>
@@ -431,6 +461,101 @@ h1 {
   var state = Object.assign({}, fallback);
   var live = { prs: false, user: false, stars: false };
 
+  var I18N = {
+    fr: {
+      title: "Navid Emad \u2014 Expert Ruby on Rails & IA agentique",
+      crest: "Disponible pour missions IA & Rails",
+      h1: "Salut ! Moi c\u2019est Navid",
+      id1: "Expert Ruby on Rails",
+      id2: "Ing\u00e9nieur workflows IA agentiques",
+      scout: "<b>Rails en production \u00b7 l\u2019IA pour de vrai</b>Je construis et dirige des applications Ruby on Rails en production. Adopteur pr\u00e9coce de l\u2019IA, j\u2019aide les entreprises \u00e0 l\u2019exploiter concr\u00e8tement \u2014 workflows agentiques, op\u00e9rations assist\u00e9es par IA. Besoin d\u2019un site web, d\u2019un plan d\u2019adoption IA ou d\u2019un lead engineer\u00a0? Parlons-en.",
+      specialties: "Sp\u00e9cialit\u00e9s",
+      spec2: "IA agentique & LLM",
+      spec3: "Hotwire \u00b7 Tailwind",
+      spec4: "Livraison",
+      spec4v: "QUOTIDIENNE / CI",
+      perks: "Atouts",
+      perk1: "Mainteneur", perk2: "Bosseur", perk3: "Agentique",
+      perk4: "Polyglotte", perk5: "Marathonien", perk7: "Connecteur",
+      telemetry: "T\u00e9l\u00e9m\u00e9trie GitHub",
+      track: "Palmar\u00e8s",
+      tr1: "mainteneur",
+      tr2: "63 PRs fusionn\u00e9es dans le navigateur Lightpanda (Zig)",
+      tr3: "43 PRs sur covidliste \u2014 la campagne fran\u00e7aise de vaccination Covid-19",
+      tr4: "Fusionn\u00e9 dans Rails core, jsbundling & cssbundling",
+      tr5: "Contributions aux agents Ruby de Datadog & New Relic",
+      cta_mail: "\u00c9crivez-moi",
+      cta_x: "DM sur X",
+      live: "LIVE", cached: "CACHE",
+      m: {
+        prs: "PRs open source fusionn\u00e9es",
+        reach: "Port\u00e9e cumul\u00e9e",
+        stars: "\u00c9toiles gagn\u00e9es",
+        top: "Top d\u00e9p\u00f4t",
+        followers: "Abonn\u00e9s",
+        repos: "D\u00e9p\u00f4ts publics",
+        langs: "Langages"
+      },
+      d: {
+        prs: function (s) { return s.prs + " PRs \u00b7 " + s.repos + " d\u00e9p\u00f4ts"; },
+        reach: function (s, fmt) { return "~" + fmt(s.reach) + "\u2b50 touch\u00e9es"; },
+        stars: function (s) { return s.starsEarned + " \u00e9toiles"; },
+        top: function (s) { return s.topRepo + " \u00e9toiles"; },
+        followers: function (s) { return s.followers + " abonn\u00e9s"; },
+        repos: function (s) { return s.publicRepos + " d\u00e9p\u00f4ts"; }
+      }
+    },
+    en: {
+      title: "Navid Emad \u2014 Ruby on Rails & Agentic AI Engineer",
+      crest: "Open to AI & Rails engagements",
+      h1: "Hi! I am Navid",
+      id1: "Ruby on Rails expert",
+      id2: "Agentic AI workflow engineer",
+      scout: "<b>Rails in production \u00b7 AI for real</b>I build and lead production Ruby on Rails applications, and as an early AI adopter I help companies put it to work \u2014 agentic workflows, AI-assisted operations, developer tooling. Need a website, an AI adoption plan, or a lead engineer? Let\u2019s talk.",
+      specialties: "Specialties",
+      spec2: "Agentic AI & LLMs",
+      spec3: "Hotwire \u00b7 Tailwind",
+      spec4: "Ship rate",
+      spec4v: "DAILY / CI",
+      perks: "Perks",
+      perk1: "Maintainer", perk2: "Workhorse", perk3: "Agentic",
+      perk4: "Polyglot", perk5: "Marathoner", perk7: "Connector",
+      telemetry: "GitHub Telemetry",
+      track: "Track Record",
+      tr1: "maintainer",
+      tr2: "63 PRs merged into Lightpanda browser (Zig)",
+      tr3: "43 PRs on covidliste \u2014 France\u2019s Covid-19 vaccination drive",
+      tr4: "Merged upstream in Rails core, jsbundling & cssbundling",
+      tr5: "Contributions in Datadog & New Relic Ruby agents",
+      cta_mail: "Email me",
+      cta_x: "DM on X",
+      live: "LIVE", cached: "CACHED",
+      m: {
+        prs: "Merged OSS PRs",
+        reach: "Combined reach",
+        stars: "Stars earned",
+        top: "Top repo reach",
+        followers: "Followers",
+        repos: "Public repos",
+        langs: "Languages"
+      },
+      d: {
+        prs: function (s) { return s.prs + " PRs \u00b7 " + s.repos + " repos"; },
+        reach: function (s, fmt) { return "~" + fmt(s.reach) + "\u2b50 touched"; },
+        stars: function (s) { return s.starsEarned + " stars"; },
+        top: function (s) { return s.topRepo + " stars"; },
+        followers: function (s) { return s.followers + " followers"; },
+        repos: function (s) { return s.publicRepos + " repos"; }
+      }
+    }
+  };
+
+  var lang;
+  try { lang = localStorage.getItem("lang"); } catch (e) {}
+  if (lang !== "fr" && lang !== "en") {
+    lang = (navigator.language || "fr").slice(0, 2) === "fr" ? "fr" : "en";
+  }
+
   function fmt(n) {
     if (n >= 1000) return (n / 1000).toFixed(n >= 10000 ? 0 : 1).replace(/\.0$/, "") + "k";
     return String(n);
@@ -443,21 +568,22 @@ h1 {
   }
 
   function render() {
+    var L = I18N[lang];
     var rows = [
-      { label: "Merged OSS PRs",  detail: state.prs + " PRs · " + state.repos + " repos", sc: score(state.prs, 400) },
-      { label: "Combined reach",  detail: "~" + fmt(state.reach) + "⭐ touched",      sc: score(state.reach, 200000) },
-      { label: "Stars earned",    detail: state.starsEarned + " stars",                    sc: score(state.starsEarned, 2000) },
-      { label: "Top repo reach",  detail: state.topRepo + " stars",                        sc: score(state.topRepo, 1000) },
-      { label: "Followers",       detail: state.followers + " followers",                  sc: score(state.followers, 3000) },
-      { label: "Public repos",    detail: state.publicRepos + " repos",                    sc: score(state.publicRepos, 300) },
-      { label: "Languages",       detail: "Ruby·JS·Zig·SQL",                          sc: 86 }
+      { label: L.m.prs,       detail: L.d.prs(state),        sc: score(state.prs, 400) },
+      { label: L.m.reach,     detail: L.d.reach(state, fmt), sc: score(state.reach, 200000) },
+      { label: L.m.stars,     detail: L.d.stars(state),      sc: score(state.starsEarned, 2000) },
+      { label: L.m.top,       detail: L.d.top(state),        sc: score(state.topRepo, 1000) },
+      { label: L.m.followers, detail: L.d.followers(state),  sc: score(state.followers, 3000) },
+      { label: L.m.repos,     detail: L.d.repos(state),      sc: score(state.publicRepos, 300) },
+      { label: L.m.langs,     detail: "Ruby\u00b7JS\u00b7Zig\u00b7SQL", sc: 86 }
     ];
     var host = document.getElementById("metrics");
     host.innerHTML = rows.map(function (r) {
       return '<div class="metric">' +
         '<div class="row"><span class="label">' + r.label + '</span>' +
         '<span class="detail">' + r.detail + '</span>' +
-        '<span class="score">' + r.sc + '</span></div>' +
+        '<span class="score" title="/100">' + r.sc + '</span></div>' +
         '<div class="track"><div class="fill" data-w="' + r.sc + '"></div></div></div>';
     }).join("");
     requestAnimationFrame(function () {
@@ -468,8 +594,32 @@ h1 {
       });
     });
     var anyLive = live.prs || live.user || live.stars;
-    document.getElementById("live-label").textContent = anyLive ? "LIVE" : "CACHED";
+    document.getElementById("live-label").textContent = anyLive ? L.live : L.cached;
   }
+
+  function applyLang() {
+    var L = I18N[lang];
+    document.documentElement.lang = lang;
+    document.title = L.title;
+    document.querySelectorAll("[data-i18n]").forEach(function (el) {
+      var k = el.getAttribute("data-i18n");
+      if (L[k]) el.textContent = L[k];
+    });
+    document.querySelectorAll("[data-i18n-html]").forEach(function (el) {
+      var k = el.getAttribute("data-i18n-html");
+      if (L[k]) el.innerHTML = L[k];
+    });
+    var btn = document.getElementById("lang-toggle");
+    btn.textContent = lang === "fr" ? "EN" : "FR";
+    btn.setAttribute("aria-label", lang === "fr" ? "Switch to English" : "Passer en fran\u00e7ais");
+    render();
+  }
+
+  document.getElementById("lang-toggle").addEventListener("click", function () {
+    lang = lang === "fr" ? "en" : "fr";
+    try { localStorage.setItem("lang", lang); } catch (e) {}
+    applyLang();
+  });
 
   function gh(path) {
     return fetch("https://api.github.com" + path, {
@@ -477,7 +627,7 @@ h1 {
     }).then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); });
   }
 
-  render(); // paint fallbacks immediately, hydrate after
+  applyLang(); // paint fallbacks in the visitor's language immediately, hydrate after
 
   gh("/users/" + USER).then(function (u) {
     state.followers = u.followers;
