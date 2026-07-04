@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Navid EMAD — 87 OVR · Dev Dossier</title>
-<meta name="description" content="Character-sheet dev dossier for Navid EMAD — Lead Fullstack Ruby on Rails developer building agentic AI systems. 127 merged OSS PRs across 18 repos." />
+<title>Navid Emad — Ruby on Rails & Agentic AI Engineer</title>
+<meta name="description" content="Navid Emad — Lead Ruby on Rails developer and agentic AI workflow engineer. I build production web apps and help companies adopt AI. 127 merged OSS PRs across 18 repos." />
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⌨️</text></svg>" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -97,15 +97,6 @@ header.top {
 
 /* ---------- hero ---------- */
 .hero { padding: clamp(10px, 3vh, 40px) 0 0; display: flex; align-items: center; gap: 26px; flex: none; }
-.rating-plate {
-  flex: none; width: clamp(78px, 12vh, 92px); height: clamp(84px, 13vh, 100px); border-radius: 15px;
-  border: 1px solid rgba(232, 194, 104, 0.35);
-  background: linear-gradient(160deg, rgba(232, 194, 104, 0.12), rgba(13, 20, 38, 0.7) 55%);
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-  box-shadow: 0 0 40px rgba(232, 194, 104, 0.12), inset 0 1px 0 rgba(255,255,255,0.08);
-}
-.rating-plate .num { font-family: "Bebas Neue", sans-serif; font-size: 46px; line-height: 1; color: var(--ink); }
-.rating-plate .tag { font-family: "Barlow Condensed", sans-serif; font-weight: 700; font-size: 12px; letter-spacing: 4px; color: var(--gold); margin-top: 2px; }
 .hero-copy {
   flex: 1; display: grid; grid-template-columns: auto minmax(300px, 520px);
   justify-content: space-between; align-items: center; column-gap: 48px;
@@ -222,7 +213,7 @@ h1 {
 .card-inner { position: absolute; inset: 0; padding: 10% 13% 19%; display: flex; flex-direction: column; }
 .card-head { display: flex; gap: 4%; flex: 1 1 auto; min-height: 0; }
 .card-left { width: 34%; display: flex; flex-direction: column; align-items: center; color: var(--gold-2); }
-.card-left .rating { font-family: "Bebas Neue", sans-serif; font-size: 58px; line-height: 0.9; text-shadow: 0 2px 10px rgba(0,0,0,.4); }
+.card-left .gem-big { width: 42px; height: 42px; margin: 4px 0 8px; filter: drop-shadow(0 2px 8px rgba(0,0,0,.45)); }
 .card-left .pos { font-family: "Barlow Condensed", sans-serif; font-weight: 700; font-size: 19px; letter-spacing: 3px; margin: 2px 0 10px; }
 .card-left .flag { width: 34px; height: 23px; border-radius: 3px; overflow: hidden; display: flex; box-shadow: 0 1px 6px rgba(0,0,0,.45); margin-bottom: 9px; }
 .card-left .flag i { flex: 1; }
@@ -297,8 +288,8 @@ h1 {
 <div class="wrap">
   <header class="top">
     <div class="crest">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 2l8 3v6c0 5-3.4 9.4-8 11-4.6-1.6-8-6-8-11V5l8-3z" stroke="#e8c268" stroke-width="1.6"/><path d="M8.5 12l2.3 2.3 4.7-4.6" stroke="#e8c268" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      Dev Dossier
+      <span class="live-dot" aria-hidden="true"></span>
+      Open to AI &amp; Rails engagements
     </div>
     <nav class="top-links">
       <a class="chip" href="https://github.com/navidemad" target="_blank" rel="noopener">
@@ -313,34 +304,31 @@ h1 {
   </header>
 
   <section class="hero">
-    <div class="rating-plate"><span class="num" id="hero-rating">87</span><span class="tag">OVR</span></div>
     <div class="hero-copy">
       <div class="hero-main">
       <div class="kicker">whoami --verbose<span class="cursor" aria-hidden="true"></span></div>
-      <h1>Navid Emad</h1>
+      <h1>Hi! I am Navid</h1>
       <div class="id-row">
-        <span class="pos-badge">LEAD</span>
-        <span>Fullstack</span>
+        <span class="pos-badge">LEAD DEV</span>
+        <span><svg class="gem" viewBox="0 0 24 24" fill="#e0115f"><path d="M6 3h12l4 6-10 12L2 9l4-6z"/></svg> Ruby on Rails expert</span>
+        <span class="sep">|</span>
+        <span>Agentic AI workflow engineer</span>
         <span class="sep">|</span>
         <a href="https://github.com/navidemad" target="_blank" rel="noopener">@navidemad</a>
-        <span class="sep">|</span>
-        <span><svg class="gem" viewBox="0 0 24 24" fill="#e0115f"><path d="M6 3h12l4 6-10 12L2 9l4-6z"/></svg> Ruby on Rails</span>
-        <span class="sep">|</span>
-        <span>Agentic AI</span>
       </div>
       </div>
-      <p class="scout-line"><b>S-Tier Engineer</b>Ships daily, terminal to production. Lead fullstack Rails developer building agentic AI systems — reads unfamiliar codebases fast, fixes upstream instead of monkey-patching, merges clean.</p>
+      <p class="scout-line"><b>Rails in production · AI for real</b>I build and lead production Ruby on Rails applications, and as an early AI adopter I help companies put it to work — agentic workflows, AI-assisted operations, developer tooling. Need a website, an AI adoption plan, or a lead engineer? Let's talk.</p>
     </div>
   </section>
 
   <main class="pitch">
     <div class="col left">
       <section class="panel">
-        <h2>Attributes</h2>
-        <div class="attr"><span>Backend mastery</span><span class="stars">★★★★★</span></div>
-        <div class="attr"><span>Frontend touch</span><span class="stars">★★★★<span class="off">★</span></span></div>
+        <h2>Specialties</h2>
+        <div class="attr"><span>Ruby on Rails</span><span class="stars">★★★★★</span></div>
+        <div class="attr"><span>Agentic AI &amp; LLM workflows</span><span class="stars">★★★★★</span></div>
+        <div class="attr"><span>Hotwire · Tailwind frontends</span><span class="stars">★★★★<span class="off">★</span></span></div>
         <div class="attr"><span>Ship rate</span><span class="val">DAILY / CI</span></div>
-        <div class="attr"><span>Deploy style</span><span class="val">CONTINUOUS</span></div>
       </section>
       <section class="panel">
         <h2>Perks</h2>
@@ -357,7 +345,7 @@ h1 {
     </div>
 
     <div class="card-stage">
-      <div class="fut-card" aria-label="Legendary dev card, 87 overall, lead engineer">
+      <div class="fut-card" aria-label="Collector card of Navid, lead Ruby on Rails and agentic AI engineer">
         <svg class="shape" viewBox="0 0 300 468" aria-hidden="true">
           <defs>
             <linearGradient id="goldEdge" x1="0" y1="0" x2="1" y2="1">
@@ -381,16 +369,16 @@ h1 {
         <div class="card-inner">
           <div class="card-head">
             <div class="card-left">
-              <span class="rating" id="card-rating">87</span>
+              <svg class="gem-big" viewBox="0 0 24 24" fill="#e0115f" title="Ruby on Rails"><path d="M6 3h12l4 6-10 12L2 9l4-6z" stroke="#f6e3a1" stroke-opacity=".6" stroke-width=".8"/></svg>
               <span class="pos">LEAD</span>
               <span class="flag" title="France"><i style="background:#0055a4"></i><i style="background:#fff"></i><i style="background:#ef4135"></i></span>
-              <svg class="club" viewBox="0 0 24 24" fill="#e0115f" title="Ruby"><path d="M6 3h12l4 6-10 12L2 9l4-6z" stroke="#f6e3a1" stroke-opacity=".6" stroke-width=".8"/></svg>
+              <span class="pos" style="font-size:14px">AI</span>
             </div>
             <div class="card-photo">
               <img src="https://github.com/navidemad.png?size=460" alt="Navid EMAD" loading="eager" />
             </div>
           </div>
-          <div class="card-name">EMAD</div>
+          <div class="card-name">NAVID</div>
           <div class="card-stats">
             <div class="cstat"><span class="v">92</span><span class="k">SHP</span></div>
             <div class="cstat"><span class="v">88</span><span class="k">DBG</span></div>
@@ -404,7 +392,7 @@ h1 {
       <div class="cta-row">
         <a class="btn primary" href="https://x.com/navidemad" target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24"><path d="M18.9 2H22l-6.9 7.9L23.3 22h-6.4l-5-6.6L6.2 22H3l7.4-8.5L1 2h6.6l4.5 6 5.8-6zm-1.1 18h1.8L7.6 3.9H5.7L17.8 20z"/></svg>
-          Recruit me — DM on X
+          Work with me — DM on X
         </a>
         <a class="btn ghost" href="https://github.com/navidemad" target="_blank" rel="noopener">git checkout profile</a>
       </div>
@@ -419,7 +407,7 @@ h1 {
 
     <div class="col far">
       <section class="panel">
-        <h2>Quest Log</h2>
+        <h2>Track Record</h2>
         <div class="ps"><span class="ico">🥇</span><span><a href="https://github.com/navidemad/capybara-lightpanda" target="_blank" rel="noopener" style="color:var(--ink);text-decoration:none;border-bottom:1px dotted var(--ink-faint)">capybara-lightpanda</a> — maintainer</span></div>
         <div class="ps"><span class="ico">🕸️</span><span>63 PRs merged into Lightpanda browser (Zig)</span></div>
         <div class="ps"><span class="ico">💉</span><span>43 PRs on covidliste — France's Covid-19 vaccination drive</span></div>
