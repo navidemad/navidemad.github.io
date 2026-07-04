@@ -3,12 +3,12 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Navid EMAD — 87 TOTY · Scout Report</title>
-<meta name="description" content="FUT-style scout report for Navid EMAD — Lead Fullstack Ruby on Rails developer building agentic AI systems. 127 merged OSS PRs across 18 repos." />
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚽</text></svg>" />
+<title>Navid EMAD — 87 OVR · Dev Dossier</title>
+<meta name="description" content="Character-sheet dev dossier for Navid EMAD — Lead Fullstack Ruby on Rails developer building agentic AI systems. 127 merged OSS PRs across 18 repos." />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⌨️</text></svg>" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Barlow+Condensed:wght@500;600;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Barlow+Condensed:wght@500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
 <style>
 :root {
   --bg: #070b16;
@@ -105,11 +105,13 @@ header.top {
 .rating-plate .tag { font-family: "Barlow Condensed", sans-serif; font-weight: 700; font-size: 13px; letter-spacing: 4px; color: var(--gold); margin-top: 2px; }
 .hero-copy { padding-top: 2px; }
 .kicker {
-  font-family: "Barlow Condensed", sans-serif; font-weight: 700; font-size: 13px;
-  letter-spacing: 5px; color: var(--green); text-transform: uppercase;
+  font-family: "JetBrains Mono", monospace; font-weight: 600; font-size: 12.5px;
+  letter-spacing: 3px; color: var(--green); text-transform: uppercase;
   display: flex; align-items: center; gap: 10px;
 }
-.kicker::before { content: ""; width: 22px; height: 2px; background: var(--green); }
+.kicker::before { content: "~/$"; color: var(--ink-faint); letter-spacing: 0; }
+.cursor { display: inline-block; width: 0.45em; margin-left: 6px; background: var(--green); animation: blink 1.1s steps(1) infinite; }
+@keyframes blink { 50% { opacity: 0; } }
 h1 {
   font-family: "Bebas Neue", sans-serif; font-size: clamp(52px, 8vw, 88px);
   line-height: 0.95; letter-spacing: 2px; margin: 8px 0 14px;
@@ -179,7 +181,7 @@ h1 {
 .metric:last-child { border-bottom: 0; }
 .metric .row { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; }
 .metric .label { font-size: 15px; }
-.metric .detail { margin-left: auto; font-size: 12.5px; color: var(--ink-faint); font-variant-numeric: tabular-nums; }
+.metric .detail { margin-left: auto; font-family: "JetBrains Mono", monospace; font-size: 11.5px; color: var(--ink-faint); font-variant-numeric: tabular-nums; }
 .metric .score {
   font-family: "Bebas Neue", sans-serif; font-size: 21px; color: var(--ink); min-width: 30px; text-align: right;
 }
@@ -201,7 +203,7 @@ h1 {
 .fut-card:hover { transform: translateY(-6px) rotate(-0.5deg); }
 @keyframes cardIn { from { opacity: 0; transform: translateY(30px) scale(.96); } to { opacity: 1; transform: none; } }
 .fut-card svg.shape { position: absolute; inset: 0; width: 100%; height: 100%; }
-.card-inner { position: absolute; inset: 0; padding: 11% 13% 12%; display: flex; flex-direction: column; }
+.card-inner { position: absolute; inset: 0; padding: 10% 13% 19%; display: flex; flex-direction: column; }
 .card-head { display: flex; gap: 4%; flex: 1 1 auto; min-height: 0; }
 .card-left { width: 34%; display: flex; flex-direction: column; align-items: center; color: var(--gold-2); }
 .card-left .rating { font-family: "Bebas Neue", sans-serif; font-size: 58px; line-height: 0.9; text-shadow: 0 2px 10px rgba(0,0,0,.4); }
@@ -217,15 +219,15 @@ h1 {
   -webkit-mask-image: linear-gradient(180deg, black 78%, transparent 100%);
 }
 .card-name {
-  text-align: center; font-family: "Bebas Neue", sans-serif; font-size: 34px; letter-spacing: 4px;
+  text-align: center; font-family: "Bebas Neue", sans-serif; font-size: 31px; letter-spacing: 4px;
   color: var(--gold-2); text-shadow: 0 2px 8px rgba(0,0,0,.5);
   border-top: 1px solid rgba(246, 227, 161, 0.35); border-bottom: 1px solid rgba(246, 227, 161, 0.35);
   padding: 2px 0 0; margin-top: 2px;
 }
-.card-stats { display: grid; grid-template-columns: 1fr 1fr; padding: 8px 6% 0; column-gap: 14%; }
-.cstat { display: flex; align-items: baseline; gap: 8px; justify-content: center; padding: 1.5px 0; }
-.cstat .v { font-family: "Bebas Neue", sans-serif; font-size: 24px; color: #fff; min-width: 26px; text-align: right; }
-.cstat .k { font-family: "Barlow Condensed", sans-serif; font-weight: 700; font-size: 16px; letter-spacing: 2px; color: var(--gold-2); }
+.card-stats { display: grid; grid-template-columns: 1fr 1fr; padding: 6px 15% 0; column-gap: 8%; }
+.cstat { display: flex; align-items: baseline; gap: 8px; justify-content: center; padding: 1px 0; }
+.cstat .v { font-family: "Bebas Neue", sans-serif; font-size: 21px; color: #fff; min-width: 24px; text-align: right; }
+.cstat .k { font-family: "Barlow Condensed", sans-serif; font-weight: 700; font-size: 14px; letter-spacing: 2px; color: var(--gold-2); }
 /* shine sweep */
 .fut-card::after {
   content: ""; position: absolute; inset: 0; pointer-events: none;
@@ -280,7 +282,7 @@ footer a:hover { color: var(--ink); }
   <header class="top">
     <div class="crest">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 2l8 3v6c0 5-3.4 9.4-8 11-4.6-1.6-8-6-8-11V5l8-3z" stroke="#e8c268" stroke-width="1.6"/><path d="M8.5 12l2.3 2.3 4.7-4.6" stroke="#e8c268" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      Scout Report
+      Dev Dossier
     </div>
     <nav class="top-links">
       <a class="chip" href="https://github.com/navidemad" target="_blank" rel="noopener">
@@ -295,13 +297,13 @@ footer a:hover { color: var(--ink); }
   </header>
 
   <section class="hero">
-    <div class="rating-plate"><span class="num" id="hero-rating">87</span><span class="tag">TOTY</span></div>
+    <div class="rating-plate"><span class="num" id="hero-rating">87</span><span class="tag">OVR</span></div>
     <div class="hero-copy">
-      <div class="kicker">Scout Report · Season 2026</div>
+      <div class="kicker">whoami --verbose<span class="cursor" aria-hidden="true"></span></div>
       <h1>Navid Emad</h1>
       <div class="id-row">
-        <span class="pos-badge">CDM</span>
-        <span>Mezzala</span>
+        <span class="pos-badge">LEAD</span>
+        <span>Fullstack</span>
         <span class="sep">|</span>
         <a href="https://github.com/navidemad" target="_blank" rel="noopener">@navidemad</a>
         <span class="sep">|</span>
@@ -309,7 +311,7 @@ footer a:hover { color: var(--ink); }
         <span class="sep">|</span>
         <span>Agentic AI</span>
       </div>
-      <p class="scout-line"><b>Elite Prospect</b>The engine: a relentless box-to-box daily-driver. Lead fullstack Rails developer shipping agentic AI systems — reads the game early, presses upstream, finishes in production.</p>
+      <p class="scout-line"><b>S-Tier Engineer</b>Ships daily, terminal to production. Lead fullstack Rails developer building agentic AI systems — reads unfamiliar codebases fast, fixes upstream instead of monkey-patching, merges clean.</p>
     </div>
   </section>
 
@@ -317,13 +319,13 @@ footer a:hover { color: var(--ink); }
     <div class="col left">
       <section class="panel">
         <h2>Attributes</h2>
-        <div class="attr"><span>Skill moves</span><span class="stars">★★★★★</span></div>
-        <div class="attr"><span>Weak foot</span><span class="stars">★★★★<span class="off">★</span></span></div>
-        <div class="attr"><span>Work rate</span><span class="val">HIGH / MED</span></div>
-        <div class="attr"><span>Style</span><span class="val">EXPLOSIVE</span></div>
+        <div class="attr"><span>Backend mastery</span><span class="stars">★★★★★</span></div>
+        <div class="attr"><span>Frontend touch</span><span class="stars">★★★★<span class="off">★</span></span></div>
+        <div class="attr"><span>Ship rate</span><span class="val">DAILY / CI</span></div>
+        <div class="attr"><span>Deploy style</span><span class="val">CONTINUOUS</span></div>
       </section>
       <section class="panel">
-        <h2>Playstyles</h2>
+        <h2>Perks</h2>
         <div class="ps"><span class="ico">🛠️</span> Maintainer <span class="plus">+</span></div>
         <div class="ps"><span class="ico">⚡</span> Workhorse <span class="plus">+</span></div>
         <div class="ps"><span class="ico">🤖</span> Agentic <span class="plus">+</span></div>
@@ -335,7 +337,7 @@ footer a:hover { color: var(--ink); }
     </div>
 
     <div class="card-stage">
-      <div class="fut-card" aria-label="FUT-style player card, 87 rated CDM">
+      <div class="fut-card" aria-label="Legendary dev card, 87 overall, lead engineer">
         <svg class="shape" viewBox="0 0 300 468" aria-hidden="true">
           <defs>
             <linearGradient id="goldEdge" x1="0" y1="0" x2="1" y2="1">
@@ -360,7 +362,7 @@ footer a:hover { color: var(--ink); }
           <div class="card-head">
             <div class="card-left">
               <span class="rating" id="card-rating">87</span>
-              <span class="pos">CDM</span>
+              <span class="pos">LEAD</span>
               <span class="flag" title="France"><i style="background:#0055a4"></i><i style="background:#fff"></i><i style="background:#ef4135"></i></span>
               <svg class="club" viewBox="0 0 24 24" fill="#e0115f" title="Ruby"><path d="M6 3h12l4 6-10 12L2 9l4-6z" stroke="#f6e3a1" stroke-opacity=".6" stroke-width=".8"/></svg>
             </div>
@@ -370,31 +372,31 @@ footer a:hover { color: var(--ink); }
           </div>
           <div class="card-name">EMAD</div>
           <div class="card-stats">
-            <div class="cstat"><span class="v">77</span><span class="k">PAC</span></div>
-            <div class="cstat"><span class="v">75</span><span class="k">DRI</span></div>
-            <div class="cstat"><span class="v">60</span><span class="k">SHO</span></div>
-            <div class="cstat"><span class="v">66</span><span class="k">DEF</span></div>
-            <div class="cstat"><span class="v">77</span><span class="k">PAS</span></div>
-            <div class="cstat"><span class="v">99</span><span class="k">PHY</span></div>
+            <div class="cstat"><span class="v">92</span><span class="k">SHP</span></div>
+            <div class="cstat"><span class="v">88</span><span class="k">DBG</span></div>
+            <div class="cstat"><span class="v">85</span><span class="k">ARC</span></div>
+            <div class="cstat"><span class="v">83</span><span class="k">REV</span></div>
+            <div class="cstat"><span class="v">90</span><span class="k">OSS</span></div>
+            <div class="cstat"><span class="v">94</span><span class="k">AI</span></div>
           </div>
         </div>
       </div>
       <div class="cta-row">
         <a class="btn primary" href="https://x.com/navidemad" target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24"><path d="M18.9 2H22l-6.9 7.9L23.3 22h-6.4l-5-6.6L6.2 22H3l7.4-8.5L1 2h6.6l4.5 6 5.8-6zm-1.1 18h1.8L7.6 3.9H5.7L17.8 20z"/></svg>
-          Scout me — DM on X
+          Recruit me — DM on X
         </a>
-        <a class="btn ghost" href="https://github.com/navidemad" target="_blank" rel="noopener">View profile</a>
+        <a class="btn ghost" href="https://github.com/navidemad" target="_blank" rel="noopener">git checkout profile</a>
       </div>
     </div>
 
     <div class="col right">
       <section class="panel">
-        <h2>Scouting Metrics <span style="margin-left:auto;letter-spacing:1px;font-size:11px;color:var(--ink-faint)"><span class="live-dot"></span><span id="live-label">LIVE</span></span></h2>
+        <h2>GitHub Telemetry <span style="margin-left:auto;letter-spacing:1px;font-size:11px;color:var(--ink-faint)"><span class="live-dot"></span><span id="live-label">LIVE</span></span></h2>
         <div id="metrics"></div>
       </section>
       <section class="panel">
-        <h2>Career Highlights</h2>
+        <h2>Quest Log</h2>
         <div class="ps"><span class="ico">🥇</span><span><a href="https://github.com/navidemad/capybara-lightpanda" target="_blank" rel="noopener" style="color:var(--ink);text-decoration:none;border-bottom:1px dotted var(--ink-faint)">capybara-lightpanda</a> — maintainer</span></div>
         <div class="ps"><span class="ico">🕸️</span><span>63 PRs merged into Lightpanda browser (Zig)</span></div>
         <div class="ps"><span class="ico">💉</span><span>43 PRs on covidliste — France's Covid-19 vaccination drive</span></div>
@@ -405,7 +407,7 @@ footer a:hover { color: var(--ink); }
   </main>
 
   <footer>
-    Card concept inspired by <a href="https://gitfut.com" target="_blank" rel="noopener">GitFut</a> · Stats hydrate live from the GitHub API ·
+    No frameworks were harmed — one hand-rolled HTML file · Stats hydrate live from the GitHub API · Card concept nod to <a href="https://gitfut.com" target="_blank" rel="noopener">GitFut</a> ·
     <a href="https://github.com/navidemad/navidemad" target="_blank" rel="noopener">source</a>
   </footer>
 </div>
