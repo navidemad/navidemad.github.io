@@ -185,15 +185,18 @@ h1 {
 .col.right .panel:nth-child(2) { animation-delay: .40s; }
 
 /* attributes */
-.attr { display: flex; align-items: center; justify-content: space-between; padding: clamp(4px, 1.1vh, 11px) 0; border-bottom: 1px solid rgba(122,152,214,0.08); font-size: 14px; }
+.attr { display: flex; align-items: center; justify-content: space-between; padding: clamp(3px, 0.6vh, 8px) 0; border-bottom: 1px solid rgba(122,152,214,0.08); font-size: 14px; }
 .attr:last-child { border-bottom: 0; }
-.attr .val { font-family: "Barlow Condensed", sans-serif; font-weight: 700; letter-spacing: 2px; font-size: 14px; color: var(--ink); }
+.attr .val { font-family: "Barlow Condensed", sans-serif; font-weight: 700; letter-spacing: 2px; font-size: 14px; color: var(--ink); white-space: nowrap; flex: none; margin-left: 12px; }
 .stars { color: var(--accent); letter-spacing: 2px; font-size: 15px; }
 .stars .off { color: rgba(122,152,214,0.25); }
 
+.attr-l { display: flex; flex-direction: column; }
+.attr-l small { color: var(--ink-faint); font-size: 11px; font-weight: 400; line-height: 1.35; }
+@media (max-height: 780px) { .attr-l small { display: none; } }
 /* playstyles */
 .perks { display: grid; grid-template-columns: 1fr 1fr; column-gap: 14px; }
-.ps { display: flex; align-items: center; gap: 10px; padding: clamp(3px, 0.9vh, 9px) 0; font-size: 13.5px; font-weight: 500; }
+.ps { display: flex; align-items: center; gap: 10px; padding: clamp(3px, 0.7vh, 8px) 0; font-size: 13.5px; font-weight: 500; }
 .perks .ps { white-space: nowrap; }
 .ps .ico {
   flex: none; width: 28px; height: 28px; border-radius: 8px; display: grid; place-items: center;
@@ -278,6 +281,7 @@ h1 {
 .btn.primary:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(53, 208, 127, 0.4); }
 .btn.ghost { background: rgba(13, 20, 38, 0.6); color: var(--ink); border: 1px solid var(--panel-edge); }
 .btn.ghost:hover { border-color: rgba(232,194,104,0.5); transform: translateY(-2px); }
+@media (max-width: 1380px) { .btn.more { display: none; } }
 
 .live-dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--green); margin-right: 6px; box-shadow: 0 0 8px var(--green); animation: pulse 2.2s infinite; }
 @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.35; } }
@@ -448,7 +452,7 @@ h1 {
       </div>
       <div class="trust" data-i18n-html="trust"><b>✓ Disponible</b> · réponse sous 24 h · FR / EN · remote ou Paris</div>
       </div>
-      <p class="scout-line" data-i18n-html="scout"><b>Salut, moi c’est Navid 👋</b>Lead développeur Ruby on Rails et adopteur précoce de l’IA, j’aide les entreprises à construire des produits web solides et à mettre l’IA au travail — workflows agentiques, opérations assistées. Réponse sous 24 h.</p>
+      <p class="scout-line" data-i18n-html="scout"><b>Salut, moi c’est Navid 👋</b>Lead développeur Ruby on Rails et adopteur précoce de l’IA, j’aide les scale-ups et entreprises tech à construire et scaler des produits web critiques — workflows agentiques et automatisations intelligentes inclus. Réponse sous 24 h.</p>
     </div>
   </section>
 
@@ -456,10 +460,10 @@ h1 {
     <div class="col left">
       <section class="panel">
         <h2 data-i18n="specialties">Spécialités</h2>
-        <div class="attr"><span>Ruby on Rails</span><span class="stars" role="img" aria-label="5/5">★★★★★</span></div>
-        <div class="attr"><span data-i18n="spec2">IA agentique &amp; LLM</span><span class="stars" role="img" aria-label="5/5">★★★★★</span></div>
-        <div class="attr"><span data-i18n="spec3">Hotwire · Tailwind</span><span class="stars" role="img" aria-label="4/5">★★★★<span class="off">★</span></span></div>
-        <div class="attr"><span data-i18n="spec4">Livraison</span><span class="val" data-i18n="spec4v">QUOTIDIENNE / CI</span></div>
+        <div class="attr"><span class="attr-l">Ruby on Rails<small data-i18n="sp1s">Architecture, scalabilité, performance</small></span><span class="stars" role="img" aria-label="5/5">★★★★★</span></div>
+        <div class="attr"><span class="attr-l"><span data-i18n="spec2">IA agentique &amp; LLM</span><small data-i18n="sp2s">Workflows autonomes — Claude, MCP</small></span><span class="stars" role="img" aria-label="5/5">★★★★★</span></div>
+        <div class="attr"><span class="attr-l"><span data-i18n="spec3">Hotwire · Tailwind</span><small data-i18n="sp3s">Interfaces modernes et réactives</small></span><span class="stars" role="img" aria-label="4/5">★★★★<span class="off">★</span></span></div>
+        <div class="attr"><span class="attr-l"><span data-i18n="spec4">Livraison</span><small data-i18n="sp4s">Culture du shipping rapide et fiable</small></span><span class="val" data-i18n="spec4v">QUOTIDIENNE / CI</span></div>
       </section>
       <section class="panel">
         <h2 data-i18n="perks">Atouts</h2>
@@ -471,6 +475,7 @@ h1 {
         <div class="ps" title="Régularité sur la durée / Consistency over years"><span class="ico" aria-hidden="true">🏃</span> <span data-i18n="perk5">Marathonien</span></div>
         <div class="ps" title="Corrige à la source, en amont / Fixes upstream at the source"><span class="ico" aria-hidden="true">🔁</span> Upstream</div>
         <div class="ps" title="Fait le lien entre équipes et outils / Connects teams and tools"><span class="ico" aria-hidden="true">🧭</span> <span data-i18n="perk7">Connecteur</span></div>
+        <div class="ps" title="Pilote l’IA en production / Leads AI in production"><span class="ico" aria-hidden="true">🧠</span> <span data-i18n="perk8">Lead IA</span> <span class="plus">+</span></div>
         </div>
       </section>
     </div>
@@ -530,7 +535,7 @@ h1 {
           <svg viewBox="0 0 24 24"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.2 8h4.6v14.8H.2V8zm7.7 0h4.4v2h.06c.6-1.15 2.1-2.36 4.3-2.36 4.6 0 5.44 3.03 5.44 6.96v8.2h-4.6v-7.3c0-1.74-.03-3.98-2.42-3.98-2.42 0-2.8 1.9-2.8 3.86v7.42H7.9V8z"/></svg>
           LinkedIn
         </a>
-        <a class="btn ghost" href="#services"><span data-i18n="cta_more">En savoir plus</span> ↓</a>
+        <a class="btn ghost more" href="#services"><span data-i18n="cta_more">En savoir plus</span> ↓</a>
       </div>
     </div>
 
@@ -563,7 +568,7 @@ h1 {
       <div class="svc">
         <span class="ico-lg" aria-hidden="true">🤖</span>
         <h3 data-i18n="s1t">Adoption IA &amp; agents</h3>
-        <p data-i18n="s1d">De l’IA qui produit — pas des démos.</p>
+        <p data-i18n="s1d">De l’IA qui produit de la valeur — pas des démos.</p>
         <ul class="svc-list">
           <li data-i18n="s1b1">Audit de vos processus et cas d’usage</li>
           <li data-i18n="s1b2">Agents et workflows branchés à vos outils (Claude, MCP)</li>
@@ -574,7 +579,7 @@ h1 {
       <div class="svc">
         <span class="ico-lg" aria-hidden="true">🚀</span>
         <h3 data-i18n="s2t">Votre produit web, de A à Z</h3>
-        <p data-i18n="s2d">Un seul interlocuteur, un produit qui tourne.</p>
+        <p data-i18n="s2d">Un seul interlocuteur technique, un produit qui tourne.</p>
         <ul class="svc-list">
           <li data-i18n="s2b1">Architecture, développement, mise en production</li>
           <li data-i18n="s2b2">Hotwire, Tailwind, paiements, e-mails — tout inclus</li>
@@ -585,7 +590,7 @@ h1 {
       <div class="svc">
         <span class="ico-lg" aria-hidden="true">🧭</span>
         <h3 data-i18n="s3t">Lead tech &amp; renfort d’équipe</h3>
-        <p data-i18n="s3d">Le niveau de l’équipe monte, durablement.</p>
+        <p data-i18n="s3d">L’équipe gagne en autonomie et en niveau, durablement.</p>
         <ul class="svc-list">
           <li data-i18n="s3b1">Direction technique et choix d’architecture</li>
           <li data-i18n="s3b2">Revues de code et standards d’équipe</li>
@@ -635,7 +640,7 @@ h1 {
   <div class="band-inner reveal">
     <div class="sec-label">03 · <span data-i18n="c_label">Contact</span></div>
     <h2 class="sec-title" data-i18n="c_h">Parlons de votre projet</h2>
-    <p class="sec-sub" data-i18n="c_p">Décrivez votre besoin en deux lignes — je réponds sous 24 h, franchement : ce que je peux faire, ce que je ferais autrement, et si je ne suis pas la bonne personne, je vous le dis.</p>
+    <p class="sec-sub" data-i18n="c_p">Décrivez-moi votre besoin en quelques lignes. Je réponds sous 24 h avec franchise : ce que je peux faire, comment je m’y prendrais — et si je ne suis pas la meilleure personne pour le job, je vous le dirai clairement.</p>
     <div class="proc">
       <div class="step"><span class="n">01</span><span data-i18n="proc1">Appel de 30 min — gratuit</span></div>
       <div class="step"><span class="n">02</span><span data-i18n="proc2">Proposition claire sous 48 h</span></div>
@@ -673,12 +678,17 @@ h1 {
       h1: "Livrez plus vite avec Rails & l\u2019IA",
       id1: "Expert Ruby on Rails",
       id2: "Ing\u00e9nieur workflows IA agentiques",
-      scout: "<b>Salut, moi c\u2019est Navid \ud83d\udc4b</b>Lead d\u00e9veloppeur Ruby on Rails et adopteur pr\u00e9coce de l\u2019IA, j\u2019aide les entreprises \u00e0 construire des produits web solides et \u00e0 mettre l\u2019IA au travail \u2014 workflows agentiques, op\u00e9rations assist\u00e9es. R\u00e9ponse sous 24\u00a0h.",
+      scout: "<b>Salut, moi c\u2019est Navid \ud83d\udc4b</b>Lead d\u00e9veloppeur Ruby on Rails et adopteur pr\u00e9coce de l\u2019IA, j\u2019aide les scale-ups et entreprises tech \u00e0 construire et scaler des produits web critiques \u2014 workflows agentiques et automatisations intelligentes inclus. R\u00e9ponse sous 24\u00a0h.",
       specialties: "Sp\u00e9cialit\u00e9s",
       spec2: "IA agentique & LLM",
       spec3: "Hotwire \u00b7 Tailwind",
       spec4: "Livraison",
       spec4v: "QUOTIDIENNE / CI",
+      sp1s: "Architecture, scalabilit\u00e9, performance",
+      sp2s: "Workflows autonomes \u2014 Claude, MCP",
+      sp3s: "Interfaces modernes et r\u00e9actives",
+      sp4s: "Culture du shipping rapide et fiable",
+      perk8: "Lead IA",
       perks: "Atouts",
       perk1: "Mainteneur", perk2: "Bosseur", perk3: "Agentique",
       perk4: "Polyglotte", perk5: "Marathonien", perk7: "Connecteur",
@@ -713,11 +723,11 @@ h1 {
       s_label: "Services",
       s_h: "Comment je peux vous aider",
       s1t: "Adoption IA & agents",
-      s1d: "De l\u2019IA qui produit \u2014 pas des d\u00e9mos.",
+      s1d: "De l\u2019IA qui produit de la valeur \u2014 pas des d\u00e9mos.",
       s2t: "Votre produit web, de A \u00e0 Z",
-      s2d: "Un seul interlocuteur, un produit qui tourne.",
+      s2d: "Un seul interlocuteur technique, un produit qui tourne.",
       s3t: "Lead tech & renfort d\u2019\u00e9quipe",
-      s3d: "Le niveau de l\u2019\u00e9quipe monte, durablement.",
+      s3d: "L\u2019\u00e9quipe gagne en autonomie et en niveau, durablement.",
       r_label: "R\u00e9sultats",
       r_h: "Des r\u00e9sultats v\u00e9rifiables",
       r_sub: "Tout est public : cliquez, v\u00e9rifiez.",
@@ -728,7 +738,7 @@ h1 {
       r_strip: "Aujourd\u2019hui : lead d\u00e9veloppeur fullstack chez Yespark \u2014 55\u00a0000 abonn\u00e9s, 750+ villes. Rails, Hotwire et IA agentique en production, \u00e0 l\u2019\u00e9chelle.",
       c_label: "Contact",
       c_h: "Parlons de votre projet",
-      c_p: "D\u00e9crivez votre besoin en deux lignes \u2014 je r\u00e9ponds sous 24\u00a0h, franchement : ce que je peux faire, ce que je ferais autrement, et si je ne suis pas la bonne personne, je vous le dis.",
+      c_p: "D\u00e9crivez-moi votre besoin en quelques lignes. Je r\u00e9ponds sous 24\u00a0h avec franchise : ce que je peux faire, comment je m\u2019y prendrais \u2014 et si je ne suis pas la meilleure personne pour le job, je vous le dirai clairement.",
       live: "LIVE", cached: "CACHE",
       m: {
         prs: "PRs open source fusionn\u00e9es",
@@ -754,12 +764,17 @@ h1 {
       h1: "Ship faster with Rails & AI",
       id1: "Ruby on Rails expert",
       id2: "Agentic AI workflow engineer",
-      scout: "<b>Hi, I\u2019m Navid \ud83d\udc4b</b>Lead Ruby on Rails developer and early AI adopter, I help companies build solid web products and put AI to work \u2014 agentic workflows, assisted operations. Reply within 24\u00a0h.",
+      scout: "<b>Hi, I\u2019m Navid \ud83d\udc4b</b>Lead Ruby on Rails developer and early AI adopter, I help scale-ups and tech companies build and scale critical web products \u2014 agentic workflows and smart automation included. Reply within 24\u00a0h.",
       specialties: "Specialties",
       spec2: "Agentic AI & LLMs",
       spec3: "Hotwire \u00b7 Tailwind",
       spec4: "Ship rate",
       spec4v: "DAILY / CI",
+      sp1s: "Architecture, scalability, performance",
+      sp2s: "Autonomous workflows \u2014 Claude, MCP",
+      sp3s: "Modern, reactive interfaces",
+      sp4s: "A fast, reliable shipping culture",
+      perk8: "AI Lead",
       perks: "Perks",
       perk1: "Maintainer", perk2: "Workhorse", perk3: "Agentic",
       perk4: "Polyglot", perk5: "Marathoner", perk7: "Connector",
@@ -794,11 +809,11 @@ h1 {
       s_label: "Services",
       s_h: "How I can help",
       s1t: "AI adoption & agents",
-      s1d: "AI that produces \u2014 not demos.",
+      s1d: "AI that produces value \u2014 not demos.",
       s2t: "Your web product, end to end",
-      s2d: "One point of contact, a product that runs.",
+      s2d: "One technical point of contact, a product that runs.",
       s3t: "Tech lead & team reinforcement",
-      s3d: "The team\u2019s level rises \u2014 durably.",
+      s3d: "The team gains autonomy and level \u2014 durably.",
       r_label: "Results",
       r_h: "Verifiable results",
       r_sub: "Everything is public: click and check.",
@@ -809,7 +824,7 @@ h1 {
       r_strip: "Currently: lead fullstack developer at Yespark \u2014 55,000 subscribers, 750+ cities. Rails, Hotwire and agentic AI in production, at scale.",
       c_label: "Contact",
       c_h: "Let\u2019s talk about your project",
-      c_p: "Describe your need in two lines \u2014 I reply within 24\u00a0h, frankly: what I can do, what I\u2019d do differently, and if I\u2019m not the right person, I\u2019ll tell you.",
+      c_p: "Describe your need in a few lines. I reply within 24\u00a0h, frankly: what I can do, how I\u2019d approach it \u2014 and if I\u2019m not the best person for the job, I\u2019ll tell you clearly.",
       live: "LIVE", cached: "CACHED",
       m: {
         prs: "Merged OSS PRs",
