@@ -190,19 +190,8 @@ h1 {
 .stars .off { color: rgba(122,152,214,0.25); }
 
 .attr-l { display: flex; flex-direction: column; }
-.attr-l small, .ps-l small { color: var(--ink-faint); font-size: 11px; font-weight: 400; line-height: 1.35; }
-@media (max-height: 780px) { .attr-l small, .ps-l small { display: none; } }
-/* playstyles */
-.ps { display: flex; align-items: center; gap: 10px; padding: clamp(3px, 0.7vh, 8px) 0; font-size: 13.5px; font-weight: 500; }
-.ps-l { display: flex; flex-direction: column; min-width: 0; }
-.ps .ico {
-  flex: none; width: 28px; height: 28px; border-radius: 8px; display: grid; place-items: center;
-  background: rgba(122, 152, 214, 0.1); border: 1px solid rgba(122,152,214,0.16); font-size: 13px;
-}
-.ps .plus {
-  margin-left: auto; font-family: "Barlow Condensed", sans-serif; font-weight: 700; font-size: 11px;
-  color: #06120b; background: var(--gold); border-radius: 4px; padding: 1px 6px; letter-spacing: 1px;
-}
+.attr-l small { color: var(--ink-faint); font-size: 11px; font-weight: 400; line-height: 1.35; }
+@media (max-height: 780px) { .attr-l small { display: none; } }
 
 /* metrics */
 .metric { padding: clamp(4px, 1.1vh, 10px) 0; border-bottom: 1px solid rgba(122,152,214,0.08); }
@@ -253,10 +242,11 @@ h1 {
   border-top: 1px solid rgba(246, 227, 161, 0.35); border-bottom: 1px solid rgba(246, 227, 161, 0.35);
   padding: 2px 0 0; margin-top: 2px;
 }
-.card-stats { display: grid; grid-template-columns: 1fr 1fr; padding: 6px 15% 0; column-gap: 8%; }
-.cstat { display: flex; align-items: baseline; gap: 8px; justify-content: center; padding: 1px 0; }
-.cstat .v { font-family: "Bebas Neue", sans-serif; font-size: 21px; color: #fff; min-width: 24px; text-align: right; }
-.cstat .k { font-family: "Barlow Condensed", sans-serif; font-weight: 700; font-size: 14px; letter-spacing: 2px; color: var(--gold-2); }
+.card-stats { display: grid; grid-template-columns: 1fr 1fr; padding: 8px 9% 0; column-gap: 4%; }
+.cstat { display: flex; align-items: center; gap: 7px; justify-content: flex-start; padding: clamp(1px, 0.4vh, 4px) 0; }
+.cstat.wide { grid-column: 1 / -1; justify-content: center; }
+.cstat .v { font-size: 14px; line-height: 1; }
+.cstat .k { font-family: "Barlow Condensed", sans-serif; font-weight: 700; font-size: 13.5px; letter-spacing: 1.5px; color: var(--gold-2); text-transform: uppercase; white-space: nowrap; }
 /* shine sweep */
 .fut-card::after {
   content: ""; position: absolute; inset: 0; pointer-events: none;
@@ -285,11 +275,6 @@ h1 {
 
 
 /* ---------- below-the-fold bands ---------- */
-.card-legend {
-  font-family: "JetBrains Mono", monospace; font-size: 10.5px; letter-spacing: .4px;
-  color: var(--ink-dim); text-align: center; max-width: 340px; line-height: 1.7;
-}
-.card-legend b { color: var(--gold); font-weight: 600; }
 .chip.book { background: linear-gradient(160deg, #43e08d, #27a05f); color: #04150c; border-color: transparent; font-weight: 700; }
 .chip.book:hover { border-color: transparent; background: linear-gradient(160deg, #55e89a, #2fb56d); box-shadow: 0 6px 18px rgba(53,208,127,.3); }
 .band { padding: clamp(64px, 10vh, 120px) clamp(24px, 3.2vw, 64px); border-top: 1px solid rgba(122,152,214,0.08); }
@@ -484,16 +469,14 @@ h1 {
           </div>
           <div class="card-name">NAVID</div>
           <div class="card-stats">
-            <div class="cstat" title="Livraison / Shipping"><span class="v">92</span><span class="k">SHP</span></div>
-            <div class="cstat" title="Débogage / Debugging"><span class="v">88</span><span class="k">DBG</span></div>
-            <div class="cstat" title="Architecture"><span class="v">85</span><span class="k">ARC</span></div>
-            <div class="cstat" title="Revue de code / Code review"><span class="v">83</span><span class="k">REV</span></div>
-            <div class="cstat" title="Open source"><span class="v">90</span><span class="k">OSS</span></div>
-            <div class="cstat" title="IA agentique / Agentic AI"><span class="v">94</span><span class="k">AI</span></div>
+            <div class="cstat" title="Assume son code sur la durée / Owns his code for the long run"><span class="v" aria-hidden="true">🛠️</span><span class="k" data-i18n="perk1">Maintainer</span></div>
+            <div class="cstat" title="Corrige les bugs à la source / Fixes bugs at the source"><span class="v" aria-hidden="true">🔁</span><span class="k" data-i18n="perk2">Upstream</span></div>
+            <div class="cstat" title="Livre des agents IA en production / Ships AI agents to production"><span class="v" aria-hidden="true">🤖</span><span class="k" data-i18n="perk3">Agentic</span></div>
+            <div class="cstat" title="Petites PRs, fusionnées chaque jour / Small PRs, merged daily"><span class="v" aria-hidden="true">⚡</span><span class="k" data-i18n="perk4">Shipper</span></div>
+            <div class="cstat wide" title="Pilote l’adoption IA de l’équipe / Drives team-wide AI adoption"><span class="v" aria-hidden="true">🧠</span><span class="k" data-i18n="perk8">AI Lead</span></div>
           </div>
         </div>
       </div>
-      <p class="card-legend" data-i18n-html="legend"><b>SHP</b> shipping · <b>DBG</b> debugging · <b>ARC</b> architecture · <b>REV</b> code review · <b>OSS</b> open source · <b>AI</b> AI agents</p>
       <div class="cta-row">
         <a class="btn primary" href="https://calendly.com/design-navid/30min" target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24"><path d="M7 2v2H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V6a2 2 0 00-2-2h-2V2h-2v2H9V2H7zm12 8v10H5V10h14zM5 8V6h14v2H5zm3 5h3v3H8v-3z"/></svg>
@@ -517,26 +500,8 @@ h1 {
         <div class="attr"><span class="attr-l"><span data-i18n="spec4">Ship rate</span><small data-i18n="sp4s">A fast, reliable shipping culture</small></span><span class="val" data-i18n="spec4v">DAILY / CI</span></div>
       </section>
       <section class="panel">
-        <h2 data-i18n="perks">Perks</h2>
-        <div class="ps"><span class="ico" aria-hidden="true">🛠️</span><span class="ps-l"><span data-i18n="perk1">Maintainer</span><small data-i18n="perk1s">Owns his code for the long run</small></span><span class="plus">+</span></div>
-        <div class="ps"><span class="ico" aria-hidden="true">🔁</span><span class="ps-l"><span data-i18n="perk2">Upstream</span><small data-i18n="perk2s">Fixes bugs at the source</small></span><span class="plus">+</span></div>
-        <div class="ps"><span class="ico" aria-hidden="true">🤖</span><span class="ps-l"><span data-i18n="perk3">Agentic</span><small data-i18n="perk3s">Ships AI agents to production</small></span><span class="plus">+</span></div>
-        <div class="ps"><span class="ico" aria-hidden="true">⚡</span><span class="ps-l"><span data-i18n="perk4">Shipper</span><small data-i18n="perk4s">Small PRs, merged daily</small></span><span class="plus">+</span></div>
-        <div class="ps"><span class="ico" aria-hidden="true">🧠</span><span class="ps-l"><span data-i18n="perk8">AI Lead</span><small data-i18n="perk8s">Drives team-wide AI adoption</small></span><span class="plus">+</span></div>
-      </section>
-
-      <section class="panel">
         <h2 title="Scores sur 100, calculés depuis mes statistiques GitHub / Scores out of 100, from my GitHub stats"><span data-i18n="telemetry">GitHub Telemetry</span> <span style="margin-left:auto;letter-spacing:1px;font-size:11px;color:var(--ink-faint)"><span class="live-dot" aria-hidden="true"></span><span id="live-label">LIVE</span></span></h2>
         <div id="metrics"></div>
-      </section>
-
-      <section class="panel">
-        <h2 data-i18n="track">Track Record</h2>
-        <div class="ps"><span class="ico" aria-hidden="true">💼</span><span><a href="https://www.yespark.fr" target="_blank" rel="noopener" style="color:var(--ink);text-decoration:none;border-bottom:1px dotted var(--ink-faint)">Yespark</a> — <span data-i18n="tr0">lead fullstack, 55,000 subscribers</span></span></div>
-        <div class="ps"><span class="ico" aria-hidden="true">🥇</span><span><a href="https://github.com/navidemad/capybara-lightpanda" target="_blank" rel="noopener" style="color:var(--ink);text-decoration:none;border-bottom:1px dotted var(--ink-faint)">capybara-lightpanda</a> — <span data-i18n="tr1">maintainer</span></span></div>
-        <div class="ps"><span class="ico" aria-hidden="true">🕸️</span><span><a href="https://github.com/lightpanda-io/browser/pulls?q=is%3Apr+author%3Anavidemad+is%3Amerged" target="_blank" rel="noopener" style="color:var(--ink);text-decoration:none;border-bottom:1px dotted var(--ink-faint)" data-i18n="tr2">63 PRs merged into Lightpanda browser (Zig)</a></span></div>
-        <div class="ps"><span class="ico" aria-hidden="true">💉</span><span><a href="https://github.com/hostolab/covidliste/pulls?q=is%3Apr+author%3Anavidemad+is%3Amerged" target="_blank" rel="noopener" style="color:var(--ink);text-decoration:none;border-bottom:1px dotted var(--ink-faint)" data-i18n="tr3">43 PRs on covidliste — France’s Covid-19 vaccination drive</a></span></div>
-        <div class="ps"><span class="ico" aria-hidden="true">🚂</span><span><a href="https://github.com/search?q=is%3Apr+author%3Anavidemad+is%3Amerged+-user%3Anavidemad+-user%3Ayespark&type=pullrequests" target="_blank" rel="noopener" style="color:var(--ink);text-decoration:none;border-bottom:1px dotted var(--ink-faint)" data-i18n="tr4">Merged upstream: Rails core, Datadog, New Relic…</a></span></div>
       </section>
   </main>
 
@@ -671,19 +636,12 @@ h1 {
       sp2s: "Workflows autonomes \u2014 Claude, MCP",
       sp3s: "Interfaces modernes et r\u00e9actives",
       sp4s: "Culture du shipping rapide et fiable",
-      perks: "Atouts",
-      perk1: "Mainteneur", perk1s: "Assume son code sur la dur\u00e9e",
-      perk2: "Upstream", perk2s: "Corrige les bugs \u00e0 la source",
-      perk3: "Agentique", perk3s: "Livre des agents IA en production",
-      perk4: "Livreur", perk4s: "Petites PRs, fusionn\u00e9es chaque jour",
-      perk8: "Lead IA", perk8s: "Pilote l\u2019adoption IA de l\u2019\u00e9quipe",
+      perk1: "Mainteneur",
+      perk2: "Upstream",
+      perk3: "Agentique",
+      perk4: "Livreur",
+      perk8: "Lead IA",
       telemetry: "T\u00e9l\u00e9m\u00e9trie GitHub",
-      track: "Palmar\u00e8s",
-      tr0: "lead fullstack, 55\u00a0000 abonn\u00e9s",
-      tr1: "mainteneur",
-      tr2: "63 PRs fusionn\u00e9es dans le navigateur Lightpanda (Zig)",
-      tr3: "43 PRs sur covidliste \u2014 la campagne fran\u00e7aise de vaccination Covid-19",
-      tr4: "Fusionn\u00e9 upstream : Rails core, Datadog, New Relic\u2026",
       cta_mail: "\u00c9crivez-moi",
       cta_x: "DM sur X",
       cta_book: "R\u00e9server un appel",
@@ -704,7 +662,6 @@ h1 {
       proc1: "Appel de 30 min \u2014 gratuit",
       proc2: "Proposition claire sous 48\u00a0h",
       proc3: "Livraison it\u00e9rative, d\u00e9mo chaque semaine",
-      legend: "<b>SHP</b> livraison \u00b7 <b>DBG</b> d\u00e9bogage \u00b7 <b>ARC</b> architecture \u00b7 <b>REV</b> revue de code \u00b7 <b>OSS</b> open source \u00b7 <b>AI</b> agents IA",
       s_label: "Services",
       s_h: "Trois fa\u00e7ons de vous aider",
       s1t: "Des agents IA qui se rentabilisent",
@@ -750,19 +707,12 @@ h1 {
       sp2s: "Autonomous workflows \u2014 Claude, MCP",
       sp3s: "Modern, reactive interfaces",
       sp4s: "A fast, reliable shipping culture",
-      perks: "Perks",
-      perk1: "Maintainer", perk1s: "Owns his code for the long run",
-      perk2: "Upstream", perk2s: "Fixes bugs at the source",
-      perk3: "Agentic", perk3s: "Ships AI agents to production",
-      perk4: "Shipper", perk4s: "Small PRs, merged daily",
-      perk8: "AI Lead", perk8s: "Drives team-wide AI adoption",
+      perk1: "Maintainer",
+      perk2: "Upstream",
+      perk3: "Agentic",
+      perk4: "Shipper",
+      perk8: "AI Lead",
       telemetry: "GitHub Telemetry",
-      track: "Track Record",
-      tr0: "lead fullstack, 55,000 subscribers",
-      tr1: "maintainer",
-      tr2: "63 PRs merged into Lightpanda browser (Zig)",
-      tr3: "43 PRs on covidliste \u2014 France\u2019s Covid-19 vaccination drive",
-      tr4: "Merged upstream: Rails core, Datadog, New Relic\u2026",
       cta_mail: "Email me",
       cta_x: "DM on X",
       cta_book: "Book a call",
@@ -783,7 +733,6 @@ h1 {
       proc1: "30-min call \u2014 free",
       proc2: "Clear proposal within 48\u00a0h",
       proc3: "Iterative delivery, weekly demo",
-      legend: "<b>SHP</b> shipping \u00b7 <b>DBG</b> debugging \u00b7 <b>ARC</b> architecture \u00b7 <b>REV</b> code review \u00b7 <b>OSS</b> open source \u00b7 <b>AI</b> AI agents",
       s_label: "Services",
       s_h: "Three ways I can help",
       s1t: "AI agents that pay for themselves",
