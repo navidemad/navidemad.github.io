@@ -98,8 +98,10 @@ header.top {
   display: flex; align-items: center; justify-content: space-between;
   position: fixed; bottom: 0; left: 0; right: 0; z-index: 50;
   padding: 12px clamp(24px, 3.2vw, 64px);
-  background: rgba(7, 11, 22, 0.78); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-  border-top: 1px solid rgba(122, 152, 214, 0.08);
+  background: linear-gradient(180deg, rgba(20, 30, 58, 0.96), rgba(10, 16, 32, 0.98));
+  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+  border-top: 1px solid rgba(232, 194, 104, 0.28);
+  box-shadow: 0 -14px 44px rgba(0, 0, 0, 0.55);
   transform: translateY(100%); opacity: 0; pointer-events: none;
   transition: transform .4s cubic-bezier(.22,.9,.3,1), opacity .4s ease;
 }
