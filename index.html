@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Navid Emad — Ruby on Rails & Agentic AI Engineer</title>
+<title>Navid Emad — Lead Ruby on Rails Developer & Agentic AI Engineer</title>
 <meta name="description" content="Navid Emad — Lead Ruby on Rails developer and agentic AI workflow engineer. I build production web applications and help companies adopt AI. 127 open source PRs merged across 18 repositories." />
 <link rel="canonical" href="https://navidemad.github.io/" />
 <meta property="og:type" content="website" />
@@ -38,7 +38,7 @@
   --panel-edge: rgba(122, 152, 214, 0.14);
   --ink: #e8edf8;
   --ink-dim: #9aa7c4;
-  --ink-faint: #5a6480;
+  --ink-faint: #6e7a9b;
   --gold: #e8c268;
   --gold-2: #f6e3a1;
   --gold-deep: #a8842f;
@@ -58,6 +58,8 @@ body {
   line-height: 1.5;
   overflow-x: hidden;
   min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 /* ---------- stadium atmosphere ---------- */
 .atmosphere {
@@ -196,11 +198,11 @@ h1 {
 }
 .sec-title {
   font-family: "Bebas Neue", sans-serif; font-size: clamp(34px, 4vw, 52px); letter-spacing: 1.5px;
-  line-height: 1; margin-bottom: 12px; text-align: center;
+  line-height: 1; margin-bottom: 12px; text-align: center; text-wrap: balance;
   background: linear-gradient(180deg, #ffffff 30%, #aab8d8);
   -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
 }
-.sec-sub { color: var(--ink-dim); font-size: 17.5px; line-height: 1.7; margin: 0 auto 40px; max-width: 680px; text-align: center; }
+.sec-sub { color: var(--ink-dim); font-size: 17.5px; line-height: 1.7; margin: 0 auto 40px; max-width: 680px; text-align: center; text-wrap: pretty; }
 .svc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 40px; }
 .svc {
   position: relative; background: var(--panel); border: 1px solid var(--panel-edge); border-radius: 18px;
@@ -220,7 +222,7 @@ h1 {
 .svc p { color: var(--ink-dim); font-size: 14.5px; text-wrap: balance; }
 .svc-grid.two { grid-template-columns: repeat(2, 1fr); max-width: 940px; margin-left: auto; margin-right: auto; }
 .prose { max-width: 720px; margin: 0 auto; text-align: left; }
-.prose p { color: var(--ink-dim); font-size: 17px; line-height: 1.75; margin-bottom: 16px; }
+.prose p { color: var(--ink-dim); font-size: 17px; line-height: 1.75; margin-bottom: 16px; text-wrap: pretty; }
 .prose p:last-child { margin-bottom: 0; }
 .stat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; max-width: 940px; margin: 40px auto 0; }
 .stat { background: var(--panel); border: 1px solid var(--panel-edge); border-radius: 18px; padding: 26px 20px; text-align: center; backdrop-filter: blur(8px); }
@@ -288,6 +290,15 @@ h1 {
 }
 @media (max-width: 700px) {
   .hero { padding-top: 28px; }
+  /* full-viewport bands + scroll snap fight natural scrolling once
+     sections grow taller than a phone screen — release both */
+  html { scroll-snap-type: none; }
+  .band { min-height: 0; padding-top: 56px; padding-bottom: 56px; }
+  .trust { white-space: normal; }
+  .svc-grid.two { grid-template-columns: 1fr; }
+  .sec-sub { font-size: 16px; margin-bottom: 28px; }
+  .tr { padding: 18px; }
+  .tr-list, .stat-grid, .svc-grid { margin-top: 28px; }
 }
 @media (prefers-reduced-motion: reduce) {
   * { animation: none !important; transition: none !important; }
@@ -386,7 +397,7 @@ h1 {
       </div>
       <div class="svc">
         <span class="ico-lg" aria-hidden="true">⚡</span>
-        <h3 data-i18n="perks.title">Perks</h3>
+        <h3 data-i18n="perks.title">How I work</h3>
         <ul class="svc-list">
           <li data-i18n="perks.b1">PRs reviewers want to read: small, argued, benchmarked</li>
           <li data-i18n="perks.b2">I say no: to unprofitable AI, to features that shouldn’t exist</li>
@@ -537,7 +548,7 @@ h1 {
         "spec.b2": "Agentic AI in production: Claude, MCP, skills, GitHub automation",
         "spec.b3": "Frontend that ships: Hotwire, Tailwind, server-rendered by default",
         "spec.b4": "Observability: Datadog APM & profiling, upstream contributor",
-        "perks.title": "Perks",
+        "perks.title": "How I work",
         "perks.b1": "PRs reviewers want to read: small, argued, benchmarked",
         "perks.b2": "I say no: to unprofitable AI, to features that shouldn\u2019t exist",
         "perks.b3": "Frank by default: wrong fit? I\u2019ll tell you on the first call",
