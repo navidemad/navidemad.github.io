@@ -104,7 +104,7 @@ header.top {
   font-family: "Bebas Neue", sans-serif; font-size: 20px; letter-spacing: 3px; color: var(--gold);
 }
 .crest svg { display: block; }
-.top-links { display: flex; gap: 10px; }
+.top-links { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
 .chip {
   display: inline-flex; align-items: center; gap: 8px;
   padding: 9px 16px; border-radius: 999px;
@@ -132,7 +132,7 @@ header.top {
 .cursor { display: inline-block; width: 0.45em; margin-left: 6px; background: var(--green); animation: blink 1.1s steps(1) infinite; }
 @keyframes blink { 50% { opacity: 0; } }
 h1 {
-  font-family: "Bebas Neue", sans-serif; font-size: clamp(40px, 2.8vw + 3.2vh, 76px);
+  font-family: "Bebas Neue", sans-serif; font-size: clamp(36px, 2vw + 2.4vh, 60px);
   line-height: 0.95; letter-spacing: 2px; margin: 5px 0 9px;
   background: linear-gradient(180deg, #ffffff 30%, #aab8d8);
   -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
@@ -224,7 +224,7 @@ h1 {
 /* ---------- FUT card ---------- */
 .card-stage { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: clamp(14px, 2.4vh, 26px); }
 .fut-card {
-  position: relative; width: clamp(225px, 35vh, 330px); aspect-ratio: 300 / 468;
+  position: relative; width: clamp(225px, 31vh, 320px); aspect-ratio: 300 / 468;
   filter: drop-shadow(0 30px 60px rgba(0,0,0,0.55)) drop-shadow(0 0 34px rgba(232,194,104,0.18));
   animation: cardIn 1s cubic-bezier(.22,.9,.3,1) both .1s;
   transition: transform .3s ease;
@@ -282,6 +282,76 @@ h1 {
 .live-dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--green); margin-right: 6px; box-shadow: 0 0 8px var(--green); animation: pulse 2.2s infinite; }
 @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.35; } }
 
+
+/* ---------- below-the-fold bands ---------- */
+.card-legend {
+  font-family: "JetBrains Mono", monospace; font-size: 10.5px; letter-spacing: .4px;
+  color: var(--ink-dim); text-align: center; max-width: 340px; line-height: 1.7;
+}
+.card-legend b { color: var(--gold); font-weight: 600; }
+.chip.book { border-color: rgba(53, 208, 127, 0.45); color: #9defc2; }
+.chip.book:hover { border-color: rgba(53, 208, 127, 0.8); background: rgba(53, 208, 127, 0.08); }
+.band { padding: clamp(64px, 10vh, 120px) clamp(24px, 3.2vw, 64px); border-top: 1px solid rgba(122,152,214,0.08); }
+.band-inner { max-width: 1120px; margin: 0 auto; }
+.sec-label {
+  font-family: "JetBrains Mono", monospace; font-weight: 600; font-size: 12px;
+  letter-spacing: 3px; color: var(--green); text-transform: uppercase;
+  display: flex; align-items: center; gap: 12px; margin-bottom: 14px;
+}
+.sec-label::after { content: ""; flex: 0 0 44px; height: 1px; background: rgba(53,208,127,.4); }
+.sec-title {
+  font-family: "Bebas Neue", sans-serif; font-size: clamp(34px, 4vw, 52px); letter-spacing: 1.5px;
+  line-height: 1; margin-bottom: 10px;
+  background: linear-gradient(180deg, #ffffff 30%, #aab8d8);
+  -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+}
+.sec-sub { color: var(--ink-dim); font-size: 15.5px; margin-bottom: 40px; }
+.svc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 40px; }
+.svc {
+  position: relative; background: var(--panel); border: 1px solid var(--panel-edge); border-radius: 18px;
+  padding: 28px 26px; backdrop-filter: blur(8px); overflow: hidden;
+  transition: transform .25s, border-color .25s;
+}
+.svc::before {
+  content: ""; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, var(--gold), transparent 70%);
+  opacity: 0; transition: opacity .25s;
+}
+.svc:hover { transform: translateY(-4px); border-color: rgba(232,194,104,.35); }
+.svc:hover::before { opacity: 1; }
+.svc .ico-lg { font-size: 26px; margin-bottom: 14px; display: block; }
+.svc h3 { font-family: "Barlow Condensed", sans-serif; font-weight: 700; font-size: 21px; letter-spacing: .5px; margin-bottom: 10px; }
+.svc p { color: var(--ink-dim); font-size: 14.5px; }
+.case-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; margin-top: 40px; }
+.case {
+  display: block; background: var(--panel); border: 1px solid var(--panel-edge); border-radius: 18px;
+  padding: 26px 24px; text-decoration: none; color: inherit;
+  transition: transform .25s, border-color .25s;
+}
+.case:hover { transform: translateY(-4px); border-color: rgba(122,162,255,.4); }
+.case .num {
+  font-family: "Bebas Neue", sans-serif; font-size: clamp(40px, 4.5vw, 58px); line-height: 1;
+  color: var(--gold); display: block; margin-bottom: 10px;
+}
+.case p { color: var(--ink-dim); font-size: 14px; }
+.case .go { display: inline-block; margin-top: 12px; font-family: "JetBrains Mono", monospace; font-size: 11px; color: var(--accent); }
+.role-strip {
+  margin-top: 26px; padding: 18px 24px; border: 1px solid rgba(53,208,127,.25); border-radius: 14px;
+  background: rgba(53,208,127,.05); color: var(--ink-dim); font-size: 15px;
+  display: flex; align-items: center; gap: 12px;
+}
+.band.contact { text-align: center; border-bottom: none; padding-bottom: clamp(80px, 12vh, 140px); }
+.band.contact .sec-label { justify-content: center; }
+.band.contact .sec-label::after { display: none; }
+.band.contact .sec-sub { max-width: 560px; margin-left: auto; margin-right: auto; }
+.band.contact .cta-row { justify-content: center; }
+.band.contact .btn { font-size: 15px; padding: 14px 26px; }
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s cubic-bezier(.22,.9,.3,1), transform .7s cubic-bezier(.22,.9,.3,1); }
+.reveal.in { opacity: 1; transform: none; }
+@media (max-width: 980px) { .svc-grid { grid-template-columns: 1fr; } .case-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 620px) { .case-grid { grid-template-columns: 1fr; } .role-strip { flex-direction: column; align-items: flex-start; } }
+@media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; } }
+
 /* ---------- responsive ---------- */
 @media (max-width: 1240px) {
   .wrap { min-height: 0; }
@@ -315,6 +385,7 @@ h1 {
     </div>
     <nav class="top-links">
       <button class="chip lang" id="lang-toggle" type="button" aria-label="Switch language">EN</button>
+      <a class="chip book" href="mailto:navid.emad@yespark.fr?subject=Contact%20%E2%80%94%20navidemad.github.io" data-i18n="cta_book">Réserver un appel</a>
       <a class="chip" href="https://github.com/navidemad" target="_blank" rel="noopener">
         <svg viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
         github.com/navidemad
@@ -330,7 +401,7 @@ h1 {
     <div class="hero-copy">
       <div class="hero-main">
       <div class="kicker">whoami --verbose<span class="cursor" aria-hidden="true"></span></div>
-      <h1 data-i18n="h1">Salut ! Moi c'est Navid</h1>
+      <h1 data-i18n="h1">Livrez plus vite avec Rails &amp; l’IA</h1>
       <div class="id-row">
         <span class="pos-badge">LEAD DEV</span>
         <span><svg class="gem" viewBox="0 0 24 24" fill="#e0115f" aria-hidden="true"><path d="M6 3h12l4 6-10 12L2 9l4-6z"/></svg> <span data-i18n="id1">Expert Ruby on Rails</span></span>
@@ -340,7 +411,7 @@ h1 {
         <a href="https://github.com/navidemad" target="_blank" rel="noopener">@navidemad</a>
       </div>
       </div>
-      <p class="scout-line" data-i18n-html="scout"><b>Rails en production · l'IA pour de vrai</b>Je construis et dirige des applications Ruby on Rails en production. Adopteur précoce de l'IA, j'aide les entreprises à l'exploiter concrètement — workflows agentiques, opérations assistées par IA. Besoin d'un site web, d'un plan d'adoption IA ou d'un lead engineer&nbsp;? Parlons-en.</p>
+      <p class="scout-line" data-i18n-html="scout"><b>Salut, moi c’est Navid 👋</b>Lead développeur Ruby on Rails et adopteur précoce de l’IA, j’aide les entreprises à construire des produits web solides et à mettre l’IA au travail — workflows agentiques, opérations assistées. Réponse sous 24 h.</p>
     </div>
   </section>
 
@@ -412,19 +483,17 @@ h1 {
           </div>
         </div>
       </div>
+      <p class="card-legend" data-i18n-html="legend"><b>SHP</b> livraison · <b>DBG</b> débogage · <b>ARC</b> architecture · <b>REV</b> revue de code · <b>OSS</b> open source · <b>AI</b> agents IA</p>
       <div class="cta-row">
-        <a class="btn primary" href="mailto:navid.emad@yespark.fr">
-          <svg viewBox="0 0 24 24"><path d="M2 5a2 2 0 012-2h16a2 2 0 012 2v14a2 2 0 01-2 2H4a2 2 0 01-2-2V5zm2 .4V19h16V5.4l-7.3 6a1.5 1.5 0 01-1.9 0L4 5.4zM5.6 5l6.4 5.2L18.4 5H5.6z"/></svg>
-          <span data-i18n="cta_mail">Écrivez-moi</span>
+        <a class="btn primary" href="mailto:navid.emad@yespark.fr?subject=Contact%20%E2%80%94%20navidemad.github.io">
+          <svg viewBox="0 0 24 24"><path d="M7 2v2H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V6a2 2 0 00-2-2h-2V2h-2v2H9V2H7zm12 8v10H5V10h14zM5 8V6h14v2H5zm3 5h3v3H8v-3z"/></svg>
+          <span data-i18n="cta_book">Réserver un appel</span>
         </a>
         <a class="btn ghost" href="https://www.linkedin.com/in/navidemad" target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.2 8h4.6v14.8H.2V8zm7.7 0h4.4v2h.06c.6-1.15 2.1-2.36 4.3-2.36 4.6 0 5.44 3.03 5.44 6.96v8.2h-4.6v-7.3c0-1.74-.03-3.98-2.42-3.98-2.42 0-2.8 1.9-2.8 3.86v7.42H7.9V8z"/></svg>
           LinkedIn
         </a>
-        <a class="btn ghost" href="https://x.com/navidemad" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24"><path d="M18.9 2H22l-6.9 7.9L23.3 22h-6.4l-5-6.6L6.2 22H3l7.4-8.5L1 2h6.6l4.5 6 5.8-6zm-1.1 18h1.8L7.6 3.9H5.7L17.8 20z"/></svg>
-          <span data-i18n="cta_x">DM sur X</span>
-        </a>
+        <a class="btn ghost" href="#services"><span data-i18n="cta_more">En savoir plus</span> ↓</a>
       </div>
     </div>
 
@@ -449,6 +518,82 @@ h1 {
 
 </div>
 
+<section class="band" id="services">
+  <div class="band-inner reveal">
+    <div class="sec-label">01 · <span data-i18n="s_label">Services</span></div>
+    <h2 class="sec-title" data-i18n="s_h">Comment je peux vous aider</h2>
+    <div class="svc-grid">
+      <div class="svc">
+        <span class="ico-lg" aria-hidden="true">🤖</span>
+        <h3 data-i18n="s1t">Adoption IA &amp; agents</h3>
+        <p data-i18n="s1d">Audit de vos processus, workflows agentiques sur mesure (Claude, MCP), formation de vos équipes. De l’IA qui produit — pas des démos.</p>
+      </div>
+      <div class="svc">
+        <span class="ico-lg" aria-hidden="true">🚀</span>
+        <h3 data-i18n="s2t">Votre produit web, de A à Z</h3>
+        <p data-i18n="s2d">Application Ruby on Rails complète : architecture, développement, déploiement, supervision. Un seul interlocuteur, un produit qui tourne.</p>
+      </div>
+      <div class="svc">
+        <span class="ico-lg" aria-hidden="true">🧭</span>
+        <h3 data-i18n="s3t">Lead tech &amp; renfort d’équipe</h3>
+        <p data-i18n="s3d">Direction technique, revues de code, montée en compétence de vos développeurs. Le niveau de l’équipe monte, durablement.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="resultats">
+  <div class="band-inner reveal">
+    <div class="sec-label">02 · <span data-i18n="r_label">Résultats</span></div>
+    <h2 class="sec-title" data-i18n="r_h">Des résultats vérifiables</h2>
+    <p class="sec-sub" data-i18n="r_sub">Tout est public : cliquez, vérifiez.</p>
+    <div class="case-grid">
+      <a class="case" href="https://github.com/search?q=is%3Apr+author%3Anavidemad+is%3Amerged+-user%3Anavidemad+-user%3Ayespark&type=pullrequests" target="_blank" rel="noopener">
+        <span class="num">127</span>
+        <p data-i18n="r1t">PRs open source fusionnées dans 18 projets — Rails core, Datadog, New Relic…</p>
+        <span class="go">github.com →</span>
+      </a>
+      <a class="case" href="https://github.com/lightpanda-io/browser/pulls?q=is%3Apr+author%3Anavidemad+is%3Amerged" target="_blank" rel="noopener">
+        <span class="num">63</span>
+        <p data-i18n="r2t">PRs dans Lightpanda, navigateur headless écrit en Zig — 31 600 ⭐</p>
+        <span class="go">lightpanda-io/browser →</span>
+      </a>
+      <a class="case" href="https://github.com/hostolab/covidliste/pulls?q=is%3Apr+author%3Anavidemad+is%3Amerged" target="_blank" rel="noopener">
+        <span class="num">43</span>
+        <p data-i18n="r3t">PRs sur covidliste, la plateforme qui a accéléré la vaccination Covid-19 en France</p>
+        <span class="go">hostolab/covidliste →</span>
+      </a>
+      <a class="case" href="https://github.com/navidemad/capybara-lightpanda" target="_blank" rel="noopener">
+        <span class="num">169k ⭐</span>
+        <p data-i18n="r4t">Portée cumulée des projets open source auxquels j’ai contribué — et mainteneur de capybara-lightpanda</p>
+        <span class="go">capybara-lightpanda →</span>
+      </a>
+    </div>
+    <div class="role-strip">
+      <span aria-hidden="true">💼</span>
+      <span data-i18n="r_strip">Aujourd’hui : lead développeur fullstack chez Yespark, plateforme française de location de parkings — Rails, Hotwire, IA agentique en production.</span>
+    </div>
+  </div>
+</section>
+
+<section class="band contact" id="contact">
+  <div class="band-inner reveal">
+    <div class="sec-label">03 · <span data-i18n="c_label">Contact</span></div>
+    <h2 class="sec-title" data-i18n="c_h">Parlons de votre projet</h2>
+    <p class="sec-sub" data-i18n="c_p">Décrivez votre besoin en deux lignes — je réponds sous 24 h, franchement : ce que je peux faire, ce que je ferais autrement, et si je ne suis pas la bonne personne, je vous le dis.</p>
+    <div class="cta-row">
+      <a class="btn primary" href="mailto:navid.emad@yespark.fr?subject=Contact%20%E2%80%94%20navidemad.github.io">
+        <svg viewBox="0 0 24 24"><path d="M7 2v2H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V6a2 2 0 00-2-2h-2V2h-2v2H9V2H7zm12 8v10H5V10h14zM5 8V6h14v2H5zm3 5h3v3H8v-3z"/></svg>
+        <span data-i18n="cta_book">Réserver un appel</span>
+      </a>
+      <a class="btn ghost" href="https://www.linkedin.com/in/navidemad" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.2 8h4.6v14.8H.2V8zm7.7 0h4.4v2h.06c.6-1.15 2.1-2.36 4.3-2.36 4.6 0 5.44 3.03 5.44 6.96v8.2h-4.6v-7.3c0-1.74-.03-3.98-2.42-3.98-2.42 0-2.8 1.9-2.8 3.86v7.42H7.9V8z"/></svg>
+        LinkedIn
+      </a>
+    </div>
+  </div>
+</section>
+
 <script>
 (function () {
   "use strict";
@@ -465,10 +610,10 @@ h1 {
     fr: {
       title: "Navid Emad \u2014 Expert Ruby on Rails & IA agentique",
       crest: "Disponible pour missions IA & Rails",
-      h1: "Salut ! Moi c\u2019est Navid",
+      h1: "Livrez plus vite avec Rails & l\u2019IA",
       id1: "Expert Ruby on Rails",
       id2: "Ing\u00e9nieur workflows IA agentiques",
-      scout: "<b>Rails en production \u00b7 l\u2019IA pour de vrai</b>Je construis et dirige des applications Ruby on Rails en production. Adopteur pr\u00e9coce de l\u2019IA, j\u2019aide les entreprises \u00e0 l\u2019exploiter concr\u00e8tement \u2014 workflows agentiques, op\u00e9rations assist\u00e9es par IA. Besoin d\u2019un site web, d\u2019un plan d\u2019adoption IA ou d\u2019un lead engineer\u00a0? Parlons-en.",
+      scout: "<b>Salut, moi c\u2019est Navid \ud83d\udc4b</b>Lead d\u00e9veloppeur Ruby on Rails et adopteur pr\u00e9coce de l\u2019IA, j\u2019aide les entreprises \u00e0 construire des produits web solides et \u00e0 mettre l\u2019IA au travail \u2014 workflows agentiques, op\u00e9rations assist\u00e9es. R\u00e9ponse sous 24\u00a0h.",
       specialties: "Sp\u00e9cialit\u00e9s",
       spec2: "IA agentique & LLM",
       spec3: "Hotwire \u00b7 Tailwind",
@@ -486,6 +631,28 @@ h1 {
       tr5: "Contributions aux agents Ruby de Datadog & New Relic",
       cta_mail: "\u00c9crivez-moi",
       cta_x: "DM sur X",
+      cta_book: "R\u00e9server un appel",
+      cta_more: "En savoir plus",
+      legend: "<b>SHP</b> livraison \u00b7 <b>DBG</b> d\u00e9bogage \u00b7 <b>ARC</b> architecture \u00b7 <b>REV</b> revue de code \u00b7 <b>OSS</b> open source \u00b7 <b>AI</b> agents IA",
+      s_label: "Services",
+      s_h: "Comment je peux vous aider",
+      s1t: "Adoption IA & agents",
+      s1d: "Audit de vos processus, workflows agentiques sur mesure (Claude, MCP), formation de vos \u00e9quipes. De l\u2019IA qui produit \u2014 pas des d\u00e9mos.",
+      s2t: "Votre produit web, de A \u00e0 Z",
+      s2d: "Application Ruby on Rails compl\u00e8te : architecture, d\u00e9veloppement, d\u00e9ploiement, supervision. Un seul interlocuteur, un produit qui tourne.",
+      s3t: "Lead tech & renfort d\u2019\u00e9quipe",
+      s3d: "Direction technique, revues de code, mont\u00e9e en comp\u00e9tence de vos d\u00e9veloppeurs. Le niveau de l\u2019\u00e9quipe monte, durablement.",
+      r_label: "R\u00e9sultats",
+      r_h: "Des r\u00e9sultats v\u00e9rifiables",
+      r_sub: "Tout est public : cliquez, v\u00e9rifiez.",
+      r1t: "PRs open source fusionn\u00e9es dans 18 projets \u2014 Rails core, Datadog, New Relic\u2026",
+      r2t: "PRs dans Lightpanda, navigateur headless \u00e9crit en Zig \u2014 31\u00a0600 \u2b50",
+      r3t: "PRs sur covidliste, la plateforme qui a acc\u00e9l\u00e9r\u00e9 la vaccination Covid-19 en France",
+      r4t: "Port\u00e9e cumul\u00e9e des projets open source auxquels j\u2019ai contribu\u00e9 \u2014 et mainteneur de capybara-lightpanda",
+      r_strip: "Aujourd\u2019hui : lead d\u00e9veloppeur fullstack chez Yespark, plateforme fran\u00e7aise de location de parkings \u2014 Rails, Hotwire, IA agentique en production.",
+      c_label: "Contact",
+      c_h: "Parlons de votre projet",
+      c_p: "D\u00e9crivez votre besoin en deux lignes \u2014 je r\u00e9ponds sous 24\u00a0h, franchement : ce que je peux faire, ce que je ferais autrement, et si je ne suis pas la bonne personne, je vous le dis.",
       live: "LIVE", cached: "CACHE",
       m: {
         prs: "PRs open source fusionn\u00e9es",
@@ -508,10 +675,10 @@ h1 {
     en: {
       title: "Navid Emad \u2014 Ruby on Rails & Agentic AI Engineer",
       crest: "Open to AI & Rails engagements",
-      h1: "Hi! I am Navid",
+      h1: "Ship faster with Rails & AI",
       id1: "Ruby on Rails expert",
       id2: "Agentic AI workflow engineer",
-      scout: "<b>Rails in production \u00b7 AI for real</b>I build and lead production Ruby on Rails applications, and as an early AI adopter I help companies put it to work \u2014 agentic workflows, AI-assisted operations, developer tooling. Need a website, an AI adoption plan, or a lead engineer? Let\u2019s talk.",
+      scout: "<b>Hi, I\u2019m Navid \ud83d\udc4b</b>Lead Ruby on Rails developer and early AI adopter, I help companies build solid web products and put AI to work \u2014 agentic workflows, assisted operations. Reply within 24\u00a0h.",
       specialties: "Specialties",
       spec2: "Agentic AI & LLMs",
       spec3: "Hotwire \u00b7 Tailwind",
@@ -529,6 +696,28 @@ h1 {
       tr5: "Contributions in Datadog & New Relic Ruby agents",
       cta_mail: "Email me",
       cta_x: "DM on X",
+      cta_book: "Book a call",
+      cta_more: "Learn more",
+      legend: "<b>SHP</b> shipping \u00b7 <b>DBG</b> debugging \u00b7 <b>ARC</b> architecture \u00b7 <b>REV</b> code review \u00b7 <b>OSS</b> open source \u00b7 <b>AI</b> AI agents",
+      s_label: "Services",
+      s_h: "How I can help",
+      s1t: "AI adoption & agents",
+      s1d: "Process audit, tailor-made agentic workflows (Claude, MCP), team training. AI that produces \u2014 not demos.",
+      s2t: "Your web product, end to end",
+      s2d: "Complete Ruby on Rails application: architecture, development, deployment, monitoring. One point of contact, a product that runs.",
+      s3t: "Tech lead & team reinforcement",
+      s3d: "Technical direction, code reviews, upskilling your developers. The team\u2019s level rises \u2014 durably.",
+      r_label: "Results",
+      r_h: "Verifiable results",
+      r_sub: "Everything is public: click and check.",
+      r1t: "Open source PRs merged across 18 projects \u2014 Rails core, Datadog, New Relic\u2026",
+      r2t: "PRs in Lightpanda, the headless browser written in Zig \u2014 31,600 \u2b50",
+      r3t: "PRs on covidliste, the platform that accelerated France\u2019s Covid-19 vaccination drive",
+      r4t: "Combined reach of the open source projects I\u2019ve contributed to \u2014 and maintainer of capybara-lightpanda",
+      r_strip: "Currently: lead fullstack developer at Yespark, the French parking rental platform \u2014 Rails, Hotwire, agentic AI in production.",
+      c_label: "Contact",
+      c_h: "Let\u2019s talk about your project",
+      c_p: "Describe your need in two lines \u2014 I reply within 24\u00a0h, frankly: what I can do, what I\u2019d do differently, and if I\u2019m not the right person, I\u2019ll tell you.",
       live: "LIVE", cached: "CACHED",
       m: {
         prs: "Merged OSS PRs",
@@ -650,6 +839,12 @@ h1 {
     state.starsEarned = stars; state.topRepo = top;
     live.stars = true; render();
   }).catch(function () {});
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.15 });
+  document.querySelectorAll(".reveal").forEach(function (el) { io.observe(el); });
 })();
 </script>
 </body>
