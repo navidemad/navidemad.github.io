@@ -135,9 +135,22 @@ header.top.shown { transform: none; opacity: 1; pointer-events: auto; }
 .chip svg { width: 15px; height: 15px; fill: currentColor; }
 .chip.lang { cursor: pointer; font-family: "JetBrains Mono", monospace; font-size: 12.5px; letter-spacing: 1px; }
 
+/* ---------- avatar badge ---------- */
+.avatar-badge { margin-bottom: 22px; }
+.avatar-badge img {
+  display: block; width: 84px; height: 84px; border-radius: 24px;
+  border: 2px solid rgba(232, 194, 104, 0.55);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+}
+.avatar-name {
+  margin-top: 10px;
+  font-family: "Barlow Condensed", sans-serif; font-weight: 700; letter-spacing: 3px;
+  font-size: 12.5px; color: var(--gold); text-transform: uppercase;
+}
+
 /* ---------- hero ---------- */
 .hero { padding: clamp(18px, 4vh, 56px) 0 0; display: flex; align-items: center; gap: clamp(28px, 5vw, 80px); flex: none; }
-.hero-copy { flex: 1; min-width: 0; }
+.hero-copy { flex: 1; min-width: 0; max-width: 860px; }
 .kicker {
   font-family: "JetBrains Mono", monospace; font-weight: 600; font-size: 12.5px;
   letter-spacing: 3px; color: var(--green); text-transform: uppercase;
@@ -175,51 +188,7 @@ h1 {
 .stars .off { color: rgba(122,152,214,0.25); }
 
 
-/* ---------- FUT card ---------- */
-.card-stage { flex: none; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: clamp(14px, 2.4vh, 26px); }
-.fut-card {
-  position: relative; width: clamp(250px, 42vh, 400px); aspect-ratio: 300 / 468;
-  filter: drop-shadow(0 30px 60px rgba(0,0,0,0.55)) drop-shadow(0 0 34px rgba(232,194,104,0.18));
-  animation: cardIn 1s cubic-bezier(.22,.9,.3,1) both .1s;
-  transition: transform .3s ease;
-}
-.fut-card:hover { transform: translateY(-6px) rotate(-0.5deg); }
 @keyframes cardIn { from { opacity: 0; transform: translateY(30px) scale(.96); } to { opacity: 1; transform: none; } }
-.fut-card svg.shape { position: absolute; inset: 0; width: 100%; height: 100%; }
-.card-inner { position: absolute; inset: 0; padding: 10% 13% 19%; display: flex; flex-direction: column; }
-.card-head { display: flex; gap: 4%; flex: 1 1 auto; min-height: 0; }
-.card-left { width: 34%; display: flex; flex-direction: column; align-items: center; color: var(--gold-2); }
-.card-left .gem-big { width: 42px; height: 42px; margin: 4px 0 8px; filter: drop-shadow(0 2px 8px rgba(0,0,0,.45)); }
-.card-left .pos { font-family: "Barlow Condensed", sans-serif; font-weight: 700; font-size: 19px; letter-spacing: 3px; margin: 2px 0 10px; }
-.card-left .flag { width: 34px; height: 23px; border-radius: 3px; overflow: hidden; display: flex; box-shadow: 0 1px 6px rgba(0,0,0,.45); margin-bottom: 9px; }
-.card-left .flag i { flex: 1; }
-.card-left .club { width: 26px; height: 26px; }
-.card-photo { flex: 1; position: relative; overflow: hidden; border-radius: 6px 6px 0 0; }
-.card-photo img {
-  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top;
-  filter: saturate(1.05) contrast(1.04);
-  mask-image: linear-gradient(180deg, black 78%, transparent 100%);
-  -webkit-mask-image: linear-gradient(180deg, black 78%, transparent 100%);
-}
-.card-name {
-  text-align: center; font-family: "Bebas Neue", sans-serif; font-size: 31px; letter-spacing: 4px;
-  color: var(--gold-2); text-shadow: 0 2px 8px rgba(0,0,0,.5);
-  border-top: 1px solid rgba(246, 227, 161, 0.35); border-bottom: 1px solid rgba(246, 227, 161, 0.35);
-  padding: 2px 0 0; margin-top: 2px;
-}
-.card-stats { display: grid; grid-template-columns: 1fr 1fr; padding: 8px 9% 0; column-gap: 4%; }
-.cstat { display: flex; align-items: center; gap: 7px; justify-content: flex-start; padding: clamp(1px, 0.4vh, 4px) 0; }
-.cstat.wide { grid-column: 1 / -1; justify-content: center; }
-.cstat .v { font-size: 14px; line-height: 1; }
-.cstat .k { font-family: "Barlow Condensed", sans-serif; font-weight: 700; font-size: 13.5px; letter-spacing: 1.5px; color: var(--gold-2); text-transform: uppercase; white-space: nowrap; }
-/* shine sweep */
-.fut-card::after {
-  content: ""; position: absolute; inset: 0; pointer-events: none;
-  background: linear-gradient(115deg, transparent 42%, rgba(255,255,255,0.14) 50%, transparent 58%);
-  background-size: 260% 100%; background-position: 120% 0;
-  clip-path: polygon(11% 6%, 50% 0.5%, 89% 6%, 94% 9%, 94% 71%, 88% 80%, 55% 98%, 45% 98%, 12% 80%, 6% 71%, 6% 9%);
-  animation: sheen 5.5s ease-in-out infinite 1.4s;
-}
 @keyframes sheen { 0%, 55% { background-position: 130% 0; } 75%, 100% { background-position: -40% 0; } }
 
 .cta-row { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
@@ -304,14 +273,9 @@ h1 {
 /* ---------- responsive ---------- */
 @media (max-width: 1240px) {
   .wrap { min-height: 0; }
-  .fut-card { width: clamp(225px, 28vh, 300px); }
-}
-@media (max-width: 980px) {
-  .hero { flex-direction: column; align-items: flex-start; }
-  .card-stage { align-self: center; }
 }
 @media (max-width: 700px) {
-  .hero { flex-direction: column; align-items: flex-start; gap: 20px; padding-top: 28px; }
+  .hero { padding-top: 28px; }
   header.top { flex-direction: column; gap: 14px; }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -361,9 +325,13 @@ h1 {
 
   <section class="hero">
     <div class="hero-copy">
+      <div class="avatar-badge">
+        <img src="https://github.com/navidemad.png?size=200" alt="Navid Emad" width="84" height="84" loading="eager" />
+        <p class="avatar-name" data-i18n="hero.greeting">Hi, I’m Navid 👋</p>
+      </div>
       <div class="kicker">whoami --verbose<span class="cursor" aria-hidden="true"></span></div>
       <h1 data-i18n="hero.title">Ship your roadmap. Make AI pay off.</h1>
-      <p class="scout-line" data-i18n-html="hero.intro"><b>Hi, I’m Navid 👋</b>Lead Ruby on Rails Developer with <span id="years-inline">12</span> years of experience. I help CTOs and founders build critical web products and deploy concrete agentic AI workflows to production.</p>
+      <p class="scout-line" data-i18n-html="hero.intro">Lead Ruby on Rails Developer with <span id="years-inline">12</span> years of experience. I help CTOs and founders build critical web products and deploy concrete agentic AI workflows to production.</p>
       <div class="trust" data-i18n-html="hero.trust"><b>✓ Available</b> · reply within 24 h · remote or Paris</div>
       <a class="oss-line" href="https://github.com/search?q=is%3Apr+author%3Anavidemad+is%3Amerged+-user%3Anavidemad+-user%3Ayespark&type=pullrequests" target="_blank" rel="noopener"><span aria-hidden="true">⭐</span> <span id="oss-inline"><b>127</b> merged open-source PRs — Rails core, Datadog, Lightpanda…</span></a>
       <div class="cta-row">
@@ -387,51 +355,6 @@ h1 {
       </div>
     </div>
 
-    <div class="card-stage">
-      <div class="fut-card" aria-label="Collector card of Navid, lead Ruby on Rails and agentic AI engineer">
-        <svg class="shape" viewBox="0 0 300 468" aria-hidden="true">
-          <defs>
-            <linearGradient id="goldEdge" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0" stop-color="#f6e3a1"/><stop offset=".35" stop-color="#c99e46"/>
-              <stop offset=".6" stop-color="#f2d98b"/><stop offset="1" stop-color="#a8842f"/>
-            </linearGradient>
-            <linearGradient id="cardBody" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0" stop-color="#2c3f8f"/><stop offset=".45" stop-color="#1b2a6b"/><stop offset="1" stop-color="#101a4a"/>
-            </linearGradient>
-            <linearGradient id="glow" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0" stop-color="#ffffff" stop-opacity=".14"/><stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
-            </linearGradient>
-          </defs>
-          <path d="M150 2 L266 26 Q281 29 281 44 L281 330 Q281 361 255 377 L165 461 Q150 466 135 461 L45 377 Q19 361 19 330 L19 44 Q19 29 34 26 Z" fill="url(#goldEdge)"/>
-          <path d="M150 8 L261 31 Q275 34 275 47 L275 328 Q275 357 251 372 L163 454 Q150 459 137 454 L49 372 Q25 357 25 328 L25 47 Q25 34 39 31 Z" fill="url(#cardBody)"/>
-          <path d="M150 8 L261 31 Q275 34 275 47 L275 160 L25 160 L25 47 Q25 34 39 31 Z" fill="url(#glow)"/>
-          <g stroke="#f6e3a1" stroke-opacity=".2" fill="none">
-            <path d="M40 60 L40 320"/><path d="M260 60 L260 320"/>
-          </g>
-        </svg>
-        <div class="card-inner">
-          <div class="card-head">
-            <div class="card-left">
-              <svg class="gem-big" viewBox="0 0 24 24" fill="#e0115f" title="Ruby on Rails"><path d="M6 3h12l4 6-10 12L2 9l4-6z" stroke="#f6e3a1" stroke-opacity=".6" stroke-width=".8"/></svg>
-              <span class="pos">LEAD</span>
-              <span class="flag" title="France"><i style="background:#0055a4"></i><i style="background:#fff"></i><i style="background:#ef4135"></i></span>
-              <span class="pos" style="font-size:14px">AI</span>
-            </div>
-            <div class="card-photo">
-              <img src="https://github.com/navidemad.png?size=460" alt="Navid EMAD" loading="eager" />
-            </div>
-          </div>
-          <div class="card-name">NAVID</div>
-          <div class="card-stats">
-            <div class="cstat" title="Assume son code sur la durée / Owns his code for the long run"><span class="v" aria-hidden="true">🛠️</span><span class="k" data-i18n="card.maintainer">Maintainer</span></div>
-            <div class="cstat" title="Corrige les bugs à la source / Fixes bugs at the source"><span class="v" aria-hidden="true">🔁</span><span class="k" data-i18n="card.upstream">Upstream</span></div>
-            <div class="cstat" title="Livre des agents IA en production / Ships AI agents to production"><span class="v" aria-hidden="true">🤖</span><span class="k" data-i18n="card.agentic">Agentic</span></div>
-            <div class="cstat" title="Petites PRs, fusionnées chaque jour / Small PRs, merged daily"><span class="v" aria-hidden="true">⚡</span><span class="k" data-i18n="card.shipper">Shipper</span></div>
-            <div class="cstat wide" title="Pilote l’adoption IA de l’équipe / Drives team-wide AI adoption"><span class="v" aria-hidden="true">🧠</span><span class="k" data-i18n="card.ailead">AI Lead</span></div>
-          </div>
-        </div>
-      </div>
-    </div>
   </section>
 
 
@@ -536,14 +459,10 @@ h1 {
         "cta.more": "Learn more",
         "cta.email": "Email me",
         "hero.title": "Ship your roadmap. Make AI pay off.",
-        "hero.intro": "<b>Hi, I\u2019m Navid \ud83d\udc4b</b>Lead Ruby on Rails Developer with <span id=\"years-inline\">12</span> years of experience. I help CTOs and founders build critical web products and deploy concrete agentic AI workflows to production.",
+        "hero.greeting": "Hi, I\u2019m Navid \ud83d\udc4b",
+        "hero.intro": "Lead Ruby on Rails Developer with <span id=\"years-inline\">12</span> years of experience. I help CTOs and founders build critical web products and deploy concrete agentic AI workflows to production.",
         "hero.trust": "<b>\u2713 Available</b> \u00b7 reply within 24\u00a0h \u00b7 remote or Paris",
         "hero.oss": function (s) { return "<b>" + s.prs + "</b> merged open-source PRs \u2014 Rails core, Datadog, Lightpanda\u2026"; },
-        "card.maintainer": "Maintainer",
-        "card.upstream": "Upstream",
-        "card.agentic": "Agentic",
-        "card.shipper": "Shipper",
-        "card.ailead": "AI Lead",
         "skills.ai": "Agentic AI & LLMs",
         "skills.hotwire": "Hotwire \u00b7 Tailwind",
         "skills.ship": "Ship rate",
@@ -582,14 +501,10 @@ h1 {
         "cta.more": "En savoir plus",
         "cta.email": "\u00c9crivez-moi",
         "hero.title": "Livrez votre roadmap. Rentabilisez l\u2019IA.",
-        "hero.intro": "<b>Salut, moi c\u2019est Navid \ud83d\udc4b</b>Lead Developer Ruby on Rails avec <span id=\"years-inline\">12</span> ans d\u2019exp\u00e9rience. J\u2019aide les CTOs et fondateurs \u00e0 construire des produits web critiques et \u00e0 d\u00e9ployer des workflows IA agentiques concrets en production.",
+        "hero.greeting": "Salut, moi c\u2019est Navid \ud83d\udc4b",
+        "hero.intro": "Lead Developer Ruby on Rails avec <span id=\"years-inline\">12</span> ans d\u2019exp\u00e9rience. J\u2019aide les CTOs et fondateurs \u00e0 construire des produits web critiques et \u00e0 d\u00e9ployer des workflows IA agentiques concrets en production.",
         "hero.trust": "<b>\u2713 Disponible</b> \u00b7 r\u00e9ponse sous 24\u00a0h \u00b7 remote ou Paris",
         "hero.oss": function (s) { return "<b>" + s.prs + "</b> PRs open source fusionn\u00e9es \u2014 Rails core, Datadog, Lightpanda\u2026"; },
-        "card.maintainer": "Mainteneur",
-        "card.upstream": "Upstream",
-        "card.agentic": "Agentique",
-        "card.shipper": "Livreur",
-        "card.ailead": "Lead IA",
         "skills.ai": "IA agentique & LLM",
         "skills.hotwire": "Hotwire \u00b7 Tailwind",
         "skills.ship": "Livraison",
