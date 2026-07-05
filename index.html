@@ -453,7 +453,7 @@ h1 {
         <ul class="case">
           <li data-i18n-html="track.yp.c1"><b>52 s → &lt; 1 ms</b> — worst production query: one composite index on a 5.6 GB payments table, measured with EXPLAIN ANALYZE in prod</li>
           <li data-i18n-html="track.yp.c2"><b>~100 queries → 2</b> — ActiveStorage N+1 on an invoice listing, preloaded away</li>
-          <li data-i18n-html="track.yp.c3"><b>p95 6–16 s endpoints</b> — reworked with partial indexes, cached aggregates, and OR-of-subqueries rewritten into index-backed BitmapOr plans</li>
+          <li data-i18n-html="track.yp.c3"><b>p95 6–16 s → &lt; 3 s</b> — admin &amp; API endpoints reworked with partial indexes, cached aggregates, and OR-of-subqueries rewritten into index-backed BitmapOr plans (conservative estimate)</li>
         </ul>
       </div>
     </div>
@@ -563,7 +563,7 @@ h1 {
         "track.yp.case": "Case study · a Datadog-driven query & index campaign",
         "track.yp.c1": "<b>52 s → &lt; 1 ms</b> — worst production query: one composite index on a 5.6 GB payments table, measured with EXPLAIN ANALYZE in prod",
         "track.yp.c2": "<b>~100 queries → 2</b> — ActiveStorage N+1 on an invoice listing, preloaded away",
-        "track.yp.c3": "<b>p95 6–16 s endpoints</b> — reworked with partial indexes, cached aggregates, and OR-of-subqueries rewritten into index-backed BitmapOr plans",
+        "track.yp.c3": "<b>p95 6–16 s → &lt; 3 s</b> — admin & API endpoints reworked with partial indexes, cached aggregates, and OR-of-subqueries rewritten into index-backed BitmapOr plans (conservative estimate)",
         "help.title": "How I can help",
         "help.sub": "I take on a small number of freelance engagements alongside my lead role.",
         "help.b1": "Rails performance & architecture \u2014 audits, query optimization, job pipelines",
@@ -617,7 +617,7 @@ h1 {
         "track.yp.case": "\u00c9tude de cas \u00b7 campagne requ\u00eates & index pilot\u00e9e par Datadog",
         "track.yp.c1": "<b>52 s \u2192 &lt; 1 ms</b> \u2014 pire requ\u00eate en prod : un index composite sur une table de paiements de 5,6 Go, mesur\u00e9 \u00e0 l\u2019EXPLAIN ANALYZE en prod",
         "track.yp.c2": "<b>~100 requ\u00eates \u2192 2</b> \u2014 N+1 ActiveStorage sur une liste de factures, \u00e9limin\u00e9 par pr\u00e9chargement",
-        "track.yp.c3": "<b>Endpoints p95 6\u201316 s</b> \u2014 retravaill\u00e9s : index partiels, agr\u00e9gats en cache, OR de sous-requ\u00eates r\u00e9\u00e9crits en plans BitmapOr index\u00e9s",
+        "track.yp.c3": "<b>p95 6\u201316 s \u2192 &lt; 3 s</b> \u2014 endpoints admin & API retravaill\u00e9s : index partiels, agr\u00e9gats en cache, OR de sous-requ\u00eates r\u00e9\u00e9crits en plans BitmapOr index\u00e9s (estimation prudente)",
         "help.title": "Comment je peux aider",
         "help.sub": "Je prends quelques missions freelance en parall\u00e8le de mon poste de lead.",
         "help.b1": "Performance & architecture Rails \u2014 audits, optimisation de requ\u00eates, pipelines de jobs",
