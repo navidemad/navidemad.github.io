@@ -302,24 +302,6 @@ h1 {
 .svc .ico-lg { font-size: 26px; margin-bottom: 14px; display: block; }
 .svc h3 { font-family: "Barlow Condensed", sans-serif; font-weight: 700; font-size: 21px; letter-spacing: .5px; margin-bottom: 10px; }
 .svc p { color: var(--ink-dim); font-size: 14.5px; }
-.case-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; margin-top: 40px; }
-.case {
-  display: block; background: var(--panel); border: 1px solid var(--panel-edge); border-radius: 18px;
-  padding: 26px 24px; text-decoration: none; color: inherit;
-  transition: transform .25s, border-color .25s;
-}
-.case:hover { transform: translateY(-4px); border-color: rgba(122,162,255,.4); }
-.case .num {
-  font-family: "Bebas Neue", sans-serif; font-size: clamp(40px, 4.5vw, 58px); line-height: 1;
-  color: var(--gold); display: block; margin-bottom: 10px;
-}
-.case p { color: var(--ink-dim); font-size: 14px; }
-.case .go { display: inline-block; margin-top: 12px; font-family: "JetBrains Mono", monospace; font-size: 11px; color: var(--accent); }
-.role-strip {
-  margin-top: 26px; padding: 18px 24px; border: 1px solid rgba(53,208,127,.25); border-radius: 14px;
-  background: rgba(53,208,127,.05); color: var(--ink-dim); font-size: 15px;
-  display: flex; align-items: center; gap: 12px;
-}
 .band.contact { text-align: center; border-bottom: none; padding-bottom: clamp(80px, 12vh, 140px); }
 .band.contact .sec-label { justify-content: center; }
 .band.contact .sec-label::after { display: none; }
@@ -328,8 +310,8 @@ h1 {
 .band.contact .btn { font-size: 15px; padding: 14px 26px; }
 .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s cubic-bezier(.22,.9,.3,1), transform .7s cubic-bezier(.22,.9,.3,1); }
 .reveal.in { opacity: 1; transform: none; }
-@media (max-width: 980px) { .svc-grid { grid-template-columns: 1fr; } .case-grid { grid-template-columns: 1fr 1fr; } }
-@media (max-width: 620px) { .case-grid { grid-template-columns: 1fr; } .role-strip { flex-direction: column; align-items: flex-start; } }
+@media (max-width: 980px) { .svc-grid { grid-template-columns: 1fr; } }
+@media (max-width: 620px) { }
 @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; } }
 
 
@@ -542,43 +524,10 @@ h1 {
   </div>
 </section>
 
-<section class="band" id="resultats">
-  <div class="band-inner reveal">
-    <div class="sec-label">02 · <span data-i18n="r_label">Results</span></div>
-    <h2 class="sec-title" data-i18n="r_h">Proof, not promises</h2>
-    <p class="sec-sub" data-i18n="r_sub">Every number below links to the public record — click and check.</p>
-    <div class="case-grid">
-      <a class="case" href="https://github.com/search?q=is%3Apr+author%3Anavidemad+is%3Amerged+-user%3Anavidemad+-user%3Ayespark&type=pullrequests" target="_blank" rel="noopener">
-        <span class="num">127</span>
-        <p data-i18n="r1t">Open source PRs merged across 18 projects — Rails core, Datadog, New Relic…</p>
-        <span class="go">github.com →</span>
-      </a>
-      <a class="case" href="https://github.com/lightpanda-io/browser/pulls?q=is%3Apr+author%3Anavidemad+is%3Amerged" target="_blank" rel="noopener">
-        <span class="num">63</span>
-        <p data-i18n="r2t">PRs in Lightpanda, the headless browser written in Zig — 31,600 ⭐</p>
-        <span class="go">lightpanda-io/browser →</span>
-      </a>
-      <a class="case" href="https://github.com/hostolab/covidliste/pulls?q=is%3Apr+author%3Anavidemad+is%3Amerged" target="_blank" rel="noopener">
-        <span class="num">43</span>
-        <p data-i18n="r3t">PRs on covidliste, the platform that accelerated France’s Covid-19 vaccination drive</p>
-        <span class="go">hostolab/covidliste →</span>
-      </a>
-      <a class="case" href="https://github.com/navidemad/capybara-lightpanda" target="_blank" rel="noopener">
-        <span class="num">169k ⭐</span>
-        <p data-i18n="r4t">Combined reach of the open source projects I’ve contributed to — and maintainer of capybara-lightpanda</p>
-        <span class="go">capybara-lightpanda →</span>
-      </a>
-    </div>
-    <div class="role-strip">
-      <span aria-hidden="true">💼</span>
-      <span data-i18n="r_strip">Currently: lead fullstack developer at Yespark — 55,000 subscribers, 750+ cities. Rails, Hotwire and agentic AI in production, at scale.</span>
-    </div>
-  </div>
-</section>
 
 <section class="band contact" id="contact">
   <div class="band-inner reveal">
-    <div class="sec-label">03 · <span data-i18n="c_label">Contact</span></div>
+    <div class="sec-label">02 · <span data-i18n="c_label">Contact</span></div>
     <h2 class="sec-title" data-i18n="c_h">Tell me what you’re trying to ship</h2>
     <p class="sec-sub" data-i18n="c_p">Describe your need in a few lines. I reply within 24 h, frankly: what I can do, how I’d approach it — and if I’m not the best person for the job, I’ll tell you clearly.</p>
     <div class="proc">
@@ -663,14 +612,6 @@ h1 {
       s2d: "Un seul interlocuteur senior, du premier commit \u00e0 la prod.",
       s3t: "Un lead qui fait monter votre \u00e9quipe",
       s3d: "Architecture, revues, mentorat \u2014 le niveau monte et reste haut.",
-      r_label: "R\u00e9sultats",
-      r_h: "Des preuves, pas des promesses",
-      r_sub: "Chaque chiffre pointe vers la source publique : cliquez, v\u00e9rifiez.",
-      r1t: "PRs open source fusionn\u00e9es dans 18 projets \u2014 Rails core, Datadog, New Relic\u2026",
-      r2t: "PRs dans Lightpanda, navigateur headless \u00e9crit en Zig \u2014 31\u00a0600 \u2b50",
-      r3t: "PRs sur covidliste, la plateforme qui a acc\u00e9l\u00e9r\u00e9 la vaccination Covid-19 en France",
-      r4t: "Port\u00e9e cumul\u00e9e des projets open source auxquels j\u2019ai contribu\u00e9 \u2014 et mainteneur de capybara-lightpanda",
-      r_strip: "Aujourd\u2019hui : lead d\u00e9veloppeur fullstack chez Yespark \u2014 55\u00a0000 abonn\u00e9s, 750+ villes. Rails, Hotwire et IA agentique en production, \u00e0 l\u2019\u00e9chelle.",
       c_label: "Contact",
       c_h: "Dites-moi ce que vous voulez livrer",
       c_p: "D\u00e9crivez-moi votre besoin en quelques lignes. Je r\u00e9ponds sous 24\u00a0h avec franchise : ce que je peux faire, comment je m\u2019y prendrais \u2014 et si je ne suis pas la meilleure personne pour le job, je vous le dirai clairement.",
@@ -734,14 +675,6 @@ h1 {
       s2d: "One senior contact from first commit to production.",
       s3t: "A lead who levels up your team",
       s3d: "Architecture, reviews, mentoring \u2014 the bar rises and stays up.",
-      r_label: "Results",
-      r_h: "Proof, not promises",
-      r_sub: "Every number below links to the public record \u2014 click and check.",
-      r1t: "Open source PRs merged across 18 projects \u2014 Rails core, Datadog, New Relic\u2026",
-      r2t: "PRs in Lightpanda, the headless browser written in Zig \u2014 31,600 \u2b50",
-      r3t: "PRs on covidliste, the platform that accelerated France\u2019s Covid-19 vaccination drive",
-      r4t: "Combined reach of the open source projects I\u2019ve contributed to \u2014 and maintainer of capybara-lightpanda",
-      r_strip: "Currently: lead fullstack developer at Yespark \u2014 55,000 subscribers, 750+ cities. Rails, Hotwire and agentic AI in production, at scale.",
       c_label: "Contact",
       c_h: "Tell me what you\u2019re trying to ship",
       c_p: "Describe your need in a few lines. I reply within 24\u00a0h, frankly: what I can do, how I\u2019d approach it \u2014 and if I\u2019m not the best person for the job, I\u2019ll tell you clearly.",
