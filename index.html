@@ -97,7 +97,11 @@ body {
 /* ---------- top bar ---------- */
 header.top {
   display: flex; align-items: center; justify-content: space-between;
-  padding: 18px 0 0; flex: none;
+  position: sticky; top: 0; z-index: 50;
+  margin: 0 clamp(-64px, -3.2vw, -24px);
+  padding: 14px clamp(24px, 3.2vw, 64px);
+  background: rgba(7, 11, 22, 0.78); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(122, 152, 214, 0.08);
 }
 .crest {
   display: flex; align-items: center; gap: 10px;
@@ -118,8 +122,8 @@ header.top {
 .chip.lang { cursor: pointer; font-family: "JetBrains Mono", monospace; font-size: 12.5px; letter-spacing: 1px; }
 
 /* ---------- hero ---------- */
-.hero { padding: clamp(10px, 3vh, 40px) 0 0; display: flex; align-items: center; gap: 26px; flex: none; }
-.hero-copy { flex: 1; }
+.hero { padding: clamp(18px, 4vh, 56px) 0 0; display: flex; align-items: center; gap: clamp(28px, 5vw, 80px); flex: none; }
+.hero-copy { flex: 1; min-width: 0; }
 .kicker {
   font-family: "JetBrains Mono", monospace; font-weight: 600; font-size: 12.5px;
   letter-spacing: 3px; color: var(--green); text-transform: uppercase;
@@ -155,12 +159,10 @@ h1 {
 
 /* ---------- pitch grid ---------- */
 .pitch {
-  display: grid; grid-template-columns: minmax(240px, 1fr) auto minmax(250px, 1fr) minmax(250px, 1fr);
+  display: grid; grid-template-columns: 1fr 1fr;
   gap: clamp(16px, 1.6vw, 28px);
-  align-items: stretch; padding: clamp(10px, 2.4vh, 34px) 0 clamp(8px, 2.2vh, 34px);
-  flex: 1; min-height: 0;
+  align-items: stretch; padding: clamp(22px, 4vh, 48px) 0 clamp(8px, 2.2vh, 34px);
 }
-.col { display: flex; flex-direction: column; gap: clamp(14px, 2vh, 24px); min-height: 0; justify-content: center; }
 
 .panel {
   background: var(--panel); border: 1px solid var(--panel-edge); border-radius: 18px;
@@ -175,10 +177,10 @@ h1 {
 }
 .panel h2::before { content: ""; width: 18px; height: 2px; background: var(--gold); }
 @keyframes rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
-.col.left .panel:nth-child(1) { animation-delay: .15s; }
-.col.left .panel:nth-child(2) { animation-delay: .30s; }
-.col.right .panel:nth-child(1) { animation-delay: .25s; }
-.col.right .panel:nth-child(2) { animation-delay: .40s; }
+.pitch .panel:nth-child(1) { animation-delay: .15s; }
+.pitch .panel:nth-child(2) { animation-delay: .25s; }
+.pitch .panel:nth-child(3) { animation-delay: .35s; }
+.pitch .panel:nth-child(4) { animation-delay: .45s; }
 
 /* attributes */
 .attr { display: flex; align-items: center; justify-content: space-between; padding: clamp(3px, 0.6vh, 8px) 0; border-bottom: 1px solid rgba(122,152,214,0.08); font-size: 14px; }
@@ -220,7 +222,7 @@ h1 {
 }
 
 /* ---------- FUT card ---------- */
-.card-stage { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: clamp(14px, 2.4vh, 26px); }
+.card-stage { flex: none; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: clamp(14px, 2.4vh, 26px); }
 .fut-card {
   position: relative; width: clamp(225px, 31vh, 320px); aspect-ratio: 300 / 468;
   filter: drop-shadow(0 30px 60px rgba(0,0,0,0.55)) drop-shadow(0 0 34px rgba(232,194,104,0.18));
@@ -370,9 +372,11 @@ h1 {
 /* ---------- responsive ---------- */
 @media (max-width: 1240px) {
   .wrap { min-height: 0; }
-  .pitch { grid-template-columns: 1fr 1fr; }
-  .card-stage { grid-column: 1 / -1; grid-row: 1; }
-  .fut-card { width: 320px; }
+  .fut-card { width: clamp(225px, 28vh, 300px); }
+}
+@media (max-width: 980px) {
+  .hero { flex-direction: column; align-items: flex-start; }
+  .card-stage { align-self: center; }
 }
 @media (max-width: 700px) {
   .pitch { grid-template-columns: 1fr; }
@@ -443,26 +447,6 @@ h1 {
         <span class="trust" data-i18n-html="trust"><b>✓ Available</b> · reply within 24 h · FR / EN · remote or Paris</span>
       </div>
     </div>
-  </section>
-
-  <main class="pitch">
-    <div class="col left">
-      <section class="panel">
-        <h2 data-i18n="specialties">Specialties</h2>
-        <div class="attr"><span class="attr-l">Ruby on Rails<small data-i18n="sp1s">Architecture, scalability, performance</small></span><span class="stars" role="img" aria-label="5/5">★★★★★</span></div>
-        <div class="attr"><span class="attr-l"><span data-i18n="spec2">Agentic AI &amp; LLMs</span><small data-i18n="sp2s">Autonomous workflows — Claude, MCP</small></span><span class="stars" role="img" aria-label="5/5">★★★★★</span></div>
-        <div class="attr"><span class="attr-l"><span data-i18n="spec3">Hotwire · Tailwind</span><small data-i18n="sp3s">Modern, reactive interfaces</small></span><span class="stars" role="img" aria-label="4/5">★★★★<span class="off">★</span></span></div>
-        <div class="attr"><span class="attr-l"><span data-i18n="spec4">Ship rate</span><small data-i18n="sp4s">A fast, reliable shipping culture</small></span><span class="val" data-i18n="spec4v">DAILY / CI</span></div>
-      </section>
-      <section class="panel">
-        <h2 data-i18n="perks">Perks</h2>
-        <div class="ps"><span class="ico" aria-hidden="true">🛠️</span><span class="ps-l"><span data-i18n="perk1">Maintainer</span><small data-i18n="perk1s">Owns his code for the long run</small></span><span class="plus">+</span></div>
-        <div class="ps"><span class="ico" aria-hidden="true">🔁</span><span class="ps-l"><span data-i18n="perk2">Upstream</span><small data-i18n="perk2s">Fixes bugs at the source</small></span><span class="plus">+</span></div>
-        <div class="ps"><span class="ico" aria-hidden="true">🤖</span><span class="ps-l"><span data-i18n="perk3">Agentic</span><small data-i18n="perk3s">Ships AI agents to production</small></span><span class="plus">+</span></div>
-        <div class="ps"><span class="ico" aria-hidden="true">⚡</span><span class="ps-l"><span data-i18n="perk4">Shipper</span><small data-i18n="perk4s">Small PRs, merged daily</small></span><span class="plus">+</span></div>
-        <div class="ps"><span class="ico" aria-hidden="true">🧠</span><span class="ps-l"><span data-i18n="perk8">AI Lead</span><small data-i18n="perk8s">Drives team-wide AI adoption</small></span><span class="plus">+</span></div>
-      </section>
-    </div>
 
     <div class="card-stage">
       <div class="fut-card" aria-label="Collector card of Navid, lead Ruby on Rails and agentic AI engineer">
@@ -522,15 +506,30 @@ h1 {
         <a class="btn ghost more" href="#services"><span data-i18n="cta_more">Learn more</span> ↓</a>
       </div>
     </div>
+  </section>
 
-    <div class="col right">
+  <main class="pitch">
+      <section class="panel">
+        <h2 data-i18n="specialties">Specialties</h2>
+        <div class="attr"><span class="attr-l">Ruby on Rails<small data-i18n="sp1s">Architecture, scalability, performance</small></span><span class="stars" role="img" aria-label="5/5">★★★★★</span></div>
+        <div class="attr"><span class="attr-l"><span data-i18n="spec2">Agentic AI &amp; LLMs</span><small data-i18n="sp2s">Autonomous workflows — Claude, MCP</small></span><span class="stars" role="img" aria-label="5/5">★★★★★</span></div>
+        <div class="attr"><span class="attr-l"><span data-i18n="spec3">Hotwire · Tailwind</span><small data-i18n="sp3s">Modern, reactive interfaces</small></span><span class="stars" role="img" aria-label="4/5">★★★★<span class="off">★</span></span></div>
+        <div class="attr"><span class="attr-l"><span data-i18n="spec4">Ship rate</span><small data-i18n="sp4s">A fast, reliable shipping culture</small></span><span class="val" data-i18n="spec4v">DAILY / CI</span></div>
+      </section>
+      <section class="panel">
+        <h2 data-i18n="perks">Perks</h2>
+        <div class="ps"><span class="ico" aria-hidden="true">🛠️</span><span class="ps-l"><span data-i18n="perk1">Maintainer</span><small data-i18n="perk1s">Owns his code for the long run</small></span><span class="plus">+</span></div>
+        <div class="ps"><span class="ico" aria-hidden="true">🔁</span><span class="ps-l"><span data-i18n="perk2">Upstream</span><small data-i18n="perk2s">Fixes bugs at the source</small></span><span class="plus">+</span></div>
+        <div class="ps"><span class="ico" aria-hidden="true">🤖</span><span class="ps-l"><span data-i18n="perk3">Agentic</span><small data-i18n="perk3s">Ships AI agents to production</small></span><span class="plus">+</span></div>
+        <div class="ps"><span class="ico" aria-hidden="true">⚡</span><span class="ps-l"><span data-i18n="perk4">Shipper</span><small data-i18n="perk4s">Small PRs, merged daily</small></span><span class="plus">+</span></div>
+        <div class="ps"><span class="ico" aria-hidden="true">🧠</span><span class="ps-l"><span data-i18n="perk8">AI Lead</span><small data-i18n="perk8s">Drives team-wide AI adoption</small></span><span class="plus">+</span></div>
+      </section>
+
       <section class="panel">
         <h2 title="Scores sur 100, calculés depuis mes statistiques GitHub / Scores out of 100, from my GitHub stats"><span data-i18n="telemetry">GitHub Telemetry</span> <span style="margin-left:auto;letter-spacing:1px;font-size:11px;color:var(--ink-faint)"><span class="live-dot" aria-hidden="true"></span><span id="live-label">LIVE</span></span></h2>
         <div id="metrics"></div>
       </section>
-    </div>
 
-    <div class="col far">
       <section class="panel">
         <h2 data-i18n="track">Track Record</h2>
         <div class="ps"><span class="ico" aria-hidden="true">💼</span><span><a href="https://www.yespark.fr" target="_blank" rel="noopener" style="color:var(--ink);text-decoration:none;border-bottom:1px dotted var(--ink-faint)">Yespark</a> — <span data-i18n="tr0">lead fullstack, 55,000 subscribers</span></span></div>
@@ -539,7 +538,6 @@ h1 {
         <div class="ps"><span class="ico" aria-hidden="true">💉</span><span><a href="https://github.com/hostolab/covidliste/pulls?q=is%3Apr+author%3Anavidemad+is%3Amerged" target="_blank" rel="noopener" style="color:var(--ink);text-decoration:none;border-bottom:1px dotted var(--ink-faint)" data-i18n="tr3">43 PRs on covidliste — France’s Covid-19 vaccination drive</a></span></div>
         <div class="ps"><span class="ico" aria-hidden="true">🚂</span><span><a href="https://github.com/search?q=is%3Apr+author%3Anavidemad+is%3Amerged+-user%3Anavidemad+-user%3Ayespark&type=pullrequests" target="_blank" rel="noopener" style="color:var(--ink);text-decoration:none;border-bottom:1px dotted var(--ink-faint)" data-i18n="tr4">Merged upstream: Rails core, Datadog, New Relic…</a></span></div>
       </section>
-    </div>
   </main>
 
 </div>
@@ -652,10 +650,7 @@ h1 {
   "use strict";
   var USER = "navidemad";
   // Baked-in fallbacks (July 2026) used when the GitHub API is rate-limited.
-  var fallback = {
-    prs: 127, repos: 18, publicRepos: 95,
-    reach: 169000, lightpanda: 63, since: 2014
-  };
+  var fallback = { prs: 127, repos: 18, since: 2014 };
   var state = Object.assign({}, fallback);
   var live = { prs: false, user: false };
 
@@ -732,18 +727,11 @@ h1 {
       live: "LIVE", cached: "CACHE",
       m: {
         prs: "PRs open source fusionn\u00e9es",
-        reach: "Port\u00e9e cumul\u00e9e",
-        lp: "PRs Lightpanda",
-        years: "Ann\u00e9es de code",
-        repos: "D\u00e9p\u00f4ts publics",
-        langs: "Langages"
+        years: "Ann\u00e9es de code"
       },
       d: {
         prs: function (s) { return s.prs + " PRs \u00b7 " + s.repos + " d\u00e9p\u00f4ts"; },
-        reach: function (s, fmt) { return "~" + fmt(s.reach) + "\u2b50 touch\u00e9es"; },
-        lp: function (s) { return s.lightpanda + " fusionn\u00e9es \u00b7 Zig"; },
-        years: function (s) { return "depuis " + s.since; },
-        repos: function (s) { return s.publicRepos + " d\u00e9p\u00f4ts"; }
+        years: function (s) { return "depuis " + s.since; }
       }
     },
     en: {
@@ -818,18 +806,11 @@ h1 {
       live: "LIVE", cached: "CACHED",
       m: {
         prs: "Merged OSS PRs",
-        reach: "Combined reach",
-        lp: "Lightpanda PRs",
-        years: "Years shipping",
-        repos: "Public repos",
-        langs: "Languages"
+        years: "Years shipping"
       },
       d: {
         prs: function (s) { return s.prs + " PRs \u00b7 " + s.repos + " repos"; },
-        reach: function (s, fmt) { return "~" + fmt(s.reach) + "\u2b50 touched"; },
-        lp: function (s) { return s.lightpanda + " merged \u00b7 Zig"; },
-        years: function (s) { return "since " + s.since; },
-        repos: function (s) { return s.publicRepos + " repos"; }
+        years: function (s) { return "since " + s.since; }
       }
     }
   };
@@ -840,10 +821,6 @@ h1 {
     lang = (navigator.language || "en").slice(0, 2) === "fr" ? "fr" : "en";
   }
 
-  function fmt(n) {
-    if (n >= 1000) return (n / 1000).toFixed(n >= 10000 ? 0 : 1).replace(/\.0$/, "") + "k";
-    return String(n);
-  }
   // log-ish score so small and huge numbers both land in 1..99
   function score(v, refAt99) {
     if (v <= 0) return 1;
@@ -855,12 +832,8 @@ h1 {
     var L = I18N[lang];
     var years = Math.max(1, new Date().getFullYear() - state.since);
     var rows = [
-      { label: L.m.prs,   detail: L.d.prs(state),        sc: score(state.prs, 400) },
-      { label: L.m.reach, detail: L.d.reach(state, fmt), sc: score(state.reach, 200000) },
-      { label: L.m.lp,    detail: L.d.lp(state),         sc: score(state.lightpanda, 100) },
-      { label: L.m.years, detail: L.d.years(state),      sc: score(years, 25) },
-      { label: L.m.repos, detail: L.d.repos(state),      sc: score(state.publicRepos, 300) },
-      { label: L.m.langs, detail: "Ruby\u00b7JS\u00b7Zig\u00b7SQL", sc: 86 }
+      { label: L.m.prs,   detail: L.d.prs(state),   sc: score(state.prs, 400) },
+      { label: L.m.years, detail: L.d.years(state), sc: score(years, 25) }
     ];
     var host = document.getElementById("metrics");
     host.innerHTML = rows.map(function (r) {
@@ -914,7 +887,6 @@ h1 {
   applyLang(); // paint fallbacks in the visitor's language immediately, hydrate after
 
   gh("/users/" + USER).then(function (u) {
-    state.publicRepos = u.public_repos;
     if (u.created_at) state.since = new Date(u.created_at).getFullYear();
     live.user = true; render();
   }).catch(function () {});
