@@ -139,11 +139,6 @@ h1 {
   background: linear-gradient(180deg, #ffffff 30%, #aab8d8);
   -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
 }
-.id-row { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; color: var(--ink-dim); font-size: 14px; font-weight: 500; }
-.id-row .sep { color: var(--ink-faint); }
-.id-row a { color: var(--ink-dim); text-decoration: none; border-bottom: 1px dotted var(--ink-faint); }
-.id-row a:hover { color: var(--ink); }
-.gem { width: 14px; height: 14px; vertical-align: -2px; }
 .scout-line {
   color: var(--ink-dim); font-size: 15.5px; line-height: 1.55;
   margin: 0 0 12px;
@@ -305,6 +300,7 @@ h1 {
 .trust {
   font-family: "JetBrains Mono", monospace; font-size: 11.5px;
   letter-spacing: .3px; color: var(--ink-dim); white-space: nowrap;
+  margin-top: 2px;
 }
 .trust b { color: #9defc2; font-weight: 600; }
 .svc-list { list-style: none; margin: 14px 0 0; }
@@ -375,15 +371,9 @@ h1 {
     <div class="hero-copy">
       <div class="kicker">whoami --verbose<span class="cursor" aria-hidden="true"></span></div>
       <h1 data-i18n="h1">Ship your roadmap. Make AI pay off.</h1>
-      <p class="scout-line" data-i18n-html="scout"><b>Hi, I’m Navid 👋</b>I help CTOs and founders ship critical Rails products and agentic AI — in production.</p>
-      <div class="id-row">
-        <span><svg class="gem" viewBox="0 0 24 24" fill="#e0115f" aria-hidden="true"><path d="M6 3h12l4 6-10 12L2 9l4-6z"/></svg> <span data-i18n="id1">Ruby on Rails expert</span> <span class="sep">·</span> <span id="years-inline">12 years of code</span></span>
-        <span class="sep">|</span>
-        <span data-i18n="id2">Agentic AI workflow engineer</span>
-        <span class="sep">·</span>
-        <span class="trust" data-i18n-html="trust"><b>✓ Available</b> · reply within 24 h · FR / EN · remote or Paris</span>
-      </div>
-      <a class="oss-line" href="https://github.com/search?q=is%3Apr+author%3Anavidemad+is%3Amerged+-user%3Anavidemad+-user%3Ayespark&type=pullrequests" target="_blank" rel="noopener"><span aria-hidden="true">⭐</span> <span id="oss-inline"><b>127</b> merged open-source PRs · 18 repos — Rails core, Datadog, Lightpanda…</span></a>
+      <p class="scout-line" data-i18n-html="scout"><b>Hi, I’m Navid 👋</b>Lead Ruby on Rails Developer with <span id="years-inline">12</span> years of experience. I help CTOs and founders build critical web products and deploy concrete agentic AI workflows to production.</p>
+      <div class="trust" data-i18n-html="trust"><b>✓ Available</b> · reply within 24 h · remote or Paris</div>
+      <a class="oss-line" href="https://github.com/search?q=is%3Apr+author%3Anavidemad+is%3Amerged+-user%3Anavidemad+-user%3Ayespark&type=pullrequests" target="_blank" rel="noopener"><span aria-hidden="true">⭐</span> <span id="oss-inline"><b>127</b> merged open-source PRs — Rails core, Datadog, Lightpanda…</span></a>
       <div class="cta-row">
         <a class="btn primary" href="https://calendly.com/design-navid/30min" target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24"><path d="M7 2v2H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V6a2 2 0 00-2-2h-2V2h-2v2H9V2H7zm12 8v10H5V10h14zM5 8V6h14v2H5zm3 5h3v3H8v-3z"/></svg>
@@ -547,9 +537,7 @@ h1 {
       title: "Navid Emad \u2014 Expert Ruby on Rails & IA agentique",
       crest: "Disponible pour missions IA & Rails",
       h1: "Livrez votre roadmap. Rentabilisez l\u2019IA.",
-      id1: "Expert Ruby on Rails",
-      id2: "Ing\u00e9nieur workflows IA agentiques",
-      scout: "<b>Salut, moi c\u2019est Navid \ud83d\udc4b</b>J\u2019aide CTOs et fondateurs \u00e0 livrer des produits Rails critiques et de l\u2019IA agentique \u2014 en production.",
+      scout: "<b>Salut, moi c\u2019est Navid \ud83d\udc4b</b>Lead Developer Ruby on Rails avec <span id=\"years-inline\">12</span> ans d\u2019exp\u00e9rience. J\u2019aide les CTOs et fondateurs \u00e0 construire des produits web critiques et \u00e0 d\u00e9ployer des workflows IA agentiques concrets en production.",
       specialties: "Sp\u00e9cialit\u00e9s",
       spec2: "IA agentique & LLM",
       spec3: "Hotwire \u00b7 Tailwind",
@@ -568,7 +556,7 @@ h1 {
       cta_x: "DM sur X",
       cta_book: "R\u00e9server un appel",
       cta_more: "En savoir plus",
-      trust: "<b>\u2713 Disponible</b> \u00b7 r\u00e9ponse sous 24\u00a0h \u00b7 FR / EN \u00b7 remote ou Paris",
+      trust: "<b>\u2713 Disponible</b> \u00b7 r\u00e9ponse sous 24\u00a0h \u00b7 remote ou Paris",
       s1b1: "Audit de vos processus et cas d\u2019usage",
       s1b2: "Agents et workflows branch\u00e9s \u00e0 vos outils (Claude, MCP)",
       s1b3: "Formation pratique de vos \u00e9quipes",
@@ -595,16 +583,13 @@ h1 {
       c_label: "Contact",
       c_h: "Dites-moi ce que vous voulez livrer",
       c_p: "D\u00e9crivez-moi votre besoin en quelques lignes. Je r\u00e9ponds sous 24\u00a0h avec franchise : ce que je peux faire, comment je m\u2019y prendrais \u2014 et si je ne suis pas la meilleure personne pour le job, je vous le dirai clairement.",
-      yearsLine: function (n) { return n + " ans de code"; },
-      ossLine: function (s) { return "<b>" + s.prs + "</b> PRs open source fusionn\u00e9es \u00b7 " + s.repos + " d\u00e9p\u00f4ts \u2014 Rails core, Datadog, Lightpanda\u2026"; }
+      ossLine: function (s) { return "<b>" + s.prs + "</b> PRs open source fusionn\u00e9es \u2014 Rails core, Datadog, Lightpanda\u2026"; }
     },
     en: {
       title: "Navid Emad \u2014 Ruby on Rails & Agentic AI Engineer",
       crest: "Open to AI & Rails engagements",
       h1: "Ship your roadmap. Make AI pay off.",
-      id1: "Ruby on Rails expert",
-      id2: "Agentic AI workflow engineer",
-      scout: "<b>Hi, I\u2019m Navid \ud83d\udc4b</b>I help CTOs and founders ship critical Rails products and agentic AI \u2014 in production.",
+      scout: "<b>Hi, I\u2019m Navid \ud83d\udc4b</b>Lead Ruby on Rails Developer with <span id=\"years-inline\">12</span> years of experience. I help CTOs and founders build critical web products and deploy concrete agentic AI workflows to production.",
       specialties: "Specialties",
       spec2: "Agentic AI & LLMs",
       spec3: "Hotwire \u00b7 Tailwind",
@@ -623,7 +608,7 @@ h1 {
       cta_x: "DM on X",
       cta_book: "Book a call",
       cta_more: "Learn more",
-      trust: "<b>\u2713 Available</b> \u00b7 reply within 24\u00a0h \u00b7 FR / EN \u00b7 remote or Paris",
+      trust: "<b>\u2713 Available</b> \u00b7 reply within 24\u00a0h \u00b7 remote or Paris",
       s1b1: "Audit of your processes and use cases",
       s1b2: "Agents and workflows wired to your tools (Claude, MCP)",
       s1b3: "Hands-on training for your teams",
@@ -650,8 +635,7 @@ h1 {
       c_label: "Contact",
       c_h: "Tell me what you\u2019re trying to ship",
       c_p: "Describe your need in a few lines. I reply within 24\u00a0h, frankly: what I can do, how I\u2019d approach it \u2014 and if I\u2019m not the best person for the job, I\u2019ll tell you clearly.",
-      yearsLine: function (n) { return n + " years of code"; },
-      ossLine: function (s) { return "<b>" + s.prs + "</b> merged open-source PRs \u00b7 " + s.repos + " repos \u2014 Rails core, Datadog, Lightpanda\u2026"; }
+      ossLine: function (s) { return "<b>" + s.prs + "</b> merged open-source PRs \u2014 Rails core, Datadog, Lightpanda\u2026"; }
     }
   };
 
@@ -664,7 +648,8 @@ h1 {
   function render() {
     var L = I18N[lang];
     var years = Math.max(1, new Date().getFullYear() - state.since);
-    document.getElementById("years-inline").textContent = L.yearsLine(years);
+    var yEl = document.getElementById("years-inline");
+    if (yEl) yEl.textContent = years;
     document.getElementById("oss-inline").innerHTML = L.ossLine(state);
   }
 
