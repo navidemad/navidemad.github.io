@@ -1,747 +1,1745 @@
 <!doctype html>
 <html lang="en">
-<head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Navid Emad — Lead Ruby on Rails Developer & Agentic AI Engineer</title>
-<meta name="description" content="Navid Emad — Lead Ruby on Rails developer and agentic AI workflow engineer. I build production web applications and help companies adopt AI. 127 open source PRs merged across 18 repositories." />
-<link rel="canonical" href="https://navidemad.github.io/" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://navidemad.github.io/" />
-<meta property="og:title" content="Navid Emad — Ruby on Rails & Agentic AI Engineer" />
-<meta property="og:description" content="Lead Ruby on Rails developer · Agentic AI workflow engineer. Production web apps, enterprise AI adoption, 127 open source PRs merged." />
-<meta property="og:image" content="https://navidemad.github.io/og-image.png" />
-<meta property="og:image:width" content="1200" />
-<meta property="og:image:height" content="630" />
-<meta property="og:locale" content="en_US" />
-<meta property="og:locale:alternate" content="fr_FR" />
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:site" content="@navidemad" />
-<meta name="twitter:title" content="Navid Emad — Ruby on Rails & Agentic AI Engineer" />
-<meta name="twitter:description" content="Lead Ruby on Rails developer · Agentic AI workflow engineer. Production web apps, enterprise AI adoption." />
-<meta name="twitter:image" content="https://navidemad.github.io/og-image.png" />
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⌨️</text></svg>" />
-<!-- Above-the-fold fonts: preloaded so the hero paints with final metrics (no swap-induced layout shift) -->
-<link rel="preload" href="fonts/bebas-neue-400.woff2" as="font" type="font/woff2" crossorigin />
-<link rel="preload" href="fonts/barlow-400.woff2" as="font" type="font/woff2" crossorigin />
-<link rel="preload" href="fonts/jetbrains-mono-400.woff2" as="font" type="font/woff2" crossorigin />
-<style>
-/* Self-hosted fonts (GDPR-friendly: no Google Fonts requests) */
-@font-face { font-family: "Bebas Neue"; font-style: normal; font-weight: 400; font-display: swap; src: url(fonts/bebas-neue-400.woff2) format("woff2"); }
-@font-face { font-family: "Barlow"; font-style: normal; font-weight: 400; font-display: swap; src: url(fonts/barlow-400.woff2) format("woff2"); }
-@font-face { font-family: "Barlow"; font-style: normal; font-weight: 500; font-display: swap; src: url(fonts/barlow-500.woff2) format("woff2"); }
-@font-face { font-family: "Barlow"; font-style: normal; font-weight: 600; font-display: swap; src: url(fonts/barlow-600.woff2) format("woff2"); }
-@font-face { font-family: "Barlow"; font-style: normal; font-weight: 700; font-display: swap; src: url(fonts/barlow-700.woff2) format("woff2"); }
-@font-face { font-family: "Barlow Condensed"; font-style: normal; font-weight: 700; font-display: swap; src: url(fonts/barlow-condensed-700.woff2) format("woff2"); }
-@font-face { font-family: "JetBrains Mono"; font-style: normal; font-weight: 400; font-display: swap; src: url(fonts/jetbrains-mono-400.woff2) format("woff2"); }
-@font-face { font-family: "JetBrains Mono"; font-style: normal; font-weight: 600; font-display: swap; src: url(fonts/jetbrains-mono-600.woff2) format("woff2"); }
-:root {
-  --bg: #070b16;
-  --bg-2: #0b1224;
-  --panel: rgba(17, 26, 48, 0.55);
-  --panel-edge: rgba(122, 152, 214, 0.14);
-  --ink: #e8edf8;
-  --ink-dim: #9aa7c4;
-  --ink-faint: #6e7a9b;
-  --gold: #e8c268;
-  --gold-2: #f6e3a1;
-  --gold-deep: #a8842f;
-  --navy-card: #1b2a6b;
-  --green: #35d07f;
-  --accent: #7aa2ff;
-}
-* { margin: 0; padding: 0; box-sizing: border-box; }
-:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
-::selection { background: rgba(232,194,104,.28); }
-html { scroll-behavior: smooth; scroll-snap-type: y proximity; }
-body {
-  background: var(--bg);
-  color: var(--ink);
-  font-family: "Barlow", sans-serif;
-  font-size: 16px;
-  line-height: 1.5;
-  overflow-x: hidden;
-  min-height: 100vh;
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
-}
-/* ---------- stadium atmosphere ---------- */
-.atmosphere {
-  position: fixed; inset: 0; z-index: -2; pointer-events: none;
-  background:
-    radial-gradient(1200px 600px at 50% -10%, rgba(43, 66, 141, 0.35), transparent 65%),
-    radial-gradient(900px 500px at 85% 20%, rgba(53, 208, 127, 0.06), transparent 60%),
-    radial-gradient(800px 500px at 10% 80%, rgba(232, 194, 104, 0.05), transparent 60%),
-    linear-gradient(180deg, var(--bg-2) 0%, var(--bg) 40%);
-}
-.atmosphere::before {
-  content: ""; position: absolute; inset: 0;
-  background-image:
-    linear-gradient(rgba(122, 152, 214, 0.045) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(122, 152, 214, 0.045) 1px, transparent 1px);
-  background-size: 56px 56px;
-  mask-image: radial-gradient(ellipse 90% 70% at 50% 30%, black 20%, transparent 75%);
-  -webkit-mask-image: radial-gradient(ellipse 90% 70% at 50% 30%, black 20%, transparent 75%);
-}
-.atmosphere::after {
-  content: ""; position: absolute; inset: 0; opacity: 0.5;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.04 0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
-}
-/* floodlight beams */
-.beam {
-  position: fixed; top: -20vh; width: 34vw; height: 90vh; z-index: -1; pointer-events: none;
-  background: linear-gradient(180deg, rgba(180, 205, 255, 0.07), transparent 75%);
-  filter: blur(12px);
-}
-.beam.l { left: 4vw; transform: skewX(14deg); }
-.beam.r { right: 4vw; transform: skewX(-14deg); }
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>
+      Navid Emad - Lead Ruby on Rails Developer & Agentic AI Engineer
+    </title>
+    <meta
+      name="description"
+      content="Navid Emad - Lead Ruby on Rails developer and agentic AI workflow engineer. I build production web applications and help companies adopt AI. 127 open source PRs merged across 18 repositories."
+    />
+    <link rel="canonical" href="https://navidemad.github.io/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://navidemad.github.io/" />
+    <meta
+      property="og:title"
+      content="Navid Emad - Ruby on Rails & Agentic AI Engineer"
+    />
+    <meta
+      property="og:description"
+      content="Lead Ruby on Rails developer · Agentic AI workflow engineer. Production web apps, enterprise AI adoption, 127 open source PRs merged."
+    />
+    <meta
+      property="og:image"
+      content="https://navidemad.github.io/og-image.png"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:locale:alternate" content="fr_FR" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@navidemad" />
+    <meta
+      name="twitter:title"
+      content="Navid Emad - Ruby on Rails & Agentic AI Engineer"
+    />
+    <meta
+      name="twitter:description"
+      content="Lead Ruby on Rails developer · Agentic AI workflow engineer. Production web apps, enterprise AI adoption."
+    />
+    <meta
+      name="twitter:image"
+      content="https://navidemad.github.io/og-image.png"
+    />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⌨️</text></svg>"
+    />
+    <!-- Above-the-fold fonts: preloaded so the hero paints with final metrics (no swap-induced layout shift) -->
+    <link
+      rel="preload"
+      href="fonts/bebas-neue-400.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="fonts/barlow-400.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="fonts/jetbrains-mono-400.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <style>
+      /* Self-hosted fonts (GDPR-friendly: no Google Fonts requests) */
+      @font-face {
+        font-family: "Bebas Neue";
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url(fonts/bebas-neue-400.woff2) format("woff2");
+      }
+      @font-face {
+        font-family: "Barlow";
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url(fonts/barlow-400.woff2) format("woff2");
+      }
+      @font-face {
+        font-family: "Barlow";
+        font-style: normal;
+        font-weight: 500;
+        font-display: swap;
+        src: url(fonts/barlow-500.woff2) format("woff2");
+      }
+      @font-face {
+        font-family: "Barlow";
+        font-style: normal;
+        font-weight: 600;
+        font-display: swap;
+        src: url(fonts/barlow-600.woff2) format("woff2");
+      }
+      @font-face {
+        font-family: "Barlow";
+        font-style: normal;
+        font-weight: 700;
+        font-display: swap;
+        src: url(fonts/barlow-700.woff2) format("woff2");
+      }
+      @font-face {
+        font-family: "Barlow Condensed";
+        font-style: normal;
+        font-weight: 700;
+        font-display: swap;
+        src: url(fonts/barlow-condensed-700.woff2) format("woff2");
+      }
+      @font-face {
+        font-family: "JetBrains Mono";
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url(fonts/jetbrains-mono-400.woff2) format("woff2");
+      }
+      @font-face {
+        font-family: "JetBrains Mono";
+        font-style: normal;
+        font-weight: 600;
+        font-display: swap;
+        src: url(fonts/jetbrains-mono-600.woff2) format("woff2");
+      }
+      :root {
+        --bg: #070b16;
+        --bg-2: #0b1224;
+        --panel: rgba(17, 26, 48, 0.55);
+        --panel-edge: rgba(122, 152, 214, 0.14);
+        --ink: #e8edf8;
+        --ink-dim: #9aa7c4;
+        --ink-faint: #6e7a9b;
+        --gold: #e8c268;
+        --gold-2: #f6e3a1;
+        --gold-deep: #a8842f;
+        --navy-card: #1b2a6b;
+        --green: #35d07f;
+        --accent: #7aa2ff;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      :focus-visible {
+        outline: 2px solid var(--gold);
+        outline-offset: 3px;
+      }
+      ::selection {
+        background: rgba(232, 194, 104, 0.28);
+      }
+      html {
+        scroll-behavior: smooth;
+        scroll-snap-type: y proximity;
+      }
+      body {
+        background: var(--bg);
+        color: var(--ink);
+        font-family: "Barlow", sans-serif;
+        font-size: 16px;
+        line-height: 1.5;
+        overflow-x: hidden;
+        min-height: 100vh;
+        -webkit-font-smoothing: antialiased;
+        text-rendering: optimizeLegibility;
+      }
+      /* ---------- stadium atmosphere ---------- */
+      .atmosphere {
+        position: fixed;
+        inset: 0;
+        z-index: -2;
+        pointer-events: none;
+        background:
+          radial-gradient(
+            1200px 600px at 50% -10%,
+            rgba(43, 66, 141, 0.35),
+            transparent 65%
+          ),
+          radial-gradient(
+            900px 500px at 85% 20%,
+            rgba(53, 208, 127, 0.06),
+            transparent 60%
+          ),
+          radial-gradient(
+            800px 500px at 10% 80%,
+            rgba(232, 194, 104, 0.05),
+            transparent 60%
+          ),
+          linear-gradient(180deg, var(--bg-2) 0%, var(--bg) 40%);
+      }
+      .atmosphere::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image:
+          linear-gradient(rgba(122, 152, 214, 0.045) 1px, transparent 1px),
+          linear-gradient(
+            90deg,
+            rgba(122, 152, 214, 0.045) 1px,
+            transparent 1px
+          );
+        background-size: 56px 56px;
+        mask-image: radial-gradient(
+          ellipse 90% 70% at 50% 30%,
+          black 20%,
+          transparent 75%
+        );
+        -webkit-mask-image: radial-gradient(
+          ellipse 90% 70% at 50% 30%,
+          black 20%,
+          transparent 75%
+        );
+      }
+      .atmosphere::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        opacity: 0.5;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.04 0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+      }
+      /* floodlight beams */
+      .beam {
+        position: fixed;
+        top: -20vh;
+        width: 34vw;
+        height: 90vh;
+        z-index: -1;
+        pointer-events: none;
+        background: linear-gradient(
+          180deg,
+          rgba(180, 205, 255, 0.07),
+          transparent 75%
+        );
+        filter: blur(12px);
+      }
+      .beam.l {
+        left: 4vw;
+        transform: skewX(14deg);
+      }
+      .beam.r {
+        right: 4vw;
+        transform: skewX(-14deg);
+      }
 
-.wrap {
-  width: 100%; margin: 0 auto; padding: 0 clamp(24px, 3.2vw, 64px);
-  min-height: 100dvh; display: flex; flex-direction: column; justify-content: center;
-  scroll-snap-align: start;
-}
+      .wrap {
+        width: 100%;
+        margin: 0 auto;
+        padding: 0 clamp(24px, 3.2vw, 64px);
+        min-height: 100dvh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        scroll-snap-align: start;
+      }
 
-/* ---------- floating book button ---------- */
-.floating-book {
-  position: fixed; right: clamp(20px, 2.6vw, 48px); bottom: 26px; z-index: 50;
-  display: inline-flex; align-items: center; gap: 9px;
-  padding: 15px 28px; border-radius: 999px; text-decoration: none;
-  font-weight: 700; font-size: 15px; color: #fff;
-  background: linear-gradient(160deg, #43e08d, #27a05f);
-  box-shadow: 0 12px 34px rgba(53, 208, 127, 0.35), 0 8px 22px rgba(0, 0, 0, 0.45);
-  transform: translateY(160%); opacity: 0; pointer-events: none;
-  transition: transform .4s cubic-bezier(.22,.9,.3,1), opacity .4s ease, box-shadow .2s;
-}
-.floating-book.shown { transform: none; opacity: 1; pointer-events: auto; }
-.floating-book.shown:hover { transform: translateY(-2px); box-shadow: 0 16px 40px rgba(53, 208, 127, 0.45), 0 10px 26px rgba(0, 0, 0, 0.5); }
-.floating-book svg { width: 16px; height: 16px; fill: currentColor; }
-.lang-flags {
-  position: fixed; top: 14px; right: clamp(20px, 2.6vw, 48px); z-index: 60;
-  display: flex; gap: 6px;
-}
-.flag-btn {
-  background: none; border: 0; cursor: pointer; font-size: 22px; line-height: 1;
-  padding: 4px; opacity: 0.3; filter: saturate(0.7);
-  transition: opacity .25s, transform .2s, filter .25s;
-}
-.flag-btn:hover { opacity: 0.7; transform: translateY(-1px); }
-.flag-btn.active { opacity: 1; filter: none; }
+      /* ---------- floating book button ---------- */
+      .floating-book {
+        position: fixed;
+        right: clamp(20px, 2.6vw, 48px);
+        bottom: 26px;
+        z-index: 50;
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+        padding: 15px 28px;
+        border-radius: 999px;
+        text-decoration: none;
+        font-weight: 700;
+        font-size: 15px;
+        color: #041b10;
+        background: linear-gradient(160deg, #43e08d, #27a05f);
+        box-shadow:
+          0 12px 34px rgba(53, 208, 127, 0.35),
+          0 8px 22px rgba(0, 0, 0, 0.45);
+        transform: translateY(160%);
+        opacity: 0;
+        pointer-events: none;
+        transition:
+          transform 0.4s cubic-bezier(0.22, 0.9, 0.3, 1),
+          opacity 0.4s ease,
+          box-shadow 0.2s;
+      }
+      .floating-book.shown {
+        transform: none;
+        opacity: 1;
+        pointer-events: auto;
+      }
+      .floating-book.shown:hover {
+        transform: translateY(-2px);
+        box-shadow:
+          0 16px 40px rgba(53, 208, 127, 0.45),
+          0 10px 26px rgba(0, 0, 0, 0.5);
+      }
+      .floating-book svg {
+        width: 16px;
+        height: 16px;
+        fill: currentColor;
+      }
+      .lang-flags {
+        position: fixed;
+        top: 14px;
+        right: clamp(20px, 2.6vw, 48px);
+        z-index: 60;
+        display: flex;
+        gap: 6px;
+      }
+      .flag-btn {
+        background: none;
+        border: 0;
+        cursor: pointer;
+        font-size: 22px;
+        line-height: 1;
+        padding: 4px;
+        opacity: 0.3;
+        filter: saturate(0.7);
+        transition:
+          opacity 0.25s,
+          transform 0.2s,
+          filter 0.25s;
+      }
+      .flag-btn:hover {
+        opacity: 0.7;
+        transform: translateY(-1px);
+      }
+      .flag-btn.active {
+        opacity: 1;
+        filter: none;
+      }
 
-/* ---------- greeting ---------- */
-.avatar-name {
-  font-size: clamp(20px, 2.2vw, 28px); font-weight: 400; letter-spacing: .4px;
-  color: var(--gold);
-}
+      /* ---------- greeting ---------- */
+      .avatar {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        display: block;
+        margin: 0 auto 12px;
+        border: 2px solid var(--panel-edge);
+      }
+      .avatar-name {
+        font-size: clamp(20px, 2.2vw, 28px);
+        font-weight: 400;
+        letter-spacing: 0.4px;
+        color: var(--gold);
+      }
 
-/* ---------- hero ---------- */
-.hero { padding: clamp(18px, 4vh, 56px) 0 0; display: flex; justify-content: center; flex: none; }
-.hero-copy { min-width: 0; max-width: 900px; text-align: center; }
-.hero-copy { position: relative; }
-.hero-copy::before {
-  content: ""; position: absolute; inset: -12% -30%; z-index: -1; pointer-events: none;
-  background: radial-gradient(ellipse 55% 45% at 50% 38%, rgba(74, 108, 210, 0.16), transparent 70%);
-}
-h1 {
-  font-family: "Bebas Neue", sans-serif; font-size: clamp(44px, 5vw, 80px);
-  text-wrap: balance;
-  line-height: 1.02; letter-spacing: 2px; margin: 14px 0 18px;
-  background: linear-gradient(180deg, #ffffff 30%, #aab8d8);
-  -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
-}
-.scout-line {
-  color: var(--ink-dim); font-size: clamp(16px, 1.4vw, 19px); line-height: 1.6;
-  margin: 0 auto 18px; max-width: 720px;
-}
+      /* ---------- hero ---------- */
+      .hero {
+        padding: clamp(18px, 4vh, 56px) 0 0;
+        display: flex;
+        justify-content: center;
+        flex: none;
+      }
+      .hero-copy {
+        min-width: 0;
+        max-width: 900px;
+        text-align: center;
+      }
+      .hero-copy {
+        position: relative;
+      }
+      .hero-copy::before {
+        content: "";
+        position: absolute;
+        inset: -12% -30%;
+        z-index: -1;
+        pointer-events: none;
+        background: radial-gradient(
+          ellipse 55% 45% at 50% 38%,
+          rgba(74, 108, 210, 0.16),
+          transparent 70%
+        );
+      }
+      h1 {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: clamp(44px, 5vw, 80px);
+        text-wrap: balance;
+        line-height: 1.02;
+        letter-spacing: 2px;
+        margin: 14px 0 18px;
+        background: linear-gradient(180deg, #ffffff 30%, #aab8d8);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .scout-line {
+        color: var(--ink-dim);
+        font-size: clamp(16px, 1.4vw, 19px);
+        line-height: 1.6;
+        margin: 0 auto 18px;
+        max-width: 720px;
+      }
 
-.oss-line {
-  display: inline-flex; align-items: center; gap: 8px; margin: 12px 0 0;
-  font-family: "JetBrains Mono", monospace; font-size: 13px; letter-spacing: .3px;
-  color: var(--ink-dim); text-decoration: none;
-  border-bottom: 1px dotted var(--ink-faint); padding-bottom: 1px;
-}
-.oss-line:hover { color: var(--ink); border-bottom-color: var(--gold); }
-.oss-line b { color: var(--gold); font-weight: 600; }
+      .cta-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: center;
+      }
+      .hero-copy .cta-row {
+        margin-top: 28px;
+        align-items: center;
+      }
+      .hero-copy .cta-row.socials {
+        margin-top: 16px;
+        gap: 12px;
+      }
+      .hero-copy .cta-row.more-row {
+        margin-top: 22px;
+      }
+      .btn.icon {
+        padding: 11px;
+        border-radius: 50%;
+      }
+      .btn.icon svg {
+        width: 17px;
+        height: 17px;
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+        text-decoration: none;
+        font-weight: 700;
+        font-size: 13px;
+        padding: 10px 14px;
+        border-radius: 11px;
+        transition:
+          transform 0.18s,
+          box-shadow 0.18s,
+          background 0.18s;
+      }
+      .btn svg {
+        width: 16px;
+        height: 16px;
+        fill: currentColor;
+      }
+      .btn.primary {
+        background: linear-gradient(160deg, #43e08d, #27a05f);
+        color: #041b10;
+        font-size: 15px;
+        padding: 15px 28px;
+        border-radius: 999px;
+        box-shadow: 0 8px 26px rgba(53, 208, 127, 0.28);
+      }
+      .btn.primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 12px 32px rgba(53, 208, 127, 0.4);
+      }
+      .btn.ghost {
+        background: rgba(13, 20, 38, 0.6);
+        color: var(--ink);
+        border: 1px solid var(--panel-edge);
+      }
+      .btn.ghost:hover {
+        border-color: rgba(232, 194, 104, 0.5);
+        transform: translateY(-2px);
+      }
 
-.cta-row { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
-.hero-copy .cta-row { margin-top: 28px; align-items: center; }
-.hero-copy .cta-row.socials { margin-top: 16px; gap: 12px; }
-.hero-copy .cta-row.more-row { margin-top: 22px; }
-.btn.icon { padding: 11px; border-radius: 50%; }
-.btn.icon svg { width: 17px; height: 17px; }
-.btn {
-  display: inline-flex; align-items: center; gap: 9px; text-decoration: none;
-  font-weight: 700; font-size: 13px; padding: 10px 14px; border-radius: 11px;
-  transition: transform .18s, box-shadow .18s, background .18s;
-}
-.btn svg { width: 16px; height: 16px; fill: currentColor; }
-.btn.primary {
-  background: linear-gradient(160deg, #43e08d, #27a05f); color: #fff;
-  font-size: 15px; padding: 15px 28px; border-radius: 999px;
-  box-shadow: 0 8px 26px rgba(53, 208, 127, 0.28);
-}
-.btn.primary:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(53, 208, 127, 0.4); }
-.btn.ghost { background: rgba(13, 20, 38, 0.6); color: var(--ink); border: 1px solid var(--panel-edge); }
-.btn.ghost:hover { border-color: rgba(232,194,104,0.5); transform: translateY(-2px); }
-.cta-note { margin-top: 12px; font-size: 13px; color: var(--ink-faint); text-align: center; }
+      /* ---------- below-the-fold bands ---------- */
+      .band {
+        padding: clamp(48px, 7vh, 96px) clamp(24px, 3.2vw, 64px);
+        border-top: 1px solid rgba(122, 152, 214, 0.08);
+        min-height: 100dvh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        scroll-snap-align: start;
+      }
+      .band-inner {
+        width: 100%;
+      }
+      .band-inner {
+        max-width: 1280px;
+        margin: 0 auto;
+      }
+      .sec-title {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: clamp(34px, 4vw, 52px);
+        letter-spacing: 1.5px;
+        line-height: 1;
+        margin-bottom: 12px;
+        text-align: center;
+        text-wrap: balance;
+        background: linear-gradient(180deg, #ffffff 30%, #aab8d8);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .sec-sub {
+        color: var(--ink-dim);
+        font-size: 17.5px;
+        line-height: 1.7;
+        margin: 0 auto 40px;
+        max-width: 780px;
+        text-align: center;
+        text-wrap: pretty;
+      }
+      .svc-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 22px;
+        margin-top: 40px;
+      }
+      .svc {
+        position: relative;
+        background: var(--panel);
+        border: 1px solid var(--panel-edge);
+        border-radius: 18px;
+        padding: 28px 26px;
+        backdrop-filter: blur(8px);
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        transition:
+          transform 0.25s,
+          border-color 0.25s;
+      }
+      .svc::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: linear-gradient(90deg, var(--gold), transparent 70%);
+        opacity: 0;
+        transition: opacity 0.25s;
+      }
+      .svc:hover {
+        transform: translateY(-4px);
+        border-color: rgba(232, 194, 104, 0.35);
+      }
+      .svc:hover::before {
+        opacity: 1;
+      }
+      .svc h3 {
+        font-family: "Barlow Condensed", sans-serif;
+        font-weight: 700;
+        font-size: 21px;
+        letter-spacing: 0.5px;
+        margin-bottom: 10px;
+        text-wrap: balance;
+      }
+      .svc p {
+        color: var(--ink-dim);
+        font-size: 14.5px;
+        text-wrap: balance;
+      }
+      .svc-grid.two {
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 940px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .prose {
+        max-width: 720px;
+        margin: 0 auto;
+        text-align: left;
+      }
+      .prose p {
+        color: var(--ink-dim);
+        font-size: 17px;
+        line-height: 1.75;
+        margin-bottom: 16px;
+        text-wrap: pretty;
+      }
+      .prose p:last-child {
+        margin-bottom: 0;
+      }
+      .stat-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 22px;
+        max-width: 940px;
+        margin: 40px auto 0;
+      }
+      .stat {
+        background: var(--panel);
+        border: 1px solid var(--panel-edge);
+        border-radius: 18px;
+        padding: 26px 20px;
+        text-align: center;
+        backdrop-filter: blur(8px);
+      }
+      .stat .num {
+        display: block;
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 46px;
+        letter-spacing: 1px;
+        color: var(--gold);
+        line-height: 1;
+      }
+      .stat .lbl {
+        display: block;
+        margin-top: 10px;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 12.5px;
+        letter-spacing: 0.4px;
+        color: var(--ink-dim);
+      }
+      .tele-verify {
+        text-align: center;
+        margin-top: 20px;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 12.5px;
+      }
+      .tele-verify a {
+        color: var(--ink-dim);
+        text-decoration: none;
+        border-bottom: 1px dotted var(--ink-faint);
+        padding-bottom: 1px;
+      }
+      .tele-verify a:hover {
+        color: var(--ink);
+        border-bottom-color: var(--gold);
+      }
+      .tr-list {
+        max-width: 1080px;
+        margin: 40px auto 0;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+        text-align: left;
+      }
+      .tr.wide {
+        grid-column: 1 / -1;
+      }
+      .tr {
+        padding: 20px 24px;
+        background: var(--panel);
+        border: 1px solid var(--panel-edge);
+        border-left: 3px solid var(--gold-deep);
+        border-radius: 14px;
+        backdrop-filter: blur(8px);
+        transition: border-color 0.25s;
+      }
+      .tr:hover {
+        border-left-color: var(--gold);
+        border-color: rgba(232, 194, 104, 0.3);
+      }
+      .tr h3 {
+        font-family: "Barlow Condensed", sans-serif;
+        font-weight: 700;
+        font-size: 20px;
+        letter-spacing: 0.4px;
+      }
+      .tr h3 a {
+        color: var(--ink);
+        text-decoration: none;
+        border-bottom: 1px dotted var(--ink-faint);
+        padding-bottom: 1px;
+      }
+      .tr h3 a:hover {
+        border-bottom-color: var(--gold);
+      }
+      .tr .meta {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 12px;
+        letter-spacing: 0.3px;
+        color: var(--gold);
+        margin: 4px 0 6px;
+      }
+      .tr p {
+        color: var(--ink-dim);
+        font-size: 14.5px;
+        line-height: 1.6;
+      }
+      .tr .proof {
+        display: inline-block;
+        margin-top: 8px;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 12px;
+        color: var(--ink-dim);
+        text-decoration: none;
+        border-bottom: 1px dotted var(--ink-faint);
+        padding-bottom: 1px;
+      }
+      .tr .proof:hover {
+        color: var(--gold);
+        border-bottom-color: var(--gold);
+      }
+      .tr .case-label {
+        margin-top: 14px;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: var(--green);
+      }
+      .tr .case {
+        list-style: none;
+        margin-top: 8px;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+      .tr .case li {
+        position: relative;
+        padding-left: 18px;
+        color: var(--ink-dim);
+        font-size: 13.5px;
+        line-height: 1.55;
+      }
+      .tr .case li::before {
+        content: "▸";
+        position: absolute;
+        left: 0;
+        color: var(--green);
+      }
+      .tr .case b {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 12.5px;
+        color: var(--gold-2);
+        font-weight: 600;
+      }
+      @media (max-width: 700px) {
+        .stat-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+      .band.contact {
+        text-align: center;
+        border-bottom: none;
+        padding-bottom: clamp(80px, 12vh, 140px);
+      }
+      .band.contact .sec-sub.outro {
+        margin-top: 36px;
+      }
+      .offer-list {
+        list-style: none;
+        max-width: 720px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 22px;
+      }
+      .offer-list li {
+        color: var(--ink-dim);
+        font-size: 15px;
+        line-height: 1.6;
+      }
+      .offer-list b {
+        display: block;
+        font-size: 17.5px;
+        font-weight: 600;
+        color: var(--ink);
+        margin-bottom: 2px;
+      }
+      .band.contact .cta-row {
+        justify-content: center;
+      }
+      .band.contact .cta-row.socials {
+        margin-top: 16px;
+        gap: 12px;
+      }
+      .band.contact .btn.icon {
+        padding: 12px;
+        border-radius: 50%;
+      }
+      .band.contact .btn.icon svg {
+        width: 18px;
+        height: 18px;
+      }
+      .reveal {
+        opacity: 0;
+        transform: translateY(24px);
+        transition:
+          opacity 0.7s cubic-bezier(0.22, 0.9, 0.3, 1),
+          transform 0.7s cubic-bezier(0.22, 0.9, 0.3, 1);
+      }
+      .reveal.in {
+        opacity: 1;
+        transform: none;
+      }
+      @media (max-width: 1240px) {
+        .svc-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+      @media (max-width: 620px) {
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .reveal {
+          opacity: 1;
+          transform: none;
+        }
+      }
 
+      .trust {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 13px;
+        letter-spacing: 0.3px;
+        color: var(--ink-dim);
+        white-space: nowrap;
+        margin-top: 2px;
+      }
+      .trust b {
+        color: #9defc2;
+        font-weight: 600;
+      }
+      .svc-list {
+        list-style: none;
+        margin: 14px 0 16px;
+        flex: 1;
+        align-self: center;
+        text-align: left;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .svc-list li {
+        position: relative;
+        padding: 4px 0 4px 22px;
+        color: var(--ink-dim);
+        font-size: 13.5px;
+      }
+      .svc-list li::before {
+        content: "✓";
+        position: absolute;
+        left: 0;
+        color: var(--green);
+        font-weight: 700;
+      }
+      /* ---------- responsive ---------- */
+      @media (max-width: 1240px) {
+        .wrap {
+          min-height: 0;
+        }
+      }
+      @media (max-width: 700px) {
+        .hero {
+          padding-top: 28px;
+        }
+        /* full-viewport bands + scroll snap fight natural scrolling once
+     sections grow taller than a phone screen - release both */
+        html {
+          scroll-snap-type: none;
+        }
+        .band {
+          min-height: 0;
+          padding-top: 56px;
+          padding-bottom: 56px;
+        }
+        .trust {
+          white-space: normal;
+        }
+        .svc-grid.two {
+          grid-template-columns: 1fr;
+        }
+        .sec-sub {
+          font-size: 16px;
+          margin-bottom: 28px;
+        }
+        .tr-list {
+          grid-template-columns: 1fr;
+        }
+        .tr {
+          padding: 18px;
+        }
+        .tr-list,
+        .stat-grid,
+        .svc-grid {
+          margin-top: 28px;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        * {
+          animation: none !important;
+          transition: none !important;
+        }
+      }
+    </style>
+    <noscript
+      ><style>
+        .reveal {
+          opacity: 1;
+          transform: none;
+        }
+      </style></noscript
+    >
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Navid Emad",
+        "url": "https://navidemad.github.io/",
+        "image": "https://github.com/navidemad.png",
+        "jobTitle": "Lead Ruby on Rails Developer & Agentic AI Engineer",
+        "email": "mailto:navid.emad@yespark.fr",
+        "worksFor": { "@type": "Organization", "name": "Yespark" },
+        "nationality": { "@type": "Country", "name": "France" },
+        "sameAs": [
+          "https://github.com/navidemad",
+          "https://x.com/navidemad",
+          "https://www.linkedin.com/in/navidemad"
+        ],
+        "knowsAbout": [
+          "Ruby on Rails",
+          "Agentic AI",
+          "LLM workflows",
+          "Hotwire",
+          "Tailwind CSS",
+          "PostgreSQL",
+          "Model Context Protocol"
+        ]
+      }
+    </script>
+  </head>
+  <body>
+    <div class="atmosphere"></div>
+    <div class="beam l"></div>
+    <div class="beam r"></div>
 
-/* ---------- below-the-fold bands ---------- */
-.band {
-  padding: clamp(48px, 7vh, 96px) clamp(24px, 3.2vw, 64px);
-  border-top: 1px solid rgba(122,152,214,0.08);
-  min-height: 100dvh; display: flex; flex-direction: column; justify-content: center;
-  scroll-snap-align: start;
-}
-.band-inner { width: 100%; }
-.band-inner { max-width: 1280px; margin: 0 auto; }
-.sec-label {
-  font-family: "JetBrains Mono", monospace; font-weight: 600; font-size: 12px;
-  letter-spacing: 3px; color: var(--green); text-transform: uppercase;
-  display: flex; align-items: center; justify-content: center; gap: 12px; margin-bottom: 14px;
-}
-.sec-title {
-  font-family: "Bebas Neue", sans-serif; font-size: clamp(34px, 4vw, 52px); letter-spacing: 1.5px;
-  line-height: 1; margin-bottom: 12px; text-align: center; text-wrap: balance;
-  background: linear-gradient(180deg, #ffffff 30%, #aab8d8);
-  -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
-}
-.sec-sub { color: var(--ink-dim); font-size: 17.5px; line-height: 1.7; margin: 0 auto 40px; max-width: 680px; text-align: center; text-wrap: pretty; }
-.svc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 40px; }
-.svc {
-  position: relative; background: var(--panel); border: 1px solid var(--panel-edge); border-radius: 18px;
-  padding: 28px 26px; backdrop-filter: blur(8px); overflow: hidden;
-  display: flex; flex-direction: column; text-align: center;
-  transition: transform .25s, border-color .25s;
-}
-.svc::before {
-  content: ""; position: absolute; top: 0; left: 0; right: 0; height: 2px;
-  background: linear-gradient(90deg, var(--gold), transparent 70%);
-  opacity: 0; transition: opacity .25s;
-}
-.svc:hover { transform: translateY(-4px); border-color: rgba(232,194,104,.35); }
-.svc:hover::before { opacity: 1; }
-.svc .ico-lg { font-size: 26px; margin-bottom: 14px; display: block; }
-.svc h3 { font-family: "Barlow Condensed", sans-serif; font-weight: 700; font-size: 21px; letter-spacing: .5px; margin-bottom: 10px; text-wrap: balance; }
-.svc p { color: var(--ink-dim); font-size: 14.5px; text-wrap: balance; }
-.svc-grid.two { grid-template-columns: repeat(2, 1fr); max-width: 940px; margin-left: auto; margin-right: auto; }
-.prose { max-width: 720px; margin: 0 auto; text-align: left; }
-.prose p { color: var(--ink-dim); font-size: 17px; line-height: 1.75; margin-bottom: 16px; text-wrap: pretty; }
-.prose p:last-child { margin-bottom: 0; }
-.stat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; max-width: 940px; margin: 40px auto 0; }
-.stat { background: var(--panel); border: 1px solid var(--panel-edge); border-radius: 18px; padding: 26px 20px; text-align: center; backdrop-filter: blur(8px); }
-.stat .num { display: block; font-family: "Bebas Neue", sans-serif; font-size: 46px; letter-spacing: 1px; color: var(--gold); line-height: 1; }
-.stat .lbl { display: block; margin-top: 10px; font-family: "JetBrains Mono", monospace; font-size: 12.5px; letter-spacing: .4px; color: var(--ink-dim); }
-.tele-verify { text-align: center; margin-top: 20px; font-family: "JetBrains Mono", monospace; font-size: 12.5px; }
-.tele-verify a { color: var(--ink-dim); text-decoration: none; border-bottom: 1px dotted var(--ink-faint); padding-bottom: 1px; }
-.tele-verify a:hover { color: var(--ink); border-bottom-color: var(--gold); }
-.tr-list { max-width: 780px; margin: 40px auto 0; display: flex; flex-direction: column; gap: 16px; text-align: left; }
-.tr {
-  padding: 20px 24px;
-  background: var(--panel);
-  border: 1px solid var(--panel-edge);
-  border-left: 3px solid var(--gold-deep);
-  border-radius: 14px;
-  backdrop-filter: blur(8px);
-  transition: border-color .25s;
-}
-.tr:hover { border-left-color: var(--gold); border-color: rgba(232,194,104,.3); }
-.tr h3 { font-family: "Barlow Condensed", sans-serif; font-weight: 700; font-size: 20px; letter-spacing: .4px; }
-.tr h3 a { color: var(--ink); text-decoration: none; border-bottom: 1px dotted var(--ink-faint); padding-bottom: 1px; }
-.tr h3 a:hover { border-bottom-color: var(--gold); }
-.tr .meta { font-family: "JetBrains Mono", monospace; font-size: 12px; letter-spacing: .3px; color: var(--gold); margin: 4px 0 6px; }
-.tr p { color: var(--ink-dim); font-size: 14.5px; line-height: 1.6; }
-.tr .proof {
-  display: inline-block; margin-top: 8px;
-  font-family: "JetBrains Mono", monospace; font-size: 12px;
-  color: var(--ink-dim); text-decoration: none;
-  border-bottom: 1px dotted var(--ink-faint); padding-bottom: 1px;
-}
-.tr .proof:hover { color: var(--gold); border-bottom-color: var(--gold); }
-.tr .case-label {
-  margin-top: 14px; font-family: "JetBrains Mono", monospace; font-size: 11px;
-  letter-spacing: 2px; text-transform: uppercase; color: var(--green);
-}
-.tr .case { list-style: none; margin-top: 8px; display: flex; flex-direction: column; gap: 6px; }
-.tr .case li { position: relative; padding-left: 18px; color: var(--ink-dim); font-size: 13.5px; line-height: 1.55; }
-.tr .case li::before { content: "▸"; position: absolute; left: 0; color: var(--green); }
-.tr .case b { font-family: "JetBrains Mono", monospace; font-size: 12.5px; color: var(--gold-2); font-weight: 600; }
-@media (max-width: 700px) { .stat-grid { grid-template-columns: 1fr; } }
-.band.contact { text-align: center; border-bottom: none; padding-bottom: clamp(80px, 12vh, 140px); }
-.band.contact .cta-row { justify-content: center; }
-.band.contact .cta-row.socials { margin-top: 16px; gap: 12px; }
-.band.contact .btn.icon { padding: 12px; border-radius: 50%; }
-.band.contact .btn.icon svg { width: 18px; height: 18px; }
-.reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s cubic-bezier(.22,.9,.3,1), transform .7s cubic-bezier(.22,.9,.3,1); }
-.reveal.in { opacity: 1; transform: none; }
-@media (max-width: 1240px) { .svc-grid { grid-template-columns: 1fr; } }
-@media (max-width: 620px) { }
-@media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; } }
-
-
-.trust {
-  font-family: "JetBrains Mono", monospace; font-size: 13px;
-  letter-spacing: .3px; color: var(--ink-dim); white-space: nowrap;
-  margin-top: 2px;
-}
-.trust b { color: #9defc2; font-weight: 600; }
-.svc-list { list-style: none; margin: 14px 0 16px; flex: 1; align-self: center; text-align: left; display: flex; flex-direction: column; justify-content: center; }
-.svc-list li { position: relative; padding: 4px 0 4px 22px; color: var(--ink-dim); font-size: 13.5px; }
-.svc-list li::before { content: "✓"; position: absolute; left: 0; color: var(--green); font-weight: 700; }
-/* ---------- responsive ---------- */
-@media (max-width: 1240px) {
-  .wrap { min-height: 0; }
-}
-@media (max-width: 700px) {
-  .hero { padding-top: 28px; }
-  /* full-viewport bands + scroll snap fight natural scrolling once
-     sections grow taller than a phone screen — release both */
-  html { scroll-snap-type: none; }
-  .band { min-height: 0; padding-top: 56px; padding-bottom: 56px; }
-  .trust { white-space: normal; }
-  .svc-grid.two { grid-template-columns: 1fr; }
-  .sec-sub { font-size: 16px; margin-bottom: 28px; }
-  .tr { padding: 18px; }
-  .tr-list, .stat-grid, .svc-grid { margin-top: 28px; }
-}
-@media (prefers-reduced-motion: reduce) {
-  * { animation: none !important; transition: none !important; }
-}
-</style>
-<noscript><style>.reveal { opacity: 1; transform: none; }</style></noscript>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Person",
-  "name": "Navid Emad",
-  "url": "https://navidemad.github.io/",
-  "image": "https://github.com/navidemad.png",
-  "jobTitle": "Lead Ruby on Rails Developer & Agentic AI Engineer",
-  "email": "mailto:navid.emad@yespark.fr",
-  "worksFor": { "@type": "Organization", "name": "Yespark" },
-  "nationality": { "@type": "Country", "name": "France" },
-  "sameAs": [
-    "https://github.com/navidemad",
-    "https://x.com/navidemad",
-    "https://www.linkedin.com/in/navidemad"
-  ],
-  "knowsAbout": ["Ruby on Rails", "Agentic AI", "LLM workflows", "Hotwire", "Tailwind CSS", "PostgreSQL", "Model Context Protocol"]
-}
-</script>
-</head>
-<body>
-<div class="atmosphere"></div>
-<div class="beam l"></div>
-<div class="beam r"></div>
-
-<main>
-<div class="wrap">
-  <a class="floating-book" href="https://calendly.com/design-navid/30min" target="_blank" rel="noopener">
-    <svg viewBox="0 0 24 24"><path d="M7 2v2H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V6a2 2 0 00-2-2h-2V2h-2v2H9V2H7zm12 8v10H5V10h14zM5 8V6h14v2H5zm3 5h3v3H8v-3z"/></svg>
-    <span data-i18n="cta.book">Schedule a call</span>
-  </a>
-
-  <div class="lang-flags">
-    <button class="flag-btn" type="button" data-lang="fr" aria-label="Français" title="Français">🇫🇷</button>
-    <button class="flag-btn" type="button" data-lang="en" aria-label="English" title="English">🇬🇧</button>
-  </div>
-
-  <section class="hero">
-    <div class="hero-copy">
-      <p class="avatar-name">Navid Emad</p>
-      <h1 data-i18n-html="hero.title">Lead Rails Developer.<br>Agentic AI Engineer.</h1>
-      <p class="scout-line" data-i18n-html="hero.intro">I ship production Rails systems and build AI agents that survive contact with real infrastructure. <span class="years-dyn">12</span> years in, still writing code every day.</p>
-      <div class="trust" data-i18n-html="hero.trust"><b>✓ Open to select freelance work</b> · Paris / remote · reply within 24 h</div>
-      <a class="oss-line" href="https://github.com/search?q=is%3Apr+author%3Anavidemad+is%3Amerged+-user%3Anavidemad+-user%3Ayespark&type=pullrequests" target="_blank" rel="noopener"><span aria-hidden="true">⭐</span> <span id="oss-inline"><b>127</b> merged OSS PRs — rails/rails, Datadog dd-trace-rb, Lightpanda browser engine</span></a>
-      <div class="cta-row">
-        <a class="btn primary" href="https://calendly.com/design-navid/30min" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24"><path d="M7 2v2H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V6a2 2 0 00-2-2h-2V2h-2v2H9V2H7zm12 8v10H5V10h14zM5 8V6h14v2H5zm3 5h3v3H8v-3z"/></svg>
+    <main>
+      <div class="wrap">
+        <a
+          class="floating-book"
+          href="https://calendly.com/design-navid/30min"
+          target="_blank"
+          rel="noopener"
+        >
+          <svg viewBox="0 0 24 24">
+            <path
+              d="M7 2v2H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V6a2 2 0 00-2-2h-2V2h-2v2H9V2H7zm12 8v10H5V10h14zM5 8V6h14v2H5zm3 5h3v3H8v-3z"
+            />
+          </svg>
           <span data-i18n="cta.book">Schedule a call</span>
         </a>
-      </div>
-      <p class="cta-note" data-i18n="hero.ctanote">You leave with a frank opinion — even if we never work together.</p>
-      <div class="cta-row socials">
-        <a class="btn ghost icon" href="https://www.linkedin.com/in/navidemad" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn">
-          <svg viewBox="0 0 24 24"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.2 8h4.6v14.8H.2V8zm7.7 0h4.4v2h.06c.6-1.15 2.1-2.36 4.3-2.36 4.6 0 5.44 3.03 5.44 6.96v8.2h-4.6v-7.3c0-1.74-.03-3.98-2.42-3.98-2.42 0-2.8 1.9-2.8 3.86v7.42H7.9V8z"/></svg>
-        </a>
-        <a class="btn ghost icon" href="https://github.com/navidemad" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub">
-          <svg viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
-        </a>
-        <a class="btn ghost icon" href="https://x.com/navidemad" target="_blank" rel="noopener" aria-label="X (Twitter)" title="X">
-          <svg viewBox="0 0 24 24"><path d="M18.9 2H22l-6.9 7.9L23.3 22h-6.4l-5-6.6L6.2 22H3l7.4-8.5L1 2h6.6l4.5 6 5.8-6zm-1.1 18h1.8L7.6 3.9H5.7L17.8 20z"/></svg>
-        </a>
-      </div>
-      <div class="cta-row more-row">
-        <a class="btn ghost" href="#whoami"><span data-i18n="cta.more">Find out more</span> ↓</a>
-      </div>
-    </div>
-  </section>
 
+        <div class="lang-flags">
+          <button
+            class="flag-btn"
+            type="button"
+            data-lang="fr"
+            aria-label="Français"
+            title="Français"
+          >
+            🇫🇷
+          </button>
+          <button
+            class="flag-btn"
+            type="button"
+            data-lang="en"
+            aria-label="English"
+            title="English"
+          >
+            🇬🇧
+          </button>
+        </div>
 
-</div>
-
-<section class="band" id="whoami">
-  <div class="band-inner reveal">
-    <div class="sec-label"><span>## whoami</span></div>
-    <h2 class="sec-title" data-i18n="whoami.title">Hey, I’m Navid 👋</h2>
-    <div class="prose">
-      <p data-i18n-html="whoami.p1"><span class="years-dyn">12</span> years building and running business-critical Rails apps — payments, hardware integrations, background job fleets, and real users who notice when things break.</p>
-      <p data-i18n="whoami.p2">Today I split my time between lead engineering at Yespark and wiring AI agents (Claude, MCP, GitHub automation) into production workflows — with the reliability and cost constraints a demo never faces.</p>
-      <p data-i18n="whoami.p3">I contribute to open source because it’s the best code review I know: my PRs get judged by Rails reviewers, Datadog engineers and browser-engine maintainers — not by a portfolio page.</p>
-    </div>
-    <div class="svc-grid two">
-      <div class="svc">
-        <span class="ico-lg" aria-hidden="true">🛠️</span>
-        <h3 data-i18n="spec.title">Specialties</h3>
-        <ul class="svc-list">
-          <li data-i18n="spec.b1">Rails at scale: queries, indexes, background job architecture</li>
-          <li data-i18n="spec.b2">Agentic AI in production: Claude, MCP, skills, GitHub automation</li>
-          <li data-i18n="spec.b3">Frontend that ships: Hotwire, Tailwind, server-rendered by default</li>
-          <li data-i18n="spec.b4">Observability: Datadog APM &amp; profiling, upstream contributor</li>
-        </ul>
+        <section class="hero">
+          <div class="hero-copy">
+            <img
+              class="avatar"
+              src="https://github.com/navidemad.png?size=160"
+              width="80"
+              height="80"
+              alt="Navid Emad"
+            />
+            <p class="avatar-name">Navid Emad</p>
+            <h1 data-i18n-html="hero.title">
+              Lead Rails Developer.<br />Agentic AI Engineer.
+            </h1>
+            <p class="scout-line" data-i18n-html="hero.intro">
+              I ship production Rails systems and build AI agents that survive
+              contact with real infrastructure.
+              <span class="years-dyn">12</span> years in, still writing code
+              every day.
+            </p>
+            <div class="trust" data-i18n-html="hero.trust">
+              <b>✓ Open to select freelance work</b> · Paris / remote · reply
+              within 24 h
+            </div>
+            <div class="cta-row">
+              <a
+                class="btn primary"
+                href="https://calendly.com/design-navid/30min"
+                target="_blank"
+                rel="noopener"
+              >
+                <svg viewBox="0 0 24 24">
+                  <path
+                    d="M7 2v2H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V6a2 2 0 00-2-2h-2V2h-2v2H9V2H7zm12 8v10H5V10h14zM5 8V6h14v2H5zm3 5h3v3H8v-3z"
+                  />
+                </svg>
+                <span data-i18n="cta.book">Schedule a call</span>
+              </a>
+            </div>
+            <div class="cta-row socials">
+              <a
+                class="btn ghost icon"
+                href="https://www.linkedin.com/in/navidemad"
+                target="_blank"
+                rel="noopener"
+                aria-label="LinkedIn"
+                title="LinkedIn"
+              >
+                <svg viewBox="0 0 24 24">
+                  <path
+                    d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.2 8h4.6v14.8H.2V8zm7.7 0h4.4v2h.06c.6-1.15 2.1-2.36 4.3-2.36 4.6 0 5.44 3.03 5.44 6.96v8.2h-4.6v-7.3c0-1.74-.03-3.98-2.42-3.98-2.42 0-2.8 1.9-2.8 3.86v7.42H7.9V8z"
+                  />
+                </svg>
+              </a>
+              <a
+                class="btn ghost icon"
+                href="https://github.com/navidemad"
+                target="_blank"
+                rel="noopener"
+                aria-label="GitHub"
+                title="GitHub"
+              >
+                <svg viewBox="0 0 16 16">
+                  <path
+                    d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"
+                  />
+                </svg>
+              </a>
+              <a
+                class="btn ghost icon"
+                href="https://x.com/navidemad"
+                target="_blank"
+                rel="noopener"
+                aria-label="X (Twitter)"
+                title="X"
+              >
+                <svg viewBox="0 0 24 24">
+                  <path
+                    d="M18.9 2H22l-6.9 7.9L23.3 22h-6.4l-5-6.6L6.2 22H3l7.4-8.5L1 2h6.6l4.5 6 5.8-6zm-1.1 18h1.8L7.6 3.9H5.7L17.8 20z"
+                  />
+                </svg>
+              </a>
+            </div>
+            <div class="cta-row more-row">
+              <a class="btn ghost" href="#whoami"
+                ><span data-i18n="cta.more">Find out more</span> ↓</a
+              >
+            </div>
+          </div>
+        </section>
       </div>
-      <div class="svc">
-        <span class="ico-lg" aria-hidden="true">⚡</span>
-        <h3 data-i18n="perks.title">How I work</h3>
-        <ul class="svc-list">
-          <li data-i18n="perks.b1">PRs reviewers want to read: small, argued, benchmarked</li>
-          <li data-i18n="perks.b2">I say no: to unprofitable AI, to features that shouldn’t exist</li>
-          <li data-i18n="perks.b3">Frank by default: wrong fit? I’ll tell you on the first call</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
 
-<section class="band" id="telemetry">
-  <div class="band-inner reveal">
-    <div class="sec-label"><span>## github telemetry</span></div>
-    <h2 class="sec-title" data-i18n="tele.title">Numbers you can verify</h2>
-    <p class="sec-sub" data-i18n="tele.sub">Every number below is one click away from the raw GitHub search that produces it.</p>
-    <div class="stat-grid">
-      <div class="stat"><span class="num" id="stat-prs">127</span><span class="lbl" data-i18n="tele.prs">merged open-source PRs</span></div>
-      <div class="stat"><span class="num" id="stat-repos">18</span><span class="lbl" data-i18n="tele.repos">public repos contributed to</span></div>
-      <div class="stat"><span class="num" id="stat-since">2014</span><span class="lbl" data-i18n="tele.since">shipping since</span></div>
-    </div>
-    <p class="tele-verify"><a href="https://github.com/search?q=is%3Apr+author%3Anavidemad+is%3Amerged+-user%3Anavidemad+-user%3Ayespark&amp;type=pullrequests" target="_blank" rel="noopener" data-i18n="tele.verify">verify on GitHub →</a></p>
-  </div>
-</section>
+      <section class="band" id="whoami">
+        <div class="band-inner reveal">
+          <h2 class="sec-title" data-i18n="whoami.title">Hey, I’m Navid</h2>
+          <div class="prose">
+            <p data-i18n-html="whoami.p1">
+              <span class="years-dyn">12</span> years building and running
+              business-critical Rails apps: payments, hardware integrations,
+              background job fleets, and real users who notice when things
+              break.
+            </p>
+            <p data-i18n="whoami.p2">
+              Today I split my time between lead engineering at Yespark and
+              wiring AI agents (Claude, MCP, GitHub automation) into production
+              workflows, with the reliability and cost constraints a demo never
+              faces.
+            </p>
+            <p data-i18n="whoami.p3">
+              I contribute to open source because it’s the best code review I
+              know: my PRs get judged by Rails reviewers, Datadog engineers and
+              browser-engine maintainers, not by a portfolio page.
+            </p>
+          </div>
+          <div class="svc-grid two">
+            <div class="svc">
+              <h3 data-i18n="spec.title">Specialties</h3>
+              <ul class="svc-list">
+                <li data-i18n="spec.b1">
+                  Rails at scale: queries, indexes, background job architecture
+                </li>
+                <li data-i18n="spec.b2">
+                  Agentic AI in production: Claude, MCP, skills, GitHub
+                  automation
+                </li>
+                <li data-i18n="spec.b3">
+                  Frontend that ships: Hotwire, Tailwind, server-rendered by
+                  default
+                </li>
+                <li data-i18n="spec.b4">
+                  Observability: Datadog APM &amp; profiling, upstream
+                  contributor
+                </li>
+              </ul>
+            </div>
+            <div class="svc">
+              <h3 data-i18n="perks.title">How I work</h3>
+              <ul class="svc-list">
+                <li data-i18n="perks.b1">
+                  PRs reviewers want to read: small, argued, benchmarked
+                </li>
+                <li data-i18n="perks.b2">
+                  I say no: to unprofitable AI, to features that shouldn’t exist
+                </li>
+                <li data-i18n="perks.b3">
+                  Frank by default: wrong fit? I’ll tell you on the first call
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
 
-<section class="band" id="track">
-  <div class="band-inner reveal">
-    <div class="sec-label"><span>## track record</span></div>
-    <h2 class="sec-title" data-i18n="track.title">Where the code landed</h2>
-    <div class="tr-list">
-      <div class="tr">
-        <h3><a href="https://github.com/lightpanda-io/browser" target="_blank" rel="noopener">Lightpanda</a></h3>
-        <p class="meta" data-i18n="track.lp.meta">headless browser engine in Zig · 60+ merged PRs</p>
-        <p data-i18n="track.lp.desc">Web platform internals: CDP protocol events, WebAPI surface (DataTransfer, focus navigation, readystatechange), relative :has() selectors, WebSocket Origin handling, HTTP redirect edge cases.</p>
-        <a class="proof" href="https://github.com/lightpanda-io/browser/pulls?q=is%3Apr+author%3Anavidemad+is%3Amerged" target="_blank" rel="noopener" data-i18n="track.proof">see the merged PRs →</a>
-      </div>
-      <div class="tr">
-        <h3><a href="https://github.com/rails" target="_blank" rel="noopener">Rails ecosystem</a></h3>
-        <p class="meta">rails/rails · solid_cable · jsbundling-rails · cssbundling-rails</p>
-        <p data-i18n="track.rails.desc">CLI generator fixes, nil-logger support in Solid Cable, an assets:precompile build-skip option, CSS build wired into spec:prepare.</p>
-        <a class="proof" href="https://github.com/search?q=org%3Arails+author%3Anavidemad+is%3Apr+is%3Amerged&type=pullrequests" target="_blank" rel="noopener" data-i18n="track.proof">see the merged PRs →</a>
-      </div>
-      <div class="tr">
-        <h3><a href="https://github.com/navidemad/capybara-lightpanda" target="_blank" rel="noopener">capybara-lightpanda</a></h3>
-        <p class="meta" data-i18n="track.cap.meta">author &amp; maintainer · Ruby gem</p>
-        <p data-i18n="track.cap.desc">Capybara driver to run Rails system tests on Lightpanda, the headless browser engine I contribute to — the bridge between the two ecosystems above.</p>
-      </div>
-      <div class="tr">
-        <h3><a href="https://github.com/DataDog/dd-trace-rb" target="_blank" rel="noopener">Datadog dd-trace-rb</a></h3>
-        <p class="meta" data-i18n="track.dd.meta">APM tracer for Ruby</p>
-        <p data-i18n="track.dd.desc">Two production-crash fixes merged upstream: a heap-profiling SIGSEGV on Ruby 4, and distributed-tracing header injection broken by http.rb 6.x.</p>
-        <a class="proof" href="https://github.com/DataDog/dd-trace-rb/pulls?q=is%3Apr+author%3Anavidemad+is%3Amerged" target="_blank" rel="noopener" data-i18n="track.proof">see the merged PRs →</a>
-      </div>
-      <div class="tr">
-        <h3><a href="https://github.com/hostolab/covidliste" target="_blank" rel="noopener">Covidliste</a></h3>
-        <p class="meta" data-i18n="track.cl.meta">French COVID-19 vaccination platform · 20 merged PRs</p>
-        <p data-i18n="track.cl.desc">Volunteer work during the pandemic: landing pages for health professionals, transactional email overhaul, payment status handling.</p>
-        <a class="proof" href="https://github.com/hostolab/covidliste/pulls?q=is%3Apr+author%3Anavidemad+is%3Amerged" target="_blank" rel="noopener" data-i18n="track.proof">see the merged PRs →</a>
-      </div>
-      <div class="tr">
-        <h3><a href="https://www.yespark.fr" target="_blank" rel="noopener">Yespark</a></h3>
-        <p class="meta" data-i18n="track.yp.meta">day job · Lead Developer</p>
-        <p data-i18n="track.yp.desc">Parking rental at France scale: query and index optimization campaigns, Sidekiq fan-out architectures, ANPR camera fleet integrations, AI-assisted back-office tooling.</p>
-        <p class="case-label" data-i18n="track.yp.case">Case study · a Datadog-driven query &amp; index campaign</p>
-        <ul class="case">
-          <li data-i18n-html="track.yp.c1"><b>52 s → &lt; 1 ms</b> — worst production query: one composite index on a 5.6 GB payments table, measured with EXPLAIN ANALYZE in prod</li>
-          <li data-i18n-html="track.yp.c2"><b>~100 queries → 2</b> — ActiveStorage N+1 on an invoice listing, preloaded away</li>
-          <li data-i18n-html="track.yp.c3"><b>p95 6–16 s → &lt; 3 s</b> — admin &amp; API endpoints reworked with partial indexes, cached aggregates, and OR-of-subqueries rewritten into index-backed BitmapOr plans (conservative estimate)</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
+      <section class="band" id="telemetry">
+        <div class="band-inner reveal">
+          <h2 class="sec-title" data-i18n="tele.title">
+            Numbers you can verify
+          </h2>
+          <p class="sec-sub" data-i18n="tele.sub">
+            Every number below is one click away from the raw GitHub search that
+            produces it.
+          </p>
+          <div class="stat-grid">
+            <div class="stat">
+              <span class="num" id="stat-prs">127</span
+              ><span class="lbl" data-i18n="tele.prs"
+                >merged open-source PRs</span
+              >
+            </div>
+            <div class="stat">
+              <span class="num" id="stat-repos">18</span
+              ><span class="lbl" data-i18n="tele.repos"
+                >public repos contributed to</span
+              >
+            </div>
+            <div class="stat">
+              <span class="num" id="stat-since">2014</span
+              ><span class="lbl" data-i18n="tele.since">shipping since</span>
+            </div>
+          </div>
+          <p class="tele-verify">
+            <a
+              href="https://github.com/search?q=is%3Apr+author%3Anavidemad+is%3Amerged+-user%3Anavidemad+-user%3Ayespark&amp;type=pullrequests"
+              target="_blank"
+              rel="noopener"
+              data-i18n="tele.verify"
+              >verify on GitHub →</a
+            >
+          </p>
+        </div>
+      </section>
 
-<section class="band" id="help">
-  <div class="band-inner reveal">
-    <div class="sec-label"><span>## freelance</span></div>
-    <h2 class="sec-title" data-i18n="help.title">How I can help</h2>
-    <p class="sec-sub" data-i18n="help.sub">I take on a small number of freelance engagements alongside my lead role.</p>
-    <div class="prose">
-      <ul class="svc-list">
-        <li data-i18n="help.b1">Rails performance &amp; architecture — audits, query optimization, job pipelines</li>
-        <li data-i18n="help.b2">AI agents in production — from use-case audit to agents wired into your tools</li>
-        <li data-i18n="help.b3">Fractional lead — technical direction, review culture, mentoring</li>
-      </ul>
-    </div>
-    <p class="cta-note" data-i18n="help.outro">If that’s relevant, book 30 minutes below. If not, the code above is the interesting part anyway.</p>
-  </div>
-</section>
+      <section class="band" id="track">
+        <div class="band-inner reveal">
+          <h2 class="sec-title" data-i18n="track.title">
+            Where the code landed
+          </h2>
+          <div class="tr-list">
+            <div class="tr wide">
+              <h3>
+                <a
+                  href="https://github.com/lightpanda-io/browser"
+                  target="_blank"
+                  rel="noopener"
+                  >Lightpanda</a
+                >
+              </h3>
+              <p class="meta" data-i18n="track.lp.meta">
+                headless browser engine in Zig · 60+ merged PRs
+              </p>
+              <p data-i18n="track.lp.desc">
+                Web platform internals: CDP protocol events, WebAPI surface
+                (DataTransfer, focus navigation, readystatechange), relative
+                :has() selectors, WebSocket Origin handling, HTTP redirect edge
+                cases.
+              </p>
+              <a
+                class="proof"
+                href="https://github.com/lightpanda-io/browser/pulls?q=is%3Apr+author%3Anavidemad+is%3Amerged"
+                target="_blank"
+                rel="noopener"
+                data-i18n="track.proof"
+                >see the merged PRs →</a
+              >
+            </div>
+            <div class="tr">
+              <h3>
+                <a
+                  href="https://github.com/rails"
+                  target="_blank"
+                  rel="noopener"
+                  >Rails ecosystem</a
+                >
+              </h3>
+              <p class="meta">
+                rails/rails, solid_cable, jsbundling-rails, cssbundling-rails
+              </p>
+              <p data-i18n="track.rails.desc">
+                CLI generator fixes, nil-logger support in Solid Cable, an
+                assets:precompile build-skip option, CSS build wired into
+                spec:prepare.
+              </p>
+              <a
+                class="proof"
+                href="https://github.com/search?q=org%3Arails+author%3Anavidemad+is%3Apr+is%3Amerged&type=pullrequests"
+                target="_blank"
+                rel="noopener"
+                data-i18n="track.proof"
+                >see the merged PRs →</a
+              >
+            </div>
+            <div class="tr">
+              <h3>
+                <a
+                  href="https://github.com/navidemad/capybara-lightpanda"
+                  target="_blank"
+                  rel="noopener"
+                  >capybara-lightpanda</a
+                >
+              </h3>
+              <p class="meta" data-i18n="track.cap.meta">
+                author &amp; maintainer · Ruby gem
+              </p>
+              <p data-i18n="track.cap.desc">
+                Capybara driver to run Rails system tests on Lightpanda, the
+                headless browser engine I contribute to. It bridges the two
+                ecosystems above.
+              </p>
+            </div>
+            <div class="tr">
+              <h3>
+                <a
+                  href="https://github.com/DataDog/dd-trace-rb"
+                  target="_blank"
+                  rel="noopener"
+                  >Datadog dd-trace-rb</a
+                >
+              </h3>
+              <p class="meta" data-i18n="track.dd.meta">APM tracer for Ruby</p>
+              <p data-i18n="track.dd.desc">
+                Two production-crash fixes merged upstream: a heap-profiling
+                SIGSEGV on Ruby 4, and distributed-tracing header injection
+                broken by http.rb 6.x.
+              </p>
+              <a
+                class="proof"
+                href="https://github.com/DataDog/dd-trace-rb/pulls?q=is%3Apr+author%3Anavidemad+is%3Amerged"
+                target="_blank"
+                rel="noopener"
+                data-i18n="track.proof"
+                >see the merged PRs →</a
+              >
+            </div>
+            <div class="tr">
+              <h3>
+                <a
+                  href="https://github.com/hostolab/covidliste"
+                  target="_blank"
+                  rel="noopener"
+                  >Covidliste</a
+                >
+              </h3>
+              <p class="meta" data-i18n="track.cl.meta">
+                French COVID-19 vaccination platform · 20 merged PRs
+              </p>
+              <p data-i18n="track.cl.desc">
+                Volunteer work during the pandemic: landing pages for health
+                professionals, transactional email overhaul, payment status
+                handling.
+              </p>
+              <a
+                class="proof"
+                href="https://github.com/hostolab/covidliste/pulls?q=is%3Apr+author%3Anavidemad+is%3Amerged"
+                target="_blank"
+                rel="noopener"
+                data-i18n="track.proof"
+                >see the merged PRs →</a
+              >
+            </div>
+            <div class="tr wide">
+              <h3>
+                <a href="https://www.yespark.fr" target="_blank" rel="noopener"
+                  >Yespark</a
+                >
+              </h3>
+              <p class="meta" data-i18n="track.yp.meta">
+                day job · Lead Developer
+              </p>
+              <p data-i18n="track.yp.desc">
+                Parking rental at France scale: query and index optimization
+                campaigns, Sidekiq fan-out architectures, ANPR camera fleet
+                integrations, AI-assisted back-office tooling.
+              </p>
+              <p class="case-label" data-i18n="track.yp.case">
+                Case study · a Datadog-driven query &amp; index campaign
+              </p>
+              <ul class="case">
+                <li data-i18n-html="track.yp.c1">
+                  <b>52 s → &lt; 1 ms</b> for the worst production query: one
+                  composite index on a 5.6 GB payments table, measured with
+                  EXPLAIN ANALYZE in prod
+                </li>
+                <li data-i18n-html="track.yp.c2">
+                  <b>~100 queries → 2</b> on an invoice listing: an
+                  ActiveStorage N+1, preloaded away
+                </li>
+                <li data-i18n-html="track.yp.c3">
+                  <b>p95 6-16 s → &lt; 3 s</b> across admin &amp; API endpoints:
+                  partial indexes, cached aggregates, and OR-of-subqueries
+                  rewritten into index-backed BitmapOr plans (conservative
+                  estimate)
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
 
-<section class="band contact" id="contact">
-  <div class="band-inner reveal">
-    <div class="sec-label"><span>## contact</span></div>
-    <h2 class="sec-title" data-i18n="contact.title">Tell me what you’re building</h2>
-    <p class="sec-sub" data-i18n="contact.desc">A few short lines is enough. I reply within 24 hours, frankly: what I can do, how I’d approach it — and if I’m not the right person, I’ll say so and point you elsewhere if I can.</p>
-    <div class="cta-row">
-      <a class="btn primary" href="https://calendly.com/design-navid/30min" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24"><path d="M7 2v2H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V6a2 2 0 00-2-2h-2V2h-2v2H9V2H7zm12 8v10H5V10h14zM5 8V6h14v2H5zm3 5h3v3H8v-3z"/></svg>
-        <span data-i18n="cta.book">Schedule a call</span>
-      </a>
-    </div>
-    <div class="cta-row socials">
-      <a class="btn ghost icon" href="https://www.linkedin.com/in/navidemad" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn">
-        <svg viewBox="0 0 24 24"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.2 8h4.6v14.8H.2V8zm7.7 0h4.4v2h.06c.6-1.15 2.1-2.36 4.3-2.36 4.6 0 5.44 3.03 5.44 6.96v8.2h-4.6v-7.3c0-1.74-.03-3.98-2.42-3.98-2.42 0-2.8 1.9-2.8 3.86v7.42H7.9V8z"/></svg>
-      </a>
-      <a class="btn ghost icon" href="https://github.com/navidemad" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub">
-        <svg viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
-      </a>
-      <a class="btn ghost icon" href="https://x.com/navidemad" target="_blank" rel="noopener" aria-label="X (Twitter)" title="X">
-        <svg viewBox="0 0 24 24"><path d="M18.9 2H22l-6.9 7.9L23.3 22h-6.4l-5-6.6L6.2 22H3l7.4-8.5L1 2h6.6l4.5 6 5.8-6zm-1.1 18h1.8L7.6 3.9H5.7L17.8 20z"/></svg>
-      </a>
-    </div>
-  </div>
-</section>
-</main>
+      <section class="band contact" id="contact">
+        <div class="band-inner reveal" id="help">
+          <h2 class="sec-title" data-i18n="help.title">How I can help</h2>
+          <p class="sec-sub" data-i18n="help.sub">
+            I take on a small number of freelance engagements alongside my lead
+            role.
+          </p>
+          <ul class="offer-list">
+            <li data-i18n-html="help.b1">
+              <b>Rails performance &amp; architecture</b>audits, query
+              optimization, job pipelines
+            </li>
+            <li data-i18n-html="help.b2">
+              <b>AI agents in production</b>from use-case audit to agents wired
+              into your tools
+            </li>
+            <li data-i18n-html="help.b3">
+              <b>Fractional lead</b>technical direction, review culture,
+              mentoring
+            </li>
+          </ul>
+          <p class="sec-sub outro" data-i18n="contact.desc">
+            Tell me what you’re building, a few short lines is enough. I reply
+            within 24 hours, frankly: what I can do and how I’d approach it. If
+            I’m not the right person, I’ll say so and point you elsewhere if I
+            can.
+          </p>
+          <div class="cta-row">
+            <a
+              class="btn primary"
+              href="https://calendly.com/design-navid/30min"
+              target="_blank"
+              rel="noopener"
+            >
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M7 2v2H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V6a2 2 0 00-2-2h-2V2h-2v2H9V2H7zm12 8v10H5V10h14zM5 8V6h14v2H5zm3 5h3v3H8v-3z"
+                />
+              </svg>
+              <span data-i18n="cta.book">Schedule a call</span>
+            </a>
+          </div>
+          <div class="cta-row socials">
+            <a
+              class="btn ghost icon"
+              href="https://www.linkedin.com/in/navidemad"
+              target="_blank"
+              rel="noopener"
+              aria-label="LinkedIn"
+              title="LinkedIn"
+            >
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.2 8h4.6v14.8H.2V8zm7.7 0h4.4v2h.06c.6-1.15 2.1-2.36 4.3-2.36 4.6 0 5.44 3.03 5.44 6.96v8.2h-4.6v-7.3c0-1.74-.03-3.98-2.42-3.98-2.42 0-2.8 1.9-2.8 3.86v7.42H7.9V8z"
+                />
+              </svg>
+            </a>
+            <a
+              class="btn ghost icon"
+              href="https://github.com/navidemad"
+              target="_blank"
+              rel="noopener"
+              aria-label="GitHub"
+              title="GitHub"
+            >
+              <svg viewBox="0 0 16 16">
+                <path
+                  d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"
+                />
+              </svg>
+            </a>
+            <a
+              class="btn ghost icon"
+              href="https://x.com/navidemad"
+              target="_blank"
+              rel="noopener"
+              aria-label="X (Twitter)"
+              title="X"
+            >
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M18.9 2H22l-6.9 7.9L23.3 22h-6.4l-5-6.6L6.2 22H3l7.4-8.5L1 2h6.6l4.5 6 5.8-6zm-1.1 18h1.8L7.6 3.9H5.7L17.8 20z"
+                />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
 
-<script>
-(function () {
-  "use strict";
+    <script>
+      (function () {
+        "use strict";
 
-  /* ================= live GitHub data ================= */
-  var USER = "navidemad";
-  // Baked-in fallbacks (July 2026) used when the GitHub API is rate-limited.
-  var state = { prs: 127, repos: 18, since: 2014 };
+        /* ================= live GitHub data ================= */
+        var USER = "navidemad";
+        // Baked-in fallbacks (July 2026) used when the GitHub API is rate-limited.
+        var state = { prs: 127, repos: 18, since: 2014 };
 
-  /* ================= i18n =================
+        /* ================= i18n =================
      English is the default language; French is the opt-in secondary,
      remembered in localStorage. Any key missing from a dictionary
      falls back to the English string. */
-  var i18n = (function () {
-    var DEFAULT_LANG = "en";
-    var STORAGE_KEY = "lang";
+        var i18n = (function () {
+          var DEFAULT_LANG = "en";
+          var STORAGE_KEY = "lang";
 
-    var dicts = {
-      en: {
-        "meta.title": "Navid Emad \u2014 Lead Ruby on Rails Developer & Agentic AI Engineer",
-        "cta.book": "Schedule a call",
-        "cta.more": "Find out more",
-        "hero.title": "Lead Rails Developer.<br>Agentic AI Engineer.",
-        "hero.intro": "I ship production Rails systems and build AI agents that survive contact with real infrastructure. <span class=\"years-dyn\">12</span> years in, still writing code every day.",
-        "hero.trust": "<b>\u2713 Open to select freelance work</b> \u00b7 Paris / remote \u00b7 reply within 24\u00a0h",
-        "hero.ctanote": "You leave with a frank opinion \u2014 even if we never work together.",
-        "hero.oss": function (s) { return "<b>" + s.prs + "</b> merged OSS PRs \u2014 rails/rails, Datadog dd-trace-rb, Lightpanda browser engine"; },
-        "whoami.title": "Hey, I\u2019m Navid \ud83d\udc4b",
-        "whoami.p1": "<span class=\"years-dyn\">12</span> years building and running business-critical Rails apps \u2014 payments, hardware integrations, background job fleets, and real users who notice when things break.",
-        "whoami.p2": "Today I split my time between lead engineering at Yespark and wiring AI agents (Claude, MCP, GitHub automation) into production workflows \u2014 with the reliability and cost constraints a demo never faces.",
-        "whoami.p3": "I contribute to open source because it\u2019s the best code review I know: my PRs get judged by Rails reviewers, Datadog engineers and browser-engine maintainers \u2014 not by a portfolio page.",
-        "spec.title": "Specialties",
-        "spec.b1": "Rails at scale: queries, indexes, background job architecture",
-        "spec.b2": "Agentic AI in production: Claude, MCP, skills, GitHub automation",
-        "spec.b3": "Frontend that ships: Hotwire, Tailwind, server-rendered by default",
-        "spec.b4": "Observability: Datadog APM & profiling, upstream contributor",
-        "perks.title": "How I work",
-        "perks.b1": "PRs reviewers want to read: small, argued, benchmarked",
-        "perks.b2": "I say no: to unprofitable AI, to features that shouldn\u2019t exist",
-        "perks.b3": "Frank by default: wrong fit? I\u2019ll tell you on the first call",
-        "tele.title": "Numbers you can verify",
-        "tele.sub": "Every number below is one click away from the raw GitHub search that produces it.",
-        "tele.prs": "merged open-source PRs",
-        "tele.repos": "public repos contributed to",
-        "tele.since": "shipping since",
-        "tele.verify": "verify on GitHub \u2192",
-        "track.title": "Where the code landed",
-        "track.lp.meta": "headless browser engine in Zig \u00b7 60+ merged PRs",
-        "track.lp.desc": "Web platform internals: CDP protocol events, WebAPI surface (DataTransfer, focus navigation, readystatechange), relative :has() selectors, WebSocket Origin handling, HTTP redirect edge cases.",
-        "track.rails.desc": "CLI generator fixes, nil-logger support in Solid Cable, an assets:precompile build-skip option, CSS build wired into spec:prepare.",
-        "track.cap.meta": "author & maintainer · Ruby gem",
-        "track.cap.desc": "Capybara driver to run Rails system tests on Lightpanda, the headless browser engine I contribute to — the bridge between the two ecosystems above.",
-        "track.dd.meta": "APM tracer for Ruby",
-        "track.dd.desc": "Two production-crash fixes merged upstream: a heap-profiling SIGSEGV on Ruby 4, and distributed-tracing header injection broken by http.rb 6.x.",
-        "track.cl.meta": "French COVID-19 vaccination platform \u00b7 20 merged PRs",
-        "track.cl.desc": "Volunteer work during the pandemic: landing pages for health professionals, transactional email overhaul, payment status handling.",
-        "track.proof": "see the merged PRs \u2192",
-        "track.yp.meta": "day job \u00b7 Lead Developer",
-        "track.yp.desc": "Parking rental at France scale: query and index optimization campaigns, Sidekiq fan-out architectures, ANPR camera fleet integrations, AI-assisted back-office tooling.",
-        "track.yp.case": "Case study · a Datadog-driven query & index campaign",
-        "track.yp.c1": "<b>52 s → &lt; 1 ms</b> — worst production query: one composite index on a 5.6 GB payments table, measured with EXPLAIN ANALYZE in prod",
-        "track.yp.c2": "<b>~100 queries → 2</b> — ActiveStorage N+1 on an invoice listing, preloaded away",
-        "track.yp.c3": "<b>p95 6–16 s → &lt; 3 s</b> — admin & API endpoints reworked with partial indexes, cached aggregates, and OR-of-subqueries rewritten into index-backed BitmapOr plans (conservative estimate)",
-        "help.title": "How I can help",
-        "help.sub": "I take on a small number of freelance engagements alongside my lead role.",
-        "help.b1": "Rails performance & architecture \u2014 audits, query optimization, job pipelines",
-        "help.b2": "AI agents in production \u2014 from use-case audit to agents wired into your tools",
-        "help.b3": "Fractional lead \u2014 technical direction, review culture, mentoring",
-        "help.outro": "If that\u2019s relevant, book 30 minutes below. If not, the code above is the interesting part anyway.",
-        "contact.title": "Tell me what you\u2019re building",
-        "contact.desc": "A few short lines is enough. I reply within 24\u00a0hours, frankly: what I can do, how I\u2019d approach it \u2014 and if I\u2019m not the right person, I\u2019ll say so and point you elsewhere if I can."
-      },
-      fr: {
-        "meta.title": "Navid Emad \u2014 Lead Developer Ruby on Rails & IA agentique",
-        "cta.book": "R\u00e9server un appel",
-        "cta.more": "En savoir plus",
-        "hero.title": "Lead Developer Rails.<br>Ing\u00e9nieur IA agentique.",
-        "hero.intro": "Je construis des syst\u00e8mes Rails en production et des agents IA qui survivent au contact de la vraie infrastructure. <span class=\"years-dyn\">12</span> ans de m\u00e9tier, et toujours du code au quotidien.",
-        "hero.trust": "<b>\u2713 Ouvert \u00e0 quelques missions freelance</b> \u00b7 Paris / remote \u00b7 r\u00e9ponse sous 24\u00a0h",
-        "hero.ctanote": "Vous repartez avec un avis franc \u2014 m\u00eame si on ne travaille pas ensemble.",
-        "hero.oss": function (s) { return "<b>" + s.prs + "</b> PRs open source fusionn\u00e9es \u2014 rails/rails, Datadog dd-trace-rb, moteur de navigateur Lightpanda"; },
-        "whoami.title": "Salut, moi c\u2019est Navid \ud83d\udc4b",
-        "whoami.p1": "<span class=\"years-dyn\">12</span> ans \u00e0 construire et faire tourner des applis Rails critiques \u2014 paiements, int\u00e9grations hardware, flottes de jobs en arri\u00e8re-plan, et de vrais utilisateurs qui remarquent quand \u00e7a casse.",
-        "whoami.p2": "Aujourd\u2019hui je partage mon temps entre le travail de lead chez Yespark et le branchement d\u2019agents IA (Claude, MCP, automatisations GitHub) sur des workflows de production \u2014 avec les contraintes de fiabilit\u00e9 et de co\u00fbt qu\u2019une d\u00e9mo ne conna\u00eet pas.",
-        "whoami.p3": "Je contribue \u00e0 l\u2019open source parce que c\u2019est la meilleure revue de code que je connaisse : mes PRs sont jug\u00e9es par des reviewers Rails, des ing\u00e9nieurs Datadog et des mainteneurs de moteurs de navigateur \u2014 pas par une page portfolio.",
-        "spec.title": "Sp\u00e9cialit\u00e9s",
-        "spec.b1": "Rails \u00e0 l\u2019\u00e9chelle : requ\u00eates, index, architecture de jobs",
-        "spec.b2": "IA agentique en production : Claude, MCP, skills, automatisations GitHub",
-        "spec.b3": "Front qui livre : Hotwire, Tailwind, rendu serveur par d\u00e9faut",
-        "spec.b4": "Observabilit\u00e9 : Datadog APM & profiling, contributeur upstream",
-        "perks.title": "Mani\u00e8res de faire",
-        "perks.b1": "Des PRs qu\u2019on a envie de lire : petites, argument\u00e9es, benchmark\u00e9es",
-        "perks.b2": "Je dis non : \u00e0 l\u2019IA non rentable, aux features qui ne devraient pas exister",
-        "perks.b3": "Franc par d\u00e9faut : mauvais fit ? Je le dis d\u00e8s le premier appel",
-        "tele.title": "Des chiffres v\u00e9rifiables",
-        "tele.sub": "Chaque chiffre ci-dessous est \u00e0 un clic de la recherche GitHub brute qui le produit.",
-        "tele.prs": "PRs open source fusionn\u00e9es",
-        "tele.repos": "d\u00e9p\u00f4ts publics touch\u00e9s",
-        "tele.since": "en prod depuis",
-        "tele.verify": "v\u00e9rifier sur GitHub \u2192",
-        "track.title": "O\u00f9 le code a atterri",
-        "track.lp.meta": "moteur de navigateur headless en Zig \u00b7 60+ PRs fusionn\u00e9es",
-        "track.lp.desc": "Internals de plateforme web : \u00e9v\u00e9nements du protocole CDP, surface WebAPI (DataTransfer, navigation au focus, readystatechange), s\u00e9lecteurs :has() relatifs, en-t\u00eate Origin WebSocket, cas limites de redirections HTTP.",
-        "track.rails.desc": "Correctifs du g\u00e9n\u00e9rateur CLI, support du logger nil dans Solid Cable, option de skip du build dans assets:precompile, build CSS branch\u00e9 sur spec:prepare.",
-        "track.cap.meta": "auteur & mainteneur · gem Ruby",
-        "track.cap.desc": "Driver Capybara pour lancer les tests système Rails sur Lightpanda, le moteur de navigateur headless auquel je contribue — le pont entre les deux écosystèmes ci-dessus.",
-        "track.dd.meta": "traceur APM pour Ruby",
-        "track.dd.desc": "Deux correctifs de crash en production fusionn\u00e9s upstream : un SIGSEGV du heap profiling sur Ruby 4, et l\u2019injection des en-t\u00eates de tracing distribu\u00e9 cass\u00e9e par http.rb 6.x.",
-        "track.cl.meta": "plateforme fran\u00e7aise de vaccination COVID-19 \u00b7 20 PRs fusionn\u00e9es",
-        "track.cl.desc": "B\u00e9n\u00e9volat pendant la pand\u00e9mie : landing pages pour les professionnels de sant\u00e9, refonte des e-mails transactionnels, gestion des statuts de paiement.",
-        "track.proof": "voir les PRs fusionn\u00e9es \u2192",
-        "track.yp.meta": "poste actuel \u00b7 Lead Developer",
-        "track.yp.desc": "Location de parkings \u00e0 l\u2019\u00e9chelle de la France : campagnes d\u2019optimisation de requ\u00eates et d\u2019index, architectures de fan-out Sidekiq, int\u00e9gration d\u2019une flotte de cam\u00e9ras ANPR, outillage back-office assist\u00e9 par IA.",
-        "track.yp.case": "\u00c9tude de cas \u00b7 campagne requ\u00eates & index pilot\u00e9e par Datadog",
-        "track.yp.c1": "<b>52 s \u2192 &lt; 1 ms</b> \u2014 pire requ\u00eate en prod : un index composite sur une table de paiements de 5,6 Go, mesur\u00e9 \u00e0 l\u2019EXPLAIN ANALYZE en prod",
-        "track.yp.c2": "<b>~100 requ\u00eates \u2192 2</b> \u2014 N+1 ActiveStorage sur une liste de factures, \u00e9limin\u00e9 par pr\u00e9chargement",
-        "track.yp.c3": "<b>p95 6\u201316 s \u2192 &lt; 3 s</b> \u2014 endpoints admin & API retravaill\u00e9s : index partiels, agr\u00e9gats en cache, OR de sous-requ\u00eates r\u00e9\u00e9crits en plans BitmapOr index\u00e9s (estimation prudente)",
-        "help.title": "Comment je peux aider",
-        "help.sub": "Je prends quelques missions freelance en parall\u00e8le de mon poste de lead.",
-        "help.b1": "Performance & architecture Rails \u2014 audits, optimisation de requ\u00eates, pipelines de jobs",
-        "help.b2": "Agents IA en production \u2014 de l\u2019audit des cas d\u2019usage aux agents branch\u00e9s sur vos outils",
-        "help.b3": "Lead fractionn\u00e9 \u2014 direction technique, culture de revue, mentorat",
-        "help.outro": "Si c\u2019est pertinent, r\u00e9servez 30 minutes ci-dessous. Sinon, le code au-dessus reste la partie int\u00e9ressante.",
-        "contact.title": "Dites-moi ce que vous construisez",
-        "contact.desc": "Quelques lignes suffisent. Je r\u00e9ponds sous 24\u00a0h, avec franchise : ce que je peux faire, comment je m\u2019y prendrais \u2014 et si je ne suis pas la bonne personne, je vous le dirai et vous aiguillerai si je peux."
-      }
-    };
+          var dicts = {
+            en: {
+              "meta.title":
+                "Navid Emad - Lead Ruby on Rails Developer & Agentic AI Engineer",
+              "cta.book": "Schedule a call",
+              "cta.more": "Find out more",
+              "hero.title": "Lead Rails Developer.<br>Agentic AI Engineer.",
+              "hero.intro":
+                'I ship production Rails systems and build AI agents that survive contact with real infrastructure. <span class="years-dyn">12</span> years in, still writing code every day.',
+              "hero.trust":
+                "<b>✓ Open to select freelance work</b> · Paris / remote · reply within 24 h",
+              "whoami.title": "Hey, I\u2019m Navid",
+              "whoami.p1":
+                '<span class="years-dyn">12</span> years building and running business-critical Rails apps: payments, hardware integrations, background job fleets, and real users who notice when things break.',
+              "whoami.p2":
+                "Today I split my time between lead engineering at Yespark and wiring AI agents (Claude, MCP, GitHub automation) into production workflows, with the reliability and cost constraints a demo never faces.",
+              "whoami.p3":
+                "I contribute to open source because it\u2019s the best code review I know: my PRs get judged by Rails reviewers, Datadog engineers and browser-engine maintainers, not by a portfolio page.",
+              "spec.title": "Specialties",
+              "spec.b1":
+                "Rails at scale: queries, indexes, background job architecture",
+              "spec.b2":
+                "Agentic AI in production: Claude, MCP, skills, GitHub automation",
+              "spec.b3":
+                "Frontend that ships: Hotwire, Tailwind, server-rendered by default",
+              "spec.b4":
+                "Observability: Datadog APM & profiling, upstream contributor",
+              "perks.title": "How I work",
+              "perks.b1":
+                "PRs reviewers want to read: small, argued, benchmarked",
+              "perks.b2":
+                "I say no: to unprofitable AI, to features that shouldn\u2019t exist",
+              "perks.b3":
+                "Frank by default: wrong fit? I\u2019ll tell you on the first call",
+              "tele.title": "Numbers you can verify",
+              "tele.sub":
+                "Every number below is one click away from the raw GitHub search that produces it.",
+              "tele.prs": "merged open-source PRs",
+              "tele.repos": "public repos contributed to",
+              "tele.since": "shipping since",
+              "tele.verify": "verify on GitHub \u2192",
+              "track.title": "Where the code landed",
+              "track.lp.meta":
+                "headless browser engine in Zig \u00b7 60+ merged PRs",
+              "track.lp.desc":
+                "Web platform internals: CDP protocol events, WebAPI surface (DataTransfer, focus navigation, readystatechange), relative :has() selectors, WebSocket Origin handling, HTTP redirect edge cases.",
+              "track.rails.desc":
+                "CLI generator fixes, nil-logger support in Solid Cable, an assets:precompile build-skip option, CSS build wired into spec:prepare.",
+              "track.cap.meta": "author & maintainer · Ruby gem",
+              "track.cap.desc":
+                "Capybara driver to run Rails system tests on Lightpanda, the headless browser engine I contribute to. It bridges the two ecosystems above.",
+              "track.dd.meta": "APM tracer for Ruby",
+              "track.dd.desc":
+                "Two production-crash fixes merged upstream: a heap-profiling SIGSEGV on Ruby 4, and distributed-tracing header injection broken by http.rb 6.x.",
+              "track.cl.meta":
+                "French COVID-19 vaccination platform \u00b7 20 merged PRs",
+              "track.cl.desc":
+                "Volunteer work during the pandemic: landing pages for health professionals, transactional email overhaul, payment status handling.",
+              "track.proof": "see the merged PRs \u2192",
+              "track.yp.meta": "day job \u00b7 Lead Developer",
+              "track.yp.desc":
+                "Parking rental at France scale: query and index optimization campaigns, Sidekiq fan-out architectures, ANPR camera fleet integrations, AI-assisted back-office tooling.",
+              "track.yp.case":
+                "Case study · a Datadog-driven query & index campaign",
+              "track.yp.c1":
+                "<b>52 s → &lt; 1 ms</b> for the worst production query: one composite index on a 5.6 GB payments table, measured with EXPLAIN ANALYZE in prod",
+              "track.yp.c2":
+                "<b>~100 queries → 2</b> on an invoice listing: an ActiveStorage N+1, preloaded away",
+              "track.yp.c3":
+                "<b>p95 6-16 s → &lt; 3 s</b> across admin & API endpoints: partial indexes, cached aggregates, and OR-of-subqueries rewritten into index-backed BitmapOr plans (conservative estimate)",
+              "help.title": "How I can help",
+              "help.sub":
+                "I take on a small number of freelance engagements alongside my lead role.",
+              "help.b1":
+                "<b>Rails performance & architecture</b>audits, query optimization, job pipelines",
+              "help.b2":
+                "<b>AI agents in production</b>from use-case audit to agents wired into your tools",
+              "help.b3":
+                "<b>Fractional lead</b>technical direction, review culture, mentoring",
+              "contact.desc":
+                "Tell me what you\u2019re building, a few short lines is enough. I reply within 24\u00a0hours, frankly: what I can do and how I\u2019d approach it. If I\u2019m not the right person, I\u2019ll say so and point you elsewhere if I can.",
+            },
+            fr: {
+              "meta.title":
+                "Navid Emad - Lead Developer Ruby on Rails & IA agentique",
+              "cta.book": "R\u00e9server un appel",
+              "cta.more": "En savoir plus",
+              "hero.title":
+                "Lead Developer Rails.<br>Ing\u00e9nieur IA agentique.",
+              "hero.intro":
+                'Je construis des syst\u00e8mes Rails en production et des agents IA qui survivent au contact de la vraie infrastructure. <span class="years-dyn">12</span> ans de m\u00e9tier, et toujours du code au quotidien.',
+              "hero.trust":
+                "<b>\u2713 Ouvert \u00e0 quelques missions freelance</b> \u00b7 Paris / remote \u00b7 r\u00e9ponse sous 24\u00a0h",
+              "whoami.title": "Salut, moi c\u2019est Navid",
+              "whoami.p1":
+                '<span class="years-dyn">12</span> ans \u00e0 construire et faire tourner des applis Rails critiques : paiements, int\u00e9grations hardware, flottes de jobs en arri\u00e8re-plan, et de vrais utilisateurs qui remarquent quand \u00e7a casse.',
+              "whoami.p2":
+                "Aujourd\u2019hui je partage mon temps entre le travail de lead chez Yespark et le branchement d\u2019agents IA (Claude, MCP, automatisations GitHub) sur des workflows de production, avec les contraintes de fiabilit\u00e9 et de co\u00fbt qu\u2019une d\u00e9mo ne conna\u00eet pas.",
+              "whoami.p3":
+                "Je contribue \u00e0 l\u2019open source parce que c\u2019est la meilleure revue de code que je connaisse : mes PRs sont jug\u00e9es par des reviewers Rails, des ing\u00e9nieurs Datadog et des mainteneurs de moteurs de navigateur, pas par une page portfolio.",
+              "spec.title": "Sp\u00e9cialit\u00e9s",
+              "spec.b1":
+                "Rails \u00e0 l\u2019\u00e9chelle : requ\u00eates, index, architecture de jobs",
+              "spec.b2":
+                "IA agentique en production : Claude, MCP, skills, automatisations GitHub",
+              "spec.b3":
+                "Front qui livre : Hotwire, Tailwind, rendu serveur par d\u00e9faut",
+              "spec.b4":
+                "Observabilit\u00e9 : Datadog APM & profiling, contributeur upstream",
+              "perks.title": "Mani\u00e8res de faire",
+              "perks.b1":
+                "Des PRs qu\u2019on a envie de lire : petites, argument\u00e9es, benchmark\u00e9es",
+              "perks.b2":
+                "Je dis non : \u00e0 l\u2019IA non rentable, aux features qui ne devraient pas exister",
+              "perks.b3":
+                "Franc par d\u00e9faut : mauvais fit ? Je le dis d\u00e8s le premier appel",
+              "tele.title": "Des chiffres v\u00e9rifiables",
+              "tele.sub":
+                "Chaque chiffre ci-dessous est \u00e0 un clic de la recherche GitHub brute qui le produit.",
+              "tele.prs": "PRs open source fusionn\u00e9es",
+              "tele.repos": "d\u00e9p\u00f4ts publics touch\u00e9s",
+              "tele.since": "en prod depuis",
+              "tele.verify": "v\u00e9rifier sur GitHub \u2192",
+              "track.title": "O\u00f9 le code a atterri",
+              "track.lp.meta":
+                "moteur de navigateur headless en Zig \u00b7 60+ PRs fusionn\u00e9es",
+              "track.lp.desc":
+                "Internals de plateforme web : \u00e9v\u00e9nements du protocole CDP, surface WebAPI (DataTransfer, navigation au focus, readystatechange), s\u00e9lecteurs :has() relatifs, en-t\u00eate Origin WebSocket, cas limites de redirections HTTP.",
+              "track.rails.desc":
+                "Correctifs du g\u00e9n\u00e9rateur CLI, support du logger nil dans Solid Cable, option de skip du build dans assets:precompile, build CSS branch\u00e9 sur spec:prepare.",
+              "track.cap.meta": "auteur & mainteneur · gem Ruby",
+              "track.cap.desc":
+                "Driver Capybara pour lancer les tests système Rails sur Lightpanda, le moteur de navigateur headless auquel je contribue. C’est le pont entre les deux écosystèmes ci-dessus.",
+              "track.dd.meta": "traceur APM pour Ruby",
+              "track.dd.desc":
+                "Deux correctifs de crash en production fusionn\u00e9s upstream : un SIGSEGV du heap profiling sur Ruby 4, et l\u2019injection des en-t\u00eates de tracing distribu\u00e9 cass\u00e9e par http.rb 6.x.",
+              "track.cl.meta":
+                "plateforme fran\u00e7aise de vaccination COVID-19 \u00b7 20 PRs fusionn\u00e9es",
+              "track.cl.desc":
+                "B\u00e9n\u00e9volat pendant la pand\u00e9mie : landing pages pour les professionnels de sant\u00e9, refonte des e-mails transactionnels, gestion des statuts de paiement.",
+              "track.proof": "voir les PRs fusionn\u00e9es \u2192",
+              "track.yp.meta": "poste actuel \u00b7 Lead Developer",
+              "track.yp.desc":
+                "Location de parkings \u00e0 l\u2019\u00e9chelle de la France : campagnes d\u2019optimisation de requ\u00eates et d\u2019index, architectures de fan-out Sidekiq, int\u00e9gration d\u2019une flotte de cam\u00e9ras ANPR, outillage back-office assist\u00e9 par IA.",
+              "track.yp.case":
+                "\u00c9tude de cas \u00b7 campagne requ\u00eates & index pilot\u00e9e par Datadog",
+              "track.yp.c1":
+                "<b>52 s \u2192 &lt; 1 ms</b> sur la pire requ\u00eate en prod : un index composite sur une table de paiements de 5,6 Go, mesur\u00e9 \u00e0 l\u2019EXPLAIN ANALYZE en prod",
+              "track.yp.c2":
+                "<b>~100 requ\u00eates \u2192 2</b> sur une liste de factures : un N+1 ActiveStorage, \u00e9limin\u00e9 par pr\u00e9chargement",
+              "track.yp.c3":
+                "<b>p95 6-16 s \u2192 &lt; 3 s</b> sur les endpoints admin & API : index partiels, agr\u00e9gats en cache, OR de sous-requ\u00eates r\u00e9\u00e9crits en plans BitmapOr index\u00e9s (estimation prudente)",
+              "help.title": "Comment je peux aider",
+              "help.sub":
+                "Je prends quelques missions freelance en parall\u00e8le de mon poste de lead.",
+              "help.b1":
+                "<b>Performance & architecture Rails</b>audits, optimisation de requ\u00eates, pipelines de jobs",
+              "help.b2":
+                "<b>Agents IA en production</b>de l\u2019audit des cas d\u2019usage aux agents branch\u00e9s sur vos outils",
+              "help.b3":
+                "<b>Lead fractionn\u00e9</b>direction technique, culture de revue, mentorat",
+              "contact.desc":
+                "Dites-moi ce que vous construisez, quelques lignes suffisent. Je r\u00e9ponds sous 24\u00a0h, avec franchise : ce que je peux faire et comment je m\u2019y prendrais. Si je ne suis pas la bonne personne, je vous le dirai et vous aiguillerai si je peux.",
+            },
+          };
 
-    var current = DEFAULT_LANG;
-    try {
-      var saved = localStorage.getItem(STORAGE_KEY);
-      if (dicts[saved]) current = saved;
-    } catch (e) {}
+          var current = DEFAULT_LANG;
+          try {
+            var saved = localStorage.getItem(STORAGE_KEY);
+            if (dicts[saved]) current = saved;
+          } catch (e) {}
 
-    var listeners = [];
+          var listeners = [];
 
-    function t(key) {
-      var d = dicts[current];
-      return Object.prototype.hasOwnProperty.call(d, key) ? d[key] : dicts[DEFAULT_LANG][key];
-    }
+          function t(key) {
+            var d = dicts[current];
+            return Object.prototype.hasOwnProperty.call(d, key)
+              ? d[key]
+              : dicts[DEFAULT_LANG][key];
+          }
 
-    function apply() {
-      document.documentElement.lang = current;
-      document.title = t("meta.title");
-      document.querySelectorAll("[data-i18n]").forEach(function (el) {
-        var v = t(el.getAttribute("data-i18n"));
-        if (v != null) el.textContent = v;
-      });
-      document.querySelectorAll("[data-i18n-html]").forEach(function (el) {
-        var v = t(el.getAttribute("data-i18n-html"));
-        if (v != null) el.innerHTML = v;
-      });
-      document.querySelectorAll(".flag-btn").forEach(function (b) {
-        b.classList.toggle("active", b.getAttribute("data-lang") === current);
-      });
-      listeners.forEach(function (fn) { fn(current); });
-    }
+          function apply() {
+            document.documentElement.lang = current;
+            document.title = t("meta.title");
+            document.querySelectorAll("[data-i18n]").forEach(function (el) {
+              var v = t(el.getAttribute("data-i18n"));
+              if (v != null) el.textContent = v;
+            });
+            document
+              .querySelectorAll("[data-i18n-html]")
+              .forEach(function (el) {
+                var v = t(el.getAttribute("data-i18n-html"));
+                if (v != null) el.innerHTML = v;
+              });
+            document.querySelectorAll(".flag-btn").forEach(function (b) {
+              b.classList.toggle(
+                "active",
+                b.getAttribute("data-lang") === current,
+              );
+            });
+            listeners.forEach(function (fn) {
+              fn(current);
+            });
+          }
 
-    function set(lang) {
-      if (!dicts[lang] || lang === current) return;
-      current = lang;
-      try { localStorage.setItem(STORAGE_KEY, lang); } catch (e) {}
-      apply();
-    }
+          function set(lang) {
+            if (!dicts[lang] || lang === current) return;
+            current = lang;
+            try {
+              localStorage.setItem(STORAGE_KEY, lang);
+            } catch (e) {}
+            apply();
+          }
 
-    return { t: t, set: set, apply: apply, onChange: function (fn) { listeners.push(fn); } };
-  })();
+          return {
+            t: t,
+            set: set,
+            apply: apply,
+            onChange: function (fn) {
+              listeners.push(fn);
+            },
+          };
+        })();
 
-  document.querySelectorAll(".flag-btn").forEach(function (b) {
-    b.addEventListener("click", function () { i18n.set(b.getAttribute("data-lang")); });
-  });
+        document.querySelectorAll(".flag-btn").forEach(function (b) {
+          b.addEventListener("click", function () {
+            i18n.set(b.getAttribute("data-lang"));
+          });
+        });
 
-  /* ================= dynamic hero numbers ================= */
-  function render() {
-    var years = Math.max(1, new Date().getFullYear() - state.since);
-    document.querySelectorAll(".years-dyn").forEach(function (el) { el.textContent = years; });
-    document.getElementById("oss-inline").innerHTML = i18n.t("hero.oss")(state);
-    var prsEl = document.getElementById("stat-prs");
-    if (prsEl) prsEl.textContent = state.prs;
-    var reposEl = document.getElementById("stat-repos");
-    if (reposEl) reposEl.textContent = state.repos;
-    var sinceEl = document.getElementById("stat-since");
-    if (sinceEl) sinceEl.textContent = state.since;
-  }
-  i18n.onChange(render);
+        /* ================= dynamic hero numbers ================= */
+        function render() {
+          var years = Math.max(1, new Date().getFullYear() - state.since);
+          document.querySelectorAll(".years-dyn").forEach(function (el) {
+            el.textContent = years;
+          });
+          var prsEl = document.getElementById("stat-prs");
+          if (prsEl) prsEl.textContent = state.prs;
+          var reposEl = document.getElementById("stat-repos");
+          if (reposEl) reposEl.textContent = state.repos;
+          var sinceEl = document.getElementById("stat-since");
+          if (sinceEl) sinceEl.textContent = state.since;
+        }
+        i18n.onChange(render);
 
-  function gh(path) {
-    return fetch("https://api.github.com" + path, {
-      headers: { Accept: "application/vnd.github+json" }
-    }).then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); });
-  }
+        function gh(path) {
+          return fetch("https://api.github.com" + path, {
+            headers: { Accept: "application/vnd.github+json" },
+          }).then(function (r) {
+            if (!r.ok) throw new Error(r.status);
+            return r.json();
+          });
+        }
 
-  i18n.apply(); // paint immediately, hydrate live numbers after
+        i18n.apply(); // paint immediately, hydrate live numbers after
 
-  gh("/users/" + USER).then(function (u) {
-    if (u.created_at) state.since = new Date(u.created_at).getFullYear();
-    render();
-  }).catch(function () {});
+        gh("/users/" + USER)
+          .then(function (u) {
+            if (u.created_at)
+              state.since = new Date(u.created_at).getFullYear();
+            render();
+          })
+          .catch(function () {});
 
-  gh("/search/issues?q=" + encodeURIComponent("is:pr author:" + USER + " is:merged -user:" + USER + " -user:yespark") + "&per_page=1")
-    .then(function (d) {
-      if (typeof d.total_count === "number") { state.prs = d.total_count; render(); }
-    }).catch(function () {});
+        gh(
+          "/search/issues?q=" +
+            encodeURIComponent(
+              "is:pr author:" +
+                USER +
+                " is:merged -user:" +
+                USER +
+                " -user:yespark",
+            ) +
+            "&per_page=1",
+        )
+          .then(function (d) {
+            if (typeof d.total_count === "number") {
+              state.prs = d.total_count;
+              render();
+            }
+          })
+          .catch(function () {});
 
-  /* ================= reveal-on-scroll ================= */
-  var io = new IntersectionObserver(function (entries) {
-    entries.forEach(function (e) {
-      if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
-    });
-  }, { threshold: 0.15 });
-  document.querySelectorAll(".reveal").forEach(function (el) { io.observe(el); });
+        /* ================= reveal-on-scroll ================= */
+        var io = new IntersectionObserver(
+          function (entries) {
+            entries.forEach(function (e) {
+              if (e.isIntersecting) {
+                e.target.classList.add("in");
+                io.unobserve(e.target);
+              }
+            });
+          },
+          { threshold: 0.15 },
+        );
+        document.querySelectorAll(".reveal").forEach(function (el) {
+          io.observe(el);
+        });
 
-  /* ================= floating book button ================= */
-  // Slides in once you scroll, slides away when you reach the contact section.
-  var topbar = document.querySelector(".floating-book");
-  var contactSec = document.getElementById("contact");
-  function updateBar() {
-    var reachedContact = contactSec.getBoundingClientRect().top < window.innerHeight * 0.35;
-    topbar.classList.toggle("shown", window.scrollY > 80 && !reachedContact);
-  }
-  window.addEventListener("scroll", updateBar, { passive: true });
-  window.addEventListener("resize", updateBar, { passive: true });
-  updateBar();
-})();
-</script>
-</body>
+        /* ================= floating book button ================= */
+        // Slides in once you scroll, slides away when you reach the contact section.
+        var topbar = document.querySelector(".floating-book");
+        var pastHero = false,
+          nearContact = false;
+        function updateBar() {
+          topbar.classList.toggle("shown", pastHero && !nearContact);
+        }
+        new IntersectionObserver(
+          function (entries) {
+            pastHero = !entries[0].isIntersecting;
+            updateBar();
+          },
+          { threshold: 0.5 },
+        ).observe(document.querySelector(".hero"));
+        new IntersectionObserver(
+          function (entries) {
+            nearContact = entries[0].isIntersecting;
+            updateBar();
+          },
+          { rootMargin: "0px 0px -35% 0px" },
+        ).observe(document.getElementById("contact"));
+      })();
+    </script>
+  </body>
 </html>
