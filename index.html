@@ -96,12 +96,14 @@ body {
 /* ---------- top bar ---------- */
 header.top {
   display: flex; align-items: center; justify-content: space-between;
-  position: sticky; top: 0; z-index: 50;
-  margin: 0 clamp(-64px, -3.2vw, -24px);
+  position: fixed; top: 0; left: 0; right: 0; z-index: 50;
   padding: 14px clamp(24px, 3.2vw, 64px);
   background: rgba(7, 11, 22, 0.78); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid rgba(122, 152, 214, 0.08);
+  transform: translateY(-100%); opacity: 0; pointer-events: none;
+  transition: transform .4s cubic-bezier(.22,.9,.3,1), opacity .4s ease;
 }
+header.top.shown { transform: none; opacity: 1; pointer-events: auto; }
 .crest {
   display: flex; align-items: center; gap: 10px;
   font-family: "Bebas Neue", sans-serif; font-size: 20px; letter-spacing: 3px; color: var(--gold);
@@ -714,6 +716,17 @@ h1 {
     });
   }, { threshold: 0.15 });
   document.querySelectorAll(".reveal").forEach(function (el) { io.observe(el); });
+
+  // Fixed navbar: slides in once you scroll, slides away when you reach the contact section
+  var topbar = document.querySelector("header.top");
+  var contactSec = document.getElementById("contact");
+  function updateBar() {
+    var reachedContact = contactSec.getBoundingClientRect().top < window.innerHeight * 0.35;
+    topbar.classList.toggle("shown", window.scrollY > 80 && !reachedContact);
+  }
+  window.addEventListener("scroll", updateBar, { passive: true });
+  window.addEventListener("resize", updateBar, { passive: true });
+  updateBar();
 })();
 </script>
 </body>
