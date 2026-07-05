@@ -192,12 +192,11 @@ h1 {
 .stars .off { color: rgba(122,152,214,0.25); }
 
 .attr-l { display: flex; flex-direction: column; }
-.attr-l small { color: var(--ink-faint); font-size: 11px; font-weight: 400; line-height: 1.35; }
-@media (max-height: 780px) { .attr-l small { display: none; } }
+.attr-l small, .ps-l small { color: var(--ink-faint); font-size: 11px; font-weight: 400; line-height: 1.35; }
+@media (max-height: 780px) { .attr-l small, .ps-l small { display: none; } }
 /* playstyles */
-.perks { display: grid; grid-template-columns: 1fr 1fr; column-gap: 14px; }
 .ps { display: flex; align-items: center; gap: 10px; padding: clamp(3px, 0.7vh, 8px) 0; font-size: 13.5px; font-weight: 500; }
-.perks .ps { white-space: nowrap; }
+.ps-l { display: flex; flex-direction: column; min-width: 0; }
 .ps .ico {
   flex: none; width: 28px; height: 28px; border-radius: 8px; display: grid; place-items: center;
   background: rgba(122, 152, 214, 0.1); border: 1px solid rgba(122,152,214,0.16); font-size: 13px;
@@ -467,16 +466,11 @@ h1 {
       </section>
       <section class="panel">
         <h2 data-i18n="perks">Perks</h2>
-        <div class="perks">
-        <div class="ps" title="Mainteneur de gems open source / OSS maintainer"><span class="ico" aria-hidden="true">🛠️</span> <span data-i18n="perk1">Maintainer</span> <span class="plus">+</span></div>
-        <div class="ps" title="Gros volume de livraison / High shipping volume"><span class="ico" aria-hidden="true">⚡</span> <span data-i18n="perk2">Workhorse</span> <span class="plus">+</span></div>
-        <div class="ps" title="Workflows IA agentiques / Agentic AI workflows"><span class="ico" aria-hidden="true">🤖</span> <span data-i18n="perk3">Agentic</span> <span class="plus">+</span></div>
-        <div class="ps" title="Plusieurs langages / Multiple languages"><span class="ico" aria-hidden="true">🗣️</span> <span data-i18n="perk4">Polyglot</span></div>
-        <div class="ps" title="Régularité sur la durée / Consistency over years"><span class="ico" aria-hidden="true">🏃</span> <span data-i18n="perk5">Marathoner</span></div>
-        <div class="ps" title="Corrige à la source, en amont / Fixes upstream at the source"><span class="ico" aria-hidden="true">🔁</span> Upstream</div>
-        <div class="ps" title="Fait le lien entre équipes et outils / Connects teams and tools"><span class="ico" aria-hidden="true">🧭</span> <span data-i18n="perk7">Connector</span></div>
-        <div class="ps" title="Pilote l’IA en production / Leads AI in production"><span class="ico" aria-hidden="true">🧠</span> <span data-i18n="perk8">AI Lead</span> <span class="plus">+</span></div>
-        </div>
+        <div class="ps"><span class="ico" aria-hidden="true">🛠️</span><span class="ps-l"><span data-i18n="perk1">Maintainer</span><small data-i18n="perk1s">Owns his code for the long run</small></span><span class="plus">+</span></div>
+        <div class="ps"><span class="ico" aria-hidden="true">🔁</span><span class="ps-l"><span data-i18n="perk2">Upstream</span><small data-i18n="perk2s">Fixes bugs at the source</small></span><span class="plus">+</span></div>
+        <div class="ps"><span class="ico" aria-hidden="true">🤖</span><span class="ps-l"><span data-i18n="perk3">Agentic</span><small data-i18n="perk3s">Ships AI agents to production</small></span><span class="plus">+</span></div>
+        <div class="ps"><span class="ico" aria-hidden="true">⚡</span><span class="ps-l"><span data-i18n="perk4">Shipper</span><small data-i18n="perk4s">Small PRs, merged daily</small></span><span class="plus">+</span></div>
+        <div class="ps"><span class="ico" aria-hidden="true">🧠</span><span class="ps-l"><span data-i18n="perk8">AI Lead</span><small data-i18n="perk8s">Drives team-wide AI adoption</small></span><span class="plus">+</span></div>
       </section>
     </div>
 
@@ -549,11 +543,11 @@ h1 {
     <div class="col far">
       <section class="panel">
         <h2 data-i18n="track">Track Record</h2>
+        <div class="ps"><span class="ico" aria-hidden="true">💼</span><span><a href="https://www.yespark.fr" target="_blank" rel="noopener" style="color:var(--ink);text-decoration:none;border-bottom:1px dotted var(--ink-faint)">Yespark</a> — <span data-i18n="tr0">lead fullstack, 55,000 subscribers</span></span></div>
         <div class="ps"><span class="ico" aria-hidden="true">🥇</span><span><a href="https://github.com/navidemad/capybara-lightpanda" target="_blank" rel="noopener" style="color:var(--ink);text-decoration:none;border-bottom:1px dotted var(--ink-faint)">capybara-lightpanda</a> — <span data-i18n="tr1">maintainer</span></span></div>
-        <div class="ps"><span class="ico" aria-hidden="true">🕸️</span><span data-i18n="tr2">63 PRs merged into Lightpanda browser (Zig)</span></div>
-        <div class="ps"><span class="ico" aria-hidden="true">💉</span><span data-i18n="tr3">43 PRs on covidliste — France’s Covid-19 vaccination drive</span></div>
-        <div class="ps"><span class="ico" aria-hidden="true">🚂</span><span data-i18n="tr4">Merged upstream in Rails core, jsbundling &amp; cssbundling</span></div>
-        <div class="ps"><span class="ico" aria-hidden="true">📡</span><span data-i18n="tr5">Contributions in Datadog &amp; New Relic Ruby agents</span></div>
+        <div class="ps"><span class="ico" aria-hidden="true">🕸️</span><span><a href="https://github.com/lightpanda-io/browser/pulls?q=is%3Apr+author%3Anavidemad+is%3Amerged" target="_blank" rel="noopener" style="color:var(--ink);text-decoration:none;border-bottom:1px dotted var(--ink-faint)" data-i18n="tr2">63 PRs merged into Lightpanda browser (Zig)</a></span></div>
+        <div class="ps"><span class="ico" aria-hidden="true">💉</span><span><a href="https://github.com/hostolab/covidliste/pulls?q=is%3Apr+author%3Anavidemad+is%3Amerged" target="_blank" rel="noopener" style="color:var(--ink);text-decoration:none;border-bottom:1px dotted var(--ink-faint)" data-i18n="tr3">43 PRs on covidliste — France’s Covid-19 vaccination drive</a></span></div>
+        <div class="ps"><span class="ico" aria-hidden="true">🚂</span><span><a href="https://github.com/search?q=is%3Apr+author%3Anavidemad+is%3Amerged+-user%3Anavidemad+-user%3Ayespark&type=pullrequests" target="_blank" rel="noopener" style="color:var(--ink);text-decoration:none;border-bottom:1px dotted var(--ink-faint)" data-i18n="tr4">Merged upstream: Rails core, Datadog, New Relic…</a></span></div>
       </section>
     </div>
   </main>
@@ -669,11 +663,11 @@ h1 {
   var USER = "navidemad";
   // Baked-in fallbacks (July 2026) used when the GitHub API is rate-limited.
   var fallback = {
-    prs: 127, repos: 18, followers: 29, publicRepos: 46,
-    starsEarned: 12, topRepo: 4, reach: 169000
+    prs: 127, repos: 18, publicRepos: 95,
+    reach: 169000, lightpanda: 63, since: 2014
   };
   var state = Object.assign({}, fallback);
-  var live = { prs: false, user: false, stars: false };
+  var live = { prs: false, user: false };
 
   var I18N = {
     fr: {
@@ -692,17 +686,19 @@ h1 {
       sp2s: "Workflows autonomes \u2014 Claude, MCP",
       sp3s: "Interfaces modernes et r\u00e9actives",
       sp4s: "Culture du shipping rapide et fiable",
-      perk8: "Lead IA",
       perks: "Atouts",
-      perk1: "Mainteneur", perk2: "Bosseur", perk3: "Agentique",
-      perk4: "Polyglotte", perk5: "Marathonien", perk7: "Connecteur",
+      perk1: "Mainteneur", perk1s: "Assume son code sur la dur\u00e9e",
+      perk2: "Upstream", perk2s: "Corrige les bugs \u00e0 la source",
+      perk3: "Agentique", perk3s: "Livre des agents IA en production",
+      perk4: "Livreur", perk4s: "Petites PRs, fusionn\u00e9es chaque jour",
+      perk8: "Lead IA", perk8s: "Pilote l\u2019adoption IA de l\u2019\u00e9quipe",
       telemetry: "T\u00e9l\u00e9m\u00e9trie GitHub",
       track: "Palmar\u00e8s",
+      tr0: "lead fullstack, 55\u00a0000 abonn\u00e9s",
       tr1: "mainteneur",
       tr2: "63 PRs fusionn\u00e9es dans le navigateur Lightpanda (Zig)",
       tr3: "43 PRs sur covidliste \u2014 la campagne fran\u00e7aise de vaccination Covid-19",
-      tr4: "Fusionn\u00e9 dans Rails core, jsbundling & cssbundling",
-      tr5: "Contributions aux agents Ruby de Datadog & New Relic",
+      tr4: "Fusionn\u00e9 upstream : Rails core, Datadog, New Relic\u2026",
       cta_mail: "\u00c9crivez-moi",
       cta_x: "DM sur X",
       cta_book: "R\u00e9server un appel",
@@ -747,18 +743,16 @@ h1 {
       m: {
         prs: "PRs open source fusionn\u00e9es",
         reach: "Port\u00e9e cumul\u00e9e",
-        stars: "\u00c9toiles gagn\u00e9es",
-        top: "Top d\u00e9p\u00f4t",
-        followers: "Abonn\u00e9s",
+        lp: "PRs Lightpanda",
+        years: "Ann\u00e9es de code",
         repos: "D\u00e9p\u00f4ts publics",
         langs: "Langages"
       },
       d: {
         prs: function (s) { return s.prs + " PRs \u00b7 " + s.repos + " d\u00e9p\u00f4ts"; },
         reach: function (s, fmt) { return "~" + fmt(s.reach) + "\u2b50 touch\u00e9es"; },
-        stars: function (s) { return s.starsEarned + " \u00e9toiles"; },
-        top: function (s) { return s.topRepo + " \u00e9toiles"; },
-        followers: function (s) { return s.followers + " abonn\u00e9s"; },
+        lp: function (s) { return s.lightpanda + " fusionn\u00e9es \u00b7 Zig"; },
+        years: function (s) { return "depuis " + s.since; },
         repos: function (s) { return s.publicRepos + " d\u00e9p\u00f4ts"; }
       }
     },
@@ -778,17 +772,19 @@ h1 {
       sp2s: "Autonomous workflows \u2014 Claude, MCP",
       sp3s: "Modern, reactive interfaces",
       sp4s: "A fast, reliable shipping culture",
-      perk8: "AI Lead",
       perks: "Perks",
-      perk1: "Maintainer", perk2: "Workhorse", perk3: "Agentic",
-      perk4: "Polyglot", perk5: "Marathoner", perk7: "Connector",
+      perk1: "Maintainer", perk1s: "Owns his code for the long run",
+      perk2: "Upstream", perk2s: "Fixes bugs at the source",
+      perk3: "Agentic", perk3s: "Ships AI agents to production",
+      perk4: "Shipper", perk4s: "Small PRs, merged daily",
+      perk8: "AI Lead", perk8s: "Drives team-wide AI adoption",
       telemetry: "GitHub Telemetry",
       track: "Track Record",
+      tr0: "lead fullstack, 55,000 subscribers",
       tr1: "maintainer",
       tr2: "63 PRs merged into Lightpanda browser (Zig)",
       tr3: "43 PRs on covidliste \u2014 France\u2019s Covid-19 vaccination drive",
-      tr4: "Merged upstream in Rails core, jsbundling & cssbundling",
-      tr5: "Contributions in Datadog & New Relic Ruby agents",
+      tr4: "Merged upstream: Rails core, Datadog, New Relic\u2026",
       cta_mail: "Email me",
       cta_x: "DM on X",
       cta_book: "Book a call",
@@ -833,18 +829,16 @@ h1 {
       m: {
         prs: "Merged OSS PRs",
         reach: "Combined reach",
-        stars: "Stars earned",
-        top: "Top repo reach",
-        followers: "Followers",
+        lp: "Lightpanda PRs",
+        years: "Years shipping",
         repos: "Public repos",
         langs: "Languages"
       },
       d: {
         prs: function (s) { return s.prs + " PRs \u00b7 " + s.repos + " repos"; },
         reach: function (s, fmt) { return "~" + fmt(s.reach) + "\u2b50 touched"; },
-        stars: function (s) { return s.starsEarned + " stars"; },
-        top: function (s) { return s.topRepo + " stars"; },
-        followers: function (s) { return s.followers + " followers"; },
+        lp: function (s) { return s.lightpanda + " merged \u00b7 Zig"; },
+        years: function (s) { return "since " + s.since; },
         repos: function (s) { return s.publicRepos + " repos"; }
       }
     }
@@ -869,14 +863,14 @@ h1 {
 
   function render() {
     var L = I18N[lang];
+    var years = Math.max(1, new Date().getFullYear() - state.since);
     var rows = [
-      { label: L.m.prs,       detail: L.d.prs(state),        sc: score(state.prs, 400) },
-      { label: L.m.reach,     detail: L.d.reach(state, fmt), sc: score(state.reach, 200000) },
-      { label: L.m.stars,     detail: L.d.stars(state),      sc: score(state.starsEarned, 2000) },
-      { label: L.m.top,       detail: L.d.top(state),        sc: score(state.topRepo, 1000) },
-      { label: L.m.followers, detail: L.d.followers(state),  sc: score(state.followers, 3000) },
-      { label: L.m.repos,     detail: L.d.repos(state),      sc: score(state.publicRepos, 300) },
-      { label: L.m.langs,     detail: "Ruby\u00b7JS\u00b7Zig\u00b7SQL", sc: 86 }
+      { label: L.m.prs,   detail: L.d.prs(state),        sc: score(state.prs, 400) },
+      { label: L.m.reach, detail: L.d.reach(state, fmt), sc: score(state.reach, 200000) },
+      { label: L.m.lp,    detail: L.d.lp(state),         sc: score(state.lightpanda, 100) },
+      { label: L.m.years, detail: L.d.years(state),      sc: score(years, 25) },
+      { label: L.m.repos, detail: L.d.repos(state),      sc: score(state.publicRepos, 300) },
+      { label: L.m.langs, detail: "Ruby\u00b7JS\u00b7Zig\u00b7SQL", sc: 86 }
     ];
     var host = document.getElementById("metrics");
     host.innerHTML = rows.map(function (r) {
@@ -893,7 +887,7 @@ h1 {
         });
       });
     });
-    var anyLive = live.prs || live.user || live.stars;
+    var anyLive = live.prs || live.user;
     document.getElementById("live-label").textContent = anyLive ? L.live : L.cached;
   }
 
@@ -930,8 +924,8 @@ h1 {
   applyLang(); // paint fallbacks in the visitor's language immediately, hydrate after
 
   gh("/users/" + USER).then(function (u) {
-    state.followers = u.followers;
     state.publicRepos = u.public_repos;
+    if (u.created_at) state.since = new Date(u.created_at).getFullYear();
     live.user = true; render();
   }).catch(function () {});
 
@@ -940,16 +934,6 @@ h1 {
       if (typeof d.total_count === "number") { state.prs = d.total_count; live.prs = true; render(); }
     }).catch(function () {});
 
-  gh("/users/" + USER + "/repos?per_page=100&sort=updated").then(function (repos) {
-    var stars = 0, top = 0;
-    repos.forEach(function (r) {
-      if (r.fork) return;
-      stars += r.stargazers_count;
-      if (r.stargazers_count > top) top = r.stargazers_count;
-    });
-    state.starsEarned = stars; state.topRepo = top;
-    live.stars = true; render();
-  }).catch(function () {});
   var io = new IntersectionObserver(function (entries) {
     entries.forEach(function (e) {
       if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
