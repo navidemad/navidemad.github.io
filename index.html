@@ -289,8 +289,8 @@ h1 {
   color: var(--ink-dim); text-align: center; max-width: 340px; line-height: 1.7;
 }
 .card-legend b { color: var(--gold); font-weight: 600; }
-.chip.book { border-color: rgba(53, 208, 127, 0.45); color: #9defc2; }
-.chip.book:hover { border-color: rgba(53, 208, 127, 0.8); background: rgba(53, 208, 127, 0.08); }
+.chip.book { background: linear-gradient(160deg, #43e08d, #27a05f); color: #04150c; border-color: transparent; font-weight: 700; }
+.chip.book:hover { border-color: transparent; background: linear-gradient(160deg, #55e89a, #2fb56d); box-shadow: 0 6px 18px rgba(53,208,127,.3); }
 .band { padding: clamp(64px, 10vh, 120px) clamp(24px, 3.2vw, 64px); border-top: 1px solid rgba(122,152,214,0.08); }
 .band-inner { max-width: 1120px; margin: 0 auto; }
 .sec-label {
@@ -352,6 +352,23 @@ h1 {
 @media (max-width: 620px) { .case-grid { grid-template-columns: 1fr; } .role-strip { flex-direction: column; align-items: flex-start; } }
 @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; } }
 
+
+.trust {
+  margin-top: 10px; font-family: "JetBrains Mono", monospace; font-size: 11.5px;
+  letter-spacing: .3px; color: var(--ink-dim); white-space: nowrap;
+}
+@media (max-height: 740px) { .trust { display: none; } }
+.trust b { color: #9defc2; font-weight: 600; }
+.svc-list { list-style: none; margin: 14px 0 0; }
+.svc-list li { position: relative; padding: 4px 0 4px 22px; color: var(--ink-dim); font-size: 13.5px; }
+.svc-list li::before { content: "✓"; position: absolute; left: 0; color: var(--green); font-weight: 700; }
+.svc .ideal {
+  margin-top: 16px; padding-top: 14px; border-top: 1px solid rgba(122,152,214,0.1);
+  font-size: 12.5px; color: var(--gold); font-weight: 600;
+}
+.proc { display: flex; justify-content: center; gap: clamp(16px, 3vw, 40px); flex-wrap: wrap; margin: 8px 0 36px; }
+.proc .step { display: flex; align-items: baseline; gap: 10px; font-size: 14.5px; color: var(--ink-dim); }
+.proc .n { font-family: "Bebas Neue", sans-serif; font-size: 26px; color: var(--gold); }
 /* ---------- responsive ---------- */
 @media (max-width: 1240px) {
   .wrap { min-height: 0; }
@@ -371,6 +388,25 @@ h1 {
   .metric .fill { transition: none; }
 }
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Navid Emad",
+  "url": "https://navidemad.github.io/",
+  "image": "https://github.com/navidemad.png",
+  "jobTitle": "Lead Ruby on Rails Developer & Agentic AI Engineer",
+  "email": "mailto:navid.emad@yespark.fr",
+  "worksFor": { "@type": "Organization", "name": "Yespark" },
+  "nationality": { "@type": "Country", "name": "France" },
+  "sameAs": [
+    "https://github.com/navidemad",
+    "https://x.com/navidemad",
+    "https://www.linkedin.com/in/navidemad"
+  ],
+  "knowsAbout": ["Ruby on Rails", "Agentic AI", "LLM workflows", "Hotwire", "Tailwind CSS", "PostgreSQL", "Model Context Protocol"]
+}
+</script>
 </head>
 <body>
 <div class="atmosphere"></div>
@@ -410,6 +446,7 @@ h1 {
         <span class="sep">|</span>
         <a href="https://github.com/navidemad" target="_blank" rel="noopener">@navidemad</a>
       </div>
+      <div class="trust" data-i18n-html="trust"><b>✓ Disponible</b> · réponse sous 24 h · FR / EN · remote ou Paris</div>
       </div>
       <p class="scout-line" data-i18n-html="scout"><b>Salut, moi c’est Navid 👋</b>Lead développeur Ruby on Rails et adopteur précoce de l’IA, j’aide les entreprises à construire des produits web solides et à mettre l’IA au travail — workflows agentiques, opérations assistées. Réponse sous 24 h.</p>
     </div>
@@ -526,17 +563,35 @@ h1 {
       <div class="svc">
         <span class="ico-lg" aria-hidden="true">🤖</span>
         <h3 data-i18n="s1t">Adoption IA &amp; agents</h3>
-        <p data-i18n="s1d">Audit de vos processus, workflows agentiques sur mesure (Claude, MCP), formation de vos équipes. De l’IA qui produit — pas des démos.</p>
+        <p data-i18n="s1d">De l’IA qui produit — pas des démos.</p>
+        <ul class="svc-list">
+          <li data-i18n="s1b1">Audit de vos processus et cas d’usage</li>
+          <li data-i18n="s1b2">Agents et workflows branchés à vos outils (Claude, MCP)</li>
+          <li data-i18n="s1b3">Formation pratique de vos équipes</li>
+        </ul>
+        <p class="ideal" data-i18n="s1i">Pour : dirigeants qui veulent des résultats, pas une veille.</p>
       </div>
       <div class="svc">
         <span class="ico-lg" aria-hidden="true">🚀</span>
         <h3 data-i18n="s2t">Votre produit web, de A à Z</h3>
-        <p data-i18n="s2d">Application Ruby on Rails complète : architecture, développement, déploiement, supervision. Un seul interlocuteur, un produit qui tourne.</p>
+        <p data-i18n="s2d">Un seul interlocuteur, un produit qui tourne.</p>
+        <ul class="svc-list">
+          <li data-i18n="s2b1">Architecture, développement, mise en production</li>
+          <li data-i18n="s2b2">Hotwire, Tailwind, paiements, e-mails — tout inclus</li>
+          <li data-i18n="s2b3">Supervision et maintenance après lancement</li>
+        </ul>
+        <p class="ideal" data-i18n="s2i">Pour : entrepreneurs qui veulent un produit fiable, vite.</p>
       </div>
       <div class="svc">
         <span class="ico-lg" aria-hidden="true">🧭</span>
         <h3 data-i18n="s3t">Lead tech &amp; renfort d’équipe</h3>
-        <p data-i18n="s3d">Direction technique, revues de code, montée en compétence de vos développeurs. Le niveau de l’équipe monte, durablement.</p>
+        <p data-i18n="s3d">Le niveau de l’équipe monte, durablement.</p>
+        <ul class="svc-list">
+          <li data-i18n="s3b1">Direction technique et choix d’architecture</li>
+          <li data-i18n="s3b2">Revues de code et standards d’équipe</li>
+          <li data-i18n="s3b3">Mentorat et montée en compétence</li>
+        </ul>
+        <p class="ideal" data-i18n="s3i">Pour : équipes qui veulent passer un cap.</p>
       </div>
     </div>
   </div>
@@ -571,7 +626,7 @@ h1 {
     </div>
     <div class="role-strip">
       <span aria-hidden="true">💼</span>
-      <span data-i18n="r_strip">Aujourd’hui : lead développeur fullstack chez Yespark, plateforme française de location de parkings — Rails, Hotwire, IA agentique en production.</span>
+      <span data-i18n="r_strip">Aujourd’hui : lead développeur fullstack chez Yespark — 55 000 abonnés, 750+ villes. Rails, Hotwire et IA agentique en production, à l’échelle.</span>
     </div>
   </div>
 </section>
@@ -581,6 +636,11 @@ h1 {
     <div class="sec-label">03 · <span data-i18n="c_label">Contact</span></div>
     <h2 class="sec-title" data-i18n="c_h">Parlons de votre projet</h2>
     <p class="sec-sub" data-i18n="c_p">Décrivez votre besoin en deux lignes — je réponds sous 24 h, franchement : ce que je peux faire, ce que je ferais autrement, et si je ne suis pas la bonne personne, je vous le dis.</p>
+    <div class="proc">
+      <div class="step"><span class="n">01</span><span data-i18n="proc1">Appel de 30 min — gratuit</span></div>
+      <div class="step"><span class="n">02</span><span data-i18n="proc2">Proposition claire sous 48 h</span></div>
+      <div class="step"><span class="n">03</span><span data-i18n="proc3">Livraison itérative, démo chaque semaine</span></div>
+    </div>
     <div class="cta-row">
       <a class="btn primary" href="mailto:navid.emad@yespark.fr?subject=Contact%20%E2%80%94%20navidemad.github.io">
         <svg viewBox="0 0 24 24"><path d="M7 2v2H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V6a2 2 0 00-2-2h-2V2h-2v2H9V2H7zm12 8v10H5V10h14zM5 8V6h14v2H5zm3 5h3v3H8v-3z"/></svg>
@@ -633,15 +693,31 @@ h1 {
       cta_x: "DM sur X",
       cta_book: "R\u00e9server un appel",
       cta_more: "En savoir plus",
+      trust: "<b>\u2713 Disponible</b> \u00b7 r\u00e9ponse sous 24\u00a0h \u00b7 FR / EN \u00b7 remote ou Paris",
+      s1b1: "Audit de vos processus et cas d\u2019usage",
+      s1b2: "Agents et workflows branch\u00e9s \u00e0 vos outils (Claude, MCP)",
+      s1b3: "Formation pratique de vos \u00e9quipes",
+      s1i: "Pour : dirigeants qui veulent des r\u00e9sultats, pas une veille.",
+      s2b1: "Architecture, d\u00e9veloppement, mise en production",
+      s2b2: "Hotwire, Tailwind, paiements, e-mails \u2014 tout inclus",
+      s2b3: "Supervision et maintenance apr\u00e8s lancement",
+      s2i: "Pour : entrepreneurs qui veulent un produit fiable, vite.",
+      s3b1: "Direction technique et choix d\u2019architecture",
+      s3b2: "Revues de code et standards d\u2019\u00e9quipe",
+      s3b3: "Mentorat et mont\u00e9e en comp\u00e9tence",
+      s3i: "Pour : \u00e9quipes qui veulent passer un cap.",
+      proc1: "Appel de 30 min \u2014 gratuit",
+      proc2: "Proposition claire sous 48\u00a0h",
+      proc3: "Livraison it\u00e9rative, d\u00e9mo chaque semaine",
       legend: "<b>SHP</b> livraison \u00b7 <b>DBG</b> d\u00e9bogage \u00b7 <b>ARC</b> architecture \u00b7 <b>REV</b> revue de code \u00b7 <b>OSS</b> open source \u00b7 <b>AI</b> agents IA",
       s_label: "Services",
       s_h: "Comment je peux vous aider",
       s1t: "Adoption IA & agents",
-      s1d: "Audit de vos processus, workflows agentiques sur mesure (Claude, MCP), formation de vos \u00e9quipes. De l\u2019IA qui produit \u2014 pas des d\u00e9mos.",
+      s1d: "De l\u2019IA qui produit \u2014 pas des d\u00e9mos.",
       s2t: "Votre produit web, de A \u00e0 Z",
-      s2d: "Application Ruby on Rails compl\u00e8te : architecture, d\u00e9veloppement, d\u00e9ploiement, supervision. Un seul interlocuteur, un produit qui tourne.",
+      s2d: "Un seul interlocuteur, un produit qui tourne.",
       s3t: "Lead tech & renfort d\u2019\u00e9quipe",
-      s3d: "Direction technique, revues de code, mont\u00e9e en comp\u00e9tence de vos d\u00e9veloppeurs. Le niveau de l\u2019\u00e9quipe monte, durablement.",
+      s3d: "Le niveau de l\u2019\u00e9quipe monte, durablement.",
       r_label: "R\u00e9sultats",
       r_h: "Des r\u00e9sultats v\u00e9rifiables",
       r_sub: "Tout est public : cliquez, v\u00e9rifiez.",
@@ -649,7 +725,7 @@ h1 {
       r2t: "PRs dans Lightpanda, navigateur headless \u00e9crit en Zig \u2014 31\u00a0600 \u2b50",
       r3t: "PRs sur covidliste, la plateforme qui a acc\u00e9l\u00e9r\u00e9 la vaccination Covid-19 en France",
       r4t: "Port\u00e9e cumul\u00e9e des projets open source auxquels j\u2019ai contribu\u00e9 \u2014 et mainteneur de capybara-lightpanda",
-      r_strip: "Aujourd\u2019hui : lead d\u00e9veloppeur fullstack chez Yespark, plateforme fran\u00e7aise de location de parkings \u2014 Rails, Hotwire, IA agentique en production.",
+      r_strip: "Aujourd\u2019hui : lead d\u00e9veloppeur fullstack chez Yespark \u2014 55\u00a0000 abonn\u00e9s, 750+ villes. Rails, Hotwire et IA agentique en production, \u00e0 l\u2019\u00e9chelle.",
       c_label: "Contact",
       c_h: "Parlons de votre projet",
       c_p: "D\u00e9crivez votre besoin en deux lignes \u2014 je r\u00e9ponds sous 24\u00a0h, franchement : ce que je peux faire, ce que je ferais autrement, et si je ne suis pas la bonne personne, je vous le dis.",
@@ -698,15 +774,31 @@ h1 {
       cta_x: "DM on X",
       cta_book: "Book a call",
       cta_more: "Learn more",
+      trust: "<b>\u2713 Available</b> \u00b7 reply within 24\u00a0h \u00b7 FR / EN \u00b7 remote or Paris",
+      s1b1: "Audit of your processes and use cases",
+      s1b2: "Agents and workflows wired to your tools (Claude, MCP)",
+      s1b3: "Hands-on training for your teams",
+      s1i: "For: leaders who want results, not a watchlist.",
+      s2b1: "Architecture, development, production deployment",
+      s2b2: "Hotwire, Tailwind, payments, emails \u2014 all included",
+      s2b3: "Monitoring and maintenance after launch",
+      s2i: "For: founders who want a reliable product, fast.",
+      s3b1: "Technical direction and architecture choices",
+      s3b2: "Code reviews and team standards",
+      s3b3: "Mentoring and upskilling",
+      s3i: "For: teams ready to level up.",
+      proc1: "30-min call \u2014 free",
+      proc2: "Clear proposal within 48\u00a0h",
+      proc3: "Iterative delivery, weekly demo",
       legend: "<b>SHP</b> shipping \u00b7 <b>DBG</b> debugging \u00b7 <b>ARC</b> architecture \u00b7 <b>REV</b> code review \u00b7 <b>OSS</b> open source \u00b7 <b>AI</b> AI agents",
       s_label: "Services",
       s_h: "How I can help",
       s1t: "AI adoption & agents",
-      s1d: "Process audit, tailor-made agentic workflows (Claude, MCP), team training. AI that produces \u2014 not demos.",
+      s1d: "AI that produces \u2014 not demos.",
       s2t: "Your web product, end to end",
-      s2d: "Complete Ruby on Rails application: architecture, development, deployment, monitoring. One point of contact, a product that runs.",
+      s2d: "One point of contact, a product that runs.",
       s3t: "Tech lead & team reinforcement",
-      s3d: "Technical direction, code reviews, upskilling your developers. The team\u2019s level rises \u2014 durably.",
+      s3d: "The team\u2019s level rises \u2014 durably.",
       r_label: "Results",
       r_h: "Verifiable results",
       r_sub: "Everything is public: click and check.",
@@ -714,7 +806,7 @@ h1 {
       r2t: "PRs in Lightpanda, the headless browser written in Zig \u2014 31,600 \u2b50",
       r3t: "PRs on covidliste, the platform that accelerated France\u2019s Covid-19 vaccination drive",
       r4t: "Combined reach of the open source projects I\u2019ve contributed to \u2014 and maintainer of capybara-lightpanda",
-      r_strip: "Currently: lead fullstack developer at Yespark, the French parking rental platform \u2014 Rails, Hotwire, agentic AI in production.",
+      r_strip: "Currently: lead fullstack developer at Yespark \u2014 55,000 subscribers, 750+ cities. Rails, Hotwire and agentic AI in production, at scale.",
       c_label: "Contact",
       c_h: "Let\u2019s talk about your project",
       c_p: "Describe your need in two lines \u2014 I reply within 24\u00a0h, frankly: what I can do, what I\u2019d do differently, and if I\u2019m not the right person, I\u2019ll tell you.",
