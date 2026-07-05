@@ -96,14 +96,25 @@ body {
 /* ---------- top bar ---------- */
 header.top {
   display: flex; align-items: center; justify-content: space-between;
-  position: fixed; top: 0; left: 0; right: 0; z-index: 50;
-  padding: 14px clamp(24px, 3.2vw, 64px);
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 50;
+  padding: 12px clamp(24px, 3.2vw, 64px);
   background: rgba(7, 11, 22, 0.78); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(122, 152, 214, 0.08);
-  transform: translateY(-100%); opacity: 0; pointer-events: none;
+  border-top: 1px solid rgba(122, 152, 214, 0.08);
+  transform: translateY(100%); opacity: 0; pointer-events: none;
   transition: transform .4s cubic-bezier(.22,.9,.3,1), opacity .4s ease;
 }
 header.top.shown { transform: none; opacity: 1; pointer-events: auto; }
+.lang-flags {
+  position: fixed; top: 14px; right: clamp(20px, 2.6vw, 48px); z-index: 60;
+  display: flex; gap: 6px;
+}
+.flag-btn {
+  background: none; border: 0; cursor: pointer; font-size: 22px; line-height: 1;
+  padding: 4px; opacity: 0.3; filter: saturate(0.7);
+  transition: opacity .25s, transform .2s, filter .25s;
+}
+.flag-btn:hover { opacity: 0.7; transform: translateY(-1px); }
+.flag-btn.active { opacity: 1; filter: none; }
 .crest {
   display: flex; align-items: center; gap: 10px;
   font-family: "Bebas Neue", sans-serif; font-size: 20px; letter-spacing: 3px; color: var(--gold);
@@ -342,9 +353,13 @@ h1 {
     </div>
     <nav class="top-links">
       <a class="chip book" href="https://calendly.com/design-navid/30min" target="_blank" rel="noopener" data-i18n="cta_book">Book a call</a>
-      <button class="chip lang" id="lang-toggle" type="button" aria-label="Switch language">EN</button>
     </nav>
   </header>
+
+  <div class="lang-flags">
+    <button class="flag-btn" type="button" data-lang="fr" aria-label="Français" title="Français">🇫🇷</button>
+    <button class="flag-btn" type="button" data-lang="en" aria-label="English" title="English">🇬🇧</button>
+  </div>
 
   <section class="hero">
     <div class="hero-copy">
@@ -629,16 +644,18 @@ h1 {
       var k = el.getAttribute("data-i18n-html");
       if (L[k]) el.innerHTML = L[k];
     });
-    var btn = document.getElementById("lang-toggle");
-    btn.textContent = lang === "fr" ? "EN" : "FR";
-    btn.setAttribute("aria-label", lang === "fr" ? "Switch to English" : "Passer en fran\u00e7ais");
+    document.querySelectorAll(".flag-btn").forEach(function (b) {
+      b.classList.toggle("active", b.getAttribute("data-lang") === lang);
+    });
     render();
   }
 
-  document.getElementById("lang-toggle").addEventListener("click", function () {
-    lang = lang === "fr" ? "en" : "fr";
-    try { localStorage.setItem("lang", lang); } catch (e) {}
-    applyLang();
+  document.querySelectorAll(".flag-btn").forEach(function (b) {
+    b.addEventListener("click", function () {
+      lang = b.getAttribute("data-lang");
+      try { localStorage.setItem("lang", lang); } catch (e) {}
+      applyLang();
+    });
   });
 
   function gh(path) {
