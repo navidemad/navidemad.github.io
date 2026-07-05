@@ -98,8 +98,8 @@ body {
 .floating-book {
   position: fixed; right: clamp(20px, 2.6vw, 48px); bottom: 26px; z-index: 50;
   display: inline-flex; align-items: center; gap: 9px;
-  padding: 14px 24px; border-radius: 999px; text-decoration: none;
-  font-weight: 700; font-size: 14.5px; color: #04150c;
+  padding: 15px 28px; border-radius: 999px; text-decoration: none;
+  font-weight: 700; font-size: 15px; color: #fff;
   background: linear-gradient(160deg, #43e08d, #27a05f);
   box-shadow: 0 12px 34px rgba(53, 208, 127, 0.35), 0 8px 22px rgba(0, 0, 0, 0.45);
   transform: translateY(160%); opacity: 0; pointer-events: none;
@@ -155,9 +155,6 @@ h1 {
 .oss-line:hover { color: var(--ink); border-bottom-color: var(--gold); }
 .oss-line b { color: var(--gold); font-weight: 600; }
 
-.stars { color: var(--accent); letter-spacing: 2px; font-size: 15px; }
-.stars .off { color: rgba(122,152,214,0.25); }
-
 .cta-row { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
 .hero-copy .cta-row { margin-top: 28px; align-items: center; }
 .hero-copy .cta-row.socials { margin-top: 16px; gap: 12px; }
@@ -170,7 +167,11 @@ h1 {
   transition: transform .18s, box-shadow .18s, background .18s;
 }
 .btn svg { width: 16px; height: 16px; fill: currentColor; }
-.btn.primary { background: linear-gradient(160deg, #43e08d, #27a05f); color: #04150c; box-shadow: 0 8px 26px rgba(53, 208, 127, 0.28); }
+.btn.primary {
+  background: linear-gradient(160deg, #43e08d, #27a05f); color: #fff;
+  font-size: 15px; padding: 15px 28px; border-radius: 999px;
+  box-shadow: 0 8px 26px rgba(53, 208, 127, 0.28);
+}
 .btn.primary:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(53, 208, 127, 0.4); }
 .btn.ghost { background: rgba(13, 20, 38, 0.6); color: var(--ink); border: 1px solid var(--panel-edge); }
 .btn.ghost:hover { border-color: rgba(232,194,104,0.5); transform: translateY(-2px); }
@@ -184,7 +185,7 @@ h1 {
   scroll-snap-align: start;
 }
 .band-inner { width: 100%; }
-.band-inner { max-width: 1120px; margin: 0 auto; }
+.band-inner { max-width: 1280px; margin: 0 auto; }
 .sec-label {
   font-family: "JetBrains Mono", monospace; font-weight: 600; font-size: 12px;
   letter-spacing: 3px; color: var(--green); text-transform: uppercase;
@@ -196,11 +197,12 @@ h1 {
   background: linear-gradient(180deg, #ffffff 30%, #aab8d8);
   -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
 }
-.sec-sub { color: var(--ink-dim); font-size: 15.5px; margin: 0 auto 40px; max-width: 560px; text-align: center; }
+.sec-sub { color: var(--ink-dim); font-size: 17.5px; line-height: 1.65; margin: 0 auto 40px; max-width: 680px; text-align: center; }
 .svc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 40px; }
 .svc {
   position: relative; background: var(--panel); border: 1px solid var(--panel-edge); border-radius: 18px;
   padding: 28px 26px; backdrop-filter: blur(8px); overflow: hidden;
+  display: flex; flex-direction: column; text-align: center;
   transition: transform .25s, border-color .25s;
 }
 .svc::before {
@@ -211,14 +213,16 @@ h1 {
 .svc:hover { transform: translateY(-4px); border-color: rgba(232,194,104,.35); }
 .svc:hover::before { opacity: 1; }
 .svc .ico-lg { font-size: 26px; margin-bottom: 14px; display: block; }
-.svc h3 { font-family: "Barlow Condensed", sans-serif; font-weight: 700; font-size: 21px; letter-spacing: .5px; margin-bottom: 10px; }
-.svc p { color: var(--ink-dim); font-size: 14.5px; }
+.svc h3 { font-family: "Barlow Condensed", sans-serif; font-weight: 700; font-size: 21px; letter-spacing: .5px; margin-bottom: 10px; text-wrap: balance; }
+.svc p { color: var(--ink-dim); font-size: 14.5px; text-wrap: balance; }
 .band.contact { text-align: center; border-bottom: none; padding-bottom: clamp(80px, 12vh, 140px); }
 .band.contact .cta-row { justify-content: center; }
-.band.contact .btn { font-size: 15px; padding: 14px 26px; }
+.band.contact .cta-row.socials { margin-top: 16px; gap: 12px; }
+.band.contact .btn.icon { padding: 12px; border-radius: 50%; }
+.band.contact .btn.icon svg { width: 18px; height: 18px; }
 .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s cubic-bezier(.22,.9,.3,1), transform .7s cubic-bezier(.22,.9,.3,1); }
 .reveal.in { opacity: 1; transform: none; }
-@media (max-width: 980px) { .svc-grid { grid-template-columns: 1fr; } }
+@media (max-width: 1240px) { .svc-grid { grid-template-columns: 1fr; } }
 @media (max-width: 620px) { }
 @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; } }
 
@@ -229,19 +233,38 @@ h1 {
   margin-top: 2px;
 }
 .trust b { color: #9defc2; font-weight: 600; }
-.svc-list { list-style: none; margin: 14px 0 0; }
+.svc-list { list-style: none; margin: 14px 0 16px; flex: 1; align-self: center; text-align: left; display: flex; flex-direction: column; justify-content: center; }
 .svc-list li { position: relative; padding: 4px 0 4px 22px; color: var(--ink-dim); font-size: 13.5px; }
 .svc-list li::before { content: "✓"; position: absolute; left: 0; color: var(--green); font-weight: 700; }
-.svc-skill { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: 12px; font-size: 13.5px; color: var(--ink-dim); font-weight: 500; }
-.svc-skill + .svc-skill { margin-top: 4px; }
-.svc-skill .val { font-family: "Barlow Condensed", sans-serif; font-weight: 700; letter-spacing: 2px; font-size: 13px; color: var(--ink); }
 .svc .ideal {
   margin-top: 16px; padding-top: 14px; border-top: 1px solid rgba(122,152,214,0.1);
   font-size: 12.5px; color: var(--gold); font-weight: 600;
+  min-height: calc(14px + 2 * 1.5 * 12.5px); /* reserve two lines so dividers align across cards */
+  display: flex; align-items: center; justify-content: center; text-wrap: balance;
 }
-.proc { display: flex; justify-content: center; gap: clamp(16px, 3vw, 40px); flex-wrap: wrap; margin: 8px 0 36px; }
-.proc .step { display: flex; align-items: baseline; gap: 10px; font-size: 14.5px; color: var(--ink-dim); }
-.proc .n { font-family: "Bebas Neue", sans-serif; font-size: 26px; color: var(--gold); }
+.proc { display: grid; grid-template-columns: repeat(3, 1fr); max-width: 980px; margin: 16px auto 44px; }
+.proc .step {
+  position: relative; display: flex; flex-direction: column; align-items: center; gap: 12px;
+  padding: 0 16px; font-size: 14.5px; color: var(--ink-dim); text-align: center; text-wrap: balance;
+}
+.proc .n {
+  display: flex; align-items: center; justify-content: center; width: 46px; height: 46px;
+  border-radius: 50%; border: 1px solid rgba(232, 194, 104, 0.45); background: rgba(232, 194, 104, 0.08);
+  font-family: "Bebas Neue", sans-serif; font-size: 19px; letter-spacing: 1px; color: var(--gold);
+  box-shadow: 0 0 22px rgba(232, 194, 104, 0.12);
+}
+.proc .step + .step::before {
+  content: ""; position: absolute; top: 23px; height: 1px;
+  left: calc(-50% + 39px); right: calc(50% + 39px);
+  background: linear-gradient(90deg, rgba(232, 194, 104, 0.12), rgba(232, 194, 104, 0.45), rgba(232, 194, 104, 0.12));
+}
+@media (max-width: 700px) {
+  .proc { grid-template-columns: 1fr; gap: 26px; }
+  .proc .step + .step::before {
+    top: -26px; left: 50%; right: auto; width: 1px; height: 26px;
+    background: linear-gradient(180deg, rgba(232, 194, 104, 0.12), rgba(232, 194, 104, 0.45));
+  }
+}
 /* ---------- responsive ---------- */
 @media (max-width: 1240px) {
   .wrap { min-height: 0; }
@@ -281,7 +304,7 @@ h1 {
 <div class="wrap">
   <a class="floating-book" href="https://calendly.com/design-navid/30min" target="_blank" rel="noopener">
     <svg viewBox="0 0 24 24"><path d="M7 2v2H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V6a2 2 0 00-2-2h-2V2h-2v2H9V2H7zm12 8v10H5V10h14zM5 8V6h14v2H5zm3 5h3v3H8v-3z"/></svg>
-    <span data-i18n="cta.book">Book a call</span>
+    <span data-i18n="cta.book">Schedule a call</span>
   </a>
 
   <div class="lang-flags">
@@ -291,15 +314,15 @@ h1 {
 
   <section class="hero">
     <div class="hero-copy">
-      <p class="avatar-name" data-i18n="hero.greeting">Hi, I’m Navid 👋</p>
+      <p class="avatar-name" data-i18n="hero.greeting">Hey there, I’m Navid 👋</p>
       <h1 data-i18n-html="hero.title">Ship your roadmap.<br>Make AI pay off.</h1>
-      <p class="scout-line" data-i18n-html="hero.intro">Lead Ruby on Rails Developer with <span id="years-inline">12</span> years of experience. I help CTOs and founders build critical web products and deploy concrete agentic AI workflows to production.</p>
+      <p class="scout-line" data-i18n-html="hero.intro">Lead Ruby on Rails Developer with <span id="years-inline">12</span> years of experience. I help CTOs and founders build business-critical web products and deploy concrete agentic AI workflows that actually reach production.</p>
       <div class="trust" data-i18n-html="hero.trust"><b>✓ Available</b> · reply within 24 h · remote or Paris</div>
       <a class="oss-line" href="https://github.com/search?q=is%3Apr+author%3Anavidemad+is%3Amerged+-user%3Anavidemad+-user%3Ayespark&type=pullrequests" target="_blank" rel="noopener"><span aria-hidden="true">⭐</span> <span id="oss-inline"><b>127</b> merged open-source PRs — Rails core, Datadog, Lightpanda…</span></a>
       <div class="cta-row">
         <a class="btn primary" href="https://calendly.com/design-navid/30min" target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24"><path d="M7 2v2H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V6a2 2 0 00-2-2h-2V2h-2v2H9V2H7zm12 8v10H5V10h14zM5 8V6h14v2H5zm3 5h3v3H8v-3z"/></svg>
-          <span data-i18n="cta.book">Book a call</span>
+          <span data-i18n="cta.book">Schedule a call</span>
         </a>
       </div>
       <div class="cta-row socials">
@@ -314,7 +337,7 @@ h1 {
         </a>
       </div>
       <div class="cta-row more-row">
-        <a class="btn ghost" href="#services"><span data-i18n="cta.more">Learn more</span> ↓</a>
+        <a class="btn ghost" href="#services"><span data-i18n="cta.more">Find out more</span> ↓</a>
       </div>
     </div>
   </section>
@@ -325,7 +348,7 @@ h1 {
 <section class="band" id="services">
   <div class="band-inner reveal">
     <div class="sec-label"><span data-i18n="services.label">Services</span></div>
-    <h2 class="sec-title" data-i18n="services.title">Three ways I can help</h2>
+    <h2 class="sec-title" data-i18n="services.title">Three ways I can help you</h2>
     <div class="svc-grid">
       <div class="svc">
         <span class="ico-lg" aria-hidden="true">🤖</span>
@@ -333,36 +356,33 @@ h1 {
         <p data-i18n="services.ai.desc">From audit to agents wired into your tools — running in production.</p>
         <ul class="svc-list">
           <li data-i18n="services.ai.b1">Audit of your processes and use cases</li>
-          <li data-i18n="services.ai.b2">Agents and workflows wired to your tools (Claude, MCP)</li>
-          <li data-i18n="services.ai.b3">Hands-on training for your teams</li>
+          <li data-i18n="services.ai.b2">Agents and workflows wired to your tools</li>
+          <li data-i18n="services.ai.b3">Claude, MCP, Skills, GitHub Automation</li>
+          <li data-i18n="services.ai.b4">Hands-on training for your teams</li>
         </ul>
-        <div class="svc-skill"><span data-i18n="skills.ai">Agentic AI &amp; LLMs</span><span class="stars" role="img" aria-label="5/5">★★★★★</span></div>
-        <p class="ideal" data-i18n="services.ai.for">For: leaders who want results, not a watchlist.</p>
+        <p class="ideal" data-i18n="services.ai.for">For: leaders who want concrete results, not a watchlist.</p>
       </div>
       <div class="svc">
         <span class="ico-lg" aria-hidden="true">🚀</span>
         <h3 data-i18n="services.product.title">Your product, shipped end to end</h3>
-        <p data-i18n="services.product.desc">One senior contact from first commit to production.</p>
+        <p data-i18n="services.product.desc">A single senior contact from first commit to production.</p>
         <ul class="svc-list">
           <li data-i18n="services.product.b1">Architecture, development, production deployment</li>
-          <li data-i18n="services.product.b2">Hotwire, Tailwind, payments, emails — all included</li>
+          <li data-i18n="services.product.b2">Interface, payments, emails — all included</li>
           <li data-i18n="services.product.b3">Monitoring and maintenance after launch</li>
         </ul>
-        <div class="svc-skill"><span>Ruby on Rails</span><span class="stars" role="img" aria-label="5/5">★★★★★</span></div>
-        <div class="svc-skill"><span data-i18n="skills.hotwire">Hotwire · Tailwind</span><span class="stars" role="img" aria-label="4/5">★★★★<span class="off">★</span></span></div>
-        <p class="ideal" data-i18n="services.product.for">For: founders who want a reliable product, fast.</p>
+        <p class="ideal" data-i18n="services.product.for">For: founders who want a reliable product, shipped fast.</p>
       </div>
       <div class="svc">
         <span class="ico-lg" aria-hidden="true">🧭</span>
-        <h3 data-i18n="services.lead.title">A lead who levels up your team</h3>
+        <h3 data-i18n="services.lead.title">A lead who levels up your whole team</h3>
         <p data-i18n="services.lead.desc">Architecture, reviews, mentoring — the bar rises and stays up.</p>
         <ul class="svc-list">
           <li data-i18n="services.lead.b1">Technical direction and architecture choices</li>
-          <li data-i18n="services.lead.b2">Code reviews and team standards</li>
-          <li data-i18n="services.lead.b3">Mentoring and upskilling</li>
+          <li data-i18n="services.lead.b2">Code reviews and shared team standards</li>
+          <li data-i18n="services.lead.b3">Mentoring and team upskilling</li>
         </ul>
-        <div class="svc-skill"><span data-i18n="skills.ship">Ship rate</span><span class="val" data-i18n="skills.ship_value">DAILY / CI</span></div>
-        <p class="ideal" data-i18n="services.lead.for">For: teams ready to level up.</p>
+        <p class="ideal" data-i18n="services.lead.for">For: teams aiming for the next level.</p>
       </div>
     </div>
   </div>
@@ -373,24 +393,27 @@ h1 {
   <div class="band-inner reveal">
     <div class="sec-label"><span data-i18n="contact.label">Contact</span></div>
     <h2 class="sec-title" data-i18n="contact.title">Tell me what you’re trying to ship</h2>
-    <p class="sec-sub" data-i18n="contact.desc">Describe your need in a few lines. I reply within 24 h, frankly: what I can do, how I’d approach it — and if I’m not the best person for the job, I’ll tell you clearly.</p>
+    <p class="sec-sub" data-i18n="contact.desc">Describe what you need in a few short lines. I reply within 24 hours, with total frankness: what I can do, how I would approach it — and if I’m not the best person for the job, I’ll tell you clearly.</p>
     <div class="proc">
-      <div class="step"><span class="n">01</span><span data-i18n="contact.step1">30-min call — free</span></div>
+      <div class="step"><span class="n">01</span><span data-i18n="contact.step1">Free 30-minute intro call</span></div>
       <div class="step"><span class="n">02</span><span data-i18n="contact.step2">Clear proposal within 48 h</span></div>
-      <div class="step"><span class="n">03</span><span data-i18n="contact.step3">Iterative delivery, weekly demo</span></div>
+      <div class="step"><span class="n">03</span><span data-i18n="contact.step3">Iterative delivery, a demo every week</span></div>
     </div>
     <div class="cta-row">
       <a class="btn primary" href="https://calendly.com/design-navid/30min" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24"><path d="M7 2v2H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V6a2 2 0 00-2-2h-2V2h-2v2H9V2H7zm12 8v10H5V10h14zM5 8V6h14v2H5zm3 5h3v3H8v-3z"/></svg>
-        <span data-i18n="cta.book">Book a call</span>
+        <span data-i18n="cta.book">Schedule a call</span>
       </a>
-      <a class="btn ghost" href="mailto:navid.emad@yespark.fr?subject=Contact%20%E2%80%94%20navidemad.github.io">
-        <svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
-        <span data-i18n="cta.email">Email me</span>
-      </a>
-      <a class="btn ghost" href="https://www.linkedin.com/in/navidemad" target="_blank" rel="noopener">
+    </div>
+    <div class="cta-row socials">
+      <a class="btn ghost icon" href="https://www.linkedin.com/in/navidemad" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn">
         <svg viewBox="0 0 24 24"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.2 8h4.6v14.8H.2V8zm7.7 0h4.4v2h.06c.6-1.15 2.1-2.36 4.3-2.36 4.6 0 5.44 3.03 5.44 6.96v8.2h-4.6v-7.3c0-1.74-.03-3.98-2.42-3.98-2.42 0-2.8 1.9-2.8 3.86v7.42H7.9V8z"/></svg>
-        LinkedIn
+      </a>
+      <a class="btn ghost icon" href="https://github.com/navidemad" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub">
+        <svg viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      </a>
+      <a class="btn ghost icon" href="https://x.com/navidemad" target="_blank" rel="noopener" aria-label="X (Twitter)" title="X">
+        <svg viewBox="0 0 24 24"><path d="M18.9 2H22l-6.9 7.9L23.3 22h-6.4l-5-6.6L6.2 22H3l7.4-8.5L1 2h6.6l4.5 6 5.8-6zm-1.1 18h1.8L7.6 3.9H5.7L17.8 20z"/></svg>
       </a>
     </div>
   </div>
@@ -416,71 +439,63 @@ h1 {
     var dicts = {
       en: {
         "meta.title": "Navid Emad \u2014 Ruby on Rails & Agentic AI Engineer",
-        "cta.book": "Book a call",
-        "cta.more": "Learn more",
-        "cta.email": "Email me",
+        "cta.book": "Schedule a call",
+        "cta.more": "Find out more",
         "hero.title": "Ship your roadmap.<br>Make AI pay off.",
-        "hero.greeting": "Hi, I\u2019m Navid \ud83d\udc4b",
-        "hero.intro": "Lead Ruby on Rails Developer with <span id=\"years-inline\">12</span> years of experience. I help CTOs and founders build critical web products and deploy concrete agentic AI workflows to production.",
+        "hero.greeting": "Hey there, I\u2019m Navid \ud83d\udc4b",
+        "hero.intro": "Lead Ruby on Rails Developer with <span id=\"years-inline\">12</span> years of experience. I help CTOs and founders build business-critical web products and deploy concrete agentic AI workflows that actually reach production.",
         "hero.trust": "<b>\u2713 Available</b> \u00b7 reply within 24\u00a0h \u00b7 remote or Paris",
         "hero.oss": function (s) { return "<b>" + s.prs + "</b> merged open-source PRs \u2014 Rails core, Datadog, Lightpanda\u2026"; },
-        "skills.ai": "Agentic AI & LLMs",
-        "skills.hotwire": "Hotwire \u00b7 Tailwind",
-        "skills.ship": "Ship rate",
-        "skills.ship_value": "DAILY / CI",
         "services.label": "Services",
-        "services.title": "Three ways I can help",
+        "services.title": "Three ways I can help you",
         "services.ai.title": "AI agents that pay for themselves",
         "services.ai.desc": "From audit to agents wired into your tools \u2014 running in production.",
         "services.ai.b1": "Audit of your processes and use cases",
-        "services.ai.b2": "Agents and workflows wired to your tools (Claude, MCP)",
-        "services.ai.b3": "Hands-on training for your teams",
-        "services.ai.for": "For: leaders who want results, not a watchlist.",
+        "services.ai.b2": "Agents and workflows wired to your tools",
+        "services.ai.b3": "Claude, MCP, Skills, GitHub Automation",
+        "services.ai.b4": "Hands-on training for your teams",
+        "services.ai.for": "For: leaders who want concrete results, not a watchlist.",
         "services.product.title": "Your product, shipped end to end",
-        "services.product.desc": "One senior contact from first commit to production.",
+        "services.product.desc": "A single senior contact from first commit to production.",
         "services.product.b1": "Architecture, development, production deployment",
-        "services.product.b2": "Hotwire, Tailwind, payments, emails \u2014 all included",
+        "services.product.b2": "Interface, payments, emails \u2014 all included",
         "services.product.b3": "Monitoring and maintenance after launch",
-        "services.product.for": "For: founders who want a reliable product, fast.",
-        "services.lead.title": "A lead who levels up your team",
+        "services.product.for": "For: founders who want a reliable product, shipped fast.",
+        "services.lead.title": "A lead who levels up your whole team",
         "services.lead.desc": "Architecture, reviews, mentoring \u2014 the bar rises and stays up.",
         "services.lead.b1": "Technical direction and architecture choices",
-        "services.lead.b2": "Code reviews and team standards",
-        "services.lead.b3": "Mentoring and upskilling",
-        "services.lead.for": "For: teams ready to level up.",
+        "services.lead.b2": "Code reviews and shared team standards",
+        "services.lead.b3": "Mentoring and team upskilling",
+        "services.lead.for": "For: teams aiming for the next level.",
         "contact.label": "Contact",
         "contact.title": "Tell me what you\u2019re trying to ship",
-        "contact.desc": "Describe your need in a few lines. I reply within 24\u00a0h, frankly: what I can do, how I\u2019d approach it \u2014 and if I\u2019m not the best person for the job, I\u2019ll tell you clearly.",
-        "contact.step1": "30-min call \u2014 free",
+        "contact.desc": "Describe what you need in a few short lines. I reply within 24\u00a0hours, with total frankness: what I can do, how I would approach it \u2014 and if I\u2019m not the best person for the job, I\u2019ll tell you clearly.",
+        "contact.step1": "Free 30-minute intro call",
         "contact.step2": "Clear proposal within 48\u00a0h",
-        "contact.step3": "Iterative delivery, weekly demo"
+        "contact.step3": "Iterative delivery, a demo every week"
       },
       fr: {
         "meta.title": "Navid Emad \u2014 Expert Ruby on Rails & IA agentique",
         "cta.book": "R\u00e9server un appel",
         "cta.more": "En savoir plus",
-        "cta.email": "\u00c9crivez-moi",
         "hero.title": "Livrez votre roadmap.<br>Rentabilisez l\u2019IA.",
         "hero.greeting": "Salut, moi c\u2019est Navid \ud83d\udc4b",
         "hero.intro": "Lead Developer Ruby on Rails avec <span id=\"years-inline\">12</span> ans d\u2019exp\u00e9rience. J\u2019aide les CTOs et fondateurs \u00e0 construire des produits web critiques et \u00e0 d\u00e9ployer des workflows IA agentiques concrets en production.",
         "hero.trust": "<b>\u2713 Disponible</b> \u00b7 r\u00e9ponse sous 24\u00a0h \u00b7 remote ou Paris",
         "hero.oss": function (s) { return "<b>" + s.prs + "</b> PRs open source fusionn\u00e9es \u2014 Rails core, Datadog, Lightpanda\u2026"; },
-        "skills.ai": "IA agentique & LLM",
-        "skills.hotwire": "Hotwire \u00b7 Tailwind",
-        "skills.ship": "Livraison",
-        "skills.ship_value": "QUOTIDIENNE / CI",
         "services.label": "Services",
         "services.title": "Trois fa\u00e7ons de vous aider",
         "services.ai.title": "Des agents IA qui se rentabilisent",
         "services.ai.desc": "De l\u2019audit aux agents branch\u00e9s sur vos outils \u2014 en production.",
         "services.ai.b1": "Audit de vos processus et cas d\u2019usage",
-        "services.ai.b2": "Agents et workflows branch\u00e9s \u00e0 vos outils (Claude, MCP)",
-        "services.ai.b3": "Formation pratique de vos \u00e9quipes",
+        "services.ai.b2": "Agents et workflows branch\u00e9s \u00e0 vos outils",
+        "services.ai.b3": "Claude, MCP, Skills, GitHub Automation",
+        "services.ai.b4": "Formation pratique de vos \u00e9quipes",
         "services.ai.for": "Pour : dirigeants qui veulent des r\u00e9sultats, pas une veille.",
         "services.product.title": "Votre produit, livr\u00e9 de A \u00e0 Z",
         "services.product.desc": "Un seul interlocuteur senior, du premier commit \u00e0 la prod.",
         "services.product.b1": "Architecture, d\u00e9veloppement, mise en production",
-        "services.product.b2": "Hotwire, Tailwind, paiements, e-mails \u2014 tout inclus",
+        "services.product.b2": "Interface, paiements, e-mails \u2014 tout inclus",
         "services.product.b3": "Supervision et maintenance apr\u00e8s lancement",
         "services.product.for": "Pour : entrepreneurs qui veulent un produit fiable, vite.",
         "services.lead.title": "Un lead qui fait monter votre \u00e9quipe",
@@ -491,7 +506,7 @@ h1 {
         "services.lead.for": "Pour : \u00e9quipes qui veulent passer un cap.",
         "contact.label": "Contact",
         "contact.title": "Dites-moi ce que vous voulez livrer",
-        "contact.desc": "D\u00e9crivez-moi votre besoin en quelques lignes. Je r\u00e9ponds sous 24\u00a0h avec franchise : ce que je peux faire, comment je m\u2019y prendrais \u2014 et si je ne suis pas la meilleure personne pour le job, je vous le dirai clairement.",
+        "contact.desc": "D\u00e9crivez-moi votre besoin en quelques lignes. Je r\u00e9ponds sous 24\u00a0h avec franchise : ce que je peux faire, comment je m\u2019y prendrais \u2014 et si je ne suis pas la bonne personne pour le job, je vous le dirai clairement.",
         "contact.step1": "Appel de 30 min \u2014 gratuit",
         "contact.step2": "Proposition claire sous 48\u00a0h",
         "contact.step3": "Livraison it\u00e9rative, d\u00e9mo chaque semaine"
