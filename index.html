@@ -133,7 +133,6 @@ header.top.shown { transform: none; opacity: 1; pointer-events: auto; }
 }
 .chip:hover { border-color: rgba(232, 194, 104, 0.5); transform: translateY(-1px); background: rgba(20, 30, 56, 0.8); }
 .chip svg { width: 15px; height: 15px; fill: currentColor; }
-.chip.lang { cursor: pointer; font-family: "JetBrains Mono", monospace; font-size: 12.5px; letter-spacing: 1px; }
 
 /* ---------- avatar badge ---------- */
 .avatar-badge { margin-bottom: 26px; }
@@ -151,17 +150,15 @@ header.top.shown { transform: none; opacity: 1; pointer-events: auto; }
 /* ---------- hero ---------- */
 .hero { padding: clamp(18px, 4vh, 56px) 0 0; display: flex; justify-content: center; flex: none; }
 .hero-copy { min-width: 0; max-width: 900px; text-align: center; }
-.kicker {
-  font-family: "JetBrains Mono", monospace; font-weight: 600; font-size: 13px;
-  letter-spacing: 3px; color: var(--green); text-transform: uppercase;
-  display: flex; align-items: center; justify-content: center; gap: 10px;
+.hero-copy { position: relative; }
+.hero-copy::before {
+  content: ""; position: absolute; inset: -12% -30%; z-index: -1; pointer-events: none;
+  background: radial-gradient(ellipse 55% 45% at 50% 38%, rgba(74, 108, 210, 0.16), transparent 70%);
 }
-.kicker::before { content: "~/$"; color: var(--ink-faint); letter-spacing: 0; }
-.cursor { display: inline-block; width: 0.45em; margin-left: 6px; background: var(--green); animation: blink 1.1s steps(1) infinite; }
-@keyframes blink { 50% { opacity: 0; } }
 h1 {
-  font-family: "Bebas Neue", sans-serif; font-size: clamp(44px, 5.6vw, 88px);
-  line-height: 0.95; letter-spacing: 2px; margin: 10px 0 16px;
+  font-family: "Bebas Neue", sans-serif; font-size: clamp(44px, 5vw, 80px);
+  text-wrap: balance;
+  line-height: 1.02; letter-spacing: 2px; margin: 14px 0 18px;
   background: linear-gradient(180deg, #ffffff 30%, #aab8d8);
   -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
 }
@@ -183,7 +180,10 @@ h1 {
 .stars .off { color: rgba(122,152,214,0.25); }
 
 .cta-row { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
-.hero-copy .cta-row { margin-top: 28px; }
+.hero-copy .cta-row { margin-top: 28px; align-items: center; }
+.btn.icon { padding: 11px; border-radius: 50%; }
+.btn.icon svg { width: 17px; height: 17px; }
+.cta-sep { width: 1px; height: 26px; background: rgba(122, 152, 214, 0.22); margin: 0 6px; }
 .btn {
   display: inline-flex; align-items: center; gap: 9px; text-decoration: none;
   font-weight: 700; font-size: 13px; padding: 10px 14px; border-radius: 11px;
@@ -320,8 +320,7 @@ h1 {
         <img src="https://github.com/navidemad.png?size=200" alt="Navid Emad" width="84" height="84" loading="eager" />
         <p class="avatar-name" data-i18n="hero.greeting">Hi, I’m Navid 👋</p>
       </div>
-      <div class="kicker">whoami --verbose<span class="cursor" aria-hidden="true"></span></div>
-      <h1 data-i18n="hero.title">Ship your roadmap. Make AI pay off.</h1>
+      <h1 data-i18n-html="hero.title">Ship your roadmap.<br>Make AI pay off.</h1>
       <p class="scout-line" data-i18n-html="hero.intro">Lead Ruby on Rails Developer with <span id="years-inline">12</span> years of experience. I help CTOs and founders build critical web products and deploy concrete agentic AI workflows to production.</p>
       <div class="trust" data-i18n-html="hero.trust"><b>✓ Available</b> · reply within 24 h · remote or Paris</div>
       <a class="oss-line" href="https://github.com/search?q=is%3Apr+author%3Anavidemad+is%3Amerged+-user%3Anavidemad+-user%3Ayespark&type=pullrequests" target="_blank" rel="noopener"><span aria-hidden="true">⭐</span> <span id="oss-inline"><b>127</b> merged open-source PRs — Rails core, Datadog, Lightpanda…</span></a>
@@ -330,19 +329,17 @@ h1 {
           <svg viewBox="0 0 24 24"><path d="M7 2v2H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V6a2 2 0 00-2-2h-2V2h-2v2H9V2H7zm12 8v10H5V10h14zM5 8V6h14v2H5zm3 5h3v3H8v-3z"/></svg>
           <span data-i18n="cta.book">Book a call</span>
         </a>
-        <a class="btn ghost" href="https://www.linkedin.com/in/navidemad" target="_blank" rel="noopener">
+        <a class="btn ghost" href="#services"><span data-i18n="cta.more">Learn more</span> ↓</a>
+        <span class="cta-sep" aria-hidden="true"></span>
+        <a class="btn ghost icon" href="https://www.linkedin.com/in/navidemad" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn">
           <svg viewBox="0 0 24 24"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.2 8h4.6v14.8H.2V8zm7.7 0h4.4v2h.06c.6-1.15 2.1-2.36 4.3-2.36 4.6 0 5.44 3.03 5.44 6.96v8.2h-4.6v-7.3c0-1.74-.03-3.98-2.42-3.98-2.42 0-2.8 1.9-2.8 3.86v7.42H7.9V8z"/></svg>
-          LinkedIn
         </a>
-        <a class="btn ghost" href="https://github.com/navidemad" target="_blank" rel="noopener">
+        <a class="btn ghost icon" href="https://github.com/navidemad" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub">
           <svg viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
-          GitHub
         </a>
-        <a class="btn ghost" href="https://x.com/navidemad" target="_blank" rel="noopener">
+        <a class="btn ghost icon" href="https://x.com/navidemad" target="_blank" rel="noopener" aria-label="X (Twitter)" title="X">
           <svg viewBox="0 0 24 24"><path d="M18.9 2H22l-6.9 7.9L23.3 22h-6.4l-5-6.6L6.2 22H3l7.4-8.5L1 2h6.6l4.5 6 5.8-6zm-1.1 18h1.8L7.6 3.9H5.7L17.8 20z"/></svg>
-          @navidemad
         </a>
-        <a class="btn ghost more" href="#services"><span data-i18n="cta.more">Learn more</span> ↓</a>
       </div>
     </div>
 
@@ -449,7 +446,7 @@ h1 {
         "cta.book": "Book a call",
         "cta.more": "Learn more",
         "cta.email": "Email me",
-        "hero.title": "Ship your roadmap. Make AI pay off.",
+        "hero.title": "Ship your roadmap.<br>Make AI pay off.",
         "hero.greeting": "Hi, I\u2019m Navid \ud83d\udc4b",
         "hero.intro": "Lead Ruby on Rails Developer with <span id=\"years-inline\">12</span> years of experience. I help CTOs and founders build critical web products and deploy concrete agentic AI workflows to production.",
         "hero.trust": "<b>\u2713 Available</b> \u00b7 reply within 24\u00a0h \u00b7 remote or Paris",
@@ -491,7 +488,7 @@ h1 {
         "cta.book": "R\u00e9server un appel",
         "cta.more": "En savoir plus",
         "cta.email": "\u00c9crivez-moi",
-        "hero.title": "Livrez votre roadmap. Rentabilisez l\u2019IA.",
+        "hero.title": "Livrez votre roadmap.<br>Rentabilisez l\u2019IA.",
         "hero.greeting": "Salut, moi c\u2019est Navid \ud83d\udc4b",
         "hero.intro": "Lead Developer Ruby on Rails avec <span id=\"years-inline\">12</span> ans d\u2019exp\u00e9rience. J\u2019aide les CTOs et fondateurs \u00e0 construire des produits web critiques et \u00e0 d\u00e9ployer des workflows IA agentiques concrets en production.",
         "hero.trust": "<b>\u2713 Disponible</b> \u00b7 r\u00e9ponse sous 24\u00a0h \u00b7 remote ou Paris",
