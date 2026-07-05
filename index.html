@@ -93,19 +93,20 @@ body {
   min-height: 100dvh; display: flex; flex-direction: column; justify-content: center;
 }
 
-/* ---------- top bar ---------- */
-header.top {
-  display: flex; align-items: center; justify-content: space-between;
-  position: fixed; bottom: 0; left: 0; right: 0; z-index: 50;
-  padding: 12px clamp(24px, 3.2vw, 64px);
-  background: linear-gradient(180deg, rgba(20, 30, 58, 0.96), rgba(10, 16, 32, 0.98));
-  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
-  border-top: 1px solid rgba(232, 194, 104, 0.28);
-  box-shadow: 0 -14px 44px rgba(0, 0, 0, 0.55);
-  transform: translateY(100%); opacity: 0; pointer-events: none;
-  transition: transform .4s cubic-bezier(.22,.9,.3,1), opacity .4s ease;
+/* ---------- floating book button ---------- */
+.floating-book {
+  position: fixed; right: clamp(20px, 2.6vw, 48px); bottom: 26px; z-index: 50;
+  display: inline-flex; align-items: center; gap: 9px;
+  padding: 14px 24px; border-radius: 999px; text-decoration: none;
+  font-weight: 700; font-size: 14.5px; color: #04150c;
+  background: linear-gradient(160deg, #43e08d, #27a05f);
+  box-shadow: 0 12px 34px rgba(53, 208, 127, 0.35), 0 8px 22px rgba(0, 0, 0, 0.45);
+  transform: translateY(160%); opacity: 0; pointer-events: none;
+  transition: transform .4s cubic-bezier(.22,.9,.3,1), opacity .4s ease, box-shadow .2s;
 }
-header.top.shown { transform: none; opacity: 1; pointer-events: auto; }
+.floating-book.shown { transform: none; opacity: 1; pointer-events: auto; }
+.floating-book.shown:hover { transform: translateY(-2px); box-shadow: 0 16px 40px rgba(53, 208, 127, 0.45), 0 10px 26px rgba(0, 0, 0, 0.5); }
+.floating-book svg { width: 16px; height: 16px; fill: currentColor; }
 .lang-flags {
   position: fixed; top: 14px; right: clamp(20px, 2.6vw, 48px); z-index: 60;
   display: flex; gap: 6px;
@@ -117,22 +118,6 @@ header.top.shown { transform: none; opacity: 1; pointer-events: auto; }
 }
 .flag-btn:hover { opacity: 0.7; transform: translateY(-1px); }
 .flag-btn.active { opacity: 1; filter: none; }
-.crest {
-  display: flex; align-items: center; gap: 10px;
-  font-family: "Bebas Neue", sans-serif; font-size: 20px; letter-spacing: 3px; color: var(--gold);
-}
-.crest svg { display: block; }
-.top-links { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
-.chip {
-  display: inline-flex; align-items: center; gap: 8px;
-  padding: 9px 16px; border-radius: 999px;
-  border: 1px solid var(--panel-edge);
-  background: rgba(13, 20, 38, 0.6);
-  color: var(--ink); text-decoration: none; font-size: 13.5px; font-weight: 600;
-  transition: border-color .2s, transform .2s, background .2s;
-}
-.chip:hover { border-color: rgba(232, 194, 104, 0.5); transform: translateY(-1px); background: rgba(20, 30, 56, 0.8); }
-.chip svg { width: 15px; height: 15px; fill: currentColor; }
 
 /* ---------- greeting ---------- */
 .avatar-name {
@@ -188,14 +173,10 @@ h1 {
 .btn.primary:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(53, 208, 127, 0.4); }
 .btn.ghost { background: rgba(13, 20, 38, 0.6); color: var(--ink); border: 1px solid var(--panel-edge); }
 .btn.ghost:hover { border-color: rgba(232,194,104,0.5); transform: translateY(-2px); }
-
-.live-dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--green); margin-right: 6px; box-shadow: 0 0 8px var(--green); animation: pulse 2.2s infinite; }
-@keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.35; } }
+ 50% { opacity: 0.35; } }
 
 
 /* ---------- below-the-fold bands ---------- */
-.chip.book { background: linear-gradient(160deg, #43e08d, #27a05f); color: #04150c; border-color: transparent; font-weight: 700; }
-.chip.book:hover { border-color: transparent; background: linear-gradient(160deg, #55e89a, #2fb56d); box-shadow: 0 6px 18px rgba(53,208,127,.3); }
 .band { padding: clamp(64px, 10vh, 120px) clamp(24px, 3.2vw, 64px); border-top: 1px solid rgba(122,152,214,0.08); }
 .band-inner { max-width: 1120px; margin: 0 auto; }
 .sec-label {
@@ -261,7 +242,6 @@ h1 {
 }
 @media (max-width: 700px) {
   .hero { padding-top: 28px; }
-  header.top { flex-direction: column; gap: 14px; }
 }
 @media (prefers-reduced-motion: reduce) {
   * { animation: none !important; transition: none !important; }
@@ -293,15 +273,10 @@ h1 {
 <div class="beam r"></div>
 
 <div class="wrap">
-  <header class="top">
-    <div class="crest">
-      <span class="live-dot" aria-hidden="true"></span>
-      <span data-i18n="nav.crest">Open to AI &amp; Rails engagements</span>
-    </div>
-    <nav class="top-links">
-      <a class="chip book" href="https://calendly.com/design-navid/30min" target="_blank" rel="noopener" data-i18n="cta.book">Book a call</a>
-    </nav>
-  </header>
+  <a class="floating-book" href="https://calendly.com/design-navid/30min" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24"><path d="M7 2v2H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V6a2 2 0 00-2-2h-2V2h-2v2H9V2H7zm12 8v10H5V10h14zM5 8V6h14v2H5zm3 5h3v3H8v-3z"/></svg>
+    <span data-i18n="cta.book">Book a call</span>
+  </a>
 
   <div class="lang-flags">
     <button class="flag-btn" type="button" data-lang="fr" aria-label="Français" title="Français">🇫🇷</button>
@@ -435,7 +410,6 @@ h1 {
     var dicts = {
       en: {
         "meta.title": "Navid Emad \u2014 Ruby on Rails & Agentic AI Engineer",
-        "nav.crest": "Open to AI & Rails engagements",
         "cta.book": "Book a call",
         "cta.more": "Learn more",
         "cta.email": "Email me",
@@ -477,7 +451,6 @@ h1 {
       },
       fr: {
         "meta.title": "Navid Emad \u2014 Expert Ruby on Rails & IA agentique",
-        "nav.crest": "Disponible pour missions IA & Rails",
         "cta.book": "R\u00e9server un appel",
         "cta.more": "En savoir plus",
         "cta.email": "\u00c9crivez-moi",
@@ -598,9 +571,9 @@ h1 {
   }, { threshold: 0.15 });
   document.querySelectorAll(".reveal").forEach(function (el) { io.observe(el); });
 
-  /* ================= fixed footer bar ================= */
+  /* ================= floating book button ================= */
   // Slides in once you scroll, slides away when you reach the contact section.
-  var topbar = document.querySelector("header.top");
+  var topbar = document.querySelector(".floating-book");
   var contactSec = document.getElementById("contact");
   function updateBar() {
     var reachedContact = contactSec.getBoundingClientRect().top < window.innerHeight * 0.35;
