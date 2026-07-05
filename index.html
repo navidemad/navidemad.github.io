@@ -175,6 +175,7 @@ h1 {
 .btn.primary:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(53, 208, 127, 0.4); }
 .btn.ghost { background: rgba(13, 20, 38, 0.6); color: var(--ink); border: 1px solid var(--panel-edge); }
 .btn.ghost:hover { border-color: rgba(232,194,104,0.5); transform: translateY(-2px); }
+.cta-note { margin-top: 12px; font-size: 13px; color: var(--ink-faint); text-align: center; }
 
 
 /* ---------- below-the-fold bands ---------- */
@@ -215,6 +216,7 @@ h1 {
 .svc .ico-lg { font-size: 26px; margin-bottom: 14px; display: block; }
 .svc h3 { font-family: "Barlow Condensed", sans-serif; font-weight: 700; font-size: 21px; letter-spacing: .5px; margin-bottom: 10px; text-wrap: balance; }
 .svc p { color: var(--ink-dim); font-size: 14.5px; text-wrap: balance; }
+.bridge { color: var(--ink-dim); font-size: 16px; line-height: 1.65; margin: 40px auto 0; max-width: 680px; text-align: center; text-wrap: balance; }
 .band.contact { text-align: center; border-bottom: none; padding-bottom: clamp(80px, 12vh, 140px); }
 .band.contact .cta-row { justify-content: center; }
 .band.contact .cta-row.socials { margin-top: 16px; gap: 12px; }
@@ -242,7 +244,7 @@ h1 {
   min-height: calc(14px + 2 * 1.5 * 12.5px); /* reserve two lines so dividers align across cards */
   display: flex; align-items: center; justify-content: center; text-wrap: balance;
 }
-.proc { display: grid; grid-template-columns: repeat(3, 1fr); max-width: 980px; margin: 16px auto 44px; }
+.proc { display: grid; grid-template-columns: repeat(3, 1fr); max-width: 980px; margin: 16px auto 28px; }
 .proc .step {
   position: relative; display: flex; flex-direction: column; align-items: center; gap: 12px;
   padding: 0 16px; font-size: 14.5px; color: var(--ink-dim); text-align: center; text-wrap: balance;
@@ -257,6 +259,11 @@ h1 {
   content: ""; position: absolute; top: 23px; height: 1px;
   left: calc(-50% + 39px); right: calc(50% + 39px);
   background: linear-gradient(90deg, rgba(232, 194, 104, 0.12), rgba(232, 194, 104, 0.45), rgba(232, 194, 104, 0.12));
+}
+.proc .step-sub { font-size: 12.5px; color: var(--ink-faint); margin-top: -6px; }
+.own-note {
+  font-family: "JetBrains Mono", monospace; font-size: 12.5px; letter-spacing: .3px;
+  color: var(--ink-faint); text-align: center; margin: 0 auto 36px; max-width: 640px; text-wrap: balance;
 }
 @media (max-width: 700px) {
   .proc { grid-template-columns: 1fr; gap: 26px; }
@@ -315,8 +322,8 @@ h1 {
   <section class="hero">
     <div class="hero-copy">
       <p class="avatar-name" data-i18n="hero.greeting">Hey there, I’m Navid 👋</p>
-      <h1 data-i18n-html="hero.title">Ship your roadmap.<br>Make AI pay off.</h1>
-      <p class="scout-line" data-i18n-html="hero.intro">Lead Ruby on Rails Developer with <span id="years-inline">12</span> years of experience. I help CTOs and founders build business-critical web products and deploy concrete agentic AI workflows that actually reach production.</p>
+      <h1 data-i18n-html="hero.title">Your roadmap, shipped.<br>Your AI in prod. Not in demos.</h1>
+      <p class="scout-line" data-i18n-html="hero.intro">Lead Ruby on Rails Developer for <span id="years-inline">12</span> years. I help CTOs and founders ship business-critical features on time — and turn “we should do something with AI” into agents wired to their tools, actually running in production.</p>
       <div class="trust" data-i18n-html="hero.trust"><b>✓ Available</b> · reply within 24 h · remote or Paris</div>
       <a class="oss-line" href="https://github.com/search?q=is%3Apr+author%3Anavidemad+is%3Amerged+-user%3Anavidemad+-user%3Ayespark&type=pullrequests" target="_blank" rel="noopener"><span aria-hidden="true">⭐</span> <span id="oss-inline"><b>127</b> merged open-source PRs — Rails core, Datadog, Lightpanda…</span></a>
       <div class="cta-row">
@@ -325,6 +332,7 @@ h1 {
           <span data-i18n="cta.book">Schedule a call</span>
         </a>
       </div>
+      <p class="cta-note" data-i18n="hero.ctanote">You leave with a frank opinion — even if we never work together.</p>
       <div class="cta-row socials">
         <a class="btn ghost icon" href="https://www.linkedin.com/in/navidemad" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn">
           <svg viewBox="0 0 24 24"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.2 8h4.6v14.8H.2V8zm7.7 0h4.4v2h.06c.6-1.15 2.1-2.36 4.3-2.36 4.6 0 5.44 3.03 5.44 6.96v8.2h-4.6v-7.3c0-1.74-.03-3.98-2.42-3.98-2.42 0-2.8 1.9-2.8 3.86v7.42H7.9V8z"/></svg>
@@ -337,7 +345,7 @@ h1 {
         </a>
       </div>
       <div class="cta-row more-row">
-        <a class="btn ghost" href="#services"><span data-i18n="cta.more">Find out more</span> ↓</a>
+        <a class="btn ghost" href="#pains"><span data-i18n="cta.more">Find out more</span> ↓</a>
       </div>
     </div>
   </section>
@@ -345,44 +353,96 @@ h1 {
 
 </div>
 
+<section class="band" id="pains">
+  <div class="band-inner reveal">
+    <div class="sec-label"><span data-i18n="pains.label">The problem</span></div>
+    <h2 class="sec-title" data-i18n="pains.title">Sound familiar?</h2>
+    <p class="sec-sub" data-i18n="pains.sub">The three situations people call me for.</p>
+    <div class="svc-grid">
+      <div class="svc">
+        <span class="ico-lg" aria-hidden="true">🔥</span>
+        <h3 data-i18n="pains.roadmap.title">The roadmap keeps slipping</h3>
+        <p data-i18n="pains.roadmap.desc">Every sprint ships less than the last. Debt piles up, senior devs are impossible to hire, and the board wants dates.</p>
+      </div>
+      <div class="svc">
+        <span class="ico-lg" aria-hidden="true">🤖</span>
+        <h3 data-i18n="pains.poc.title">AI never leaves the POC stage</h3>
+        <p data-i18n="pains.poc.desc">Two impressive internal demos… and nothing changed in operations. The AI budget looks more and more like spend with no return.</p>
+      </div>
+      <div class="svc">
+        <span class="ico-lg" aria-hidden="true">📉</span>
+        <h3 data-i18n="pains.team.title">The team has hit a ceiling</h3>
+        <p data-i18n="pains.team.desc">Code goes in every direction, reviews stay shallow, and nobody has time to level people up while still shipping.</p>
+      </div>
+    </div>
+    <p class="bridge" data-i18n="pains.bridge">Three symptoms of the same problem: you’re missing a senior who ships and who structures. That’s exactly the role I take on — as a freelancer.</p>
+  </div>
+</section>
+
 <section class="band" id="services">
   <div class="band-inner reveal">
     <div class="sec-label"><span data-i18n="services.label">Services</span></div>
-    <h2 class="sec-title" data-i18n="services.title">Three ways I can help you</h2>
+    <h2 class="sec-title" data-i18n="services.title">Three ways we can work together</h2>
+    <p class="sec-sub" data-i18n="services.sub">A precise need, a clear scope, a single point of contact.</p>
     <div class="svc-grid">
       <div class="svc">
         <span class="ico-lg" aria-hidden="true">🤖</span>
-        <h3 data-i18n="services.ai.title">AI agents that pay for themselves</h3>
-        <p data-i18n="services.ai.desc">From audit to agents wired into your tools — running in production.</p>
+        <h3 data-i18n="services.ai.title">From “we should do AI” to agents in production</h3>
+        <p data-i18n="services.ai.desc">I find the profitable use cases and wire agents into your existing tools. No re-platforming.</p>
         <ul class="svc-list">
-          <li data-i18n="services.ai.b1">Audit of your processes and use cases</li>
-          <li data-i18n="services.ai.b2">Agents and workflows wired to your tools</li>
+          <li data-i18n="services.ai.b1">Audit: where AI pays off, where it costs</li>
+          <li data-i18n="services.ai.b2">Agents wired into your business tools</li>
           <li data-i18n="services.ai.b3">Claude, MCP, Skills, GitHub Automation</li>
-          <li data-i18n="services.ai.b4">Hands-on training for your teams</li>
+          <li data-i18n="services.ai.b4">Training that makes your teams autonomous</li>
         </ul>
-        <p class="ideal" data-i18n="services.ai.for">For: leaders who want concrete results, not a watchlist.</p>
+        <p class="ideal" data-i18n="services.ai.for">For: leaders who want measurable ROI, not a watchlist.</p>
       </div>
       <div class="svc">
         <span class="ico-lg" aria-hidden="true">🚀</span>
-        <h3 data-i18n="services.product.title">Your product, shipped end to end</h3>
-        <p data-i18n="services.product.desc">A single senior contact from first commit to production.</p>
+        <h3 data-i18n="services.product.title">Your product shipped end to end, by one senior</h3>
+        <p data-i18n="services.product.desc">From first commit to production: a demo every week, a single contact.</p>
         <ul class="svc-list">
-          <li data-i18n="services.product.b1">Architecture, development, production deployment</li>
+          <li data-i18n="services.product.b1">Rails architecture a future team can take over</li>
           <li data-i18n="services.product.b2">Interface, payments, emails — all included</li>
-          <li data-i18n="services.product.b3">Monitoring and maintenance after launch</li>
+          <li data-i18n="services.product.b3">Monitoring after launch: I don’t vanish at go-live</li>
         </ul>
-        <p class="ideal" data-i18n="services.product.for">For: founders who want a reliable product, shipped fast.</p>
+        <p class="ideal" data-i18n="services.product.for">For: founders who want a reliable product, fast, without managing a team.</p>
       </div>
       <div class="svc">
         <span class="ico-lg" aria-hidden="true">🧭</span>
-        <h3 data-i18n="services.lead.title">A lead who levels up your whole team</h3>
-        <p data-i18n="services.lead.desc">Architecture, reviews, mentoring — the bar rises and stays up.</p>
+        <h3 data-i18n="services.lead.title">A lead who raises the bar — for good</h3>
+        <p data-i18n="services.lead.desc">My goal is to make myself unnecessary: when I leave, the standards stay.</p>
         <ul class="svc-list">
-          <li data-i18n="services.lead.b1">Technical direction and architecture choices</li>
-          <li data-i18n="services.lead.b2">Code reviews and shared team standards</li>
-          <li data-i18n="services.lead.b3">Mentoring and team upskilling</li>
+          <li data-i18n="services.lead.b1">Technical direction and reasoned trade-offs</li>
+          <li data-i18n="services.lead.b2">Code reviews and written, shared standards</li>
+          <li data-i18n="services.lead.b3">One-on-one mentoring, junior to senior</li>
         </ul>
-        <p class="ideal" data-i18n="services.lead.for">For: teams aiming for the next level.</p>
+        <p class="ideal" data-i18n="services.lead.for">For: teams that want to reach the next level and stay there.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="why">
+  <div class="band-inner reveal">
+    <div class="sec-label"><span data-i18n="why.label">Why me</span></div>
+    <h2 class="sec-title" data-i18n="why.title">Why trust me</h2>
+    <p class="sec-sub" data-i18n="why.sub">Three differences from a typical senior freelancer.</p>
+    <div class="svc-grid">
+      <div class="svc">
+        <span class="ico-lg" aria-hidden="true">⭐</span>
+        <h3 data-i18n="why.oss.title">My code is public — and verifiable</h3>
+        <p data-i18n="why.oss.desc">127 merged PRs across 18 open-source projects, including Rails core, Datadog and Lightpanda. My level is two clicks away, reviewed by the most demanding maintainers in the ecosystem.</p>
+      </div>
+      <div class="svc">
+        <span class="ico-lg" aria-hidden="true">⚙️</span>
+        <h3 data-i18n="why.prod.title">AI in production, not in slides</h3>
+        <p data-i18n="why.prod.desc">Agents wired to real business tools, MCP workflows, GitHub automation — with the reliability and cost constraints a demo never faces.</p>
+      </div>
+      <div class="svc">
+        <span class="ico-lg" aria-hidden="true">🎯</span>
+        <h3 data-i18n="why.no.title">I say no</h3>
+        <p data-i18n="why.no.desc">To an unprofitable AI use case, to a feature that shouldn’t exist, to a project where I’m not the right fit. You hire me for my judgment as much as my code.</p>
       </div>
     </div>
   </div>
@@ -395,10 +455,11 @@ h1 {
     <h2 class="sec-title" data-i18n="contact.title">Tell me what you’re trying to ship</h2>
     <p class="sec-sub" data-i18n="contact.desc">Describe what you need in a few short lines. I reply within 24 hours, with total frankness: what I can do, how I would approach it — and if I’m not the best person for the job, I’ll tell you clearly.</p>
     <div class="proc">
-      <div class="step"><span class="n">01</span><span data-i18n="contact.step1">Free 30-minute intro call</span></div>
-      <div class="step"><span class="n">02</span><span data-i18n="contact.step2">Clear proposal within 48 h</span></div>
-      <div class="step"><span class="n">03</span><span data-i18n="contact.step3">Iterative delivery, a demo every week</span></div>
+      <div class="step"><span class="n">01</span><span data-i18n="contact.step1">Free 30-minute intro call</span><span class="step-sub" data-i18n="contact.step1sub">Wrong fit? I’ll tell you by the end of the call.</span></div>
+      <div class="step"><span class="n">02</span><span data-i18n="contact.step2">Written proposal within 48 h</span><span class="step-sub" data-i18n="contact.step2sub">Scope, milestones, budget — no vague quote.</span></div>
+      <div class="step"><span class="n">03</span><span data-i18n="contact.step3">Iterative delivery, a demo every week</span><span class="step-sub" data-i18n="contact.step3sub">Priorities change? We adjust at the next milestone.</span></div>
     </div>
+    <p class="own-note" data-i18n="contact.own">The code is yours from day one: repository under your control, documentation included, no dependency on me.</p>
     <div class="cta-row">
       <a class="btn primary" href="https://calendly.com/design-navid/30min" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24"><path d="M7 2v2H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V6a2 2 0 00-2-2h-2V2h-2v2H9V2H7zm12 8v10H5V10h14zM5 8V6h14v2H5zm3 5h3v3H8v-3z"/></svg>
@@ -441,75 +502,125 @@ h1 {
         "meta.title": "Navid Emad \u2014 Ruby on Rails & Agentic AI Engineer",
         "cta.book": "Schedule a call",
         "cta.more": "Find out more",
-        "hero.title": "Ship your roadmap.<br>Make AI pay off.",
+        "hero.title": "Your roadmap, shipped.<br>Your AI in prod. Not in demos.",
         "hero.greeting": "Hey there, I\u2019m Navid \ud83d\udc4b",
-        "hero.intro": "Lead Ruby on Rails Developer with <span id=\"years-inline\">12</span> years of experience. I help CTOs and founders build business-critical web products and deploy concrete agentic AI workflows that actually reach production.",
+        "hero.intro": "Lead Ruby on Rails Developer for <span id=\"years-inline\">12</span> years. I help CTOs and founders ship business-critical features on time \u2014 and turn \u201cwe should do something with AI\u201d into agents wired to their tools, actually running in production.",
         "hero.trust": "<b>\u2713 Available</b> \u00b7 reply within 24\u00a0h \u00b7 remote or Paris",
+        "hero.ctanote": "You leave with a frank opinion \u2014 even if we never work together.",
         "hero.oss": function (s) { return "<b>" + s.prs + "</b> merged open-source PRs \u2014 Rails core, Datadog, Lightpanda\u2026"; },
+        "pains.label": "The problem",
+        "pains.title": "Sound familiar?",
+        "pains.sub": "The three situations people call me for.",
+        "pains.roadmap.title": "The roadmap keeps slipping",
+        "pains.roadmap.desc": "Every sprint ships less than the last. Debt piles up, senior devs are impossible to hire, and the board wants dates.",
+        "pains.poc.title": "AI never leaves the POC stage",
+        "pains.poc.desc": "Two impressive internal demos\u2026 and nothing changed in operations. The AI budget looks more and more like spend with no return.",
+        "pains.team.title": "The team has hit a ceiling",
+        "pains.team.desc": "Code goes in every direction, reviews stay shallow, and nobody has time to level people up while still shipping.",
+        "pains.bridge": "Three symptoms of the same problem: you\u2019re missing a senior who ships and who structures. That\u2019s exactly the role I take on \u2014 as a freelancer.",
         "services.label": "Services",
-        "services.title": "Three ways I can help you",
-        "services.ai.title": "AI agents that pay for themselves",
-        "services.ai.desc": "From audit to agents wired into your tools \u2014 running in production.",
-        "services.ai.b1": "Audit of your processes and use cases",
-        "services.ai.b2": "Agents and workflows wired to your tools",
+        "services.title": "Three ways we can work together",
+        "services.sub": "A precise need, a clear scope, a single point of contact.",
+        "services.ai.title": "From \u201cwe should do AI\u201d to agents in production",
+        "services.ai.desc": "I find the profitable use cases and wire agents into your existing tools. No re-platforming.",
+        "services.ai.b1": "Audit: where AI pays off, where it costs",
+        "services.ai.b2": "Agents wired into your business tools",
         "services.ai.b3": "Claude, MCP, Skills, GitHub Automation",
-        "services.ai.b4": "Hands-on training for your teams",
-        "services.ai.for": "For: leaders who want concrete results, not a watchlist.",
-        "services.product.title": "Your product, shipped end to end",
-        "services.product.desc": "A single senior contact from first commit to production.",
-        "services.product.b1": "Architecture, development, production deployment",
+        "services.ai.b4": "Training that makes your teams autonomous",
+        "services.ai.for": "For: leaders who want measurable ROI, not a watchlist.",
+        "services.product.title": "Your product shipped end to end, by one senior",
+        "services.product.desc": "From first commit to production: a demo every week, a single contact.",
+        "services.product.b1": "Rails architecture a future team can take over",
         "services.product.b2": "Interface, payments, emails \u2014 all included",
-        "services.product.b3": "Monitoring and maintenance after launch",
-        "services.product.for": "For: founders who want a reliable product, shipped fast.",
-        "services.lead.title": "A lead who levels up your whole team",
-        "services.lead.desc": "Architecture, reviews, mentoring \u2014 the bar rises and stays up.",
-        "services.lead.b1": "Technical direction and architecture choices",
-        "services.lead.b2": "Code reviews and shared team standards",
-        "services.lead.b3": "Mentoring and team upskilling",
-        "services.lead.for": "For: teams aiming for the next level.",
+        "services.product.b3": "Monitoring after launch: I don\u2019t vanish at go-live",
+        "services.product.for": "For: founders who want a reliable product, fast, without managing a team.",
+        "services.lead.title": "A lead who raises the bar \u2014 for good",
+        "services.lead.desc": "My goal is to make myself unnecessary: when I leave, the standards stay.",
+        "services.lead.b1": "Technical direction and reasoned trade-offs",
+        "services.lead.b2": "Code reviews and written, shared standards",
+        "services.lead.b3": "One-on-one mentoring, junior to senior",
+        "services.lead.for": "For: teams that want to reach the next level and stay there.",
+        "why.label": "Why me",
+        "why.title": "Why trust me",
+        "why.sub": "Three differences from a typical senior freelancer.",
+        "why.oss.title": "My code is public \u2014 and verifiable",
+        "why.oss.desc": "127 merged PRs across 18 open-source projects, including Rails core, Datadog and Lightpanda. My level is two clicks away, reviewed by the most demanding maintainers in the ecosystem.",
+        "why.prod.title": "AI in production, not in slides",
+        "why.prod.desc": "Agents wired to real business tools, MCP workflows, GitHub automation \u2014 with the reliability and cost constraints a demo never faces.",
+        "why.no.title": "I say no",
+        "why.no.desc": "To an unprofitable AI use case, to a feature that shouldn\u2019t exist, to a project where I\u2019m not the right fit. You hire me for my judgment as much as my code.",
         "contact.label": "Contact",
         "contact.title": "Tell me what you\u2019re trying to ship",
         "contact.desc": "Describe what you need in a few short lines. I reply within 24\u00a0hours, with total frankness: what I can do, how I would approach it \u2014 and if I\u2019m not the best person for the job, I\u2019ll tell you clearly.",
         "contact.step1": "Free 30-minute intro call",
-        "contact.step2": "Clear proposal within 48\u00a0h",
-        "contact.step3": "Iterative delivery, a demo every week"
+        "contact.step1sub": "Wrong fit? I\u2019ll tell you by the end of the call.",
+        "contact.step2": "Written proposal within 48\u00a0h",
+        "contact.step2sub": "Scope, milestones, budget \u2014 no vague quote.",
+        "contact.step3": "Iterative delivery, a demo every week",
+        "contact.step3sub": "Priorities change? We adjust at the next milestone.",
+        "contact.own": "The code is yours from day one: repository under your control, documentation included, no dependency on me."
       },
       fr: {
         "meta.title": "Navid Emad \u2014 Expert Ruby on Rails & IA agentique",
         "cta.book": "R\u00e9server un appel",
         "cta.more": "En savoir plus",
-        "hero.title": "Livrez votre roadmap.<br>Rentabilisez l\u2019IA.",
+        "hero.title": "Votre roadmap, livr\u00e9e.<br>Votre IA en prod. Pas en d\u00e9mo.",
         "hero.greeting": "Salut, moi c\u2019est Navid \ud83d\udc4b",
-        "hero.intro": "Lead Developer Ruby on Rails avec <span id=\"years-inline\">12</span> ans d\u2019exp\u00e9rience. J\u2019aide les CTOs et fondateurs \u00e0 construire des produits web critiques et \u00e0 d\u00e9ployer des workflows IA agentiques concrets en production.",
+        "hero.intro": "Lead Developer Ruby on Rails depuis <span id=\"years-inline\">12</span> ans. J\u2019aide les CTOs et fondateurs \u00e0 sortir leurs features critiques dans les d\u00e9lais \u2014 et \u00e0 transformer \u00ab\u00a0on devrait faire de l\u2019IA\u00a0\u00bb en agents branch\u00e9s sur leurs outils, qui tournent r\u00e9ellement en production.",
         "hero.trust": "<b>\u2713 Disponible</b> \u00b7 r\u00e9ponse sous 24\u00a0h \u00b7 remote ou Paris",
+        "hero.ctanote": "Vous repartez avec un avis franc \u2014 m\u00eame si on ne travaille pas ensemble.",
         "hero.oss": function (s) { return "<b>" + s.prs + "</b> PRs open source fusionn\u00e9es \u2014 Rails core, Datadog, Lightpanda\u2026"; },
+        "pains.label": "Le probl\u00e8me",
+        "pains.title": "\u00c7a vous parle ?",
+        "pains.sub": "Les trois situations pour lesquelles on m\u2019appelle.",
+        "pains.roadmap.title": "La roadmap glisse",
+        "pains.roadmap.desc": "Chaque sprint livre moins que le pr\u00e9c\u00e9dent. La dette s\u2019accumule, les devs seniors sont introuvables, et le board demande des dates.",
+        "pains.poc.title": "L\u2019IA reste au stade du POC",
+        "pains.poc.desc": "Deux d\u00e9mos internes impressionnantes\u2026 et rien n\u2019a chang\u00e9 dans les op\u00e9rations. Le budget IA ressemble de plus en plus \u00e0 une d\u00e9pense sans retour.",
+        "pains.team.title": "L\u2019\u00e9quipe plafonne",
+        "pains.team.desc": "Le code part dans tous les sens, les revues restent superficielles, et personne n\u2019a le temps de faire monter l\u2019\u00e9quipe tout en livrant.",
+        "pains.bridge": "Trois sympt\u00f4mes du m\u00eame probl\u00e8me : il vous manque un senior qui livre et qui structure. C\u2019est exactement le r\u00f4le que je prends \u2014 en freelance.",
         "services.label": "Services",
-        "services.title": "Trois fa\u00e7ons de vous aider",
-        "services.ai.title": "Des agents IA qui se rentabilisent",
-        "services.ai.desc": "De l\u2019audit aux agents branch\u00e9s sur vos outils \u2014 en production.",
-        "services.ai.b1": "Audit de vos processus et cas d\u2019usage",
-        "services.ai.b2": "Agents et workflows branch\u00e9s \u00e0 vos outils",
+        "services.title": "Trois fa\u00e7ons de travailler ensemble",
+        "services.sub": "Un besoin pr\u00e9cis, un p\u00e9rim\u00e8tre clair, un seul interlocuteur.",
+        "services.ai.title": "De \u00ab\u00a0on devrait faire de l\u2019IA\u00a0\u00bb aux agents en production",
+        "services.ai.desc": "J\u2019identifie les cas d\u2019usage rentables et je branche les agents sur vos outils existants. Pas de refonte.",
+        "services.ai.b1": "Audit : o\u00f9 l\u2019IA rapporte, o\u00f9 elle co\u00fbte",
+        "services.ai.b2": "Agents branch\u00e9s sur vos outils m\u00e9tier",
         "services.ai.b3": "Claude, MCP, Skills, GitHub Automation",
-        "services.ai.b4": "Formation pratique de vos \u00e9quipes",
-        "services.ai.for": "Pour : dirigeants qui veulent des r\u00e9sultats, pas une veille.",
-        "services.product.title": "Votre produit, livr\u00e9 de A \u00e0 Z",
-        "services.product.desc": "Un seul interlocuteur senior, du premier commit \u00e0 la prod.",
-        "services.product.b1": "Architecture, d\u00e9veloppement, mise en production",
+        "services.ai.b4": "Formation pour rendre vos \u00e9quipes autonomes",
+        "services.ai.for": "Pour : dirigeants qui veulent un ROI mesurable, pas une veille.",
+        "services.product.title": "Votre produit livr\u00e9 de A \u00e0 Z, par un seul senior",
+        "services.product.desc": "Du premier commit \u00e0 la prod : une d\u00e9mo chaque semaine, un seul interlocuteur.",
+        "services.product.b1": "Architecture Rails qu\u2019une future \u00e9quipe peut reprendre",
         "services.product.b2": "Interface, paiements, e-mails \u2014 tout inclus",
-        "services.product.b3": "Supervision et maintenance apr\u00e8s lancement",
-        "services.product.for": "Pour : entrepreneurs qui veulent un produit fiable, vite.",
-        "services.lead.title": "Un lead qui fait monter votre \u00e9quipe",
-        "services.lead.desc": "Architecture, revues, mentorat \u2014 le niveau monte et reste haut.",
-        "services.lead.b1": "Direction technique et choix d\u2019architecture",
-        "services.lead.b2": "Revues de code et standards d\u2019\u00e9quipe",
-        "services.lead.b3": "Mentorat et mont\u00e9e en comp\u00e9tence",
-        "services.lead.for": "Pour : \u00e9quipes qui veulent passer un cap.",
+        "services.product.b3": "Supervision apr\u00e8s lancement : je ne disparais pas",
+        "services.product.for": "Pour : fondateurs qui veulent un produit fiable, vite, sans g\u00e9rer une \u00e9quipe.",
+        "services.lead.title": "Un lead qui \u00e9l\u00e8ve le niveau \u2014 durablement",
+        "services.lead.desc": "Mon objectif : me rendre inutile. Quand je pars, les standards restent.",
+        "services.lead.b1": "Direction technique et arbitrages argument\u00e9s",
+        "services.lead.b2": "Revues de code et standards \u00e9crits, partag\u00e9s",
+        "services.lead.b3": "Mentorat individuel, du junior au senior",
+        "services.lead.for": "Pour : \u00e9quipes qui veulent passer un cap et le tenir.",
+        "why.label": "Pourquoi moi",
+        "why.title": "Pourquoi me faire confiance",
+        "why.sub": "Trois diff\u00e9rences avec un freelance senior classique.",
+        "why.oss.title": "Mon code est public \u2014 et v\u00e9rifiable",
+        "why.oss.desc": "127 PRs fusionn\u00e9es dans 18 projets open source, dont Rails core, Datadog et Lightpanda. Mon niveau se v\u00e9rifie en deux clics, revu par les mainteneurs les plus exigeants de l\u2019\u00e9cosyst\u00e8me.",
+        "why.prod.title": "De l\u2019IA en production, pas en slides",
+        "why.prod.desc": "Agents branch\u00e9s sur des outils m\u00e9tier r\u00e9els, workflows MCP, automatisations GitHub \u2014 avec les contraintes de fiabilit\u00e9 et de co\u00fbt qu\u2019une d\u00e9mo ne conna\u00eet pas.",
+        "why.no.title": "Je dis non",
+        "why.no.desc": "\u00c0 un cas d\u2019usage IA non rentable, \u00e0 une feature qui ne devrait pas exister, \u00e0 une mission o\u00f9 je ne suis pas le bon profil. Vous m\u2019engagez pour mon jugement autant que pour mon code.",
         "contact.label": "Contact",
         "contact.title": "Dites-moi ce que vous voulez livrer",
         "contact.desc": "D\u00e9crivez-moi votre besoin en quelques lignes. Je r\u00e9ponds sous 24\u00a0h avec franchise : ce que je peux faire, comment je m\u2019y prendrais \u2014 et si je ne suis pas la bonne personne pour le job, je vous le dirai clairement.",
         "contact.step1": "Appel de 30 min \u2014 gratuit",
-        "contact.step2": "Proposition claire sous 48\u00a0h",
-        "contact.step3": "Livraison it\u00e9rative, d\u00e9mo chaque semaine"
+        "contact.step1sub": "Mauvais fit ? Je vous le dis en fin d\u2019appel.",
+        "contact.step2": "Proposition \u00e9crite sous 48\u00a0h",
+        "contact.step2sub": "P\u00e9rim\u00e8tre, jalons, budget \u2014 pas de devis flou.",
+        "contact.step3": "Livraison it\u00e9rative, d\u00e9mo chaque semaine",
+        "contact.step3sub": "Les priorit\u00e9s changent ? On ajuste au jalon suivant.",
+        "contact.own": "Le code vous appartient d\u00e8s le premier jour : d\u00e9p\u00f4t chez vous, documentation incluse, aucune d\u00e9pendance \u00e0 ma personne."
       }
     };
 
