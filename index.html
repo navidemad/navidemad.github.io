@@ -37,7 +37,7 @@
   --panel: rgba(17, 26, 48, 0.55);
   --panel-edge: rgba(122, 152, 214, 0.14);
   --ink: #e8edf8;
-  --ink-dim: #8b97b4;
+  --ink-dim: #9aa7c4;
   --ink-faint: #5a6480;
   --gold: #e8c268;
   --gold-2: #f6e3a1;
@@ -47,6 +47,8 @@
   --accent: #7aa2ff;
 }
 * { margin: 0; padding: 0; box-sizing: border-box; }
+:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+::selection { background: rgba(232,194,104,.28); }
 html { scroll-behavior: smooth; scroll-snap-type: y proximity; }
 body {
   background: var(--bg);
@@ -198,7 +200,7 @@ h1 {
   background: linear-gradient(180deg, #ffffff 30%, #aab8d8);
   -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
 }
-.sec-sub { color: var(--ink-dim); font-size: 17.5px; line-height: 1.65; margin: 0 auto 40px; max-width: 680px; text-align: center; }
+.sec-sub { color: var(--ink-dim); font-size: 17.5px; line-height: 1.7; margin: 0 auto 40px; max-width: 680px; text-align: center; }
 .svc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 40px; }
 .svc {
   position: relative; background: var(--panel); border: 1px solid var(--panel-edge); border-radius: 18px;
@@ -218,21 +220,38 @@ h1 {
 .svc p { color: var(--ink-dim); font-size: 14.5px; text-wrap: balance; }
 .svc-grid.two { grid-template-columns: repeat(2, 1fr); max-width: 940px; margin-left: auto; margin-right: auto; }
 .prose { max-width: 720px; margin: 0 auto; text-align: left; }
-.prose p { color: var(--ink-dim); font-size: 16px; line-height: 1.7; margin-bottom: 16px; }
+.prose p { color: var(--ink-dim); font-size: 17px; line-height: 1.75; margin-bottom: 16px; }
 .prose p:last-child { margin-bottom: 0; }
 .stat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; max-width: 940px; margin: 40px auto 0; }
 .stat { background: var(--panel); border: 1px solid var(--panel-edge); border-radius: 18px; padding: 26px 20px; text-align: center; backdrop-filter: blur(8px); }
 .stat .num { display: block; font-family: "Bebas Neue", sans-serif; font-size: 46px; letter-spacing: 1px; color: var(--gold); line-height: 1; }
-.stat .lbl { display: block; margin-top: 10px; font-family: "JetBrains Mono", monospace; font-size: 12px; letter-spacing: .4px; color: var(--ink-dim); }
+.stat .lbl { display: block; margin-top: 10px; font-family: "JetBrains Mono", monospace; font-size: 12.5px; letter-spacing: .4px; color: var(--ink-dim); }
 .tele-verify { text-align: center; margin-top: 20px; font-family: "JetBrains Mono", monospace; font-size: 12.5px; }
 .tele-verify a { color: var(--ink-dim); text-decoration: none; border-bottom: 1px dotted var(--ink-faint); padding-bottom: 1px; }
 .tele-verify a:hover { color: var(--ink); border-bottom-color: var(--gold); }
-.tr-list { max-width: 780px; margin: 40px auto 0; display: flex; flex-direction: column; gap: 28px; text-align: left; }
+.tr-list { max-width: 780px; margin: 40px auto 0; display: flex; flex-direction: column; gap: 16px; text-align: left; }
+.tr {
+  padding: 20px 24px;
+  background: var(--panel);
+  border: 1px solid var(--panel-edge);
+  border-left: 3px solid var(--gold-deep);
+  border-radius: 14px;
+  backdrop-filter: blur(8px);
+  transition: border-color .25s;
+}
+.tr:hover { border-left-color: var(--gold); border-color: rgba(232,194,104,.3); }
 .tr h3 { font-family: "Barlow Condensed", sans-serif; font-weight: 700; font-size: 20px; letter-spacing: .4px; }
 .tr h3 a { color: var(--ink); text-decoration: none; border-bottom: 1px dotted var(--ink-faint); padding-bottom: 1px; }
 .tr h3 a:hover { border-bottom-color: var(--gold); }
 .tr .meta { font-family: "JetBrains Mono", monospace; font-size: 12px; letter-spacing: .3px; color: var(--gold); margin: 4px 0 6px; }
 .tr p { color: var(--ink-dim); font-size: 14.5px; line-height: 1.6; }
+.tr .proof {
+  display: inline-block; margin-top: 8px;
+  font-family: "JetBrains Mono", monospace; font-size: 12px;
+  color: var(--ink-dim); text-decoration: none;
+  border-bottom: 1px dotted var(--ink-faint); padding-bottom: 1px;
+}
+.tr .proof:hover { color: var(--gold); border-bottom-color: var(--gold); }
 @media (max-width: 700px) { .stat-grid { grid-template-columns: 1fr; } }
 .band.contact { text-align: center; border-bottom: none; padding-bottom: clamp(80px, 12vh, 140px); }
 .band.contact .cta-row { justify-content: center; }
@@ -308,7 +327,7 @@ h1 {
       <h1 data-i18n-html="hero.title">Lead Rails Developer.<br>Agentic AI Engineer.</h1>
       <p class="scout-line" data-i18n-html="hero.intro">I ship production Rails systems and build AI agents that survive contact with real infrastructure. <span class="years-dyn">12</span> years in, still writing code every day.</p>
       <div class="trust" data-i18n-html="hero.trust"><b>✓ Open to select freelance work</b> · Paris / remote · reply within 24 h</div>
-      <a class="oss-line" href="https://github.com/search?q=is%3Apr+author%3Anavidemad+is%3Amerged+-user%3Anavidemad+-user%3Ayespark&type=pullrequests" target="_blank" rel="noopener"><span aria-hidden="true">⭐</span> <span id="oss-inline"><b>127</b> merged open-source PRs — Rails core, Datadog, Lightpanda…</span></a>
+      <a class="oss-line" href="https://github.com/search?q=is%3Apr+author%3Anavidemad+is%3Amerged+-user%3Anavidemad+-user%3Ayespark&type=pullrequests" target="_blank" rel="noopener"><span aria-hidden="true">⭐</span> <span id="oss-inline"><b>127</b> merged OSS PRs — rails/rails, Datadog dd-trace-rb, Lightpanda browser engine</span></a>
       <div class="cta-row">
         <a class="btn primary" href="https://calendly.com/design-navid/30min" target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24"><path d="M7 2v2H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V6a2 2 0 00-2-2h-2V2h-2v2H9V2H7zm12 8v10H5V10h14zM5 8V6h14v2H5zm3 5h3v3H8v-3z"/></svg>
@@ -341,8 +360,9 @@ h1 {
     <div class="sec-label"><span>## whoami</span></div>
     <h2 class="sec-title" data-i18n="whoami.title">Hey, I’m Navid 👋</h2>
     <div class="prose">
-      <p data-i18n-html="whoami.p1">I’ve spent the last <span class="years-dyn">12</span> years building and running business-critical Rails apps — the kind with payments, hardware integrations, background job fleets, and real users who notice when things break. These days I split my time between lead engineering work and wiring AI agents (Claude, MCP, GitHub automation) into production workflows, with the reliability and cost constraints a demo never faces.</p>
-      <p data-i18n="whoami.p2">I contribute to open source because it’s the best code review I know: my PRs get judged by Rails reviewers, Datadog engineers and browser-engine maintainers — not by a portfolio page.</p>
+      <p data-i18n-html="whoami.p1"><span class="years-dyn">12</span> years building and running business-critical Rails apps — payments, hardware integrations, background job fleets, and real users who notice when things break.</p>
+      <p data-i18n="whoami.p2">Today I split my time between lead engineering at Yespark and wiring AI agents (Claude, MCP, GitHub automation) into production workflows — with the reliability and cost constraints a demo never faces.</p>
+      <p data-i18n="whoami.p3">I contribute to open source because it’s the best code review I know: my PRs get judged by Rails reviewers, Datadog engineers and browser-engine maintainers — not by a portfolio page.</p>
     </div>
     <div class="svc-grid two">
       <div class="svc">
@@ -391,21 +411,25 @@ h1 {
         <h3><a href="https://github.com/lightpanda-io/browser" target="_blank" rel="noopener">Lightpanda</a></h3>
         <p class="meta" data-i18n="track.lp.meta">headless browser engine in Zig · 60+ merged PRs</p>
         <p data-i18n="track.lp.desc">Web platform internals: CDP protocol events, WebAPI surface (DataTransfer, focus navigation, readystatechange), relative :has() selectors, WebSocket Origin handling, HTTP redirect edge cases.</p>
+        <a class="proof" href="https://github.com/lightpanda-io/browser/pulls?q=is%3Apr+author%3Anavidemad+is%3Amerged" target="_blank" rel="noopener" data-i18n="track.proof">see the merged PRs →</a>
       </div>
       <div class="tr">
         <h3><a href="https://github.com/rails" target="_blank" rel="noopener">Rails ecosystem</a></h3>
         <p class="meta">rails/rails · solid_cable · jsbundling-rails · cssbundling-rails</p>
         <p data-i18n="track.rails.desc">CLI generator fixes, nil-logger support in Solid Cable, an assets:precompile build-skip option, CSS build wired into spec:prepare.</p>
+        <a class="proof" href="https://github.com/search?q=org%3Arails+author%3Anavidemad+is%3Apr+is%3Amerged&type=pullrequests" target="_blank" rel="noopener" data-i18n="track.proof">see the merged PRs →</a>
       </div>
       <div class="tr">
         <h3><a href="https://github.com/DataDog/dd-trace-rb" target="_blank" rel="noopener">Datadog dd-trace-rb</a></h3>
         <p class="meta" data-i18n="track.dd.meta">APM tracer for Ruby</p>
-        <p data-i18n="track.dd.desc">Fixed a heap-profiling SIGSEGV on Ruby 4; fixed distributed tracing header injection for http.rb 6.x.</p>
+        <p data-i18n="track.dd.desc">Two production-crash fixes merged upstream: a heap-profiling SIGSEGV on Ruby 4, and distributed-tracing header injection broken by http.rb 6.x.</p>
+        <a class="proof" href="https://github.com/DataDog/dd-trace-rb/pulls?q=is%3Apr+author%3Anavidemad+is%3Amerged" target="_blank" rel="noopener" data-i18n="track.proof">see the merged PRs →</a>
       </div>
       <div class="tr">
         <h3><a href="https://github.com/hostolab/covidliste" target="_blank" rel="noopener">Covidliste</a></h3>
         <p class="meta" data-i18n="track.cl.meta">French COVID-19 vaccination platform · 20 merged PRs</p>
         <p data-i18n="track.cl.desc">Volunteer work during the pandemic: landing pages for health professionals, transactional email overhaul, payment status handling.</p>
+        <a class="proof" href="https://github.com/hostolab/covidliste/pulls?q=is%3Apr+author%3Anavidemad+is%3Amerged" target="_blank" rel="noopener" data-i18n="track.proof">see the merged PRs →</a>
       </div>
       <div class="tr">
         <h3><a href="https://www.yespark.fr" target="_blank" rel="noopener">Yespark</a></h3>
@@ -435,8 +459,8 @@ h1 {
 <section class="band contact" id="contact">
   <div class="band-inner reveal">
     <div class="sec-label"><span>## contact</span></div>
-    <h2 class="sec-title" data-i18n="contact.title">Tell me what you’re trying to ship</h2>
-    <p class="sec-sub" data-i18n="contact.desc">Describe what you need in a few short lines. I reply within 24 hours, with total frankness: what I can do, how I would approach it — and if I’m not the best person for the job, I’ll tell you clearly.</p>
+    <h2 class="sec-title" data-i18n="contact.title">Tell me what you’re building</h2>
+    <p class="sec-sub" data-i18n="contact.desc">A few short lines is enough. I reply within 24 hours, frankly: what I can do, how I’d approach it — and if I’m not the right person, I’ll say so and point you elsewhere if I can.</p>
     <div class="cta-row">
       <a class="btn primary" href="https://calendly.com/design-navid/30min" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24"><path d="M7 2v2H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V6a2 2 0 00-2-2h-2V2h-2v2H9V2H7zm12 8v10H5V10h14zM5 8V6h14v2H5zm3 5h3v3H8v-3z"/></svg>
@@ -483,10 +507,11 @@ h1 {
         "hero.intro": "I ship production Rails systems and build AI agents that survive contact with real infrastructure. <span class=\"years-dyn\">12</span> years in, still writing code every day.",
         "hero.trust": "<b>\u2713 Open to select freelance work</b> \u00b7 Paris / remote \u00b7 reply within 24\u00a0h",
         "hero.ctanote": "You leave with a frank opinion \u2014 even if we never work together.",
-        "hero.oss": function (s) { return "<b>" + s.prs + "</b> merged open-source PRs \u2014 Rails, Datadog, Lightpanda\u2026"; },
+        "hero.oss": function (s) { return "<b>" + s.prs + "</b> merged OSS PRs \u2014 rails/rails, Datadog dd-trace-rb, Lightpanda browser engine"; },
         "whoami.title": "Hey, I\u2019m Navid \ud83d\udc4b",
-        "whoami.p1": "I\u2019ve spent the last <span class=\"years-dyn\">12</span> years building and running business-critical Rails apps \u2014 the kind with payments, hardware integrations, background job fleets, and real users who notice when things break. These days I split my time between lead engineering work and wiring AI agents (Claude, MCP, GitHub automation) into production workflows, with the reliability and cost constraints a demo never faces.",
-        "whoami.p2": "I contribute to open source because it\u2019s the best code review I know: my PRs get judged by Rails reviewers, Datadog engineers and browser-engine maintainers \u2014 not by a portfolio page.",
+        "whoami.p1": "<span class=\"years-dyn\">12</span> years building and running business-critical Rails apps \u2014 payments, hardware integrations, background job fleets, and real users who notice when things break.",
+        "whoami.p2": "Today I split my time between lead engineering at Yespark and wiring AI agents (Claude, MCP, GitHub automation) into production workflows \u2014 with the reliability and cost constraints a demo never faces.",
+        "whoami.p3": "I contribute to open source because it\u2019s the best code review I know: my PRs get judged by Rails reviewers, Datadog engineers and browser-engine maintainers \u2014 not by a portfolio page.",
         "spec.title": "Specialties",
         "spec.b1": "Rails at scale: queries, indexes, background job architecture",
         "spec.b2": "Agentic AI in production: Claude, MCP, skills, GitHub automation",
@@ -507,9 +532,10 @@ h1 {
         "track.lp.desc": "Web platform internals: CDP protocol events, WebAPI surface (DataTransfer, focus navigation, readystatechange), relative :has() selectors, WebSocket Origin handling, HTTP redirect edge cases.",
         "track.rails.desc": "CLI generator fixes, nil-logger support in Solid Cable, an assets:precompile build-skip option, CSS build wired into spec:prepare.",
         "track.dd.meta": "APM tracer for Ruby",
-        "track.dd.desc": "Fixed a heap-profiling SIGSEGV on Ruby 4; fixed distributed tracing header injection for http.rb 6.x.",
+        "track.dd.desc": "Two production-crash fixes merged upstream: a heap-profiling SIGSEGV on Ruby 4, and distributed-tracing header injection broken by http.rb 6.x.",
         "track.cl.meta": "French COVID-19 vaccination platform \u00b7 20 merged PRs",
         "track.cl.desc": "Volunteer work during the pandemic: landing pages for health professionals, transactional email overhaul, payment status handling.",
+        "track.proof": "see the merged PRs \u2192",
         "track.yp.meta": "day job \u00b7 Lead Developer",
         "track.yp.desc": "Parking rental at France scale: query and index optimization campaigns, Sidekiq fan-out architectures, ANPR camera fleet integrations, AI-assisted back-office tooling.",
         "help.title": "How I can help",
@@ -529,10 +555,11 @@ h1 {
         "hero.intro": "Je construis des syst\u00e8mes Rails en production et des agents IA qui survivent au contact de la vraie infrastructure. <span class=\"years-dyn\">12</span> ans de m\u00e9tier, et toujours du code au quotidien.",
         "hero.trust": "<b>\u2713 Ouvert \u00e0 quelques missions freelance</b> \u00b7 Paris / remote \u00b7 r\u00e9ponse sous 24\u00a0h",
         "hero.ctanote": "Vous repartez avec un avis franc \u2014 m\u00eame si on ne travaille pas ensemble.",
-        "hero.oss": function (s) { return "<b>" + s.prs + "</b> PRs open source fusionn\u00e9es \u2014 Rails, Datadog, Lightpanda\u2026"; },
+        "hero.oss": function (s) { return "<b>" + s.prs + "</b> PRs open source fusionn\u00e9es \u2014 rails/rails, Datadog dd-trace-rb, moteur de navigateur Lightpanda"; },
         "whoami.title": "Salut, moi c\u2019est Navid \ud83d\udc4b",
-        "whoami.p1": "J\u2019ai pass\u00e9 les <span class=\"years-dyn\">12</span> derni\u00e8res ann\u00e9es \u00e0 construire et faire tourner des applis Rails critiques \u2014 avec paiements, int\u00e9grations hardware, flottes de jobs en arri\u00e8re-plan, et de vrais utilisateurs qui remarquent quand \u00e7a casse. Aujourd\u2019hui je partage mon temps entre le travail de lead et le branchement d\u2019agents IA (Claude, MCP, automatisations GitHub) sur des workflows de production, avec les contraintes de fiabilit\u00e9 et de co\u00fbt qu\u2019une d\u00e9mo ne conna\u00eet pas.",
-        "whoami.p2": "Je contribue \u00e0 l\u2019open source parce que c\u2019est la meilleure revue de code que je connaisse : mes PRs sont jug\u00e9es par des reviewers Rails, des ing\u00e9nieurs Datadog et des mainteneurs de moteurs de navigateur \u2014 pas par une page portfolio.",
+        "whoami.p1": "<span class=\"years-dyn\">12</span> ans \u00e0 construire et faire tourner des applis Rails critiques \u2014 paiements, int\u00e9grations hardware, flottes de jobs en arri\u00e8re-plan, et de vrais utilisateurs qui remarquent quand \u00e7a casse.",
+        "whoami.p2": "Aujourd\u2019hui je partage mon temps entre le travail de lead chez Yespark et le branchement d\u2019agents IA (Claude, MCP, automatisations GitHub) sur des workflows de production \u2014 avec les contraintes de fiabilit\u00e9 et de co\u00fbt qu\u2019une d\u00e9mo ne conna\u00eet pas.",
+        "whoami.p3": "Je contribue \u00e0 l\u2019open source parce que c\u2019est la meilleure revue de code que je connaisse : mes PRs sont jug\u00e9es par des reviewers Rails, des ing\u00e9nieurs Datadog et des mainteneurs de moteurs de navigateur \u2014 pas par une page portfolio.",
         "spec.title": "Sp\u00e9cialit\u00e9s",
         "spec.b1": "Rails \u00e0 l\u2019\u00e9chelle : requ\u00eates, index, architecture de jobs",
         "spec.b2": "IA agentique en production : Claude, MCP, skills, automatisations GitHub",
@@ -553,9 +580,10 @@ h1 {
         "track.lp.desc": "Internals de plateforme web : \u00e9v\u00e9nements du protocole CDP, surface WebAPI (DataTransfer, navigation au focus, readystatechange), s\u00e9lecteurs :has() relatifs, en-t\u00eate Origin WebSocket, cas limites de redirections HTTP.",
         "track.rails.desc": "Correctifs du g\u00e9n\u00e9rateur CLI, support du logger nil dans Solid Cable, option de skip du build dans assets:precompile, build CSS branch\u00e9 sur spec:prepare.",
         "track.dd.meta": "traceur APM pour Ruby",
-        "track.dd.desc": "Correction d\u2019un SIGSEGV du heap profiling sur Ruby 4 ; correction de l\u2019injection des en-t\u00eates de tracing distribu\u00e9 pour http.rb 6.x.",
+        "track.dd.desc": "Deux correctifs de crash en production fusionn\u00e9s upstream : un SIGSEGV du heap profiling sur Ruby 4, et l\u2019injection des en-t\u00eates de tracing distribu\u00e9 cass\u00e9e par http.rb 6.x.",
         "track.cl.meta": "plateforme fran\u00e7aise de vaccination COVID-19 \u00b7 20 PRs fusionn\u00e9es",
         "track.cl.desc": "B\u00e9n\u00e9volat pendant la pand\u00e9mie : landing pages pour les professionnels de sant\u00e9, refonte des e-mails transactionnels, gestion des statuts de paiement.",
+        "track.proof": "voir les PRs fusionn\u00e9es \u2192",
         "track.yp.meta": "poste actuel \u00b7 Lead Developer",
         "track.yp.desc": "Location de parkings \u00e0 l\u2019\u00e9chelle de la France : campagnes d\u2019optimisation de requ\u00eates et d\u2019index, architectures de fan-out Sidekiq, int\u00e9gration d\u2019une flotte de cam\u00e9ras ANPR, outillage back-office assist\u00e9 par IA.",
         "help.title": "Comment je peux aider",
