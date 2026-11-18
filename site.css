@@ -225,14 +225,11 @@ p {
   height: 18px;
   fill: currentColor;
 }
-/* brand colors: GitHub and X are black marks, shown white on this dark page */
+/* one color for the three marks, white on this dark page */
 .socials .s-github,
+.socials .s-linkedin,
 .socials .s-x {
   color: #ffffff;
-}
-.socials .s-linkedin,
-.socials .s-linkedin:hover {
-  color: #0a66c2;
 }
 .lang {
   display: flex;
@@ -250,9 +247,10 @@ p {
   color: var(--muted);
   cursor: pointer;
 }
+/* quiet on purpose: the booking button next to it is the one that should stand out */
 .lang button[aria-pressed="true"] {
-  background: var(--ink);
-  color: var(--bg);
+  background: rgba(255, 255, 255, 0.12);
+  color: var(--ink);
 }
 
 /* ---------- buttons ---------- */
@@ -362,7 +360,7 @@ p {
 }
 .hero .container {
   display: grid;
-  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr);
   gap: clamp(22px, 3.4vh, 36px) clamp(32px, 5vw, 72px);
   align-items: center;
 }
@@ -370,7 +368,7 @@ p {
   font-size: clamp(44px, 5.2vw, 74px);
   line-height: 1;
   letter-spacing: -0.01em;
-  max-width: 20ch;
+  max-width: 22ch;
 }
 .hero-copy > * + * {
   margin-top: 22px;
@@ -383,6 +381,7 @@ p {
 /* two statements, one per line */
 .hero-copy .lede > span {
   display: block;
+  text-wrap: balance;
 }
 .hero-copy .lede > span + span {
   margin-top: 4px;
@@ -428,9 +427,12 @@ p {
 }
 
 /* The portrait and the years stand directly on the hero: no panel around them. */
+/* Stretched to the height of the copy: the portrait starts with the title, the years end with the buttons. */
 .profile {
+  align-self: stretch;
   display: grid;
   justify-items: center;
+  align-content: space-between;
   gap: clamp(18px, 2.4vw, 28px);
 }
 .identity {
@@ -443,7 +445,7 @@ p {
 /* The photo is a cut-out with a transparent background: the disc behind it is
    drawn here, in the page's colors, inside a gradient ring. */
 .identity img {
-  width: clamp(150px, 17vw, 216px);
+  width: clamp(160px, 19vw, 248px);
   height: auto;
   aspect-ratio: 1;
   border-radius: 50%;
@@ -454,12 +456,6 @@ p {
   box-shadow:
     0 0 0 10px rgba(169, 149, 255, 0.07),
     0 30px 80px -24px rgba(124, 150, 255, 0.95);
-}
-.identity strong {
-  font-family: var(--display);
-  font-size: clamp(28px, 2.8vw, 34px);
-  line-height: 1.05;
-  color: var(--ink);
 }
 .snapshot { font-size: 15px; color: var(--muted); }
 /* years of experience, computed from the start dates */
@@ -485,7 +481,7 @@ p {
 }
 .experience span {
   max-width: 10ch;
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 600;
   line-height: 1.25;
   color: var(--muted);
@@ -500,7 +496,7 @@ p {
 }
 .scale p {
   color: var(--muted);
-  font-size: 15px;
+  font-size: 16px;
 }
 .scale ul {
   display: grid;
@@ -508,12 +504,10 @@ p {
   justify-content: space-between;
   gap: 10px clamp(20px, 3vw, 40px);
 }
-/* figure and label on one baseline; the label drops under the figure when the column is tight */
+/* each figure over its label, at every width */
 .scale li {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 2px 10px;
+  display: grid;
+  gap: 4px;
 }
 .scale b {
   font-family: var(--display);
@@ -525,7 +519,7 @@ p {
 }
 .scale span {
   color: var(--muted);
-  font-size: 15px;
+  font-size: 16px;
 }
 .log {
   overflow: hidden;
@@ -1020,14 +1014,6 @@ p {
 }
 
 /* ---------- responsive ---------- */
-@media (max-width: 1180px) {
-  /* not enough room for figure and label side by side: every label goes under its figure */
-  .scale li {
-    flex-direction: column;
-    flex-wrap: nowrap;
-    gap: 4px;
-  }
-}
 @media (max-width: 900px) {
   .rows {
     grid-template-columns: minmax(0, 1fr);
@@ -1104,10 +1090,6 @@ p {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 16px 20px;
-  }
-  .scale li {
-    flex-direction: column;
-    gap: 4px;
   }
   .scale b {
     font-size: 30px;
