@@ -463,7 +463,8 @@ p {
   width: 100%;
   max-width: 360px;
   display: grid;
-  gap: 10px;
+  gap: 18px;
+  padding-top: 8px;
 }
 .scale p {
   color: var(--muted);
@@ -477,10 +478,11 @@ p {
 .scale li {
   display: grid;
   grid-template-columns: 3.3em minmax(0, 1fr);
-  align-items: baseline;
+  align-items: center;
   gap: 14px;
-  padding-block: 9px;
-  border-top: 1px solid var(--line);
+  padding-block: 10px;
+  /* a touch brighter than --line, so the rows still read on a dim screen */
+  border-top: 1px solid rgba(255, 255, 255, 0.18);
   font-size: clamp(30px, 3vw, 38px);
 }
 .scale b {
