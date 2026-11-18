@@ -68,14 +68,16 @@
     "tag.11": "e-mails",
     "tag.12": "recherche dans la FAQ",
     "exp.dev": "ans de développement",
-    "exp.yespark": "ans chez Yespark",
-    "scale.label": 'Ce que <a class="org" href="https://www.yespark.fr" target="_blank" rel="noopener"><img src="logos/yespark.svg" width="22" height="22" alt="" />Yespark</a> fait tourner sur le code que je dirige',
-    "scale.spaces.n": "76 000",
-    "scale.spaces": "places de parking",
+    "exp.yespark": "ans sur la même plateforme",
+    "scale.label": "La plateforme dont je dirige le développement, en production",
     "scale.subscribers.n": "55 000",
     "scale.subscribers": "abonnés",
-    "scale.cities.n": "900+",
-    "scale.cities": "villes en Europe",
+    "scale.requests.n": "66 M",
+    "scale.requests": "requêtes par mois",
+    "scale.jobs.n": "80 M",
+    "scale.jobs": "tâches de fond par mois",
+    "scale.prs.n": "50+",
+    "scale.prs": "pull requests fusionnées par jour",
   };
 
   // English strings that are not in the initial markup.

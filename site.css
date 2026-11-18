@@ -484,7 +484,7 @@ p {
   font-variant-numeric: tabular-nums;
 }
 .experience span {
-  max-width: 8ch;
+  max-width: 10ch;
   font-size: 15px;
   font-weight: 600;
   line-height: 1.25;
@@ -493,33 +493,27 @@ p {
 /* Yespark's public figures: one hairline rule across the hero, no box */
 .scale {
   grid-column: 1 / -1;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 14px clamp(24px, 4vw, 56px);
+  display: grid;
+  gap: 12px;
   padding-top: clamp(18px, 2.6vh, 28px);
   border-top: 1px solid var(--line);
 }
 .scale p {
   color: var(--muted);
-  font-size: 16px;
-}
-.scale .org {
-  text-decoration: none;
-}
-.scale .org:hover {
-  text-decoration: underline;
+  font-size: 15px;
 }
 .scale ul {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px clamp(24px, 4.4vw, 64px);
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, auto));
+  justify-content: space-between;
+  gap: 10px clamp(20px, 3vw, 40px);
 }
+/* figure and label on one baseline; the label drops under the figure when the column is tight */
 .scale li {
   display: flex;
+  flex-wrap: wrap;
   align-items: baseline;
-  gap: 10px;
+  gap: 2px 10px;
 }
 .scale b {
   font-family: var(--display);
@@ -986,6 +980,14 @@ p {
 }
 
 /* ---------- responsive ---------- */
+@media (max-width: 1180px) {
+  /* not enough room for figure and label side by side: every label goes under its figure */
+  .scale li {
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: 4px;
+  }
+}
 @media (max-width: 900px) {
   .rows {
     grid-template-columns: minmax(0, 1fr);
@@ -1059,9 +1061,8 @@ p {
   }
   .scale ul {
     display: grid;
-    grid-template-columns: repeat(3, auto);
-    justify-content: space-between;
-    width: 100%;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px 20px;
   }
   .scale li {
     flex-direction: column;
