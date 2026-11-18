@@ -953,6 +953,13 @@ p {
   background: color-mix(in srgb, var(--star) 9%, transparent);
   font-size: 13.5px;
 }
+/* Gold is for the projects I maintain. On someone else's repository the stars are
+   theirs, so they stay quiet. */
+.row:not(:has(.badge)) .stars {
+  border-color: var(--line);
+  background: transparent;
+  color: var(--muted);
+}
 .chips {
   display: flex;
   flex-wrap: wrap;

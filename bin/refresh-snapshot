@@ -81,7 +81,15 @@ tail = by_repo.reject { |repo, _| excluded_repos.include?(repo.downcase) || excl
 { "prs" => total, "repos" => by_repo.size, "tail-prs" => tail.values.sum(&:size), "tail-repos" => tail.size }.each do |name, n|
   replace_one(html, /(data-stat="#{name}">)\d+/) { |m| "#{m[1]}#{n}" }
 end
-html.gsub!(/(data-count="([^"]+)">)\d+/) { "#{$1}#{by_repo.fetch($2, []).size}" }
+# A counter names one repository, several joined by "+", or a whole owner as "owner/*".
+html.gsub!(/(data-count="([^"]+)">)\d+/) do
+  prefix, terms = $1, $2.downcase.split("+")
+  n = by_repo.sum do |repo, prs|
+    name = repo.downcase
+    terms.any? { |term| term.end_with?("/*") ? name.start_with?(term.delete_suffix("*")) : name == term } ? prs.size : 0
+  end
+  "#{prefix}#{n}"
+end
 html.gsub!(/(data-repo="([^"]+)" data-stars=")\d+">[^<]+/) { "#{$1}#{stars.fetch($2)}\">#{stars.fetch($2)}" }
 date = Time.now.utc.to_date
 replace_one(html, /(<time id="snapshot-date" datetime=")[^"]+">[^<]+/) { |m| "#{m[1]}#{date}\">#{date.strftime('%d %b %Y')}" }
