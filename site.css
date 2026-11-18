@@ -58,11 +58,6 @@
   --gutter: clamp(20px, 4vw, 48px);
   --header-h: 60px;
 }
-@property --beam {
-  syntax: "<angle>";
-  inherits: false;
-  initial-value: 0deg;
-}
 
 *,
 *::before,
@@ -298,8 +293,7 @@ p {
 }
 .btn.quiet {
   border-color: var(--line);
-  background: var(--surface);
-  backdrop-filter: blur(8px);
+  background: rgba(22, 24, 34, 0.85);
 }
 .btn.quiet:hover {
   border-color: rgba(255, 255, 255, 0.4);
@@ -332,32 +326,37 @@ p {
   content: "";
   position: absolute;
   inset: 0;
-  z-index: -3;
+  z-index: -2;
   background:
     radial-gradient(52% 60% at 12% 8%, rgba(70, 150, 255, 0.2), transparent 70%),
     radial-gradient(58% 70% at 88% 18%, rgba(124, 92, 255, 0.3), transparent 70%);
 }
-/* spotlight that follows the pointer (site.js sets --mx / --my) */
-.hero::after {
-  content: "";
+/* Spotlight that follows the pointer: one fixed-size disc moved with a transform
+   (site.js), so following the mouse never repaints or restyles the hero. */
+.hero-spot {
   position: absolute;
-  inset: 0;
+  top: -420px;
+  left: -420px;
   z-index: -1;
+  width: 840px;
+  height: 840px;
+  border-radius: 50%;
   pointer-events: none;
-  background: radial-gradient(420px circle at var(--mx, 70%) var(--my, 30%), rgba(255, 255, 255, 0.07), transparent 65%);
+  background: radial-gradient(closest-side, rgba(255, 255, 255, 0.07), transparent);
+  transform: translate3d(70vw, 30vh, 0);
+  will-change: transform;
 }
-/* Perspective grid receding to the horizon. The plane slides by exactly one cell
-   with a transform, so the browser moves a cached layer instead of repainting. */
+/* Perspective grid receding to the horizon. Everything that moves here moves by
+   transform only, on its own layer: no mask, no filter, no repaint per frame. */
 .hero-floor {
   position: absolute;
   inset: auto 0 0;
   height: 46%;
-  z-index: -2;
+  z-index: -3;
   overflow: hidden;
   perspective: 420px;
   perspective-origin: 50% 0;
-  -webkit-mask-image: linear-gradient(to top, #000 10%, transparent 92%);
-  mask-image: linear-gradient(to top, #000 10%, transparent 92%);
+  contain: strict;
 }
 .hero-floor::before {
   content: "";
@@ -368,10 +367,17 @@ p {
     linear-gradient(90deg, rgba(183, 155, 255, 0.3) 2px, transparent 2px);
   background-size: 72px 72px;
   background-position: 50% 100%;
-  transform: rotateX(70deg);
+  transform: rotateX(68deg) translate3d(0, 0, 0);
   transform-origin: 50% 100%;
   will-change: transform;
   backface-visibility: hidden;
+}
+/* the horizon fades into the page color; the far lines, which would shimmer, are hidden */
+.hero-floor::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, var(--bg) 22%, transparent 95%);
 }
 .hero .container {
   display: grid;
@@ -405,8 +411,7 @@ p {
   padding: 7px 14px 7px 12px;
   border: 1px solid var(--line);
   border-radius: 999px;
-  background: var(--surface);
-  backdrop-filter: blur(8px);
+  background: rgba(22, 24, 34, 0.85);
   font-size: 14.5px;
 }
 .availability::before,
@@ -453,33 +458,36 @@ p {
 }
 
 /* ---------- merged pull request log ---------- */
+/* No backdrop-filter here: blurring what sits behind the panel would re-run on
+   every frame of the animated floor. The edge beam is a rotating layer, clipped
+   to a 1px ring by the opaque fill on top of it. */
 .log {
   position: relative;
-  background: var(--panel);
-  backdrop-filter: blur(16px);
-  border: 1px solid var(--line);
-  border-radius: 14px;
+  isolation: isolate;
   overflow: hidden;
-  box-shadow:
-    0 40px 90px -30px rgba(124, 92, 255, 0.6),
-    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.11); /* the ring's resting color */
+  box-shadow: 0 40px 90px -30px rgba(124, 92, 255, 0.6);
 }
-/* a light beam travelling around the panel's edge */
 .log::before {
   content: "";
   position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  padding: 1px;
-  pointer-events: none;
-  background: conic-gradient(from var(--beam), transparent 0 68%, #b79bff 84%, #7cc4ff 96%, transparent 100%);
-  -webkit-mask:
-    linear-gradient(#000 0 0) content-box,
-    linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-  mask:
-    linear-gradient(#000 0 0) content-box exclude,
-    linear-gradient(#000 0 0);
+  top: 50%;
+  left: 50%;
+  z-index: -2;
+  width: 1100px;
+  height: 1100px;
+  margin: -550px 0 0 -550px;
+  background: conic-gradient(transparent 0 68%, #b79bff 84%, #7cc4ff 96%, transparent 100%);
+  will-change: transform;
+}
+.log::after {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  z-index: -1;
+  border-radius: 13px;
+  background: #0e1018;
 }
 .log-head,
 .log-foot {
@@ -960,34 +968,31 @@ p {
    an animation to reveal it. */
 @media (prefers-reduced-motion: no-preference) {
   .hero-floor::before {
-    animation: floor 5s linear infinite;
+    animation: floor 6s linear infinite;
   }
   .availability::before,
   .log-head .live::before {
-    animation: pulse 2.2s ease-out infinite;
+    animation: pulse 2.2s ease-in-out infinite;
   }
   .log::before {
     animation: beam 7s linear infinite;
   }
   @keyframes floor {
     from {
-      transform: rotateX(70deg) translateY(0);
+      transform: rotateX(68deg) translate3d(0, 0, 0);
     }
     to {
-      transform: rotateX(70deg) translateY(72px);
+      transform: rotateX(68deg) translate3d(0, 72px, 0);
     }
   }
   @keyframes pulse {
-    from {
-      box-shadow: 0 0 0 0 color-mix(in srgb, var(--ok) 70%, transparent);
-    }
-    to {
-      box-shadow: 0 0 0 9px transparent;
+    50% {
+      opacity: 0.35;
     }
   }
   @keyframes beam {
     to {
-      --beam: 360deg;
+      transform: rotate(1turn);
     }
   }
 }

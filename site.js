@@ -421,13 +421,33 @@
   }
 
   /* ================= pointer glow ================= */
-  // The hero and each card light up under the pointer (CSS reads --mx / --my).
-  if (matchMedia("(pointer: fine)").matches) {
-    document.querySelectorAll(".hero, [data-glow]").forEach(function (el) {
-      el.addEventListener("pointermove", function (event) {
+  // At most one update per frame. The hero's spotlight is moved with a transform;
+  // cards read --mx / --my, which only restyles the one card under the pointer.
+  function onPointerFrame(el, apply) {
+    var pending = null;
+    el.addEventListener("pointermove", function (event) {
+      var first = pending === null;
+      pending = event;
+      if (!first) return;
+      requestAnimationFrame(function () {
         var box = el.getBoundingClientRect();
-        el.style.setProperty("--mx", event.clientX - box.left + "px");
-        el.style.setProperty("--my", event.clientY - box.top + "px");
+        apply(pending.clientX - box.left, pending.clientY - box.top);
+        pending = null;
+      });
+    });
+  }
+  if (matchMedia("(pointer: fine)").matches) {
+    var hero = document.querySelector(".hero");
+    var spot = document.querySelector(".hero-spot");
+    if (hero && spot) {
+      onPointerFrame(hero, function (x, y) {
+        spot.style.transform = "translate3d(" + x + "px," + y + "px,0)";
+      });
+    }
+    document.querySelectorAll("[data-glow]").forEach(function (el) {
+      onPointerFrame(el, function (x, y) {
+        el.style.setProperty("--mx", x + "px");
+        el.style.setProperty("--my", y + "px");
       });
     });
   }
