@@ -458,45 +458,58 @@ p {
     0 30px 80px -24px rgba(124, 150, 255, 0.95);
 }
 .snapshot { font-size: 15px; color: var(--muted); }
-/* Yespark's figures, stacked under the portrait: one row per figure, hairlines between */
+/* Yespark's figures under the portrait: a two-by-two panel, each figure over its label,
+   split by one vertical and one horizontal hairline */
 .scale {
   width: 100%;
-  max-width: 360px;
+  max-width: 400px;
   display: grid;
-  gap: 18px;
+  gap: 16px;
   padding-top: 8px;
 }
 .scale p {
   color: var(--muted);
   font-size: 16px;
+  text-align: center;
   text-wrap: balance;
 }
 .scale p span {
   color: var(--ink);
   font-weight: 600;
 }
+.scale ul {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border-top: 1px solid rgba(255, 255, 255, 0.18);
+}
 .scale li {
   display: grid;
-  grid-template-columns: 3.3em minmax(0, 1fr);
-  align-items: center;
-  gap: 14px;
-  padding-block: 10px;
-  /* a touch brighter than --line, so the rows still read on a dim screen */
+  align-content: start;
+  gap: 6px;
+  padding: 18px 0 18px clamp(14px, 1.8vw, 24px);
+}
+.scale li:nth-child(odd) {
+  padding-left: 0;
+  padding-right: clamp(14px, 1.8vw, 24px);
+  border-right: 1px solid rgba(255, 255, 255, 0.18);
+}
+.scale li:nth-child(n + 3) {
   border-top: 1px solid rgba(255, 255, 255, 0.18);
-  font-size: clamp(30px, 3vw, 38px);
+  padding-bottom: 0;
 }
 .scale b {
+  justify-self: start;
   font-family: var(--display);
-  font-size: 1em;
-  line-height: 1;
-  color: var(--ink);
+  font-size: clamp(40px, 4vw, 52px);
+  line-height: 0.95;
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
 }
 .scale li span {
   color: var(--muted);
-  font-size: 16px;
+  font-size: 15.5px;
   line-height: 1.3;
+  text-wrap: balance;
 }
 .log {
   overflow: hidden;
