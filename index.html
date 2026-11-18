@@ -138,36 +138,26 @@
               <a class="btn quiet" href="#open-source" data-i18n="cta.contributions">Explore my open-source work</a>
             </div>
           </div>
-          <aside class="featured-work" aria-labelledby="featured-title">
+          <aside class="profile" aria-labelledby="profile-name">
             <figure class="identity">
               <img src="photo.jpg" width="132" height="132" alt="Navid Emad" />
               <figcaption>
-                <strong>Navid Emad</strong>
+                <strong id="profile-name">Navid Emad</strong>
                 <span data-i18n="identity.role">Agentic AI engineer, lead developer</span>
                 <span data-i18n="identity.place">Paris, France</span>
               </figcaption>
             </figure>
-            <h2 id="featured-title" data-i18n="featured.title">My merged contributions</h2>
-            <ul>
+            <!-- Baked for readers without JavaScript; site.js recomputes both from data-since. -->
+            <ul class="experience">
               <li>
-                <a href="https://github.com/rtk-ai/rtk/pull/724">
-                  <span class="project-name">
-                    <strong>RTK</strong>
-                    <span class="stars" data-repo="rtk-ai/rtk" data-stars="87075">87075</span>
-                  </span>
-                  <span data-i18n="featured.rtk">Added Rails support for RSpec, RuboCop, Rake, and Bundler.</span>
-                  <svg aria-hidden="true"><use href="#i-go" /></svg>
-                </a>
+                <b class="sheen" data-since="2012-01-01">14</b>
+                <span data-i18n="exp.dev">years as a developer</span>
+                <small data-i18n="exp.dev.since">since 2012</small>
               </li>
               <li>
-                <a href="https://github.com/lightpanda-io/browser/pull/4529">
-                  <span class="project-name">
-                    <strong>Lightpanda</strong>
-                    <span class="stars" data-repo="lightpanda-io/browser" data-stars="42220">42220</span>
-                  </span>
-                  <span data-i18n="featured.lightpanda">Added upload progress events to the headless browser.</span>
-                  <svg aria-hidden="true"><use href="#i-go" /></svg>
-                </a>
+                <b class="sheen" data-since="2019-11-01">7</b>
+                <span data-i18n="exp.yespark">years at Yespark</span>
+                <small data-i18n="exp.yespark.since">since November 2019</small>
               </li>
             </ul>
           </aside>

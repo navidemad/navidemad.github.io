@@ -41,9 +41,6 @@
     "help.sub": "J’interviens en freelance en parallèle de mon poste de lead chez Yespark.",
     "contact.desc": "Client avec une roadmap ou porteur de projet avec une idée, quelques lignes suffisent. Je réponds sous 24 h, avec franchise : ce que je peux faire et comment je m’y prendrais. Si je ne suis pas la bonne personne, je vous le dirai et vous aiguillerai si je peux.",
     "log.updated": "Mis à jour le",
-    "featured.title": "Mes contributions intégrées",
-    "featured.rtk": "Ajout du support de Rails pour RSpec, RuboCop, Rake et Bundler.",
-    "featured.lightpanda": "Prise en charge du suivi de progression des envois dans le navigateur headless.",
     "service.1.name": "Des agents IA pour les tâches récurrentes",
     "service.1.desc": "Je relie un agent aux outils de votre équipe et prévois une validation humaine avant qu’il agisse.",
     "service.1.example": "Avec <a href=\"#ai-workflow\">Pixel</a>, un développeur peut demander ce qu’une modification risque de casser, puis vérifier les appels et les tests concernés.",
@@ -72,6 +69,10 @@
     "tag.12": "recherche dans la FAQ",
     "identity.role": "Ingénieur IA agentique, lead developer",
     "identity.place": "Paris, France",
+    "exp.dev": "ans de développement",
+    "exp.dev.since": "depuis 2012",
+    "exp.yespark": "ans chez Yespark",
+    "exp.yespark.since": "depuis novembre 2019",
   };
 
   // English strings that are not in the initial markup.
@@ -145,6 +146,14 @@
   function renderNumbers() {
     document.querySelectorAll("[data-count], [data-stat]").forEach(function (el) {
       el.textContent = counts.get(counterKey(el));
+    });
+    // Experience counts whole years elapsed, so it stays right without editing the page.
+    var now = new Date();
+    document.querySelectorAll("[data-since]").forEach(function (el) {
+      var since = new Date(el.getAttribute("data-since"));
+      var years = now.getUTCFullYear() - since.getUTCFullYear();
+      var before = now.getUTCMonth() < since.getUTCMonth() || (now.getUTCMonth() === since.getUTCMonth() && now.getUTCDate() < since.getUTCDate());
+      el.textContent = years - (before ? 1 : 0);
     });
     var date = document.getElementById("snapshot-date");
     date.textContent = new Intl.DateTimeFormat(lang, { dateStyle: "medium", timeZone: "UTC" }).format(new Date(date.dateTime));

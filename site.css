@@ -411,7 +411,7 @@ p {
 }
 
 /* Three upstream changes, each linked to the maintainer-accepted PR. */
-.featured-work {
+.profile {
   padding: clamp(18px, 2.5vw, 32px);
   border: 1px solid var(--line);
   border-radius: 16px;
@@ -452,32 +452,35 @@ p {
   line-height: 1.05;
   color: var(--ink);
 }
-.featured-work h2 { font-size: 28px; margin-bottom: 12px; }
-.featured-work li { border-top: 1px solid var(--line); }
-.featured-work a {
+.snapshot { font-size: 15px; color: var(--muted); }
+/* years of experience, computed from the start dates */
+.experience {
   display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 0 12px;
-  align-items: center;
-  padding-block: 12px;
-  text-decoration: none;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(14px, 2vw, 26px);
 }
-.featured-work strong { font-size: 19px; }
-.featured-work a > [data-i18n], .snapshot { font-size: 15px; color: var(--muted); }
-.featured-work a > span { grid-column: 1; }
-.featured-work .project-name {
-  display: flex;
-  align-items: baseline;
-  gap: 10px;
+.experience li {
+  display: grid;
+  gap: 2px;
 }
-.featured-work svg {
-  grid-column: 2;
-  grid-row: 1 / 3;
-  width: 18px;
-  height: 18px;
-  color: var(--accent);
+.experience li + li {
+  padding-left: clamp(14px, 2vw, 26px);
+  border-left: 1px solid var(--line);
 }
-.featured-work a:hover strong { text-decoration: underline; }
+.experience b {
+  font-family: var(--display);
+  font-size: clamp(56px, 6.4vw, 84px);
+  line-height: 0.95;
+  font-variant-numeric: tabular-nums;
+  justify-self: start;
+}
+.experience span {
+  font-weight: 600;
+}
+.experience small {
+  font-size: 14px;
+  color: var(--muted);
+}
 .log {
   overflow: hidden;
   border-radius: 14px;
