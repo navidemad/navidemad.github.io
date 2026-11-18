@@ -1,0 +1,33 @@
+name: Refresh portfolio snapshot
+on:
+  schedule:
+    - cron: "27 6 * * 1"
+  workflow_dispatch:
+permissions:
+  contents: write
+  pull-requests: write
+concurrency: refresh-portfolio-snapshot
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v5
+      - name: Propose the refreshed figures for review
+        env:
+          BASE: ${{ github.event.repository.default_branch }}
+        run: |
+          open=$(gh pr list --base "$BASE" --state open --json headRefName --jq '[.[] | select(.headRefName | startswith("snapshot/"))] | length')
+          if [ "$open" -gt 0 ]; then exit 0; fi
+          bin/refresh-snapshot
+          bin/check
+          if git diff --quiet -- index.html; then exit 0; fi
+          branch="snapshot/$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT"
+          git switch -c "$branch"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add index.html
+          git commit -m "Refresh the published GitHub snapshot"
+          git push origin "$branch"
+          gh pr create --base "$BASE" --head "$branch" --title "Refresh the published GitHub snapshot" --body "Updates the dated open-source figures and selected pull requests."

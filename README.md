@@ -6,7 +6,8 @@ Personal site, served as-is by GitHub Pages from `main`. No build step, no depen
 
 ```sh
 bin/serve        # http://127.0.0.1:4173
-bin/check        # the gate: run before every push (CI runs it too)
+bin/check        # static checks
+bin/check-browser # desktop and phone checks (requires agent-browser and Chrome)
 ```
 
 ## Where things live
@@ -14,7 +15,7 @@ bin/check        # the gate: run before every push (CI runs it too)
 | File | What |
 | --- | --- |
 | `index.html` | Markup and the English copy (source of truth, readable without JS) |
-| `site.js` | French copy (`FR`), language switch, live GitHub numbers |
+| `site.js` | French copy (`FR`), language switch, localized snapshot dates and numbers |
 | `site.css` | Styles: one dark theme, tokens at the top; every animation rests in its final state |
 | `logos/` | Project logos used on the open-source cards (brand icons are inlined as SVG symbols in `index.html`) |
 | `tools/og-image.html` | Source of `og-image.png`; re-render with `bin/og` |
@@ -23,18 +24,14 @@ bin/check        # the gate: run before every push (CI runs it too)
 
 1. Change the English text in `index.html`.
 2. Change the string with the same `data-i18n` key in `FR` (`site.js`).
-3. `bin/check` fails if a key exists on one side only, or if a live number
-   placeholder (`data-years`, `data-stat`, `data-count`) is lost in translation.
+3. `bin/check` fails if a key exists on one side only, or if a snapshot number
+   placeholder (`data-stat`, `data-count`) is lost in translation.
 
 French is shown when the browser language is French, when `?lang=fr` is in the URL,
 or after the visitor picks FR (remembered in `localStorage`).
 
-## Live numbers
+## GitHub snapshot
 
-The hero log lists the most-starred projects first, at most two pull requests per
-repository (`PER_REPO`), so one very active repository cannot fill it. Star counts
-come from a single repository search. The log and every merged-PR figure come from one GitHub search, defined once
-as `QUERY` in `site.js`. It counts third-party work only: my own repositories,
-my employer's and the Pixel-CLI org are excluded. The figures in the markup are a
-dated snapshot shown when the GitHub API is unreachable or rate-limited; the
-"Verify on GitHub" link must run the same search (`bin/check` enforces it).
+The open-source section ships as dated HTML. Visitors can read it without JavaScript or contacting GitHub. Language changes update the URL, dates, and number formatting.
+
+Run `bin/refresh-snapshot` with an authenticated GitHub CLI to update the page. It reads the public search linked from “Verify on GitHub,” counts the repositories, and selects up to two merged PRs per repository, ranked by repository stars. It writes the file only after retrieving a complete snapshot. The weekly GitHub Action proposes the update in a PR for review. Merging that PR publishes it through the existing Pages setup.

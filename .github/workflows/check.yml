@@ -12,3 +12,7 @@ jobs:
       - uses: actions/checkout@v5
       - run: ruby bin/check
       - run: node --check site.js
+      - run: ruby -c bin/refresh-snapshot
+      - run: npm install --global agent-browser@0.43.0
+      - run: agent-browser install
+      - run: bin/check-browser

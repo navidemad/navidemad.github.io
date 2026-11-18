@@ -5,44 +5,27 @@
 (function () {
   "use strict";
 
-  var USER = "navidemad";
-  var FIRST_YEAR = 2014;
-  // Third-party work only: my own repos, my employer's and the Pixel org I co-run are excluded.
-  var QUERY = "is:pr author:" + USER + " is:merged -user:" + USER + " -user:yespark -user:Pixel-CLI";
-  var LOG_SIZE = 6;
-  var PER_REPO = 2; // rows per repository in the hero log
-  var CACHE_KEY = "gh-pulls-v3";
-  var CACHE_TTL = 60 * 60 * 1000;
-  var MAX_PAGES = 5; // 500 PRs; beyond that the per-repo counts keep their baked-in values
-
   /* ================= i18n ================= */
   var FR = {
-    skip: "Aller au contenu",
-    "nav.results": "Le métier",
+    "skip": "Aller au contenu",
+    "nav.results": "Réalisations",
     "nav.oss": "Open source",
-    "nav.contact": "Travailler ensemble",
-    "cta.short": "Réserver un appel",
+    "cta.short": "Prendre RDV",
     "cta.book": "Réserver un appel de 30 min",
-    "cta.results": "Voir les résultats mesurés",
+    "cta.results": "Voir le détail de la requête",
     "cta.linkedin": "M’écrire sur LinkedIn",
-    "log.title": "Fusionnées dans les projets les plus étoilés",
-    "log.snapshot": "instantané, nov. 2026",
-    "log.live": "en direct de GitHub",
-    "log.foot":
-      '<b data-stat="prs">171</b> pull requests fusionnées dans <b data-stat="repos">25</b> dépôts qui ne sont pas les miens. <a href="https://github.com/search?q=is%3Apr+author%3Anavidemad+is%3Amerged+-user%3Anavidemad+-user%3Ayespark+-user%3APixel-CLI&amp;type=pullrequests">Vérifier sur GitHub</a>',
-    "results.r1.what": "Pire requête en production",
-    "results.r1.how":
-      "Un index composite sur une table de paiements de 5,6 Go, mesuré à l’EXPLAIN ANALYZE en prod.",
+    "log.title": "Sélection de pull requests fusionnées",
+    "log.foot": '<b data-stat="prs">171</b> pull requests fusionnées dans <b data-stat="repos">25</b> dépôts qui ne sont pas les miens. <a id="verify-link" href="https://github.com/search?q=is%3Apr+author%3Anavidemad+is%3Amerged+is%3Apublic+-user%3Anavidemad+-user%3Ayespark+-user%3APixel-CLI&amp;type=pullrequests">Vérifier sur GitHub</a>',
+    "results.r1.what": "Requête sur les paiements",
+    "results.r1.how": "Un index composite sur une table de paiements de 5,6 Go, mesuré à l’EXPLAIN ANALYZE en prod.",
     "results.r2.what": "Liste de factures",
     "results.r2.before": "~100 requêtes",
     "results.r2.after": "2 requêtes",
     "results.r2.how": "Un N+1 ActiveStorage, éliminé par préchargement.",
     "results.r3.what": "Endpoints admin et API, p95",
-    "results.r3.how":
-      "Index partiels, agrégats en cache, OR de sous-requêtes réécrits en plans BitmapOr indexés (estimation prudente).",
-    "oss.title": "Où le code a atterri",
-    "help.title": "Comment je peux aider",
-    "upstream.label": "Mon code est fusionné upstream dans",
+    "results.r3.how": "Index partiels, agrégats en cache, OR de sous-requêtes réécrits en plans BitmapOr indexés (estimation prudente).",
+    "oss.title": "Open source",
+    "help.title": "Comment je peux vous aider",
     "results.r1.gain": "<b>52 000×</b> plus rapide",
     "results.r2.gain": "<b>50×</b> moins de requêtes",
     "results.r3.gain": "<b>2 à 5×</b> plus rapide",
@@ -54,55 +37,64 @@
     "oss.dd.role": "Deux correctifs de crash en production, fusionnés upstream",
     "oss.cl.role": "La plateforme française de vaccination COVID-19, en bénévole",
     "oss.also.title": "La longue traîne",
-    "oss.all":
-      '<span data-stat="tail-prs">22</span> autres pull requests fusionnées, dans <span data-stat="tail-repos">16</span> autres dépôts',
+    "oss.all": '<span data-stat="tail-prs">22</span> autres pull requests fusionnées, dans <span data-stat="tail-repos">16</span> autres dépôts',
     "oss.lp.count": '<b data-count="lightpanda-io/browser">97</b> PRs fusionnées',
     "oss.cl.count": '<b data-count="hostolab/covidliste">43</b> PRs fusionnées',
-    "results.title": "Le métier, semaine après semaine",
-    "work.b1":
-      "<h3>Performance</h3><p>Audits de base de données, requêtes lentes et index, montées de version majeures de la base. Trois résultats d’une même campagne pilotée par Datadog :</p>",
-    "work.b2":
-      "<h3>Fiabilité de la production</h3><p>Suivi des incidents jusqu’au bout, surveillance des tâches planifiées, des alertes qui ne sonnent que pour de vraies pannes.</p>",
-    "work.b3":
-      "<h3>CI/CD et DevOps</h3><p>Pipelines plus rapides, déploiements plus sûrs, environnements de staging, gestion des secrets.</p>",
-    "work.b5":
-      "<h3>Migrations et intégrations</h3><p>Des plateformes historiques ramenées sur un seul backend sans casser la production ; paiement, matériel d’accès et caméras ANPR.</p>",
-    "work.b6":
-      "<h3>Revue et mentorat</h3><p>Revue de code quotidienne, mentorat structuré des développeurs juniors, vie privée et sécurité par défaut.</p>",
+    "results.title": "Réalisations",
+    "work.b1": "<h3>Diagnostic d’une requête de paiement lente</h3><p>Une investigation menée avec Datadog a permis trois améliorations en production.</p>",
+    "work.b2": "<h3>Fiabilité de la production</h3><p>Suivi des incidents jusqu’au bout, surveillance des tâches planifiées, des alertes qui ne sonnent que pour de vraies pannes.</p>",
+    "work.b3": "<h3>CI/CD et DevOps</h3><p>Pipelines plus rapides, déploiements plus sûrs, environnements de staging, gestion des secrets.</p>",
+    "work.b5": "<h3>Migrations et intégrations</h3><p>Des plateformes historiques ramenées sur un seul backend sans casser la production ; paiement, matériel d’accès et caméras ANPR.</p>",
+    "work.b6": "<h3>Revue et mentorat</h3><p>Revue de code quotidienne, mentorat structuré des développeurs juniors, vie privée et sécurité par défaut.</p>",
     "oss.maintainer": "Mainteneur",
-    "oss.px.role":
-      "Co-auteur. Donne aux agents de code IA la partie déterministe du travail sur un dépôt",
+    "oss.px.role": "Co-auteur. Donne aux agents de code IA la partie déterministe du travail sur un dépôt",
     "oss.cap.role": "Auteur. Les tests système Rails, sur Lightpanda",
     "meta.title": "Navid Emad - Ingénieur IA agentique & Lead Developer Rails",
-    "hero.title": "Des agents IA et des systèmes Rails qui tiennent en production.",
-    "hero.intro":
-      "Moi c’est Navid, <strong>ingénieur IA agentique</strong> et <strong>lead developer chez Yespark</strong>. Je branche des <strong>agents IA</strong> sur de vrais workflows, avec <strong><span data-years>12</span> ans</strong> d’applis Rails critiques derrière moi. Toujours du code au quotidien.",
-    "hero.availability":
-      "Ouvert aux missions freelance et aux porteurs de projet qui cherchent un développeur. Paris ou remote.",
-    "results.sub":
-      "Six domaines dont je m’occupe comme lead developer chez Yespark, location de parkings partout en France. Les agents d’abord ; la performance vient avec des chiffres de production.",
-    "work.b4":
-      "<h3>Des agents IA dans le quotidien de l’équipe</h3><p>Des agents qui trient, relisent et répondent avec les outils de l’entreprise, et une bibliothèque de skills partagée que chaque développeur utilise. Conçus pour la fiabilité et le coût, les contraintes qu’une démo ne connaît pas.</p>",
-    "oss.sub":
-      "L’outillage pour agents d’abord, puis l’écosystème Rails. Jugé par des mainteneurs, pas par une page portfolio. Chaque ligne ouvre la preuve.",
+    "hero.title": "Une requête de paiement passée de 52&nbsp;s à moins de 1&nbsp;ms.",
+    "hero.intro": "Je suis Navid Emad, lead developer chez Yespark. J’optimise des applications Rails en production et je développe des agents IA qui travaillent avec les outils de votre équipe.",
+    "hero.availability": "Disponible en freelance · Paris ou à distance",
+    "results.sub": "Des optimisations en production chez Yespark et des outils que je développe pour les équipes techniques.",
+    "oss.sub": "Une sélection de pull requests et les projets que je maintiens ou auxquels je contribue.",
     "oss.lp.role": "Navigateur headless conçu pour les agents IA et l’automatisation, en Zig",
-    "oss.agents.role":
-      "Des outils sur lesquels tournent les agents de code IA : support d’un nouveau langage dans chacun",
-    "help.sub":
-      "Des missions freelance en parallèle de mon poste de lead, et de temps en temps un produit construit en partenariat.",
-    "help.b1":
-      "<h3>Agents IA en production</h3><p>De l’audit des cas d’usage aux agents branchés sur vos outils : Claude, MCP, skills, automatisations GitHub. Je dis aussi quand l’IA ne sera pas rentable.</p>",
-    "help.b2":
-      "<h3>Votre idée, construite ensemble</h3><p>Vous avez l’idée et cherchez un développeur pour la construire avec vous. Je suis ouvert à la co-construction, et à un partenariat quand le fit est là.</p>",
-    "help.b3":
-      "<h3>Performance et architecture Rails</h3><p>Audits, optimisation de requêtes, pipelines de jobs.</p>",
-    "help.b4": "<h3>Lead fractionné</h3><p>Direction technique, culture de revue, mentorat.</p>",
-    "contact.desc":
-      "Client avec une roadmap ou porteur de projet avec une idée, quelques lignes suffisent. Je réponds sous 24 h, avec franchise : ce que je peux faire et comment je m’y prendrais. Si je ne suis pas la bonne personne, je vous le dirai et vous aiguillerai si je peux.",
+    "oss.agents.role": "Des outils sur lesquels tournent les agents de code IA : support d’un nouveau langage dans chacun",
+    "help.sub": "J’interviens en freelance en parallèle de mon poste de lead chez Yespark.",
+    "contact.desc": "Client avec une roadmap ou porteur de projet avec une idée, quelques lignes suffisent. Je réponds sous 24 h, avec franchise : ce que je peux faire et comment je m’y prendrais. Si je ne suis pas la bonne personne, je vous le dirai et vous aiguillerai si je peux.",
+    "log.updated": "Mis à jour le",
+    "case.table": "Table des paiements",
+    "case.size": "5,6 Go",
+    "case.change": "Modification",
+    "case.index": "Un index composite",
+    "case.measure": "Mesure en production avec",
+    "service.1.name": "Automatiser une tâche d’équipe",
+    "service.1.desc": "Partons d’une tâche récurrente. Je relie un agent à vos outils et prévois une étape de validation.",
+    "service.2.name": "Accélérer une application Rails",
+    "service.2.desc": "J’analyse une requête lente, je corrige le point de blocage et je mesure le gain en production.",
+    "service.3.name": "Construire un produit ensemble",
+    "service.3.desc": "Vous apportez le problème à résoudre. Nous définissons une première version et la développons ensemble.",
+    "service.4.name": "Renforcer votre équipe avec un lead à temps partiel",
+    "service.4.desc": "J’accompagne votre équipe dans ses choix d’architecture, ses revues de code et la progression de ses développeurs.",
+    "ai.title": "Préparer une revue de code avec Pixel",
+    "ai.prompt": "« Que risque-t-on de casser en modifiant cette méthode ? »",
+    "ai.example": "J’ai co-développé Pixel pour donner à un agent de code le contexte nécessaire pour répondre. Avant sa réponse, Pixel retrouve les appels à la méthode, les tests et les changements récents dans un index local. Le développeur peut examiner les fichiers et les lignes concernés avant de décider quoi modifier.",
+    "ai.link": "Voir comment Pixel prépare le contexte",
+    "nav.services": "Services",
+    "tag.0": "agents de code IA",
+    "tag.1": "recherche dans le code",
+    "tag.2": "formulaires",
+    "tag.3": "Ruby on Rails dans RTK",
+    "tag.4": "Zig dans GitNexus",
+    "tag.5": "optimisation des tokens",
+    "tag.6": "analyse de code",
+    "tag.7": "tests système",
+    "tag.8": "profilage",
+    "tag.9": "traçage distribué",
+    "tag.10": "pages de présentation",
+    "tag.11": "e-mails",
+    "tag.12": "recherche dans la FAQ",
   };
 
   // English strings that are not in the initial markup.
-  var EN = { "meta.title": document.title, "log.live": "live from GitHub" };
+  var EN = { "meta.title": document.title };
   document.querySelectorAll("[data-i18n]").forEach(function (el) {
     EN[el.getAttribute("data-i18n")] = el.innerHTML;
   });
@@ -120,14 +112,21 @@
 
   function initialLang() {
     var fromUrl = new URLSearchParams(location.search).get("lang");
-    if (DICTS[fromUrl]) return fromUrl;
+    if (fromUrl === "en" || fromUrl === "fr") return fromUrl;
     var saved = storage("get", "lang");
-    if (DICTS[saved]) return saved;
+    if (saved === "en" || saved === "fr") return saved;
     return /^fr\b/i.test(navigator.language || "") ? "fr" : "en";
   }
 
   var lang = initialLang();
-  var live = null; // { total, repos, counts, log } once GitHub answered
+  // Translated sentences contain counters. Restore them from the published snapshot.
+  var counts = new Map();
+  function counterKey(el) {
+    return el.getAttribute("data-count") || el.getAttribute("data-stat");
+  }
+  document.querySelectorAll("[data-count], [data-stat]").forEach(function (el) {
+    counts.set(counterKey(el), el.textContent);
+  });
 
   function t(key) {
     var value = DICTS[lang][key];
@@ -150,6 +149,9 @@
   document.querySelectorAll("[data-lang]").forEach(function (button) {
     button.addEventListener("click", function () {
       var next = button.getAttribute("data-lang");
+      var url = new URL(location.href);
+      url.searchParams.set("lang", next);
+      history.replaceState(history.state, "", url);
       if (next === lang) return;
       lang = next;
       storage("set", "lang", lang);
@@ -160,311 +162,22 @@
   /* ================= numbers and dates ================= */
   // Translations re-inject the baked-in figures, so this runs after every language switch.
   function renderNumbers() {
-    var years = new Date().getFullYear() - FIRST_YEAR;
-    document.querySelectorAll("[data-years]").forEach(function (el) {
-      el.textContent = years;
+    document.querySelectorAll("[data-count], [data-stat]").forEach(function (el) {
+      el.textContent = counts.get(counterKey(el));
     });
+    var date = document.getElementById("snapshot-date");
+    date.textContent = new Intl.DateTimeFormat(lang, { dateStyle: "medium", timeZone: "UTC" }).format(new Date(date.dateTime));
     var month = new Intl.DateTimeFormat(lang, { month: "short", year: "numeric", timeZone: "UTC" });
     document.querySelectorAll("#log-list time").forEach(function (el) {
       el.textContent = month.format(new Date(el.dateTime));
     });
-    if (live && live.stars) {
-      document.querySelectorAll("[data-repo]").forEach(function (el) {
-        var count = live.stars[el.getAttribute("data-repo")];
-        if (count != null) el.setAttribute("data-stars", count);
-      });
-    }
     var compact = new Intl.NumberFormat(lang, { notation: "compact", maximumFractionDigits: 1 });
     document.querySelectorAll("[data-stars]").forEach(function (el) {
       var count = Number(el.getAttribute("data-stars"));
       el.textContent = compact.format(count);
       el.title = new Intl.NumberFormat(lang).format(count) + (lang === "fr" ? " étoiles sur GitHub" : " GitHub stars");
     });
-    if (!live) return;
-    document.querySelectorAll('[data-stat="prs"]').forEach(function (el) {
-      el.textContent = live.total;
-    });
-    if (!live.counts) return;
-    document.querySelectorAll('[data-stat="repos"]').forEach(function (el) {
-      el.textContent = live.repos;
-    });
-    document.querySelectorAll("[data-count]").forEach(function (el) {
-      var count = live.counts[el.getAttribute("data-count")];
-      if (count) el.textContent = count;
-    });
-    renderTail();
   }
 
-  // "The long tail" counts whatever its own link searches: every repository the
-  // link does not exclude. The exclusions are read from the link, so the figure
-  // and the proof cannot drift apart.
-  function renderTail() {
-    var link = document.getElementById("tail-link");
-    if (!link) return;
-    var q = new URL(link.href).searchParams.get("q") || "";
-    var repos = (q.match(/-repo:\S+/g) || []).map(function (s) {
-      return s.slice(6).toLowerCase();
-    });
-    var owners = (q.match(/-user:\S+/g) || []).map(function (s) {
-      return s.slice(6).toLowerCase() + "/";
-    });
-    var prs = 0;
-    var count = 0;
-    Object.keys(live.counts).forEach(function (repo) {
-      var name = repo.toLowerCase();
-      var excluded =
-        repos.indexOf(name) >= 0 ||
-        owners.some(function (owner) {
-          return name.indexOf(owner) === 0;
-        });
-      if (excluded) return;
-      prs += live.counts[repo];
-      count += 1;
-    });
-    document.querySelectorAll('[data-stat="tail-prs"]').forEach(function (el) {
-      el.textContent = prs;
-    });
-    document.querySelectorAll('[data-stat="tail-repos"]').forEach(function (el) {
-      el.textContent = count;
-    });
-  }
-
-  /* ================= live GitHub data ================= */
-  function fetchPage(page) {
-    var url =
-      "https://api.github.com/search/issues?q=" +
-      encodeURIComponent(QUERY) +
-      "&sort=created&order=desc&per_page=100&page=" +
-      page;
-    return fetch(url, { headers: { Accept: "application/vnd.github+json" } }).then(function (res) {
-      if (!res.ok) throw new Error("GitHub API " + res.status);
-      return res.json();
-    });
-  }
-
-  function fetchPulls() {
-    var items = [];
-    function next(page) {
-      return fetchPage(page).then(function (data) {
-        items = items.concat(data.items || []);
-        var done = items.length >= data.total_count || !(data.items || []).length;
-        if (!done && page < MAX_PAGES) return next(page + 1);
-        return summarize(data.total_count, items);
-      });
-    }
-    return next(1);
-  }
-
-  function summarize(total, items) {
-    var pulls = items.map(function (item) {
-      return {
-        repo: item.repository_url.replace(/^.*\/repos\//, ""),
-        title: item.title,
-        url: item.html_url,
-        merged: (item.pull_request && item.pull_request.merged_at) || item.closed_at,
-      };
-    });
-    var summary = { total: total, pulls: pulls };
-    // Per-repo figures are only true when every PR was fetched.
-    if (pulls.length >= total) {
-      summary.counts = {};
-      pulls.forEach(function (pull) {
-        summary.counts[pull.repo] = (summary.counts[pull.repo] || 0) + 1;
-      });
-      summary.repos = Object.keys(summary.counts).length;
-    }
-    return summary;
-  }
-
-  // One request for every repository's star count (the core API would need one each).
-  function fetchStars(repos) {
-    var q = repos
-      .map(function (repo) {
-        return "repo:" + repo;
-      })
-      .join(" ");
-    var url = "https://api.github.com/search/repositories?per_page=100&q=" + encodeURIComponent(q);
-    return fetch(url, { headers: { Accept: "application/vnd.github+json" } })
-      .then(function (res) {
-        if (!res.ok) throw new Error("GitHub API " + res.status);
-        return res.json();
-      })
-      .then(function (data) {
-        var stars = {};
-        (data.items || []).forEach(function (repo) {
-          stars[repo.full_name.toLowerCase()] = repo.stargazers_count;
-        });
-        return stars;
-      });
-  }
-
-  // The hero log: most-starred projects first, at most PER_REPO pull requests each,
-  // so one very active repository cannot fill the whole list.
-  function pickLog(pulls, stars) {
-    var byRepo = {};
-    pulls
-      .slice()
-      .sort(function (a, b) {
-        return a.merged < b.merged ? 1 : -1;
-      })
-      .forEach(function (pull) {
-        var list = (byRepo[pull.repo] = byRepo[pull.repo] || []);
-        if (list.length < PER_REPO) list.push(pull);
-      });
-    function starsOf(repo) {
-      return (stars && stars[repo.toLowerCase()]) || 0;
-    }
-    return Object.keys(byRepo)
-      .sort(function (a, b) {
-        // without star counts (API refused), fall back to the most recent work
-        return starsOf(b) - starsOf(a) || (byRepo[a][0].merged < byRepo[b][0].merged ? 1 : -1);
-      })
-      .reduce(function (rows, repo) {
-        return rows.concat(
-          byRepo[repo].map(function (pull) {
-            return { repo: pull.repo, title: pull.title, url: pull.url, merged: pull.merged, stars: starsOf(repo) };
-          }),
-        );
-      }, [])
-      .slice(0, LOG_SIZE);
-  }
-
-  function fetchSummary() {
-    return fetchPulls().then(function (summary) {
-      var repos = summary.pulls
-        .map(function (pull) {
-          return pull.repo;
-        })
-        .filter(function (repo, i, all) {
-          return all.indexOf(repo) === i;
-        });
-      // project rows also show stars for repositories outside the PR search (my own)
-      var shown = [].map.call(document.querySelectorAll("[data-repo]"), function (el) {
-        return el.getAttribute("data-repo");
-      });
-      shown.forEach(function (repo) {
-        if (repos.indexOf(repo) < 0) repos.push(repo);
-      });
-      return fetchStars(repos)
-        .catch(function () {
-          return null;
-        })
-        .then(function (stars) {
-          summary.stars = {};
-          shown.forEach(function (repo) {
-            if (stars && stars[repo.toLowerCase()] != null) summary.stars[repo] = stars[repo.toLowerCase()];
-          });
-          summary.log = pickLog(summary.pulls, stars);
-          delete summary.pulls; // keep the cached payload small
-          return summary;
-        });
-    });
-  }
-
-  function cachedPulls() {
-    try {
-      var cached = JSON.parse(storage("get", CACHE_KEY));
-      if (cached && Date.now() - cached.at < CACHE_TTL) return cached.summary;
-    } catch (e) {
-      /* corrupt cache: refetch */
-    }
-    return null;
-  }
-
-  function renderLog(latest) {
-    var list = document.getElementById("log-list");
-    var shown = [].map.call(list.querySelectorAll("a"), function (a) {
-      return a.href;
-    });
-    var incoming = latest.map(function (pull) {
-      return pull.url;
-    });
-    if (shown.join() === incoming.join()) return;
-
-    list.replaceChildren.apply(
-      list,
-      latest.map(function (pull) {
-        var li = document.createElement("li");
-        var a = document.createElement("a");
-        a.href = pull.url;
-        var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-        svg.setAttribute("aria-hidden", "true");
-        var use = document.createElementNS("http://www.w3.org/2000/svg", "use");
-        use.setAttribute("href", "#merged");
-        svg.appendChild(use);
-        var title = document.createElement("span");
-        title.className = "title";
-        title.textContent = pull.title;
-        var time = document.createElement("time");
-        time.dateTime = pull.merged.slice(0, 10);
-        var repo = document.createElement("span");
-        repo.className = "repo";
-        repo.textContent = pull.repo;
-        a.append(svg, title, time, repo);
-        if (pull.stars) {
-          var stars = document.createElement("span");
-          stars.className = "stars";
-          stars.setAttribute("data-stars", pull.stars);
-          a.append(stars);
-        }
-        li.appendChild(a);
-        return li;
-      }),
-    );
-  }
-
-  function showLive(summary) {
-    live = summary;
-    renderLog(summary.log);
-    document.getElementById("log-source").setAttribute("data-i18n", "log.live");
-    applyLang();
-  }
-
-  /* ================= pointer glow ================= */
-  // At most one update per frame. The hero's spotlight is moved with a transform;
-  // cards read --mx / --my, which only restyles the one card under the pointer.
-  function onPointerFrame(el, apply) {
-    var pending = null;
-    el.addEventListener("pointermove", function (event) {
-      var first = pending === null;
-      pending = event;
-      if (!first) return;
-      requestAnimationFrame(function () {
-        var box = el.getBoundingClientRect();
-        apply(pending.clientX - box.left, pending.clientY - box.top);
-        pending = null;
-      });
-    });
-  }
-  if (matchMedia("(pointer: fine)").matches) {
-    var hero = document.querySelector(".hero");
-    var spot = document.querySelector(".hero-spot");
-    if (hero && spot) {
-      onPointerFrame(hero, function (x, y) {
-        spot.style.transform = "translate3d(" + x + "px," + y + "px,0)";
-      });
-    }
-    document.querySelectorAll("[data-glow]").forEach(function (el) {
-      onPointerFrame(el, function (x, y) {
-        el.style.setProperty("--mx", x + "px");
-        el.style.setProperty("--my", y + "px");
-      });
-    });
-  }
-
-  applyLang(); // paint the right language immediately, hydrate live numbers after
-
-  var cached = cachedPulls();
-  if (cached) {
-    showLive(cached);
-  } else {
-    fetchSummary()
-      .then(function (summary) {
-        storage("set", CACHE_KEY, JSON.stringify({ at: Date.now(), summary: summary }));
-        showLive(summary);
-      })
-      .catch(function () {
-        /* rate-limited or offline: the baked-in snapshot stays, labelled as such */
-      });
-  }
+  applyLang();
 })();

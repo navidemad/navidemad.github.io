@@ -18,12 +18,12 @@ errors = []
 html_keys = html.scan(/data-i18n="([^"]+)"/).flatten.uniq
 fr_block = js[/var FR = \{(.*?)\n  \};/m, 1] or abort("check: FR dictionary not found in site.js")
 fr_keys = fr_block.scan(/^\s{4}"?([\w.]+)"?:/).flatten
-js_only_keys = %w[meta.title log.live] # set from script, not from a data-i18n attribute at load
+js_only_keys = %w[meta.title] # set from script, not from a data-i18n attribute at load
 (html_keys - fr_keys).each { |k| errors << "i18n: #{k} is in index.html but has no French translation" }
 (fr_keys - html_keys - js_only_keys).each { |k| errors << "i18n: #{k} is translated but no longer used in index.html" }
 fr_keys.tally.each { |k, n| errors << "i18n: #{k} is defined #{n} times in FR" if n > 1 }
 
-# 2. Live counters. Translated strings re-inject markup, so every live placeholder
+# 2. Snapshot counters. Translated strings re-inject markup, so every live placeholder
 #    in the English markup must also exist in the French string or the number
 #    silently stops updating after a language switch.
 fr_values = fr_block.split(/^\s{4}(?="?[\w.]+"?:)/).to_h do |entry|
@@ -31,7 +31,7 @@ fr_values = fr_block.split(/^\s{4}(?="?[\w.]+"?:)/).to_h do |entry|
 end
 html.split('data-i18n="').drop(1).each do |segment|
   key = segment[/\A[^"]+/]
-  %w[data-years data-stat data-count].each do |hook|
+  %w[data-stat data-count].each do |hook|
     wanted = segment.scan(hook).size
     got = fr_values.fetch(key, "").scan(hook).size
     errors << "i18n: #{key} has #{wanted} #{hook} placeholder(s) in English, #{got} in French" if wanted != got
@@ -40,8 +40,7 @@ end
 
 # 3. The number shown and the "Verify on GitHub" link must come from the same
 #    search, otherwise the claim is not actually verifiable.
-user = js[/var USER = "([^"]+)"/, 1]
-query = js[/var QUERY = (.+?);/m, 1].to_s.split("+").map(&:strip).map { |part| part == "USER" ? user : part[1..-2] }.join
+query = "is:pr author:navidemad is:merged is:public -user:navidemad -user:yespark -user:Pixel-CLI"
 verify_links = (html + js).scan(%r{https://github\.com/search\?q=([^"&]+)&amp;type=pullrequests}).flatten
 verify_links = verify_links.select { |q| q.include?("-user") }
 errors << "no verify link found for the merged PR counter" if verify_links.empty?

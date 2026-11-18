@@ -103,9 +103,9 @@
           <span>Navid Emad</span>
         </a>
         <nav class="site-nav" aria-label="Sections">
-          <a href="#results" data-i18n="nav.results">The job</a>
+          <a href="#services" data-i18n="nav.services">Services</a>
+          <a href="#results" data-i18n="nav.results">Selected work</a>
           <a href="#open-source" data-i18n="nav.oss">Open source</a>
-          <a href="#contact" data-i18n="nav.contact">Work with me</a>
         </nav>
         <ul class="socials">
           <li>
@@ -129,111 +129,50 @@
     <main id="main">
       <section class="hero" id="top">
         <div class="hero-floor" aria-hidden="true"></div>
-        <div class="hero-spot" aria-hidden="true"></div>
         <div class="container">
-          <h1 class="sheen" data-i18n="hero.title">AI agents and Rails systems that hold up in production.</h1>
           <div class="hero-copy">
-            <p class="lede" data-i18n="hero.intro">
-              I’m Navid, <strong>agentic AI engineer</strong> and
-              <strong>lead developer at Yespark</strong>. I wire <strong>AI agents</strong> into
-              real workflows, on top of <strong><span data-years>12</span> years</strong> of
-              business-critical Rails. Still writing code every day.
-            </p>
-            <p class="availability" data-i18n="hero.availability">
-              Open to freelance work and to founders who need a builder. Paris or remote.
-            </p>
+            <h1 data-i18n="hero.title">A payments query from 52&nbsp;s to under 1&nbsp;ms.</h1>
+            <p class="lede" data-i18n="hero.intro">I’m Navid Emad, lead developer at Yespark. I tune production Rails apps and build AI agents that work with the tools your team already uses.</p>
+            <p class="availability" data-i18n="hero.availability">Available for freelance work · Paris or remote</p>
             <div class="actions">
-              <a class="btn primary" href="https://calendly.com/design-navid/30min" data-i18n="cta.book"
-                >Book a 30-minute call</a
-              >
-              <a class="btn quiet" href="#results" data-i18n="cta.results">See measured results</a>
+              <a class="btn primary" href="https://calendly.com/design-navid/30min" data-i18n="cta.book">Book a 30-minute call</a>
+              <a class="btn quiet" href="#query" data-i18n="cta.results">See the query breakdown</a>
             </div>
           </div>
+          <dl class="case-notes">
+            <div><dt data-i18n="case.table">Payments table</dt><dd data-i18n="case.size">5.6 GB</dd></div>
+            <div><dt data-i18n="case.change">Database change</dt><dd data-i18n="case.index">One composite index</dd></div>
+            <div><dt data-i18n="case.measure">Measured in production with</dt><dd><code>EXPLAIN ANALYZE</code></dd></div>
+          </dl>
+        </div>
+      </section>
 
-          <aside class="log" aria-labelledby="log-title">
-            <div class="log-head">
-              <span id="log-title" data-i18n="log.title">Merged in the most-starred projects</span>
-              <span class="live" id="log-source" data-i18n="log.snapshot">snapshot, Nov 2026</span>
+      <section class="section" id="services">
+        <div class="container">
+          <div class="section-head">
+            <div>
+              <h2 data-i18n="help.title">How I can help</h2>
+              <p data-i18n="help.sub">Freelance engagements alongside my lead role at Yespark.</p>
             </div>
-            <!-- Baked-in snapshot (2026-11-18); site.js replaces it with live data when the GitHub API answers. -->
-            <ol class="log-list" id="log-list">
-              <li>
-                <a href="https://github.com/rtk-ai/rtk/pull/724">
-                  <svg aria-hidden="true"><use href="#merged" /></svg>
-                  <span class="title">feat(ruby): add Ruby on Rails support (rspec, rubocop, rake, bundle)</span>
-                  <time datetime="2026-03-19">Mar 2026</time>
-                  <span class="repo">rtk-ai/rtk</span>
-                  <span class="stars" data-stars="87061">87K</span>
-                </a>
-              </li>
-              <li>
-                <a href="https://github.com/rails/rails/pull/53100">
-                  <svg aria-hidden="true"><use href="#merged" /></svg>
-                  <span class="title">Skip test:system in Github workflow when options[:api] is passed in rails new command</span>
-                  <time datetime="2024-10-02">Oct 2024</time>
-                  <span class="repo">rails/rails</span>
-                  <span class="stars" data-stars="59048">59K</span>
-                </a>
-              </li>
-              <li>
-                <a href="https://github.com/abhigyanpatwari/GitNexus/pull/3219">
-                  <svg aria-hidden="true"><use href="#merged" /></svg>
-                  <span class="title">fix(zig): model callable-value references, and stop reporting their absence as `exact`</span>
-                  <time datetime="2026-09-09">Sep 2026</time>
-                  <span class="repo">abhigyanpatwari/GitNexus</span>
-                  <span class="stars" data-stars="48635">48.6K</span>
-                </a>
-              </li>
-              <li>
-                <a href="https://github.com/abhigyanpatwari/GitNexus/pull/1432">
-                  <svg aria-hidden="true"><use href="#merged" /></svg>
-                  <span class="title">feat: add Zig language support</span>
-                  <time datetime="2026-09-03">Sep 2026</time>
-                  <span class="repo">abhigyanpatwari/GitNexus</span>
-                  <span class="stars" data-stars="48635">48.6K</span>
-                </a>
-              </li>
-              <li>
-                <a href="https://github.com/lightpanda-io/browser/pull/4529">
-                  <svg aria-hidden="true"><use href="#merged" /></svg>
-                  <span class="title">xhr: dispatch upload progress events on xhr.upload</span>
-                  <time datetime="2026-11-13">Nov 2026</time>
-                  <span class="repo">lightpanda-io/browser</span>
-                  <span class="stars" data-stars="42220">42.2K</span>
-                </a>
-              </li>
-              <li>
-                <a href="https://github.com/lightpanda-io/browser/pull/4531">
-                  <svg aria-hidden="true"><use href="#merged" /></svg>
-                  <span class="title">js: settle import() of an available module in a later task</span>
-                  <time datetime="2026-11-09">Nov 2026</time>
-                  <span class="repo">lightpanda-io/browser</span>
-                  <span class="stars" data-stars="42220">42.2K</span>
-                </a>
-              </li>
-            </ol>
-            <p class="log-foot" data-i18n="log.foot">
-              <b data-stat="prs">171</b> merged pull requests in <b data-stat="repos">25</b> repositories
-              I don’t own.
-              <a
-                href="https://github.com/search?q=is%3Apr+author%3Anavidemad+is%3Amerged+-user%3Anavidemad+-user%3Ayespark+-user%3APixel-CLI&amp;type=pullrequests"
-                >Verify on GitHub</a
-              >
-            </p>
-          </aside>
-
-          <div class="upstream">
-            <p data-i18n="upstream.label">My code is merged upstream in</p>
-            <ul>
-              <li><a href="https://github.com/lightpanda-io/browser">Lightpanda</a></li>
-              <li><a href="https://github.com/rtk-ai/rtk">RTK</a></li>
-              <li><a href="https://github.com/abhigyanpatwari/GitNexus">GitNexus</a></li>
-              <li><a href="https://github.com/rails/rails">Rails</a></li>
-              <li><a href="https://github.com/DataDog/dd-trace-rb">Datadog</a></li>
-              <li><a href="https://github.com/rack/rack">Rack</a></li>
-              <li><a href="https://github.com/newrelic/newrelic-ruby-agent">New Relic</a></li>
-            </ul>
           </div>
+          <ul class="services">
+            <li>
+              <h3><a href="#ai-workflow" data-i18n="service.1.name">Automate a team workflow</a></h3>
+              <p data-i18n="service.1.desc">Start with one recurring task. I connect an agent to your tools and build in a review step.</p>
+            </li>
+            <li>
+              <h3><a href="#query" data-i18n="service.2.name">Speed up a Rails app</a></h3>
+              <p data-i18n="service.2.desc">I trace a slow request, fix the bottleneck, and measure the difference in production.</p>
+            </li>
+            <li>
+              <h3><a href="#contact" data-i18n="service.3.name">Build a product together</a></h3>
+              <p data-i18n="service.3.desc">Bring the problem you want to solve. We define a first release and build it together.</p>
+            </li>
+            <li>
+              <h3><a href="#mentoring" data-i18n="service.4.name">Bring in a part-time tech lead</a></h3>
+              <p data-i18n="service.4.desc">I help your team make architecture decisions, review changes, and mentor developers.</p>
+            </li>
+          </ul>
         </div>
       </section>
 
@@ -241,37 +180,20 @@
         <div class="container">
           <div class="section-head">
             <div>
-              <h2 data-i18n="results.title">The job, week after week</h2>
-              <p data-i18n="results.sub">
-                Six areas I own as lead developer at Yespark, parking rental across France. Agents
-                come first; performance comes with production numbers.
-              </p>
+              <h2 data-i18n="results.title">Selected work</h2>
+              <p data-i18n="results.sub">Production performance at Yespark and the tools I build for developers.</p>
             </div>
           </div>
           <ul class="tiles themes">
-            <li class="tile feature ai" data-glow>
-              <div class="feature-head">
-                <span class="icon"><svg aria-hidden="true"><use href="#i-bot" /></svg></span>
-                <div class="tile-body" data-i18n="work.b4"><h3>AI agents in the team’s daily work</h3><p>Agents that triage, review and answer with the company’s own tools, and a shared library of skills every developer uses. Built for reliability and cost, the constraints a demo never faces.</p></div>
-              </div>
-              <ul class="chips">
-                <li>Claude</li>
-                <li>MCP</li>
-                <li>Claude Code skills</li>
-                <li>GitHub automation</li>
-                <li>multi-agent workflows</li>
-                <li>automated triage and review</li>
-              </ul>
-            </li>
-            <li class="tile feature" data-glow>
+            <li class="tile feature" id="query">
               <div class="feature-head">
                 <span class="icon"><svg aria-hidden="true"><use href="#i-gauge" /></svg></span>
-                <div class="tile-body" data-i18n="work.b1"><h3>Performance</h3><p>Database audits, slow-query and index work, major-version database upgrades. Three results from one Datadog-driven campaign:</p></div>
+                <div class="tile-body" data-i18n="work.b1"><h3>Diagnosing a slow payments query</h3><p>A Datadog investigation led to three improvements in production.</p></div>
               </div>
               <ul class="metrics">
                 <li>
                   <p class="gain" data-i18n="results.r1.gain"><b>52,000×</b> faster</p>
-                  <h4 data-i18n="results.r1.what">Worst production query</h4>
+                  <h4 data-i18n="results.r1.what">Payments query</h4>
                   <p class="delta">
                     <s>52 s</s>
                     <svg aria-hidden="true"><use href="#i-arrow" /></svg>
@@ -301,20 +223,24 @@
                 </li>
               </ul>
             </li>
-            <li class="tile half" data-glow>
-              <span class="icon"><svg aria-hidden="true"><use href="#i-shield" /></svg></span>
+            <li class="tile feature" id="ai-workflow">
+              <div class="tile-body">
+                <h3 data-i18n="ai.title">Reviewing a change with Pixel</h3>
+                <p data-i18n="ai.prompt">“What breaks if I change this method?”</p>
+                <p data-i18n="ai.example">I co-built Pixel to give a coding agent the context behind that question. Before the agent answers, Pixel looks up callers, tests, and recent changes in a local index. The developer gets file and line references to inspect before deciding what to change.</p>
+                <a href="https://github.com/Pixel-CLI/pixel#readme" data-i18n="ai.link">See how Pixel builds the brief</a>
+              </div>
+            </li>
+            <li class="tile half">
               <div class="tile-body" data-i18n="work.b2"><h3>Production reliability</h3><p>Incident follow-through, scheduled-job monitoring, alerts that fire for real failures only.</p></div>
             </li>
-            <li class="tile half" data-glow>
-              <span class="icon"><svg aria-hidden="true"><use href="#i-loop" /></svg></span>
+            <li class="tile half">
               <div class="tile-body" data-i18n="work.b3"><h3>CI/CD and DevOps</h3><p>Faster pipelines, safer deploys, staging environments, secrets management.</p></div>
             </li>
-            <li class="tile half" data-glow>
-              <span class="icon"><svg aria-hidden="true"><use href="#i-swap" /></svg></span>
+            <li class="tile half">
               <div class="tile-body" data-i18n="work.b5"><h3>Migrations and integrations</h3><p>Legacy platforms moved onto one backend without breaking production; payment, access hardware and ANPR cameras.</p></div>
             </li>
-            <li class="tile half" data-glow>
-              <span class="icon"><svg aria-hidden="true"><use href="#i-chat" /></svg></span>
+            <li class="tile half" id="mentoring">
               <div class="tile-body" data-i18n="work.b6"><h3>Review and mentoring</h3><p>Daily code review, structured mentoring of junior developers, privacy and security by default.</p></div>
             </li>
           </ul>
@@ -325,15 +251,81 @@
         <div class="container">
           <div class="section-head">
             <div>
-              <h2 data-i18n="oss.title">Where the code landed</h2>
-              <p data-i18n="oss.sub">
-                Agent tooling first, then the Rails ecosystem. Judged by maintainers, not by a
-                portfolio page. Every row opens the proof.
-              </p>
+              <h2 data-i18n="oss.title">Open source</h2>
+              <p data-i18n="oss.sub">Selected pull requests and the projects I maintain or contribute to.</p>
             </div>
           </div>
+          <aside class="log" aria-labelledby="log-title">
+            <div class="log-head">
+              <span id="log-title" data-i18n="log.title">Selected merged pull requests</span>
+              <span class="snapshot"><span data-i18n="log.updated">Updated</span> <time id="snapshot-date" datetime="2026-11-18">18 Nov 2026</time></span>
+            </div>
+            <ol class="log-list" id="log-list">
+              <li>
+                <a href="https://github.com/rtk-ai/rtk/pull/724">
+                  <svg aria-hidden="true"><use href="#merged" /></svg>
+                  <span class="title">feat(ruby): add Ruby on Rails support (rspec, rubocop, rake, bundle)</span>
+                  <time datetime="2026-03-19">Mar 2026</time>
+                  <span class="repo">rtk-ai/rtk</span>
+                  <span class="stars" data-stars="87066">87066</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/rails/rails/pull/53100">
+                  <svg aria-hidden="true"><use href="#merged" /></svg>
+                  <span class="title">Skip test:system in Github workflow when options[:api] is passed in rails new command</span>
+                  <time datetime="2024-10-02">Oct 2024</time>
+                  <span class="repo">rails/rails</span>
+                  <span class="stars" data-stars="59048">59048</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/abhigyanpatwari/GitNexus/pull/3219">
+                  <svg aria-hidden="true"><use href="#merged" /></svg>
+                  <span class="title">fix(zig): model callable-value references, and stop reporting their absence as `exact`</span>
+                  <time datetime="2026-09-09">Sep 2026</time>
+                  <span class="repo">abhigyanpatwari/GitNexus</span>
+                  <span class="stars" data-stars="48635">48635</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/abhigyanpatwari/GitNexus/pull/1432">
+                  <svg aria-hidden="true"><use href="#merged" /></svg>
+                  <span class="title">feat: add Zig language support</span>
+                  <time datetime="2026-09-03">Sep 2026</time>
+                  <span class="repo">abhigyanpatwari/GitNexus</span>
+                  <span class="stars" data-stars="48635">48635</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/lightpanda-io/browser/pull/4529">
+                  <svg aria-hidden="true"><use href="#merged" /></svg>
+                  <span class="title">xhr: dispatch upload progress events on xhr.upload</span>
+                  <time datetime="2026-11-13">Nov 2026</time>
+                  <span class="repo">lightpanda-io/browser</span>
+                  <span class="stars" data-stars="42220">42220</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/lightpanda-io/browser/pull/4531">
+                  <svg aria-hidden="true"><use href="#merged" /></svg>
+                  <span class="title">js: settle import() of an available module in a later task</span>
+                  <time datetime="2026-11-09">Nov 2026</time>
+                  <span class="repo">lightpanda-io/browser</span>
+                  <span class="stars" data-stars="42220">42220</span>
+                </a>
+              </li>
+            </ol>
+            <p class="log-foot" data-i18n="log.foot">
+              <b data-stat="prs">171</b> merged pull requests in <b data-stat="repos">25</b> repositories
+              I don’t own.
+              <a id="verify-link" href="https://github.com/search?q=is%3Apr+author%3Anavidemad+is%3Amerged+is%3Apublic+-user%3Anavidemad+-user%3Ayespark+-user%3APixel-CLI&amp;type=pullrequests"
+                >Verify on GitHub</a
+              >
+            </p>
+          </aside>
           <ul class="rows">
-            <li class="row" data-glow>
+            <li class="row">
               <img class="logo" src="logos/pixel.png" width="44" height="44" alt="" />
               <div class="who">
                 <h3><a href="https://pixel-cli.dev/">Pixel</a><span class="badge"><svg aria-hidden="true"><use href="#i-wrench" /></svg><span data-i18n="oss.maintainer">Maintainer</span></span></h3>
@@ -342,8 +334,8 @@
               <ul class="chips">
                 <li>Rust</li>
                 <li>CLI</li>
-                <li>AI coding agents</li>
-                <li>code search</li>
+                <li data-i18n="tag.0">AI coding agents</li>
+                <li data-i18n="tag.1">code search</li>
                 <li>tree-sitter</li>
               </ul>
               <p class="meta">
@@ -351,7 +343,7 @@
               </p>
               <svg class="go" aria-hidden="true"><use href="#i-go" /></svg>
             </li>
-            <li class="row" data-glow>
+            <li class="row">
               <img class="logo" src="logos/lightpanda.png" width="44" height="44" alt="" />
               <div class="who">
                 <h3><a href="https://github.com/lightpanda-io/browser/pulls?q=is%3Apr+author%3Anavidemad+is%3Amerged">Lightpanda</a></h3>
@@ -360,33 +352,33 @@
               <ul class="chips">
                 <li>Zig</li>
                 <li>WebAPI</li>
-                <li>forms</li>
+                <li data-i18n="tag.2">forms</li>
                 <li>CDP</li>
                 <li>DOM</li>
                 <li>CSS</li>
               </ul>
               <p class="meta">
                 <span class="count" data-i18n="oss.lp.count"><b data-count="lightpanda-io/browser">97</b> merged PRs</span>
-                <span class="stars" data-repo="lightpanda-io/browser" data-stars="42220">42.2K</span>
+                <span class="stars" data-repo="lightpanda-io/browser" data-stars="42220">42220</span>
               </p>
               <svg class="go" aria-hidden="true"><use href="#i-go" /></svg>
             </li>
-            <li class="row" data-glow>
+            <li class="row">
               <span class="logo i-github"><svg aria-hidden="true"><use href="#i-github" /></svg></span>
               <div class="who">
                 <h3><a href="https://github.com/search?q=is%3Apr+author%3Anavidemad+is%3Amerged+repo%3Artk-ai%2Frtk+repo%3Aabhigyanpatwari%2FGitNexus&amp;type=pullrequests">RTK and GitNexus</a></h3>
                 <p class="role" data-i18n="oss.agents.role">Tools AI coding agents run on: new language support in both</p>
               </div>
               <ul class="chips">
-                <li>Ruby on Rails in RTK</li>
-                <li>Zig in GitNexus</li>
-                <li>token optimization</li>
-                <li>code intelligence</li>
+                <li data-i18n="tag.3">Ruby on Rails in RTK</li>
+                <li data-i18n="tag.4">Zig in GitNexus</li>
+                <li data-i18n="tag.5">token optimization</li>
+                <li data-i18n="tag.6">code intelligence</li>
               </ul>
               <p class="meta"></p>
               <svg class="go" aria-hidden="true"><use href="#i-go" /></svg>
             </li>
-            <li class="row" data-glow>
+            <li class="row">
               <span class="logo i-rubygems"><svg aria-hidden="true"><use href="#i-rubygems" /></svg></span>
               <div class="who">
                 <h3><a href="https://github.com/navidemad/capybara-lightpanda">capybara-lightpanda</a><span class="badge"><svg aria-hidden="true"><use href="#i-wrench" /></svg><span data-i18n="oss.maintainer">Maintainer</span></span></h3>
@@ -395,7 +387,7 @@
               <ul class="chips">
                 <li>Ruby</li>
                 <li>Capybara</li>
-                <li>system tests</li>
+                <li data-i18n="tag.7">system tests</li>
                 <li>Hotwire</li>
               </ul>
               <p class="meta">
@@ -403,7 +395,7 @@
               </p>
               <svg class="go" aria-hidden="true"><use href="#i-go" /></svg>
             </li>
-            <li class="row" data-glow>
+            <li class="row">
               <span class="logo i-rails"><svg aria-hidden="true"><use href="#i-rails" /></svg></span>
               <div class="who">
                 <h3><a href="https://github.com/search?q=org%3Arails+author%3Anavidemad+is%3Apr+is%3Amerged&amp;type=pullrequests">Rails ecosystem</a></h3>
@@ -418,7 +410,7 @@
               <p class="meta"></p>
               <svg class="go" aria-hidden="true"><use href="#i-go" /></svg>
             </li>
-            <li class="row" data-glow>
+            <li class="row">
               <span class="logo i-datadog"><svg aria-hidden="true"><use href="#i-datadog" /></svg></span>
               <div class="who">
                 <h3><a href="https://github.com/DataDog/dd-trace-rb/pulls?q=is%3Apr+author%3Anavidemad+is%3Amerged">Datadog dd-trace-rb</a></h3>
@@ -426,15 +418,15 @@
               </div>
               <ul class="chips">
                 <li>Ruby</li>
-                <li>profiling</li>
-                <li>distributed tracing</li>
+                <li data-i18n="tag.8">profiling</li>
+                <li data-i18n="tag.9">distributed tracing</li>
               </ul>
               <p class="meta">
                 <span class="stars" data-repo="DataDog/dd-trace-rb" data-stars="419">419</span>
               </p>
               <svg class="go" aria-hidden="true"><use href="#i-go" /></svg>
             </li>
-            <li class="row" data-glow>
+            <li class="row">
               <img class="logo" src="logos/covidliste.jpg" width="44" height="44" alt="" />
               <div class="who">
                 <h3><a href="https://github.com/hostolab/covidliste/pulls?q=is%3Apr+author%3Anavidemad+is%3Amerged">Covidliste</a><span class="badge"><svg aria-hidden="true"><use href="#i-wrench" /></svg><span data-i18n="oss.maintainer">Maintainer</span></span></h3>
@@ -442,9 +434,9 @@
               </div>
               <ul class="chips">
                 <li>Ruby on Rails</li>
-                <li>landing pages</li>
-                <li>emails</li>
-                <li>FAQ search</li>
+                <li data-i18n="tag.10">landing pages</li>
+                <li data-i18n="tag.11">emails</li>
+                <li data-i18n="tag.12">FAQ search</li>
               </ul>
               <p class="meta">
                 <span class="count" data-i18n="oss.cl.count"><b data-count="hostolab/covidliste">43</b> merged PRs</span>
@@ -452,10 +444,10 @@
               </p>
               <svg class="go" aria-hidden="true"><use href="#i-go" /></svg>
             </li>
-            <li class="row" data-glow>
+            <li class="row">
               <span class="logo i-github"><svg aria-hidden="true"><use href="#i-github" /></svg></span>
               <div class="who">
-                <h3><a id="tail-link" href="https://github.com/search?q=is%3Apr+author%3Anavidemad+is%3Amerged+-user%3Anavidemad+-user%3Ayespark+-user%3APixel-CLI+-repo%3Alightpanda-io%2Fbrowser+-repo%3Artk-ai%2Frtk+-repo%3Aabhigyanpatwari%2FGitNexus+-user%3Arails+-repo%3ADataDog%2Fdd-trace-rb+-repo%3Ahostolab%2Fcovidliste&amp;type=pullrequests"><span data-i18n="oss.also.title">The long tail</span></a></h3>
+                <h3><a id="tail-link" href="https://github.com/search?q=is%3Apr+author%3Anavidemad+is%3Amerged+is%3Apublic+-user%3Anavidemad+-user%3Ayespark+-user%3APixel-CLI+-repo%3Alightpanda-io%2Fbrowser+-repo%3Artk-ai%2Frtk+-repo%3Aabhigyanpatwari%2FGitNexus+-user%3Arails+-repo%3ADataDog%2Fdd-trace-rb+-repo%3Ahostolab%2Fcovidliste&amp;type=pullrequests"><span data-i18n="oss.also.title">The long tail</span></a></h3>
                 <p class="role" data-i18n="oss.all"><span data-stat="tail-prs">22</span> more merged pull requests, in <span data-stat="tail-repos">16</span> other repositories</p>
               </div>
               <ul class="chips">
@@ -477,33 +469,6 @@
 
       <section class="section" id="contact">
         <div class="container">
-          <div class="section-head">
-            <div>
-              <h2 data-i18n="help.title">How I can help</h2>
-              <p data-i18n="help.sub">
-                Freelance engagements alongside my lead role, and the occasional product built in
-                partnership.
-              </p>
-            </div>
-          </div>
-          <ul class="tiles services">
-            <li class="tile" data-glow>
-              <span class="icon"><svg aria-hidden="true"><use href="#i-spark" /></svg></span>
-              <div class="tile-body" data-i18n="help.b1"><h3>AI agents in production</h3><p>From use-case audit to agents wired into your tools: Claude, MCP, skills, GitHub automation. I also say when AI won’t pay off.</p></div>
-            </li>
-            <li class="tile" data-glow>
-              <span class="icon"><svg aria-hidden="true"><use href="#i-idea" /></svg></span>
-              <div class="tile-body" data-i18n="help.b2"><h3>Your idea, built together</h3><p>You have the idea and need a developer to build it with you. I’m open to co-building, and to a partnership when the fit is right.</p></div>
-            </li>
-            <li class="tile" data-glow>
-              <span class="icon"><svg aria-hidden="true"><use href="#i-zap" /></svg></span>
-              <div class="tile-body" data-i18n="help.b3"><h3>Rails performance and architecture</h3><p>Audits, query optimization, job pipelines.</p></div>
-            </li>
-            <li class="tile" data-glow>
-              <span class="icon"><svg aria-hidden="true"><use href="#i-users" /></svg></span>
-              <div class="tile-body" data-i18n="help.b4"><h3>Fractional lead</h3><p>Technical direction, review culture, mentoring.</p></div>
-            </li>
-          </ul>
           <div class="cta-panel">
             <div>
               <h2 class="sheen" data-i18n="contact.title">Tell me what you’re building.</h2>
