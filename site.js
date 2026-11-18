@@ -17,7 +17,6 @@
 
   /* ================= i18n ================= */
   var FR = {
-    "meta.title": "Navid Emad - Lead Developer Rails & ingénieur IA agentique",
     skip: "Aller au contenu",
     "nav.results": "Le métier",
     "nav.oss": "Open source",
@@ -26,8 +25,6 @@
     "cta.book": "Réserver un appel de 30 min",
     "cta.results": "Voir les résultats mesurés",
     "cta.linkedin": "M’écrire sur LinkedIn",
-    "hero.title": "Des systèmes Rails et des agents IA qui tiennent en production.",
-    "hero.availability": "Ouvert à quelques missions freelance. Paris ou remote, réponse sous 24 h.",
     "log.title": "Fusionnées dans les projets les plus étoilés",
     "log.snapshot": "instantané, nov. 2026",
     "log.live": "en direct de GitHub",
@@ -45,46 +42,29 @@
       "Index partiels, agrégats en cache, OR de sous-requêtes réécrits en plans BitmapOr indexés (estimation prudente).",
     "oss.title": "Où le code a atterri",
     "help.title": "Comment je peux aider",
-    "help.sub": "Je prends quelques missions freelance en parallèle de mon poste de lead.",
-    "contact.desc":
-      "Quelques lignes suffisent. Je réponds sous 24 h, avec franchise : ce que je peux faire et comment je m’y prendrais. Si je ne suis pas la bonne personne, je vous le dirai et vous aiguillerai si je peux.",
     "upstream.label": "Mon code est fusionné upstream dans",
     "results.r1.gain": "<b>52 000×</b> plus rapide",
     "results.r2.gain": "<b>50×</b> moins de requêtes",
     "results.r3.gain": "<b>2 à 5×</b> plus rapide",
-    "oss.lp.role": "Moteur de navigateur headless en Zig",
     "contact.title": "Dites-moi ce que vous construisez.",
     "how.b1": "Des PRs petites, argumentées, benchmarkées",
     "how.b2": "Je dis non à l’IA non rentable",
     "how.b3": "Franc dès le premier appel",
-    "hero.intro":
-      "Moi c’est Navid, <strong>lead developer chez Yespark</strong>. <strong><span data-years>12</span> ans</strong> à construire des <strong>applis Rails critiques</strong>, et aujourd’hui à brancher des <strong>agents IA</strong> sur de vrais workflows. Toujours du code au quotidien.",
     "oss.rails.role": "Correctifs de générateurs et de pipeline de build",
     "oss.dd.role": "Deux correctifs de crash en production, fusionnés upstream",
     "oss.cl.role": "La plateforme française de vaccination COVID-19, en bénévole",
     "oss.also.title": "La longue traîne",
     "oss.all":
       'Les <span data-stat="prs">171</span> pull requests fusionnées, dans <span data-stat="repos">25</span> dépôts',
-    "oss.sub":
-      "Jugé par des reviewers Rails, des ingénieurs Datadog et des mainteneurs de moteurs de navigateur, pas par une page portfolio. Chaque ligne ouvre la preuve.",
     "oss.lp.count": '<b data-count="lightpanda-io/browser">97</b> PRs fusionnées',
     "oss.cl.count": '<b data-count="hostolab/covidliste">43</b> PRs fusionnées',
-    "help.b1":
-      "<h3>Performance et architecture Rails</h3><p>Audits, optimisation de requêtes, pipelines de jobs.</p>",
-    "help.b2":
-      "<h3>Agents IA en production</h3><p>De l’audit des cas d’usage aux agents branchés sur vos outils.</p>",
-    "help.b3": "<h3>Lead fractionné</h3><p>Direction technique, culture de revue, mentorat.</p>",
     "results.title": "Le métier, semaine après semaine",
-    "results.sub":
-      "Six domaines dont je m’occupe comme lead developer chez Yespark, location de parkings partout en France. La performance vient avec des chiffres de production.",
     "work.b1":
       "<h3>Performance</h3><p>Audits de base de données, requêtes lentes et index, montées de version majeures de la base. Trois résultats d’une même campagne pilotée par Datadog :</p>",
     "work.b2":
       "<h3>Fiabilité de la production</h3><p>Suivi des incidents jusqu’au bout, surveillance des tâches planifiées, des alertes qui ne sonnent que pour de vraies pannes.</p>",
     "work.b3":
       "<h3>CI/CD et DevOps</h3><p>Pipelines plus rapides, déploiements plus sûrs, environnements de staging, gestion des secrets.</p>",
-    "work.b4":
-      "<h3>Outillage IA pour l’équipe</h3><p>Skills Claude Code, tri et revue automatisés, agents branchés sur les outils internes.</p>",
     "work.b5":
       "<h3>Migrations et intégrations</h3><p>Des plateformes historiques ramenées sur un seul backend sans casser la production ; paiement, matériel d’accès et caméras ANPR.</p>",
     "work.b6":
@@ -93,6 +73,32 @@
     "oss.px.role":
       "Co-auteur. Donne aux agents de code IA la partie déterministe du travail sur un dépôt",
     "oss.cap.role": "Auteur. Les tests système Rails, sur Lightpanda",
+    "meta.title": "Navid Emad - Ingénieur IA agentique & Lead Developer Rails",
+    "hero.title": "Des agents IA et des systèmes Rails qui tiennent en production.",
+    "hero.intro":
+      "Moi c’est Navid, <strong>ingénieur IA agentique</strong> et <strong>lead developer chez Yespark</strong>. Je branche des <strong>agents IA</strong> sur de vrais workflows, avec <strong><span data-years>12</span> ans</strong> d’applis Rails critiques derrière moi. Toujours du code au quotidien.",
+    "hero.availability":
+      "Ouvert aux missions freelance et aux porteurs de projet qui cherchent un développeur. Paris ou remote.",
+    "results.sub":
+      "Six domaines dont je m’occupe comme lead developer chez Yespark, location de parkings partout en France. Les agents d’abord ; la performance vient avec des chiffres de production.",
+    "work.b4":
+      "<h3>Des agents IA dans le quotidien de l’équipe</h3><p>Des agents qui trient, relisent et répondent avec les outils de l’entreprise, et une bibliothèque de skills partagée que chaque développeur utilise. Conçus pour la fiabilité et le coût, les contraintes qu’une démo ne connaît pas.</p>",
+    "oss.sub":
+      "L’outillage pour agents d’abord, puis l’écosystème Rails. Jugé par des mainteneurs, pas par une page portfolio. Chaque ligne ouvre la preuve.",
+    "oss.lp.role": "Navigateur headless conçu pour les agents IA et l’automatisation, en Zig",
+    "oss.agents.role":
+      "Des outils sur lesquels tournent les agents de code IA : support d’un nouveau langage dans chacun",
+    "help.sub":
+      "Des missions freelance en parallèle de mon poste de lead, et de temps en temps un produit construit en partenariat.",
+    "help.b1":
+      "<h3>Agents IA en production</h3><p>De l’audit des cas d’usage aux agents branchés sur vos outils : Claude, MCP, skills, automatisations GitHub. Je dis aussi quand l’IA ne sera pas rentable.</p>",
+    "help.b2":
+      "<h3>Votre idée, construite ensemble</h3><p>Vous avez l’idée et cherchez un développeur pour la construire avec vous. Je suis ouvert à la co-construction, et à un partenariat quand le fit est là.</p>",
+    "help.b3":
+      "<h3>Performance et architecture Rails</h3><p>Audits, optimisation de requêtes, pipelines de jobs.</p>",
+    "help.b4": "<h3>Lead fractionné</h3><p>Direction technique, culture de revue, mentorat.</p>",
+    "contact.desc":
+      "Client avec une roadmap ou porteur de projet avec une idée, quelques lignes suffisent. Je réponds sous 24 h, avec franchise : ce que je peux faire et comment je m’y prendrais. Si je ne suis pas la bonne personne, je vous le dirai et vous aiguillerai si je peux.",
   };
 
   // English strings that are not in the initial markup.
