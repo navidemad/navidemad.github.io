@@ -417,6 +417,41 @@ p {
   border-radius: 16px;
   background: var(--bg-alt);
 }
+/* the face behind the page, at the top of the hero panel */
+.identity {
+  display: flex;
+  align-items: center;
+  gap: clamp(14px, 2vw, 22px);
+  margin: 0 0 clamp(18px, 2.4vw, 26px);
+  padding-bottom: clamp(18px, 2.4vw, 26px);
+  border-bottom: 1px solid var(--line);
+}
+.identity img {
+  flex: none;
+  width: clamp(96px, 11vw, 132px);
+  height: auto;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 22px;
+  /* gradient ring in the page's two colors */
+  border: 2px solid transparent;
+  background:
+    linear-gradient(var(--bg-alt), var(--bg-alt)) padding-box,
+    var(--action) border-box;
+  box-shadow: 0 18px 50px -18px rgba(124, 150, 255, 0.9);
+}
+.identity figcaption {
+  display: grid;
+  gap: 2px;
+  color: var(--muted);
+  font-size: 15.5px;
+}
+.identity strong {
+  font-family: var(--display);
+  font-size: clamp(26px, 2.6vw, 32px);
+  line-height: 1.05;
+  color: var(--ink);
+}
 .featured-work h2 { font-size: 28px; margin-bottom: 12px; }
 .featured-work li { border-top: 1px solid var(--line); }
 .featured-work a {
@@ -589,6 +624,61 @@ p {
 .services p { max-width: 56ch; color: var(--muted); margin-top: 8px; }
 
 /* ---------- open source: one row per project ---------- */
+/* ---------- personal AI projects, each with its real status ---------- */
+.projects {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+.project {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: clamp(20px, 2.4vw, 28px);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: var(--surface);
+}
+.project h3 {
+  font-size: 28px;
+}
+.project .desc {
+  color: var(--muted);
+  max-width: 54ch;
+}
+.project .chips {
+  margin-top: auto;
+  padding-top: 6px;
+}
+.project .more {
+  align-self: start;
+  font-size: 15px;
+}
+/* the dot says how real it is: in use, public, or private */
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  align-self: start;
+  padding: 4px 11px 4px 9px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-size: 13.5px;
+}
+.status::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--muted);
+}
+.status.live::before {
+  background: var(--ok);
+}
+.status.public::before {
+  background: var(--merged);
+}
+
 .rows {
   display: grid;
   gap: 10px;
@@ -828,6 +918,9 @@ p {
   }
 }
 @media (max-width: 720px) {
+  .projects {
+    grid-template-columns: minmax(0, 1fr);
+  }
   body {
     font-size: 16px;
   }

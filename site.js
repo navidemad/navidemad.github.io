@@ -70,6 +70,22 @@
     "tag.10": "pages de présentation",
     "tag.11": "e-mails",
     "tag.12": "recherche dans la FAQ",
+    "nav.projects": "Projets",
+    "identity.role": "Ingénieur IA agentique, lead developer",
+    "identity.place": "Paris, France",
+    "proj.title": "Ce que je construis avec des agents IA",
+    "proj.sub": "Des outils que j’utilise chaque jour de travail, chacun avec son statut réel.",
+    "proj.px.status": "Open source · usage quotidien",
+    "proj.px.desc": "Une CLI locale qui répond aux questions qu’un agent de code pose sans cesse sur un dépôt : où est-ce défini, qui l’appelle, qu’est-ce qui casse si ça change. L’agent garde ses tokens pour la partie difficile.",
+    "proj.px.link": "pixel-cli.dev",
+    "proj.harness.name": "Mon harness d’agents",
+    "proj.harness.status": "Privé · usage quotidien",
+    "proj.harness.desc": "L’environnement autour de mes agents de code : des notes qu’ils lisent à la demande, des hooks qui font respecter mes règles, et des skills que je ne garde qu’après un test A/B à l’aveugle contre la version précédente.",
+    "proj.pi.status": "Public · usage personnel",
+    "proj.pi.desc": "Des extensions pour l’agent de code Pi : un panneau latéral qui montre ce que fait chaque sous-agent pendant qu’il travaille, sans reprendre la main sur l’orchestration.",
+    "proj.ccp.status": "Public · expérience de 2025",
+    "proj.ccp.desc": "Des skills qui guident Claude Code dans un workflow piloté par la spec : écrire le cahier des charges produit, puis coder, tester et relire par rapport à lui.",
+    "proj.code": "Code sur GitHub",
   };
 
   // English strings that are not in the initial markup.
