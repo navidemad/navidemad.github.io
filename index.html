@@ -117,57 +117,63 @@
 
           <aside class="log" aria-labelledby="log-title">
             <div class="log-head">
-              <span id="log-title" data-i18n="log.title">Latest merged pull requests</span>
+              <span id="log-title" data-i18n="log.title">Merged in the most-starred projects</span>
               <span class="live" id="log-source" data-i18n="log.snapshot">snapshot, Nov 2026</span>
             </div>
             <!-- Baked-in snapshot (2026-11-18); site.js replaces it with live data when the GitHub API answers. -->
             <ol class="log-list" id="log-list">
-              <li style="--i: 0">
-                <a href="https://github.com/lightpanda-io/browser/pull/4531">
+              <li>
+                <a href="https://github.com/rtk-ai/rtk/pull/724">
                   <svg aria-hidden="true"><use href="#merged" /></svg>
-                  <span class="title">js: settle import() of an available module in a later task</span>
-                  <time datetime="2026-11-09">Nov 2026</time>
-                  <span class="repo">lightpanda-io/browser</span>
+                  <span class="title">feat(ruby): add Ruby on Rails support (rspec, rubocop, rake, bundle)</span>
+                  <time datetime="2026-03-19">Mar 2026</time>
+                  <span class="repo">rtk-ai/rtk</span>
+                  <span class="stars" data-stars="87061">★ 87K</span>
                 </a>
               </li>
-              <li style="--i: 1">
+              <li>
+                <a href="https://github.com/rails/rails/pull/53100">
+                  <svg aria-hidden="true"><use href="#merged" /></svg>
+                  <span class="title">Skip test:system in Github workflow when options[:api] is passed in rails new command</span>
+                  <time datetime="2024-10-02">Oct 2024</time>
+                  <span class="repo">rails/rails</span>
+                  <span class="stars" data-stars="59048">★ 59K</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/abhigyanpatwari/GitNexus/pull/3219">
+                  <svg aria-hidden="true"><use href="#merged" /></svg>
+                  <span class="title">fix(zig): model callable-value references, and stop reporting their absence as `exact`</span>
+                  <time datetime="2026-09-09">Sep 2026</time>
+                  <span class="repo">abhigyanpatwari/GitNexus</span>
+                  <span class="stars" data-stars="48635">★ 48.6K</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/abhigyanpatwari/GitNexus/pull/1432">
+                  <svg aria-hidden="true"><use href="#merged" /></svg>
+                  <span class="title">feat: add Zig language support</span>
+                  <time datetime="2026-09-03">Sep 2026</time>
+                  <span class="repo">abhigyanpatwari/GitNexus</span>
+                  <span class="stars" data-stars="48635">★ 48.6K</span>
+                </a>
+              </li>
+              <li>
                 <a href="https://github.com/lightpanda-io/browser/pull/4529">
                   <svg aria-hidden="true"><use href="#merged" /></svg>
                   <span class="title">xhr: dispatch upload progress events on xhr.upload</span>
                   <time datetime="2026-11-13">Nov 2026</time>
                   <span class="repo">lightpanda-io/browser</span>
+                  <span class="stars" data-stars="42220">★ 42.2K</span>
                 </a>
               </li>
-              <li style="--i: 2">
-                <a href="https://github.com/lightpanda-io/browser/pull/4527">
+              <li>
+                <a href="https://github.com/lightpanda-io/browser/pull/4531">
                   <svg aria-hidden="true"><use href="#merged" /></svg>
-                  <span class="title">webapi: add ClipboardEvent</span>
+                  <span class="title">js: settle import() of an available module in a later task</span>
                   <time datetime="2026-11-09">Nov 2026</time>
                   <span class="repo">lightpanda-io/browser</span>
-                </a>
-              </li>
-              <li style="--i: 3">
-                <a href="https://github.com/lightpanda-io/browser/pull/3963">
-                  <svg aria-hidden="true"><use href="#merged" /></svg>
-                  <span class="title">css: end nested rules at their own block in stylesheet style rules</span>
-                  <time datetime="2026-10-20">Oct 2026</time>
-                  <span class="repo">lightpanda-io/browser</span>
-                </a>
-              </li>
-              <li style="--i: 4">
-                <a href="https://github.com/lightpanda-io/browser/pull/3962">
-                  <svg aria-hidden="true"><use href="#merged" /></svg>
-                  <span class="title">css: support native CSS nesting</span>
-                  <time datetime="2026-10-22">Oct 2026</time>
-                  <span class="repo">lightpanda-io/browser</span>
-                </a>
-              </li>
-              <li style="--i: 5">
-                <a href="https://github.com/lightpanda-io/browser/pull/3958">
-                  <svg aria-hidden="true"><use href="#merged" /></svg>
-                  <span class="title">webapi: give Window and Document the GlobalEventHandlers attributes</span>
-                  <time datetime="2026-10-14">Oct 2026</time>
-                  <span class="repo">lightpanda-io/browser</span>
+                  <span class="stars" data-stars="42220">★ 42.2K</span>
                 </a>
               </li>
             </ol>
@@ -228,10 +234,33 @@
               </tr>
             </tbody>
           </table>
-          <p class="aside-note" data-i18n="results.also">
-            Also at Yespark, where I’m lead developer: Sidekiq fan-out architectures, ANPR camera
-            fleet integrations, AI-assisted back-office tooling.
-          </p>
+          <h3 class="themes-title" data-i18n="work.title">The rest of the job, week after week</h3>
+          <ul class="themes">
+            <li data-i18n="work.b1">
+              <b>Production reliability</b
+              ><span>Incident follow-through, scheduled-job monitoring, alerts that fire for real failures only.</span>
+            </li>
+            <li data-i18n="work.b2">
+              <b>Performance</b
+              ><span>Database audits, slow-query and index work, major-version database upgrades.</span>
+            </li>
+            <li data-i18n="work.b3">
+              <b>CI/CD and DevOps</b
+              ><span>Faster pipelines, safer deploys, staging environments, secrets management.</span>
+            </li>
+            <li data-i18n="work.b4">
+              <b>AI tooling for the team</b
+              ><span>Claude Code skills, automated triage and review, agents wired into internal tools.</span>
+            </li>
+            <li data-i18n="work.b5">
+              <b>Migrations and integrations</b
+              ><span>Legacy platforms moved onto one backend without breaking production; payment, access hardware and ANPR cameras.</span>
+            </li>
+            <li data-i18n="work.b6">
+              <b>Review and mentoring</b
+              ><span>Daily code review, structured mentoring of junior developers, privacy and security by default.</span>
+            </li>
+          </ul>
         </div>
       </section>
 

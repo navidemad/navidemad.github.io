@@ -10,7 +10,8 @@
   // Third-party work only: my own repos, my employer's and the Pixel org I co-run are excluded.
   var QUERY = "is:pr author:" + USER + " is:merged -user:" + USER + " -user:yespark -user:Pixel-CLI";
   var LOG_SIZE = 6;
-  var CACHE_KEY = "gh-pulls-v1";
+  var PER_REPO = 2; // rows per repository in the hero log
+  var CACHE_KEY = "gh-pulls-v2";
   var CACHE_TTL = 60 * 60 * 1000;
   var MAX_PAGES = 5; // 500 PRs; beyond that the per-repo counts keep their baked-in values
 
@@ -30,7 +31,7 @@
     "hero.intro":
       "Moi c’est Navid, lead developer chez Yespark. <span data-years>12</span> ans à construire des applis Rails critiques, et aujourd’hui à brancher des agents IA sur de vrais workflows. Toujours du code au quotidien.",
     "hero.availability": "Ouvert à quelques missions freelance. Paris ou remote, réponse sous 24 h.",
-    "log.title": "Dernières pull requests fusionnées",
+    "log.title": "Fusionnées dans les projets les plus étoilés",
     "log.snapshot": "instantané, nov. 2026",
     "log.live": "en direct de GitHub",
     "log.foot":
@@ -52,8 +53,19 @@
     "results.r3.what": "Endpoints admin et API, p95",
     "results.r3.how":
       "Index partiels, agrégats en cache, OR de sous-requêtes réécrits en plans BitmapOr indexés (estimation prudente).",
-    "results.also":
-      "Également chez Yespark, où je suis lead developer : architectures de fan-out Sidekiq, intégration d’une flotte de caméras ANPR, outillage back-office assisté par IA.",
+    "work.title": "Le reste du métier, semaine après semaine",
+    "work.b1":
+      "<b>Fiabilité de la production</b><span>Suivi des incidents jusqu’au bout, surveillance des tâches planifiées, des alertes qui ne sonnent que pour de vraies pannes.</span>",
+    "work.b2":
+      "<b>Performance</b><span>Audits de base de données, requêtes lentes et index, montées de version majeures de la base.</span>",
+    "work.b3":
+      "<b>CI/CD et DevOps</b><span>Pipelines plus rapides, déploiements plus sûrs, environnements de staging, gestion des secrets.</span>",
+    "work.b4":
+      "<b>Outillage IA pour l’équipe</b><span>Skills Claude Code, tri et revue automatisés, agents branchés sur les outils internes.</span>",
+    "work.b5":
+      "<b>Migrations et intégrations</b><span>Des plateformes historiques ramenées sur un seul backend sans casser la production ; paiement, matériel d’accès et caméras ANPR.</span>",
+    "work.b6":
+      "<b>Revue et mentorat</b><span>Revue de code quotidienne, mentorat structuré des développeurs juniors, vie privée et sécurité par défaut.</span>",
     "oss.title": "Où le code a atterri",
     "oss.sub":
       "L’open source est la meilleure revue de code que je connaisse : ces pull requests ont été jugées par des reviewers Rails, des ingénieurs Datadog et des mainteneurs de moteurs de navigateur, pas par une page portfolio.",
@@ -133,7 +145,7 @@
   }
 
   var lang = initialLang();
-  var live = null; // { total, repos, counts, latest } once GitHub answered
+  var live = null; // { total, repos, counts, log } once GitHub answered
 
   function t(key) {
     var value = DICTS[lang][key];
@@ -173,6 +185,12 @@
     var month = new Intl.DateTimeFormat(lang, { month: "short", year: "numeric", timeZone: "UTC" });
     document.querySelectorAll("#log-list time").forEach(function (el) {
       el.textContent = month.format(new Date(el.dateTime));
+    });
+    var compact = new Intl.NumberFormat(lang, { notation: "compact", maximumFractionDigits: 1 });
+    document.querySelectorAll("[data-stars]").forEach(function (el) {
+      var count = Number(el.getAttribute("data-stars"));
+      el.textContent = "\u2605 " + compact.format(count);
+      el.title = new Intl.NumberFormat(lang).format(count) + (lang === "fr" ? " étoiles sur GitHub" : " GitHub stars");
     });
     if (!live) return;
     document.querySelectorAll('[data-stat="prs"]').forEach(function (el) {
@@ -223,15 +241,7 @@
         merged: (item.pull_request && item.pull_request.merged_at) || item.closed_at,
       };
     });
-    var summary = {
-      total: total,
-      latest: pulls
-        .slice()
-        .sort(function (a, b) {
-          return a.merged < b.merged ? 1 : -1;
-        })
-        .slice(0, LOG_SIZE),
-    };
+    var summary = { total: total, pulls: pulls };
     // Per-repo figures are only true when every PR was fetched.
     if (pulls.length >= total) {
       summary.counts = {};
@@ -241,6 +251,80 @@
       summary.repos = Object.keys(summary.counts).length;
     }
     return summary;
+  }
+
+  // One request for every repository's star count (the core API would need one each).
+  function fetchStars(repos) {
+    var q = repos
+      .map(function (repo) {
+        return "repo:" + repo;
+      })
+      .join(" ");
+    var url = "https://api.github.com/search/repositories?per_page=100&q=" + encodeURIComponent(q);
+    return fetch(url, { headers: { Accept: "application/vnd.github+json" } })
+      .then(function (res) {
+        if (!res.ok) throw new Error("GitHub API " + res.status);
+        return res.json();
+      })
+      .then(function (data) {
+        var stars = {};
+        (data.items || []).forEach(function (repo) {
+          stars[repo.full_name.toLowerCase()] = repo.stargazers_count;
+        });
+        return stars;
+      });
+  }
+
+  // The hero log: most-starred projects first, at most PER_REPO pull requests each,
+  // so one very active repository cannot fill the whole list.
+  function pickLog(pulls, stars) {
+    var byRepo = {};
+    pulls
+      .slice()
+      .sort(function (a, b) {
+        return a.merged < b.merged ? 1 : -1;
+      })
+      .forEach(function (pull) {
+        var list = (byRepo[pull.repo] = byRepo[pull.repo] || []);
+        if (list.length < PER_REPO) list.push(pull);
+      });
+    function starsOf(repo) {
+      return (stars && stars[repo.toLowerCase()]) || 0;
+    }
+    return Object.keys(byRepo)
+      .sort(function (a, b) {
+        // without star counts (API refused), fall back to the most recent work
+        return starsOf(b) - starsOf(a) || (byRepo[a][0].merged < byRepo[b][0].merged ? 1 : -1);
+      })
+      .reduce(function (rows, repo) {
+        return rows.concat(
+          byRepo[repo].map(function (pull) {
+            return { repo: pull.repo, title: pull.title, url: pull.url, merged: pull.merged, stars: starsOf(repo) };
+          }),
+        );
+      }, [])
+      .slice(0, LOG_SIZE);
+  }
+
+  function fetchSummary() {
+    return fetchPulls().then(function (summary) {
+      var repos = summary.pulls
+        .map(function (pull) {
+          return pull.repo;
+        })
+        .filter(function (repo, i, all) {
+          return all.indexOf(repo) === i;
+        });
+      return fetchStars(repos)
+        .catch(function () {
+          return null;
+        })
+        .then(function (stars) {
+          summary.log = pickLog(summary.pulls, stars);
+          delete summary.pulls; // keep the cached payload small
+          return summary;
+        });
+    });
   }
 
   function cachedPulls() {
@@ -263,7 +347,6 @@
     });
     if (shown.join() === incoming.join()) return;
 
-    list.classList.add("settled"); // no entrance animation on a data refresh
     list.replaceChildren.apply(
       list,
       latest.map(function (pull) {
@@ -284,6 +367,12 @@
         repo.className = "repo";
         repo.textContent = pull.repo;
         a.append(svg, title, time, repo);
+        if (pull.stars) {
+          var stars = document.createElement("span");
+          stars.className = "stars";
+          stars.setAttribute("data-stars", pull.stars);
+          a.append(stars);
+        }
         li.appendChild(a);
         return li;
       }),
@@ -292,7 +381,7 @@
 
   function showLive(summary) {
     live = summary;
-    renderLog(summary.latest);
+    renderLog(summary.log);
     document.getElementById("log-source").setAttribute("data-i18n", "log.live");
     applyLang();
   }
@@ -303,7 +392,7 @@
   if (cached) {
     showLive(cached);
   } else {
-    fetchPulls()
+    fetchSummary()
       .then(function (summary) {
         storage("set", CACHE_KEY, JSON.stringify({ at: Date.now(), summary: summary }));
         showLive(summary);

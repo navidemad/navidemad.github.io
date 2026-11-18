@@ -30,7 +30,9 @@ or after the visitor picks FR (remembered in `localStorage`).
 
 ## Live numbers
 
-The hero log and every merged-PR figure come from one GitHub search, defined once
+The hero log lists the most-starred projects first, at most two pull requests per
+repository (`PER_REPO`), so one very active repository cannot fill it. Star counts
+come from a single repository search. The log and every merged-PR figure come from one GitHub search, defined once
 as `QUERY` in `site.js`. It counts third-party work only: my own repositories,
 my employer's and the Pixel-CLI org are excluded. The figures in the markup are a
 dated snapshot shown when the GitHub API is unreachable or rate-limited; the
