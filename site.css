@@ -795,8 +795,8 @@ p {
   /* who on top, tags across the full width, figures in a footer pinned to the bottom:
      every card in a line ends on the same baseline, whatever its content */
   grid-template-columns: 44px minmax(0, 1fr) 20px;
-  grid-template-rows: auto auto 1fr;
-  align-items: start;
+  grid-template-rows: auto auto auto 1fr;
+  align-items: center;
   gap: 14px;
   padding: 18px 20px 14px;
   border: 1px solid var(--line);
@@ -846,17 +846,27 @@ p {
 .row .i-rubygems svg {
   fill: #ff7a5c;
 }
+/* The name sits beside the logo; the one-line description and the one-line tag list
+   each take the full width of the card, so two neighbours always have the same rows. */
 .row .who {
+  display: contents;
+}
+.row h3 {
   grid-column: 2;
+  grid-row: 1;
+}
+.row .role {
+  grid-column: 1 / -1;
+  grid-row: 2;
 }
 .row .chips {
   grid-column: 1 / -1;
-  grid-row: 2;
+  grid-row: 3;
 }
 /* the figures: a footer line, merged PRs on the left, stars on the right */
 .row .meta {
   grid-column: 1 / -1;
-  grid-row: 3;
+  grid-row: 4;
   align-self: end;
   display: flex;
   align-items: center;
@@ -931,7 +941,7 @@ p {
   height: 13px;
 }
 .row .role {
-  margin-top: 4px;
+  margin-top: -2px;
   font-size: 15px;
   line-height: 1.45;
   color: var(--muted);
@@ -1086,10 +1096,13 @@ p {
 }
 
 /* ---------- responsive ---------- */
-@media (max-width: 900px) {
+/* two project cards side by side only while each keeps its description and its tags on one line */
+@media (max-width: 1000px) {
   .rows {
     grid-template-columns: minmax(0, 1fr);
   }
+}
+@media (max-width: 900px) {
   .hero .container,
   .cta-panel,
   .services > li {
