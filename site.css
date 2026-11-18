@@ -428,8 +428,13 @@ p {
   text-decoration: none;
 }
 .featured-work strong { font-size: 19px; }
-.featured-work span, .snapshot { font-size: 15px; color: var(--muted); }
-.featured-work span { grid-column: 1; }
+.featured-work a > [data-i18n], .snapshot { font-size: 15px; color: var(--muted); }
+.featured-work a > span { grid-column: 1; }
+.featured-work .project-name {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
 .featured-work svg {
   grid-column: 2;
   grid-row: 1 / 3;
