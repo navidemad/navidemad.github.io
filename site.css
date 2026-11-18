@@ -1035,6 +1035,15 @@ p {
     0 -10px 50px -4px rgba(124, 196, 255, 0.45),
     0 -60px 160px -20px rgba(124, 92, 255, 0.6);
 }
+/* the page signs off on the disc, under the horizon */
+.colophon {
+  position: absolute;
+  inset: auto 0 18px;
+  padding-inline: var(--gutter);
+  text-align: center;
+  font-size: 13.5px;
+  color: var(--muted);
+}
 /* The call to action sits directly in the section, centered above the horizon:
    no card, the section's own background carries it. */
 .cta-panel {
