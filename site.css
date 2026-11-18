@@ -792,13 +792,12 @@ p {
 .row {
   position: relative;
   display: grid;
-  /* who on top, tags across the full width, figures in a footer pinned to the bottom:
-     every card in a line ends on the same baseline, whatever its content */
-  grid-template-columns: 44px minmax(0, 1fr) 20px;
-  grid-template-rows: auto auto auto 1fr;
+  /* one header line (logo, name, stars, merged PRs, arrow), then the description
+     and the tags across the full width */
+  grid-template-columns: 44px minmax(0, max-content) auto minmax(0, 1fr) auto 20px;
   align-items: center;
-  gap: 14px;
-  padding: 18px 20px 14px;
+  gap: 14px 12px;
+  padding: 18px 20px;
   border: 1px solid var(--line);
   border-radius: 14px;
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.025));
@@ -863,23 +862,21 @@ p {
   grid-column: 1 / -1;
   grid-row: 3;
 }
-/* the figures: a footer line, merged PRs on the left, stars on the right */
+/* the figures live in the header: stars right after the name, merged PRs before the arrow */
 .row .meta {
-  grid-column: 1 / -1;
-  grid-row: 4;
-  align-self: end;
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  min-width: 0;
-  padding-top: 12px;
-  border-top: 1px solid var(--line);
+  display: contents;
 }
-.row .count + .stars {
-  margin-left: auto;
+.row .stars {
+  grid-column: 3;
+  grid-row: 1;
+  justify-self: start;
+}
+.row .count {
+  grid-column: 5;
+  grid-row: 1;
 }
 .row .go {
-  grid-column: 3;
+  grid-column: 6;
   grid-row: 1;
   width: 20px;
   height: 20px;
@@ -949,15 +946,16 @@ p {
 .row .count {
   display: flex;
   align-items: baseline;
-  gap: 7px;
+  gap: 5px;
   font-size: 14px;
+  font-weight: 600;
   line-height: 1.2;
   color: var(--muted);
   white-space: nowrap;
 }
 .row .count b {
   font-family: var(--display);
-  font-size: 30px;
+  font-size: 26px;
   line-height: 1;
   color: var(--ink);
   font-variant-numeric: tabular-nums;
@@ -1096,6 +1094,21 @@ p {
 }
 
 /* ---------- responsive ---------- */
+/* narrow two-column cards and small phones: the maintainer badge keeps its icon and drops
+   its word, so the header still fits */
+@media (min-width: 1001px) and (max-width: 1180px), (max-width: 400px) {
+  .row .badge {
+    padding: 4px 6px;
+  }
+  .row .badge span {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+}
 /* two project cards side by side only while each keeps its description and its tags on one line */
 @media (max-width: 1000px) {
   .rows {
@@ -1127,6 +1140,25 @@ p {
   }
 }
 @media (max-width: 560px) {
+  /* phones: no room for the stars beside the name, they go under it, next to the logo */
+  .row:has(.stars) .logo {
+    grid-row: 1 / span 2;
+    align-self: start;
+  }
+  .row:has(.stars) h3 {
+    align-self: end;
+  }
+  .row:has(.stars) .stars {
+    grid-column: 2 / -1;
+    grid-row: 2;
+    margin-top: -8px;
+  }
+  .row:has(.stars) .role {
+    grid-row: 3;
+  }
+  .row:has(.stars) .chips {
+    grid-row: 4;
+  }
   /* the same icons close the page, in the call panel */
   .site-header .socials {
     display: none;
@@ -1136,6 +1168,8 @@ p {
   }
 }
 @media (max-width: 480px) {
+  .row { column-gap: 8px; padding-inline: 16px; }
+  .row h3 { font-size: 20px; }
   .site-header .container { gap: 7px; }
   .brand { gap: 6px; font-size: 15px; }
   .btn.small { padding-inline: 9px; }
