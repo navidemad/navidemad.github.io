@@ -17,7 +17,7 @@ bin/check-browser # desktop and phone checks (requires agent-browser and Chrome)
 | `index.html` | Markup and the English copy (source of truth, readable without JS) |
 | `site.js` | French copy (`FR`), language switch, localized snapshot dates and numbers |
 | `site.css` | Styles: one dark theme, tokens at the top; every animation rests in its final state |
-| `photo.jpg`, `avatar.jpg` | Hero portrait (460 px) and header avatar (128 px), both self-hosted |
+| `photo.webp`, `avatar.jpg` | Hero portrait (cut-out with a transparent background, 427 px) and header avatar (128 px), both self-hosted |
 | `logos/` | Project logos used on the open-source cards (brand icons are inlined as SVG symbols in `index.html`) |
 | `tools/og-image.html` | Source of `og-image.png`; re-render with `bin/og` |
 
