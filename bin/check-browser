@@ -40,8 +40,8 @@ def check(url, width, height):
             assert value("document.querySelector('.hero').nextElementSibling.id") == "services"
             assert value("document.querySelector('.brand span').getBoundingClientRect().width > 0"), "Identity hidden"
             assert value("""(() => {
-              const projects = document.querySelector('.hero .lede');
-              return projects.innerText.includes('Ruby on Rails') && projects.getBoundingClientRect().bottom <= innerHeight;
+              const intro = document.querySelector('.hero .lede');
+              return /open[- ]source/i.test(intro.innerText) && intro.getBoundingClientRect().bottom <= innerHeight;
             })()"""), "A first-time visitor must see the open-source work before scrolling"
             browser("click", '.hero a[href="#open-source"]')
             browser("wait", "--fn", """(() => {
