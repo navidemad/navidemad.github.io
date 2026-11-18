@@ -458,68 +458,43 @@ p {
     0 30px 80px -24px rgba(124, 150, 255, 0.95);
 }
 .snapshot { font-size: 15px; color: var(--muted); }
-/* years of experience, computed from the start dates */
-.experience {
-  display: flex;
-  justify-content: center;
-}
-.experience li {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  text-align: left;
-  padding-inline: clamp(16px, 2.2vw, 28px);
-}
-.experience li + li {
-  border-left: 1px solid var(--line);
-}
-.experience b {
-  font-family: var(--display);
-  font-size: clamp(48px, 5vw, 66px);
-  line-height: 0.95;
-  font-variant-numeric: tabular-nums;
-}
-.experience span {
-  max-width: 10ch;
-  font-size: 16px;
-  font-weight: 600;
-  line-height: 1.25;
-  color: var(--muted);
-}
-/* Yespark's public figures: one hairline rule across the hero, no box */
+/* Yespark's figures, stacked under the portrait: one row per figure, hairlines between */
 .scale {
-  grid-column: 1 / -1;
+  width: 100%;
+  max-width: 360px;
   display: grid;
-  gap: 12px;
-  padding-top: clamp(18px, 2.6vh, 28px);
-  border-top: 1px solid var(--line);
+  gap: 10px;
 }
 .scale p {
   color: var(--muted);
   font-size: 16px;
+  text-wrap: balance;
 }
-.scale ul {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, auto));
-  justify-content: space-between;
-  gap: 10px clamp(20px, 3vw, 40px);
+.scale p span {
+  color: var(--ink);
+  font-weight: 600;
 }
-/* each figure over its label, at every width */
 .scale li {
   display: grid;
-  gap: 4px;
+  grid-template-columns: 3.3em minmax(0, 1fr);
+  align-items: baseline;
+  gap: 14px;
+  padding-block: 9px;
+  border-top: 1px solid var(--line);
+  font-size: clamp(30px, 3vw, 38px);
 }
 .scale b {
   font-family: var(--display);
-  font-size: clamp(32px, 3.4vw, 46px);
+  font-size: 1em;
   line-height: 1;
   color: var(--ink);
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
 }
-.scale span {
+.scale li span {
   color: var(--muted);
   font-size: 16px;
+  line-height: 1.3;
 }
 .log {
   overflow: hidden;
@@ -1077,26 +1052,6 @@ p {
   }
 }
 @media (max-width: 560px) {
-  /* phones: each figure stacks over its label */
-  .experience li {
-    flex-direction: column;
-    gap: 4px;
-    text-align: center;
-  }
-  .experience span {
-    max-width: none;
-  }
-  .scale ul {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 16px 20px;
-  }
-  .scale b {
-    font-size: 30px;
-  }
-  .scale span {
-    font-size: 14px;
-  }
   /* the same icons close the page, in the call panel */
   .site-header .socials {
     display: none;
