@@ -854,10 +854,12 @@ p {
   grid-row: 1 / span 2;
   align-self: stretch;
   display: grid;
-  align-content: center;
+  /* from the top, so the figure sits at the same height on neighbouring cards
+     whether or not a star count follows it */
+  align-content: start;
   justify-items: end;
   gap: 5px;
-  padding-left: 14px;
+  padding: 2px 0 0 14px;
   border-left: 1px solid var(--line);
 }
 .row .meta:empty {
