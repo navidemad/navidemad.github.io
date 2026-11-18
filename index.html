@@ -104,7 +104,6 @@
         </a>
         <nav class="site-nav" aria-label="Sections">
           <a href="#services" data-i18n="nav.services">Services</a>
-          <a href="#results" data-i18n="nav.results">Selected work</a>
           <a href="#open-source" data-i18n="nav.oss">Open source</a>
         </nav>
         <ul class="socials">
@@ -180,9 +179,9 @@
               <h3><a href="#ai-workflow" data-i18n="service.1.name">Automate a team workflow</a></h3>
               <p data-i18n="service.1.desc">Start with one recurring task. I connect an agent to your tools and build in a review step.</p>
             </li>
-            <li>
-              <h3><a href="#query" data-i18n="service.2.name">Speed up a Rails app</a></h3>
-              <p data-i18n="service.2.desc">I trace a slow request, fix the bottleneck, and measure the difference in production.</p>
+            <li id="query">
+              <h3><a href="#contact" data-i18n="service.2.name">Speed up a Rails app</a></h3>
+              <p data-i18n="service.2.desc">I trace slow requests and measure the fix in production. At Yespark, I cut an invoice listing from about 100 database queries to two.</p>
             </li>
             <li>
               <h3><a href="#contact" data-i18n="service.3.name">Build a product together</a></h3>
@@ -195,68 +194,7 @@
             <li data-i18n="work.b2"><h3>Production reliability</h3><p>Incident follow-through, scheduled-job monitoring, alerts that fire for real failures only.</p></li>
             <li data-i18n="work.b3"><h3>CI/CD and DevOps</h3><p>Faster pipelines, safer deploys, staging environments, secrets management.</p></li>
             <li id="mentoring" data-i18n="work.b6"><h3>Review and mentoring</h3><p>Daily code review, structured mentoring of junior developers, privacy and security by default.</p></li>
-          </ul>
-        </div>
-      </section>
-
-      <section class="section" id="results">
-        <div class="container">
-          <div class="section-head">
-            <div>
-              <h2 data-i18n="results.title">Selected work</h2>
-              <p data-i18n="results.sub">Production performance at Yespark and the tools I build for developers.</p>
-            </div>
-          </div>
-          <ul class="tiles themes">
-            <li class="tile feature" id="query">
-              <div class="feature-head">
-                <span class="icon"><svg aria-hidden="true"><use href="#i-gauge" /></svg></span>
-                <div class="tile-body" data-i18n="work.b1"><h3>Diagnosing a slow payments query</h3><p>A Datadog investigation led to three improvements in production.</p></div>
-              </div>
-              <ul class="metrics">
-                <li>
-                  <p class="gain" data-i18n="results.r1.gain"><b>52,000×</b> faster</p>
-                  <h4 data-i18n="results.r1.what">Payments query</h4>
-                  <p class="delta">
-                    <s>52 s</s>
-                    <svg aria-hidden="true"><use href="#i-arrow" /></svg>
-                    <strong>&lt; 1 ms</strong>
-                  </p>
-                  <p class="how" data-i18n="results.r1.how">One composite index on a 5.6 GB payments table, measured with EXPLAIN ANALYZE in prod.</p>
-                </li>
-                <li>
-                  <p class="gain" data-i18n="results.r2.gain"><b>50×</b> fewer queries</p>
-                  <h4 data-i18n="results.r2.what">Invoice listing</h4>
-                  <p class="delta">
-                    <s data-i18n="results.r2.before">~100 queries</s>
-                    <svg aria-hidden="true"><use href="#i-arrow" /></svg>
-                    <strong data-i18n="results.r2.after">2 queries</strong>
-                  </p>
-                  <p class="how" data-i18n="results.r2.how">An ActiveStorage N+1, preloaded away.</p>
-                </li>
-                <li>
-                  <p class="gain" data-i18n="results.r3.gain"><b>2 to 5×</b> faster</p>
-                  <h4 data-i18n="results.r3.what">Admin and API endpoints, p95</h4>
-                  <p class="delta">
-                    <s>6-16 s</s>
-                    <svg aria-hidden="true"><use href="#i-arrow" /></svg>
-                    <strong>&lt; 3 s</strong>
-                  </p>
-                  <p class="how" data-i18n="results.r3.how">Partial indexes, cached aggregates, and OR-of-subqueries rewritten into index-backed BitmapOr plans (conservative estimate).</p>
-                </li>
-              </ul>
-            </li>
-            <li class="tile feature" id="ai-workflow">
-              <div class="tile-body">
-                <h3 data-i18n="ai.title">Reviewing a change with Pixel</h3>
-                <p data-i18n="ai.prompt">“What breaks if I change this method?”</p>
-                <p data-i18n="ai.example">I co-built Pixel to give a coding agent the context behind that question. Before the agent answers, Pixel looks up callers, tests, and recent changes in a local index. The developer gets file and line references to inspect before deciding what to change.</p>
-                <a href="https://github.com/Pixel-CLI/pixel#readme" data-i18n="ai.link">See how Pixel builds the brief</a>
-              </div>
-            </li>
-            <li class="tile half">
-              <div class="tile-body" data-i18n="work.b5"><h3>Migrations and integrations</h3><p>Legacy platforms moved onto one backend without breaking production; payment, access hardware and ANPR cameras.</p></div>
-            </li>
+            <li data-i18n="work.b5"><h3>Migrations and integrations</h3><p>I help teams move legacy systems and connect payment providers and access hardware.</p></li>
           </ul>
         </div>
       </section>
@@ -339,11 +277,11 @@
             </p>
           </aside>
           <ul class="rows">
-            <li class="row">
+            <li id="ai-workflow" class="row">
               <img class="logo" src="logos/pixel.png" width="44" height="44" alt="" />
               <div class="who">
                 <h3><a href="https://pixel-cli.dev/">Pixel</a><span class="badge"><svg aria-hidden="true"><use href="#i-wrench" /></svg><span data-i18n="oss.maintainer">Maintainer</span></span></h3>
-                <p class="role" data-i18n="oss.px.role">Co-author. Hands AI coding agents the deterministic part of repository work</p>
+                <p class="role" data-i18n="oss.px.role">I co-built Pixel so coding agents can trace a method to its callers and tests, with file and line references.</p>
               </div>
               <ul class="chips">
                 <li>Rust</li>

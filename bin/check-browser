@@ -48,14 +48,14 @@ def check(url, width, height):
               const heading = document.querySelector('#open-source h2').getBoundingClientRect();
               return location.hash === '#open-source' && heading.top >= document.querySelector('header').getBoundingClientRect().bottom && heading.bottom <= innerHeight;
             })()""")
-            browser("click", '#services a[href="#query"]')
+            browser("click", '#services a[href="#ai-workflow"]')
             browser("wait", "--fn", """(() => {
-              const metric = document.querySelector('#query .metrics li:first-child .delta').getBoundingClientRect();
-              return location.hash === '#query' && metric.top >= document.querySelector('header').getBoundingClientRect().bottom && metric.bottom <= innerHeight;
+              const project = document.querySelector('#open-source a[href=\"https://pixel-cli.dev/\"]').getBoundingClientRect();
+              return location.hash === '#ai-workflow' && project.top >= document.querySelector('header').getBoundingClientRect().bottom && project.bottom <= innerHeight;
             })()""")
             assert not value("performance.getEntriesByType('resource').some(r => new URL(r.name).host !== location.host)"), "Visitor made a third-party request"
             browser("click", '.brand')
-        print(f"{width} × {height}: open-source hero, query link, services, layout and EN/FR passed")
+        print(f"{width} × {height}: open-source hero, Pixel example, services, layout and EN/FR passed")
     finally:
         browser("close")
 
