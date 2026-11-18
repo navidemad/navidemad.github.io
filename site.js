@@ -21,7 +21,6 @@
     skip: "Aller au contenu",
     "nav.results": "Résultats",
     "nav.oss": "Open source",
-    "nav.about": "À propos",
     "nav.contact": "Travailler ensemble",
     "cta.short": "Réserver un appel",
     "cta.book": "Réserver un appel de 30 min",
@@ -93,18 +92,6 @@
       "Bénévolat pendant la pandémie : landing pages pour les professionnels de santé, refonte des e-mails transactionnels, gestion des statuts de paiement.",
     "oss.also":
       "Également fusionné dans Rack, l’agent Ruby de New Relic, i18n-tasks, haml-lint, sidekiq-failures, Judoscale, le client Ruby de l’API Scalingo et fixture_kit de Gusto.",
-    "about.title": "Salut, moi c’est Navid",
-    "about.p1":
-      "<span data-years>12</span> ans à construire et faire tourner des applis Rails critiques : paiements, intégrations hardware, flottes de jobs en arrière-plan, et de vrais utilisateurs qui remarquent quand ça casse.",
-    "about.p2":
-      "Aujourd’hui je partage mon temps entre le travail de lead chez Yespark et le branchement d’agents IA (Claude, MCP, automatisations GitHub) sur des workflows de production, avec les contraintes de fiabilité et de coût qu’une démo ne connaît pas.",
-    "about.stack":
-      "Au quotidien : Rails, PostgreSQL, Sidekiq, Hotwire et Tailwind, Datadog APM et profiling, Claude et MCP.",
-    "how.title": "Manières de faire",
-    "how.b1": "<b>Des PRs qu’on a envie de lire</b><span>Petites, argumentées, benchmarkées.</span>",
-    "how.b2":
-      "<b>Je dis non</b><span>À l’IA non rentable, aux features qui ne devraient pas exister.</span>",
-    "how.b3": "<b>Franc par défaut</b><span>Mauvais fit ? Je le dis dès le premier appel.</span>",
     "help.title": "Comment je peux aider",
     "help.sub": "Je prends quelques missions freelance en parallèle de mon poste de lead.",
     "help.b1":
@@ -384,6 +371,16 @@
     renderLog(summary.log);
     document.getElementById("log-source").setAttribute("data-i18n", "log.live");
     applyLang();
+  }
+
+  /* ================= hero spotlight ================= */
+  var hero = document.querySelector(".hero");
+  if (hero && matchMedia("(pointer: fine)").matches) {
+    hero.addEventListener("pointermove", function (event) {
+      var box = hero.getBoundingClientRect();
+      hero.style.setProperty("--mx", event.clientX - box.left + "px");
+      hero.style.setProperty("--my", event.clientY - box.top + "px");
+    });
   }
 
   applyLang(); // paint the right language immediately, hydrate live numbers after

@@ -9,8 +9,7 @@
       content="Navid Emad, lead Ruby on Rails developer and agentic AI engineer. Rails performance, AI agents in production, fractional lead. 170+ merged open-source pull requests in Lightpanda, Rails, Datadog and more."
     />
     <meta name="color-scheme" content="light dark" />
-    <meta name="theme-color" content="#f3f4f6" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#0f1115" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#07080c" />
     <link rel="canonical" href="https://navidemad.github.io/" />
     <link rel="alternate" hreflang="en" href="https://navidemad.github.io/" />
     <link rel="alternate" hreflang="fr" href="https://navidemad.github.io/?lang=fr" />
@@ -74,7 +73,7 @@
     </svg>
     <a class="skip" href="#main" data-i18n="skip">Skip to content</a>
 
-    <header class="site-header">
+    <header class="site-header stage">
       <div class="container">
         <a class="brand" href="#top">
           <img src="avatar.jpg" width="32" height="32" alt="" />
@@ -83,7 +82,6 @@
         <nav class="site-nav" aria-label="Sections">
           <a href="#results" data-i18n="nav.results">Results</a>
           <a href="#open-source" data-i18n="nav.oss">Open source</a>
-          <a href="#about" data-i18n="nav.about">About</a>
           <a href="#contact" data-i18n="nav.contact">Work with me</a>
         </nav>
         <div class="lang" role="group" aria-label="Language">
@@ -95,7 +93,8 @@
     </header>
 
     <main id="main">
-      <section class="hero" id="top">
+      <section class="hero stage" id="top">
+        <div class="hero-floor" aria-hidden="true"></div>
         <div class="container">
           <div class="hero-copy">
             <h1 data-i18n="hero.title">Rails systems and AI agents that hold up in production.</h1>
@@ -391,48 +390,6 @@
             Also merged in Rack, the New Relic Ruby agent, i18n-tasks, haml-lint, sidekiq-failures,
             Judoscale, the Scalingo Ruby API client and Gusto’s fixture_kit.
           </p>
-        </div>
-      </section>
-
-      <section class="section" id="about">
-        <div class="container split">
-          <div>
-            <div class="section-head">
-              <h2 data-i18n="about.title">Hey, I’m Navid</h2>
-            </div>
-            <div class="prose">
-              <p data-i18n="about.p1">
-                <span data-years>12</span> years building and running business-critical Rails apps:
-                payments, hardware integrations, background job fleets, and real users who notice
-                when things break.
-              </p>
-              <p data-i18n="about.p2">
-                Today I split my time between lead engineering at Yespark and wiring AI agents
-                (Claude, MCP, GitHub automation) into production workflows, with the reliability and
-                cost constraints a demo never faces.
-              </p>
-              <p class="muted" data-i18n="about.stack">
-                Day to day: Rails, PostgreSQL, Sidekiq, Hotwire and Tailwind, Datadog APM and
-                profiling, Claude and MCP.
-              </p>
-            </div>
-          </div>
-          <div>
-            <div class="section-head">
-              <h2 data-i18n="how.title">How I work</h2>
-            </div>
-            <ul class="principles">
-              <li data-i18n="how.b1">
-                <b>PRs reviewers want to read</b><span>Small, argued, benchmarked.</span>
-              </li>
-              <li data-i18n="how.b2">
-                <b>I say no</b><span>To unprofitable AI, to features that shouldn’t exist.</span>
-              </li>
-              <li data-i18n="how.b3">
-                <b>Frank by default</b><span>Wrong fit? I’ll tell you on the first call.</span>
-              </li>
-            </ul>
-          </div>
         </div>
       </section>
 

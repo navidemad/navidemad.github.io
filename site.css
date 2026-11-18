@@ -66,6 +66,26 @@
   }
 }
 
+/* The header and hero are a dark "stage" in both themes. */
+.stage {
+  color-scheme: dark;
+  --bg: #07080c;
+  --surface: rgba(255, 255, 255, 0.045);
+  --ink: #f3f4f8;
+  --muted: #a5abc0;
+  --line: rgba(255, 255, 255, 0.11);
+  --ruby: #ff5c7f;
+  --ruby-ink: #16040a;
+  --merged: #b79bff;
+  --ok: #4fe39a;
+  color: var(--ink);
+}
+@property --beam {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
 *,
 *::before,
 *::after {
@@ -274,13 +294,63 @@ p {
 
 /* ---------- hero ---------- */
 .hero {
-  padding-block: clamp(40px, 8vh, 96px) clamp(48px, 9vh, 104px);
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: grid;
+  align-items: center;
+  min-height: calc(100svh - var(--header-h));
+  padding-block: clamp(48px, 8vh, 96px);
+  background: var(--bg);
+}
+/* two colored glows: ruby (action) and violet (merged) */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -3;
+  background:
+    radial-gradient(52% 60% at 12% 8%, rgba(255, 92, 127, 0.2), transparent 70%),
+    radial-gradient(58% 70% at 88% 18%, rgba(124, 92, 255, 0.3), transparent 70%);
+}
+/* spotlight that follows the pointer (site.js sets --mx / --my) */
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(420px circle at var(--mx, 70%) var(--my, 30%), rgba(255, 255, 255, 0.07), transparent 65%);
+}
+/* perspective grid receding to the horizon */
+.hero-floor {
+  position: absolute;
+  inset: auto -40% 0;
+  height: 85%;
+  z-index: -2;
+  background-image:
+    linear-gradient(rgba(183, 155, 255, 0.34) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(183, 155, 255, 0.34) 1px, transparent 1px);
+  background-size: 64px 64px;
+  transform: perspective(520px) rotateX(64deg);
+  transform-origin: 50% 100%;
+  -webkit-mask-image: linear-gradient(to top, #000 5%, transparent 85%);
+  mask-image: linear-gradient(to top, #000 5%, transparent 85%);
 }
 .hero .container {
   display: grid;
   grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
   gap: clamp(32px, 5vw, 72px);
   align-items: center;
+}
+.hero h1 {
+  font-size: clamp(46px, 7vw, 96px);
+  line-height: 0.98;
+  background: linear-gradient(100deg, #ffffff 25%, #d9ceff 62%, #ffa3b8);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  padding-bottom: 0.06em; /* descenders are clipped by background-clip otherwise */
 }
 .hero-copy > * + * {
   margin-top: 22px;
@@ -291,30 +361,95 @@ p {
   max-width: 34em;
 }
 .availability {
-  display: flex;
+  display: inline-flex;
   gap: 10px;
-  align-items: baseline;
-  font-size: 15px;
+  align-items: center;
+  padding: 7px 14px 7px 12px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+  backdrop-filter: blur(8px);
+  font-size: 14.5px;
 }
-.availability::before {
+.availability::before,
+.log-head .live::before {
   content: "";
   flex: none;
   width: 8px;
   height: 8px;
   border-radius: 50%;
   background: var(--ok);
-  transform: translateY(-1px);
 }
 .hero-copy .actions {
   margin-top: 30px;
 }
+.hero .btn.primary {
+  box-shadow:
+    0 0 0 1px rgba(255, 92, 127, 0.45),
+    0 12px 44px -10px rgba(255, 92, 127, 0.75);
+}
+.hero .btn.quiet {
+  backdrop-filter: blur(8px);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .hero-floor {
+    animation: floor 2.4s linear infinite;
+  }
+  .availability::before,
+  .log-head .live::before {
+    animation: pulse 2.2s ease-out infinite;
+  }
+  .log::before {
+    animation: beam 7s linear infinite;
+  }
+  @keyframes floor {
+    to {
+      background-position: 0 64px;
+    }
+  }
+  @keyframes pulse {
+    from {
+      box-shadow: 0 0 0 0 color-mix(in srgb, var(--ok) 70%, transparent);
+    }
+    to {
+      box-shadow: 0 0 0 9px transparent;
+    }
+  }
+  @keyframes beam {
+    to {
+      --beam: 360deg;
+    }
+  }
+}
 
 /* ---------- merged pull request log (the page's signature) ---------- */
 .log {
-  background: var(--surface);
+  position: relative;
+  background: rgba(14, 16, 24, 0.72);
+  backdrop-filter: blur(16px);
   border: 1px solid var(--line);
-  border-radius: 12px;
+  border-radius: 14px;
   overflow: hidden;
+  box-shadow:
+    0 40px 90px -30px rgba(124, 92, 255, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+/* a light beam travelling around the panel's edge */
+.log::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  pointer-events: none;
+  background: conic-gradient(from var(--beam), transparent 0 68%, #b79bff 84%, #ff5c7f 96%, transparent 100%);
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#000 0 0) content-box exclude,
+    linear-gradient(#000 0 0);
 }
 .log-head,
 .log-foot {
@@ -330,6 +465,9 @@ p {
 }
 .log-head .live {
   flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   font-weight: 400;
   color: var(--muted);
 }
@@ -484,7 +622,7 @@ p {
   display: grid;
   grid-template-columns: minmax(0, 0.42fr) minmax(0, 1fr);
   gap: 6px clamp(20px, 4vw, 56px);
-  padding-block: 24px;
+  padding-block: 18px;
   border-top: 1px solid var(--line);
 }
 .projects > li:last-child {
@@ -516,27 +654,17 @@ p {
   grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
   gap: clamp(28px, 5vw, 72px);
 }
-.prose > * + * {
-  margin-top: 16px;
-}
-.prose {
-  max-width: 38em;
-}
-.principles li,
 .services li {
   padding-block: 16px;
   border-top: 1px solid var(--line);
 }
-.principles li:last-child,
 .services li:last-child {
   border-bottom: 1px solid var(--line);
 }
-.principles b,
 .services b {
   display: block;
   font-weight: 600;
 }
-.principles span,
 .services span {
   color: var(--muted);
 }
@@ -586,9 +714,21 @@ p {
   body {
     font-size: 16px;
   }
-  .projects > li,
-  .themes {
+  .projects > li {
     grid-template-columns: minmax(0, 1fr);
+  }
+  .projects .desc {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    overflow: hidden;
+  }
+  .themes span {
+    display: none; /* titles only on phones: six labels scan faster than six paragraphs */
+  }
+  .hero {
+    min-height: 0;
   }
   /* before/after table becomes stacked cards */
   .results thead {

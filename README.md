@@ -15,7 +15,7 @@ bin/check        # the gate: run before every push (CI runs it too)
 | --- | --- |
 | `index.html` | Markup and the English copy (source of truth, readable without JS) |
 | `site.js` | French copy (`FR`), language switch, live GitHub numbers |
-| `site.css` | Styles; light and dark follow the system setting |
+| `site.css` | Styles; header and hero are always dark (`.stage`), the rest follows the system theme |
 | `tools/og-image.html` | Source of `og-image.png`; re-render with `bin/og` |
 
 ## Editing copy
