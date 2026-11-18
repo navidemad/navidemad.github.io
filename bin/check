@@ -45,9 +45,14 @@ query = js[/var QUERY = (.+?);/m, 1].to_s.split("+").map(&:strip).map { |part| p
 verify_links = (html + js).scan(%r{https://github\.com/search\?q=([^"&]+)&amp;type=pullrequests}).flatten
 verify_links = verify_links.select { |q| q.include?("-user") }
 errors << "no verify link found for the merged PR counter" if verify_links.empty?
-verify_links.each do |encoded|
-  linked = URI.decode_www_form_component(encoded)
-  errors << "verify link searches #{linked.inspect} but the counter uses #{query.inspect}" unless linked == query
+decoded = verify_links.map { |encoded| URI.decode_www_form_component(encoded) }
+errors << "no link runs exactly the counter's search #{query.inspect}" unless decoded.include?(query)
+# Narrower links (the long tail) may only add exclusions on top of that same search.
+decoded.each do |linked|
+  extra = linked.delete_prefix(query)
+  next if linked.start_with?(query) && extra.split.all? { |term| term.match?(/\A-(repo|user):\S+\z/) }
+
+  errors << "verify link searches #{linked.inspect}, which is not the counter's search #{query.inspect} plus exclusions"
 end
 
 # 4. Local references: a missing font or image fails silently in production.

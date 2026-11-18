@@ -55,7 +55,7 @@
     "oss.cl.role": "La plateforme française de vaccination COVID-19, en bénévole",
     "oss.also.title": "La longue traîne",
     "oss.all":
-      'Les <span data-stat="prs">171</span> pull requests fusionnées, dans <span data-stat="repos">25</span> dépôts',
+      '<span data-stat="tail-prs">22</span> autres pull requests fusionnées, dans <span data-stat="tail-repos">16</span> autres dépôts',
     "oss.lp.count": '<b data-count="lightpanda-io/browser">97</b> PRs fusionnées',
     "oss.cl.count": '<b data-count="hostolab/covidliste">43</b> PRs fusionnées',
     "results.title": "Le métier, semaine après semaine",
@@ -191,6 +191,41 @@
     document.querySelectorAll("[data-count]").forEach(function (el) {
       var count = live.counts[el.getAttribute("data-count")];
       if (count) el.textContent = count;
+    });
+    renderTail();
+  }
+
+  // "The long tail" counts whatever its own link searches: every repository the
+  // link does not exclude. The exclusions are read from the link, so the figure
+  // and the proof cannot drift apart.
+  function renderTail() {
+    var link = document.getElementById("tail-link");
+    if (!link) return;
+    var q = new URL(link.href).searchParams.get("q") || "";
+    var repos = (q.match(/-repo:\S+/g) || []).map(function (s) {
+      return s.slice(6).toLowerCase();
+    });
+    var owners = (q.match(/-user:\S+/g) || []).map(function (s) {
+      return s.slice(6).toLowerCase() + "/";
+    });
+    var prs = 0;
+    var count = 0;
+    Object.keys(live.counts).forEach(function (repo) {
+      var name = repo.toLowerCase();
+      var excluded =
+        repos.indexOf(name) >= 0 ||
+        owners.some(function (owner) {
+          return name.indexOf(owner) === 0;
+        });
+      if (excluded) return;
+      prs += live.counts[repo];
+      count += 1;
+    });
+    document.querySelectorAll('[data-stat="tail-prs"]').forEach(function (el) {
+      el.textContent = prs;
+    });
+    document.querySelectorAll('[data-stat="tail-repos"]').forEach(function (el) {
+      el.textContent = count;
     });
   }
 
