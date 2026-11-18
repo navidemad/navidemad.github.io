@@ -1,0 +1,10 @@
+#!/bin/sh
+# Re-render og-image.png (1200x630) from tools/og-image.html.
+# Needs bin/serve running and agent-browser on PATH.
+set -eu
+root="$(cd "$(dirname "$0")/.." && pwd)"
+session="og-$$"
+agent-browser --session "$session" --color-scheme dark open "http://127.0.0.1:${PORT:-4173}/tools/og-image.html"
+agent-browser --session "$session" set viewport 1200 630
+agent-browser --session "$session" screenshot "$root/og-image.png"
+agent-browser --session "$session" close

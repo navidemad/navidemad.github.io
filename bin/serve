@@ -1,0 +1,4 @@
+#!/bin/sh
+# Serve the site exactly as GitHub Pages does: static files, no build.
+cd "$(dirname "$0")/.." || exit 1
+exec python3 -m http.server "${PORT:-4173}" --bind 127.0.0.1

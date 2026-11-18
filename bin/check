@@ -1,0 +1,85 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+# Gate for a site with no build step: the things a compiler would have caught.
+# Standard library only, so it runs anywhere Ruby does (locally and in CI).
+
+require "json"
+require "uri"
+
+ROOT = File.expand_path("..", __dir__)
+html = File.read(File.join(ROOT, "index.html"))
+js = File.read(File.join(ROOT, "site.js"))
+css = File.read(File.join(ROOT, "site.css"))
+errors = []
+
+# 1. Translations. English lives in the markup, French in site.js. A key present
+#    on one side only means a visitor sees a half-translated page.
+html_keys = html.scan(/data-i18n="([^"]+)"/).flatten.uniq
+fr_block = js[/var FR = \{(.*?)\n  \};/m, 1] or abort("check: FR dictionary not found in site.js")
+fr_keys = fr_block.scan(/^\s{4}"?([\w.]+)"?:/).flatten
+js_only_keys = %w[meta.title] # set from script, not from a data-i18n attribute at load
+(html_keys - fr_keys).each { |k| errors << "i18n: #{k} is in index.html but has no French translation" }
+(fr_keys - html_keys - js_only_keys).each { |k| errors << "i18n: #{k} is translated but no longer used in index.html" }
+fr_keys.tally.each { |k, n| errors << "i18n: #{k} is defined #{n} times in FR" if n > 1 }
+
+# 2. Snapshot counters. Translated strings re-inject markup, so every live placeholder
+#    in the English markup must also exist in the French string or the number
+#    silently stops updating after a language switch.
+fr_values = fr_block.split(/^\s{4}(?="?[\w.]+"?:)/).to_h do |entry|
+  [entry[/\A"?([\w.]+)"?:/, 1], entry]
+end
+html.split('data-i18n="').drop(1).each do |segment|
+  key = segment[/\A[^"]+/]
+  %w[data-stat data-count].each do |hook|
+    wanted = segment.scan(hook).size
+    got = fr_values.fetch(key, "").scan(hook).size
+    errors << "i18n: #{key} has #{wanted} #{hook} placeholder(s) in English, #{got} in French" if wanted != got
+  end
+end
+
+# 3. The number shown and the "Verify on GitHub" link must come from the same
+#    search, otherwise the claim is not actually verifiable.
+query = "is:pr author:navidemad is:merged is:public -user:navidemad -user:yespark -user:Pixel-CLI"
+verify_links = (html + js).scan(%r{https://github\.com/search\?q=([^"&]+)&amp;type=pullrequests}).flatten
+verify_links = verify_links.select { |q| q.include?("-user") }
+errors << "no verify link found for the merged PR counter" if verify_links.empty?
+decoded = verify_links.map { |encoded| URI.decode_www_form_component(encoded) }
+errors << "no link runs exactly the counter's search #{query.inspect}" unless decoded.include?(query)
+# Narrower links (the long tail) may only add exclusions on top of that same search.
+decoded.each do |linked|
+  extra = linked.delete_prefix(query)
+  next if linked.start_with?(query) && extra.split.all? { |term| term.match?(/\A-(repo|user):\S+\z/) }
+
+  errors << "verify link searches #{linked.inspect}, which is not the counter's search #{query.inspect} plus exclusions"
+end
+
+# 4. Local references: a missing font or image fails silently in production.
+local = html.scan(/(?:href|src)="([^"#:]+)"/).flatten + css.scan(/url\(([^)]+)\)/).flatten
+local.uniq.each do |path|
+  errors << "missing file: #{path}" unless File.exist?(File.join(ROOT, path))
+end
+
+# 5. In-page anchors (nav, skip link, CTAs) must land somewhere.
+ids = html.scan(/\sid="([^"]+)"/).flatten
+html.scan(/href="#([^"]+)"/).flatten.uniq.each do |anchor|
+  errors << "anchor ##{anchor} has no matching id" unless ids.include?(anchor)
+end
+ids.tally.each { |id, n| errors << "duplicate id: #{id}" if n > 1 }
+
+# 6. Structured data that does not parse is ignored by search engines.
+begin
+  JSON.parse(html[%r{<script type="application/ld\+json">(.*?)</script>}m, 1])
+rescue JSON::ParserError, TypeError => e
+  errors << "JSON-LD does not parse: #{e.message}"
+end
+
+# 7. External links open in the same tab by choice; none may be plain http.
+html.scan(/href="(http:[^"]+)"/).flatten.each { |url| errors << "insecure link: #{url}" }
+
+if errors.empty?
+  puts "check: ok (#{html_keys.size} translated strings, #{local.uniq.size} local files, #{ids.size} anchors)"
+else
+  warn errors.map { |e| "check: #{e}" }.join("\n")
+  exit 1
+end

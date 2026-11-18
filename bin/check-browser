@@ -1,0 +1,66 @@
+#!/usr/bin/env python3
+"""Exercise visitor paths in a real browser against an isolated local preview."""
+import functools
+import http.server
+import json
+import os
+from pathlib import Path
+import subprocess
+import threading
+
+ROOT = Path(__file__).resolve().parents[1]
+
+
+class Preview(http.server.SimpleHTTPRequestHandler):
+    def log_message(self, *args):
+        pass
+
+
+def check(url, width, height):
+    session = f"portfolio-check-{os.getpid()}-{width}"
+
+    def browser(*args):
+        return subprocess.check_output(["agent-browser", "--session", session, *args], text=True).strip()
+
+    def value(js):
+        return json.loads(browser("eval", js))
+
+    try:
+        browser("open", url + "?lang=en")
+        browser("set", "viewport", str(width), str(height))
+        browser("set", "media", "dark", "reduced-motion")
+        for lang in ["en", "fr"]:
+            browser("click", f'[data-lang="{lang}"]')
+            browser("reload")
+            browser("wait", "--load", "networkidle")
+            assert value("innerWidth") == width and value("innerHeight") == height
+            assert value("document.documentElement.lang") == lang, "Shared URL must reopen in the selected language"
+            assert value("new URL(location.href).searchParams.get('lang')") == lang
+            assert value("document.documentElement.scrollWidth === innerWidth"), "Page overflows horizontally"
+            assert value("document.querySelector('.hero').nextElementSibling.id") == "services"
+            assert value("document.querySelector('.brand span').getBoundingClientRect().width > 0"), "Identity hidden"
+            assert value("""(() => {
+              const intro = document.querySelector('.hero .lede');
+              return /open[- ]source/i.test(intro.innerText) && intro.getBoundingClientRect().bottom <= innerHeight;
+            })()"""), "A first-time visitor must see the open-source work before scrolling"
+            browser("click", '.hero a[href="#open-source"]')
+            browser("wait", "--fn", """(() => {
+              const heading = document.querySelector('#open-source h2').getBoundingClientRect();
+              return location.hash === '#open-source' && heading.top >= document.querySelector('header').getBoundingClientRect().bottom && heading.bottom <= innerHeight;
+            })()""")
+            browser("click", '#services a[href="#ai-workflow"]')
+            browser("wait", "--fn", """(() => {
+              const project = document.querySelector('#open-source a[href=\"https://pixel-cli.dev/\"]').getBoundingClientRect();
+              return location.hash === '#ai-workflow' && project.top >= document.querySelector('header').getBoundingClientRect().bottom && project.bottom <= innerHeight;
+            })()""")
+            assert not value("performance.getEntriesByType('resource').some(r => new URL(r.name).host !== location.host)"), "Visitor made a third-party request"
+            browser("click", '.brand')
+        print(f"{width} × {height}: open-source hero, Pixel example, services, layout and EN/FR passed")
+    finally:
+        browser("close")
+
+
+with http.server.ThreadingHTTPServer(("127.0.0.1", 0), functools.partial(Preview, directory=ROOT)) as server:
+    threading.Thread(target=server.serve_forever, daemon=True).start()
+    for width, height in [(1440, 900), (390, 844), (320, 740)]:
+        check(f"http://127.0.0.1:{server.server_port}/", width, height)

@@ -1,0 +1,18 @@
+name: check
+on:
+  pull_request:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - run: ruby bin/check
+      - run: node --check site.js
+      - run: ruby -c bin/refresh-snapshot
+      - run: npm install --global agent-browser@0.43.0
+      - run: agent-browser install
+      - run: bin/check-browser

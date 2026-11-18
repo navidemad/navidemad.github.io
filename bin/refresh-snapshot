@@ -1,0 +1,96 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require "cgi"
+require "date"
+require "json"
+require "open3"
+require "uri"
+
+def api(path)
+  json, status = Open3.capture2("gh", "api", path)
+  abort "GitHub request failed" unless status.success?
+  JSON.parse(json)
+end
+
+def search_query(html, link)
+  href = html[link, 1] or abort "Missing snapshot search link"
+  URI.decode_www_form(URI(CGI.unescapeHTML(href)).query).to_h.fetch("q")
+end
+
+def replace_one(html, pattern)
+  abort "Expected one match for #{pattern}" unless html.scan(pattern).size == 1
+  html.sub!(pattern) { yield Regexp.last_match }
+end
+
+path = File.expand_path("../index.html", __dir__)
+html = File.read(path)
+query = search_query(html, /id="verify-link" href="([^"]+)"/)
+tail_query = search_query(html, /id="tail-link" href="([^"]+)"/)
+excluded_repos = tail_query.scan(/-repo:(\S+)/).flatten.map(&:downcase)
+excluded_owners = tail_query.scan(/-user:(\S+)/).flatten.map(&:downcase)
+pulls = []
+total = nil
+page = 1
+loop do
+  result = api("search/issues?#{URI.encode_www_form(q: query, sort: "created", order: "asc", per_page: 100, page: page)}")
+  total ||= result.fetch("total_count")
+  abort "Incomplete or changing GitHub results; retry later" if result.fetch("incomplete_results") || result.fetch("total_count") != total || total > 1000
+  pulls.concat(result.fetch("items"))
+  break if pulls.size >= total || result.fetch("items").empty?
+  page += 1
+end
+abort "Incomplete PR snapshot" unless total.positive? && pulls.uniq { |pr| pr.fetch("id") }.size == total && pulls.size == total
+by_repo = pulls.group_by { |pr| URI(pr.fetch("repository_url")).path.delete_prefix("/repos/") }
+repos = by_repo.keys | html.scan(/data-repo="([^"]+)"/).flatten
+stars = repos.to_h { |repo| [repo, api("repos/#{repo}").fetch("stargazers_count")] }
+# The log shows the most-starred repositories, each with its latest merged pull requests.
+REPOS_SHOWN = 4
+PULLS_PER_REPO = 3
+groups = by_repo.keys.sort_by { |repo| [-stars.fetch(repo), repo] }.first(REPOS_SHOWN).map do |repo|
+  latest = by_repo.fetch(repo).sort_by { |pr| pr.fetch("pull_request").fetch("merged_at") }.reverse.first(PULLS_PER_REPO)
+  items = latest.map do |pr|
+    date = Date.iso8601(pr.fetch("pull_request").fetch("merged_at"))
+    <<~HTML.lines.map { |line| "    #{line}" }.join
+      <li>
+        <a href="#{CGI.escapeHTML(pr.fetch("html_url"))}">
+          <svg aria-hidden="true"><use href="#merged" /></svg>
+          <span class="title">#{CGI.escapeHTML(pr.fetch("title"))}</span>
+          <time datetime="#{date}">#{date.strftime('%b %Y')}</time>
+        </a>
+      </li>
+    HTML
+  end.join
+  count = stars.fetch(repo)
+  # The inner list is a <ul> so the pattern below, which ends on </ol>, stops at the outer list.
+  <<~HTML.lines.map { |line| "              #{line}" }.join
+    <li class="log-group">
+      <p class="log-repo">
+        <a href="https://github.com/#{CGI.escapeHTML(repo)}">#{CGI.escapeHTML(repo)}</a>
+        <span class="stars" data-stars="#{count}">#{count}</span>
+      </p>
+      <ul>
+    #{items.rstrip}
+      </ul>
+    </li>
+  HTML
+end
+rows = groups.join
+replace_one(html, /(<ol class="log-list" id="log-list">\n).*?(            <\/ol>)/m) { |m| m[1] + rows + m[2] }
+tail = by_repo.reject { |repo, _| excluded_repos.include?(repo.downcase) || excluded_owners.include?(repo.split("/").first.downcase) }
+{ "prs" => total, "repos" => by_repo.size, "tail-prs" => tail.values.sum(&:size), "tail-repos" => tail.size }.each do |name, n|
+  replace_one(html, /(data-stat="#{name}">)\d+/) { |m| "#{m[1]}#{n}" }
+end
+# A counter names one repository, several joined by "+", or a whole owner as "owner/*".
+html.gsub!(/(data-count="([^"]+)">)\d+/) do
+  prefix, terms = $1, $2.downcase.split("+")
+  n = by_repo.sum do |repo, prs|
+    name = repo.downcase
+    terms.any? { |term| term.end_with?("/*") ? name.start_with?(term.delete_suffix("*")) : name == term } ? prs.size : 0
+  end
+  "#{prefix}#{n}"
+end
+html.gsub!(/(data-repo="([^"]+)" data-stars=")\d+">[^<]+/) { "#{$1}#{stars.fetch($2)}\">#{stars.fetch($2)}" }
+date = Time.now.utc.to_date
+replace_one(html, /(<time id="snapshot-date" datetime=")[^"]+">[^<]+/) { |m| "#{m[1]}#{date}\">#{date.strftime('%d %b %Y')}" }
+File.write(path, html)
