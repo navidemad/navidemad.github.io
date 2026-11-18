@@ -131,19 +131,40 @@
         <div class="hero-floor" aria-hidden="true"></div>
         <div class="container">
           <div class="hero-copy">
-            <h1 data-i18n="hero.title">A payments query from 52&nbsp;s to under 1&nbsp;ms.</h1>
-            <p class="lede" data-i18n="hero.intro">I’m Navid Emad, lead developer at Yespark. I tune production Rails apps and build AI agents that work with the tools your team already uses.</p>
+            <h1 class="sheen" data-i18n="hero.title">AI agents and Rails systems that hold up in production.</h1>
+            <p class="lede" data-i18n="hero.intro">I’m Navid Emad, lead developer at Yespark. I contribute to <strong>Ruby on Rails</strong>, <strong>Datadog’s Ruby library</strong>, and <strong>Lightpanda</strong>.</p>
             <p class="availability" data-i18n="hero.availability">Available for freelance work · Paris or remote</p>
             <div class="actions">
               <a class="btn primary" href="https://calendly.com/design-navid/30min" data-i18n="cta.book">Book a 30-minute call</a>
-              <a class="btn quiet" href="#query" data-i18n="cta.results">See the query breakdown</a>
+              <a class="btn quiet" href="#open-source" data-i18n="cta.contributions">Explore my open-source work</a>
             </div>
           </div>
-          <dl class="case-notes">
-            <div><dt data-i18n="case.table">Payments table</dt><dd data-i18n="case.size">5.6 GB</dd></div>
-            <div><dt data-i18n="case.change">Database change</dt><dd data-i18n="case.index">One composite index</dd></div>
-            <div><dt data-i18n="case.measure">Measured in production with</dt><dd><code>EXPLAIN ANALYZE</code></dd></div>
-          </dl>
+          <aside class="featured-work" aria-labelledby="featured-title">
+            <h2 id="featured-title" data-i18n="featured.title">My merged contributions</h2>
+            <ul>
+              <li>
+                <a href="https://github.com/rails/rails/pull/53100">
+                  <strong>Ruby on Rails</strong>
+                  <span data-i18n="featured.rails">Fixed the CI workflow generated for API-only apps.</span>
+                  <svg aria-hidden="true"><use href="#i-go" /></svg>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/DataDog/dd-trace-rb/pull/5938">
+                  <strong>Datadog</strong>
+                  <span data-i18n="featured.datadog">Fixed a crash in the Ruby 4 memory profiler.</span>
+                  <svg aria-hidden="true"><use href="#i-go" /></svg>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/lightpanda-io/browser/pull/4529">
+                  <strong>Lightpanda</strong>
+                  <span data-i18n="featured.lightpanda">Added upload progress events to the headless browser.</span>
+                  <svg aria-hidden="true"><use href="#i-go" /></svg>
+                </a>
+              </li>
+            </ul>
+          </aside>
         </div>
       </section>
 
