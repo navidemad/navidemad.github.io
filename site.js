@@ -44,8 +44,6 @@
     "results.r3.how":
       "Index partiels, agrégats en cache, OR de sous-requêtes réécrits en plans BitmapOr indexés (estimation prudente).",
     "oss.title": "Où le code a atterri",
-    "oss.px.role": "Co-auteur et premier contributeur, CLI en Rust",
-    "oss.cap.role": "Auteur et mainteneur, gem Ruby",
     "help.title": "Comment je peux aider",
     "help.sub": "Je prends quelques missions freelance en parallèle de mon poste de lead.",
     "contact.desc":
@@ -61,9 +59,6 @@
     "how.b3": "Franc dès le premier appel",
     "hero.intro":
       "Moi c’est Navid, <strong>lead developer chez Yespark</strong>. <strong><span data-years>12</span> ans</strong> à construire des <strong>applis Rails critiques</strong>, et aujourd’hui à brancher des <strong>agents IA</strong> sur de vrais workflows. Toujours du code au quotidien.",
-    "oss.px.desc":
-      "Donne aux agents de code IA la partie déterministe du travail sur un dépôt, pour qu’ils gardent leurs tokens pour la partie difficile.",
-    "oss.cap.desc": "Les tests système Rails, sur Lightpanda.",
     "oss.rails.role": "Correctifs de générateurs et de pipeline de build",
     "oss.dd.role": "Deux correctifs de crash en production, fusionnés upstream",
     "oss.cl.role": "La plateforme française de vaccination COVID-19, en bénévole",
@@ -94,6 +89,10 @@
       "<h3>Migrations et intégrations</h3><p>Des plateformes historiques ramenées sur un seul backend sans casser la production ; paiement, matériel d’accès et caméras ANPR.</p>",
     "work.b6":
       "<h3>Revue et mentorat</h3><p>Revue de code quotidienne, mentorat structuré des développeurs juniors, vie privée et sécurité par défaut.</p>",
+    "oss.maintainer": "Mainteneur",
+    "oss.px.role":
+      "Co-auteur. Donne aux agents de code IA la partie déterministe du travail sur un dépôt",
+    "oss.cap.role": "Auteur. Les tests système Rails, sur Lightpanda",
   };
 
   // English strings that are not in the initial markup.
