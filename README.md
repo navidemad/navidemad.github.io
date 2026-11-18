@@ -35,4 +35,4 @@ or after the visitor picks FR (remembered in `localStorage`).
 
 The open-source section ships as dated HTML. Visitors can read it without JavaScript or contacting GitHub. Language changes update the URL, dates, and number formatting.
 
-Run `bin/refresh-snapshot` with an authenticated GitHub CLI to update the page. It reads the public search linked from “Verify on GitHub,” counts the repositories, and selects up to two merged PRs per repository, ranked by repository stars. It writes the file only after retrieving a complete snapshot. The weekly GitHub Action proposes the update in a PR for review. Merging that PR publishes it through the existing Pages setup.
+Run `bin/refresh-snapshot` with an authenticated GitHub CLI to update the page. It reads the public search linked from “Verify on GitHub,” counts the repositories, and groups the log by repository: the four most-starred repositories, each with its three latest merged PRs at most. It writes the file only after retrieving a complete snapshot. The weekly GitHub Action proposes the update in a PR for review. Merging that PR publishes it through the existing Pages setup.

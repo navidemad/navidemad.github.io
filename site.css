@@ -497,21 +497,42 @@ p {
   border-bottom: 1px solid var(--line);
   font-weight: 600;
 }
-.log-list li {
+/* one block per repository: its name and stars, then its pull requests */
+.log-group {
   border-bottom: 1px solid var(--line);
 }
-.log-list a {
+.log-repo {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 18px 4px;
+}
+.log-repo a {
+  font-family: var(--mono);
+  font-size: 13.5px;
+  color: var(--ink);
+  text-decoration: none;
+}
+.log-repo a:hover {
+  text-decoration: underline;
+}
+.log-group ul {
+  padding-bottom: 6px;
+}
+.log-group ul a {
   display: grid;
   grid-template-columns: 18px minmax(0, 1fr) auto;
   gap: 2px 12px;
-  padding: 9px 18px;
+  padding: 5px 18px 5px 30px;
   text-decoration: none;
   font-size: 15px;
   line-height: 1.35;
+  color: var(--muted);
 }
-.log-list a:hover {
+.log-group ul a:hover {
   background: color-mix(in srgb, var(--merged) 9%, transparent);
-  color: inherit;
+  color: var(--ink);
 }
 .log-list svg {
   width: 16px;
@@ -523,12 +544,6 @@ p {
   overflow: hidden;
   text-overflow: ellipsis;
   overflow-wrap: anywhere;
-}
-.log-list .repo {
-  grid-column: 2;
-  font-family: var(--mono);
-  font-size: 12.5px;
-  color: var(--muted);
 }
 .log-list time,
 .stars {
@@ -629,17 +644,19 @@ p {
    figures set apart in a rail on the right. */
 .rows {
   display: grid;
-  gap: 12px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
 }
 .row {
   position: relative;
   display: grid;
-  grid-template-columns: 52px minmax(0, 1fr) auto 22px;
+  grid-template-columns: 40px minmax(0, 1fr) auto 20px;
+  grid-template-rows: auto 1fr;
   align-items: start;
-  gap: 10px clamp(16px, 2vw, 26px);
-  padding: clamp(18px, 2vw, 24px) clamp(18px, 2.2vw, 28px);
+  gap: 8px 14px;
+  padding: 14px 16px;
   border: 1px solid var(--line);
-  border-radius: 18px;
+  border-radius: 14px;
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.025));
   transition:
     border-color 0.2s,
@@ -658,9 +675,9 @@ p {
 }
 .row .logo {
   grid-row: 1 / span 2;
-  width: 52px;
-  height: 52px;
-  border-radius: 14px;
+  width: 40px;
+  height: 40px;
+  border-radius: 11px;
   box-shadow: 0 0 0 1px var(--line);
 }
 .row span.logo {
@@ -669,8 +686,8 @@ p {
   background: rgba(255, 255, 255, 0.07);
 }
 .row span.logo svg {
-  width: 27px;
-  height: 27px;
+  width: 22px;
+  height: 22px;
   fill: var(--ink);
 }
 .row .i-rails svg {
@@ -697,9 +714,8 @@ p {
   display: grid;
   align-content: center;
   justify-items: end;
-  gap: 6px;
-  min-width: 8.5em;
-  padding-left: clamp(16px, 2vw, 26px);
+  gap: 5px;
+  padding-left: 14px;
   border-left: 1px solid var(--line);
 }
 .row .meta:empty {
@@ -708,9 +724,9 @@ p {
 .row .go {
   grid-column: 4;
   grid-row: 1;
-  width: 22px;
-  height: 22px;
-  margin-top: 4px;
+  width: 20px;
+  height: 20px;
+  margin-top: 3px;
   color: var(--muted);
   transition:
     transform 0.2s,
@@ -745,8 +761,8 @@ p {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 6px 10px;
-  font-size: 26px;
+  gap: 4px 8px;
+  font-size: 22px;
 }
 /* projects I maintain, not only contribute to */
 .badge {
@@ -768,9 +784,9 @@ p {
   height: 13px;
 }
 .row .role {
-  margin-top: 4px;
-  max-width: 62ch;
-  font-size: 15.5px;
+  margin-top: 3px;
+  font-size: 14.5px;
+  line-height: 1.45;
   color: var(--muted);
 }
 .row .count {
@@ -783,7 +799,7 @@ p {
 }
 .row .count b {
   font-family: var(--display);
-  font-size: 40px;
+  font-size: 30px;
   line-height: 0.95;
   color: var(--ink);
   font-variant-numeric: tabular-nums;
@@ -799,6 +815,13 @@ p {
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
+}
+.row .chips {
+  gap: 5px;
+}
+.row .chips li {
+  padding: 2px 8px;
+  font-size: 12px;
 }
 .chips li {
   padding: 3px 10px;
@@ -905,6 +928,9 @@ p {
 
 /* ---------- responsive ---------- */
 @media (max-width: 900px) {
+  .rows {
+    grid-template-columns: minmax(0, 1fr);
+  }
   .hero .container,
   .cta-panel {
     grid-template-columns: minmax(0, 1fr);
@@ -919,12 +945,13 @@ p {
 @media (max-width: 720px) {
   /* phones: logo and name on top, then tags, then the figures on one line */
   .row {
-    grid-template-columns: 44px minmax(0, 1fr) 22px;
+    grid-template-columns: 40px minmax(0, 1fr) 20px;
+  }
+  .row {
+    grid-template-rows: none;
   }
   .row .logo {
     grid-row: 1;
-    width: 44px;
-    height: 44px;
   }
   .row .go {
     grid-column: 3;
