@@ -36,12 +36,6 @@
     "log.foot":
       '<b data-stat="prs">171</b> pull requests fusionnées dans <b data-stat="repos">25</b> dépôts qui ne sont pas les miens. <a href="https://github.com/search?q=is%3Apr+author%3Anavidemad+is%3Amerged+-user%3Anavidemad+-user%3Ayespark+-user%3APixel-CLI&amp;type=pullrequests">Vérifier sur GitHub</a>',
     "results.title": "Une appli lente en production, mesurée avant et après",
-    "results.sub":
-      "Chez Yespark, location de parkings partout en France, j’ai mené une campagne requêtes et index pilotée par Datadog sur les chemins les plus lents en production.",
-    "results.h.what": "Où",
-    "results.h.before": "Avant",
-    "results.h.after": "Après",
-    "results.h.how": "Comment",
     "results.r1.what": "Pire requête en production",
     "results.r1.how":
       "Un index composite sur une table de paiements de 5,6 Go, mesuré à l’EXPLAIN ANALYZE en prod.",
@@ -71,27 +65,15 @@
     "oss.proof": "Voir les PRs fusionnées",
     "oss.source": "Code source sur GitHub",
     "oss.gem": "Gem sur RubyGems",
-    "oss.lp.role":
-      'Moteur de navigateur headless en Zig, <span data-count="lightpanda-io/browser">97</span> PRs fusionnées',
-    "oss.lp.desc":
-      "Internals de plateforme web : événements du protocole CDP, surface WebAPI (ClipboardEvent, DataTransfer, navigation au focus), CSS nesting natif, sélecteurs :has() relatifs, en-tête Origin WebSocket, cas limites de redirections HTTP.",
     "oss.px.role": "Co-auteur et premier contributeur, CLI en Rust",
     "oss.px.desc":
       "Une CLI locale qui prend en charge la partie déterministe du travail sur un dépôt pour les agents de code IA : recherche, symboles, appelants, périmètre de tâche, historique et Git. L’agent garde ses tokens pour la partie difficile.",
     "oss.cap.role": "Auteur et mainteneur, gem Ruby",
-    "oss.cap.desc":
-      "Driver Capybara pour lancer les tests système Rails sur Lightpanda. Le pont entre le moteur de navigateur auquel je contribue et le framework que j’utilise tous les jours.",
     "oss.rails.desc":
       "Correctifs du générateur CLI, support du logger nil dans Solid Cable, option de skip du build dans assets:precompile, build CSS branché sur spec:prepare.",
     "oss.dd.role": "Traceur APM pour Ruby",
     "oss.dd.desc":
       "Deux correctifs de crash en production fusionnés upstream : un SIGSEGV du heap profiling sur Ruby 4, et l’injection des en-têtes de tracing distribué cassée par http.rb 6.x.",
-    "oss.cl.role":
-      'Plateforme française de vaccination COVID-19, <span data-count="hostolab/covidliste">43</span> PRs fusionnées',
-    "oss.cl.desc":
-      "Bénévolat pendant la pandémie : landing pages pour les professionnels de santé, refonte des e-mails transactionnels, gestion des statuts de paiement.",
-    "oss.also":
-      "Également fusionné dans Rack, l’agent Ruby de New Relic, i18n-tasks, haml-lint, sidekiq-failures, Judoscale, le client Ruby de l’API Scalingo et fixture_kit de Gusto.",
     "help.title": "Comment je peux aider",
     "help.sub": "Je prends quelques missions freelance en parallèle de mon poste de lead.",
     "help.b1":
@@ -100,9 +82,35 @@
       "<b>Agents IA en production</b><span>De l’audit des cas d’usage aux agents branchés sur vos outils.</span>",
     "help.b3":
       "<b>Lead fractionné</b><span>Direction technique, culture de revue, mentorat.</span>",
-    "contact.title": "Dites-moi ce que vous construisez",
     "contact.desc":
       "Quelques lignes suffisent. Je réponds sous 24 h, avec franchise : ce que je peux faire et comment je m’y prendrais. Si je ne suis pas la bonne personne, je vous le dirai et vous aiguillerai si je peux.",
+    "upstream.label": "Mon code est fusionné upstream dans",
+    "results.sub":
+      "Chez Yespark, location de parkings partout en France, j’ai mené une campagne requêtes et index pilotée par Datadog sur les chemins les plus lents en production. Les barres sont à l’échelle.",
+    "results.replay": "Rejouer",
+    "results.before": "Avant",
+    "results.after": "Après",
+    "results.r1.gain": "<b>52 000×</b> plus rapide",
+    "results.r2.gain": "<b>50×</b> moins de requêtes",
+    "results.r3.gain": "<b>2 à 5×</b> plus rapide",
+    "oss.lp.role": "Moteur de navigateur headless en Zig",
+    "oss.lp.count": '<b class="sheen" data-count="lightpanda-io/browser">97</b> pull requests fusionnées',
+    "oss.lp.desc":
+      "Internals de plateforme web : événements du protocole CDP, surface WebAPI, CSS nesting natif, sélecteurs :has() relatifs, cas limites WebSocket et HTTP.",
+    "oss.cap.desc":
+      "Driver Capybara pour lancer les tests système Rails sur Lightpanda : le moteur de navigateur auquel je contribue, branché sur le framework que j’utilise tous les jours.",
+    "oss.cl.role": "Plateforme française de vaccination COVID-19, bénévolat",
+    "oss.cl.count": '<b class="sheen" data-count="hostolab/covidliste">43</b> pull requests fusionnées',
+    "oss.cl.desc":
+      "Landing pages pour les professionnels de santé, refonte des e-mails transactionnels, gestion des statuts de paiement.",
+    "oss.also.title": "Et la longue traîne",
+    "oss.also":
+      "Des correctifs fusionnés dans Rack, l’agent Ruby de New Relic, RTK, GitNexus, i18n-tasks, haml-lint, sidekiq-failures, Judoscale, le client Ruby de l’API Scalingo et fixture_kit de Gusto.",
+    "oss.all": 'Les <span data-stat="prs">171</span> pull requests fusionnées',
+    "contact.title": "Dites-moi ce que vous construisez.",
+    "how.b1": "Des PRs petites, argumentées, benchmarkées",
+    "how.b2": "Je dis non à l’IA non rentable",
+    "how.b3": "Franc dès le premier appel",
     "footer.source": "Code source de cette page",
   };
 
@@ -381,6 +389,27 @@
       hero.style.setProperty("--mx", event.clientX - box.left + "px");
       hero.style.setProperty("--my", event.clientY - box.top + "px");
     });
+  }
+
+  /* ================= before / after bars ================= */
+  // Plays once when the measurements scroll into view, and again on demand.
+  var results = document.getElementById("results-list");
+  function playResults() {
+    results.classList.remove("play");
+    void results.offsetWidth; // restart the CSS animation
+    results.classList.add("play");
+  }
+  if (results && "IntersectionObserver" in window) {
+    var seen = new IntersectionObserver(
+      function (entries) {
+        if (!entries[0].isIntersecting) return;
+        seen.disconnect();
+        playResults();
+      },
+      { threshold: 0.4 },
+    );
+    seen.observe(results);
+    document.getElementById("replay").addEventListener("click", playResults);
   }
 
   applyLang(); // paint the right language immediately, hydrate live numbers after

@@ -29,20 +29,23 @@
 }
 
 /* ---------- tokens ----------
-   Two colors carry meaning, everything else is neutral:
+   One dark identity. Three colors carry meaning, the rest is neutral:
    --ruby   = what you can act on (links, the booking button)
-   --merged = GitHub's "merged" state, used only in the pull request log */
+   --merged = GitHub's "merged" state (pull request log, open-source figures)
+   --ok     = the improved side of a measurement, and "available" */
 :root {
-  color-scheme: light dark;
-  --bg: #f3f4f6;
-  --surface: #ffffff;
-  --ink: #14161c;
-  --muted: #555b6b;
-  --line: #d9dce3;
-  --ruby: #b3123a;
-  --ruby-ink: #ffffff;
-  --merged: #6f3fd1;
-  --ok: #17794a;
+  color-scheme: dark;
+  --bg: #07080c;
+  --surface: rgba(255, 255, 255, 0.045);
+  --panel: rgba(14, 16, 24, 0.72);
+  --ink: #f3f4f8;
+  --muted: #a5abc0;
+  --line: rgba(255, 255, 255, 0.11);
+  --ruby: #ff5c7f;
+  --ruby-ink: #16040a;
+  --merged: #b79bff;
+  --ok: #4fe39a;
+  --sheen: linear-gradient(100deg, #ffffff 25%, #d9ceff 62%, #ffa3b8);
 
   --display: "Barlow Condensed", "Arial Narrow", sans-serif;
   --body: "Barlow", system-ui, sans-serif;
@@ -51,34 +54,6 @@
   --page: 1120px;
   --gutter: clamp(20px, 4vw, 48px);
   --header-h: 60px;
-}
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #0f1115;
-    --surface: #171a21;
-    --ink: #eceef2;
-    --muted: #a0a7b8;
-    --line: #2a2f3b;
-    --ruby: #ff6b88;
-    --ruby-ink: #1a0509;
-    --merged: #a98bff;
-    --ok: #4fd08e;
-  }
-}
-
-/* The header and hero are a dark "stage" in both themes. */
-.stage {
-  color-scheme: dark;
-  --bg: #07080c;
-  --surface: rgba(255, 255, 255, 0.045);
-  --ink: #f3f4f8;
-  --muted: #a5abc0;
-  --line: rgba(255, 255, 255, 0.11);
-  --ruby: #ff5c7f;
-  --ruby-ink: #16040a;
-  --merged: #b79bff;
-  --ok: #4fe39a;
-  color: var(--ink);
 }
 @property --beam {
   syntax: "<angle>";
@@ -98,6 +73,7 @@ html {
   scroll-behavior: smooth;
   scroll-padding-top: calc(var(--header-h) + 16px);
   -webkit-text-size-adjust: 100%;
+  background: var(--bg);
 }
 body {
   background: var(--bg);
@@ -126,12 +102,16 @@ a:hover {
   border-radius: 2px;
 }
 ::selection {
-  background: color-mix(in srgb, var(--ruby) 22%, transparent);
+  background: color-mix(in srgb, var(--ruby) 30%, transparent);
 }
 ul,
 ol {
   list-style: none;
   padding: 0;
+}
+button {
+  font: inherit;
+  color: inherit;
 }
 .container {
   width: 100%;
@@ -163,26 +143,22 @@ h3 {
   line-height: 1.02;
   text-wrap: balance;
 }
-h1 {
-  font-size: clamp(44px, 6.4vw, 84px);
-  letter-spacing: -0.01em;
-}
 h2 {
-  font-size: clamp(32px, 4vw, 48px);
+  font-size: clamp(34px, 4.4vw, 56px);
 }
 h3 {
-  font-size: 24px;
-  line-height: 1.15;
+  font-size: 26px;
+  line-height: 1.1;
 }
 p {
   text-wrap: pretty;
 }
-.muted {
-  color: var(--muted);
-}
-.num {
-  font-family: var(--mono);
-  font-variant-numeric: tabular-nums;
+.sheen {
+  background: var(--sheen);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  padding-bottom: 0.06em; /* background-clip cuts descenders otherwise */
 }
 
 /* ---------- header ---------- */
@@ -190,8 +166,8 @@ p {
   position: sticky;
   top: 0;
   z-index: 50;
-  background: color-mix(in srgb, var(--bg) 88%, transparent);
-  backdrop-filter: blur(10px);
+  background: color-mix(in srgb, var(--bg) 82%, transparent);
+  backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--line);
 }
 .site-header .container {
@@ -233,7 +209,6 @@ p {
   overflow: hidden;
 }
 .lang button {
-  font: inherit;
   font-size: 13px;
   font-weight: 600;
   min-width: 36px;
@@ -255,36 +230,46 @@ p {
   justify-content: center;
   gap: 8px;
   padding: 13px 22px;
-  border-radius: 8px;
+  border-radius: 10px;
   border: 1px solid transparent;
   font-weight: 600;
   font-size: 16px;
   line-height: 1.2;
   text-decoration: none;
   white-space: nowrap;
+  cursor: pointer;
   transition:
     background-color 0.15s,
-    border-color 0.15s;
+    border-color 0.15s,
+    box-shadow 0.15s;
 }
 .btn.primary {
   background: var(--ruby);
   color: var(--ruby-ink);
+  box-shadow:
+    0 0 0 1px rgba(255, 92, 127, 0.45),
+    0 12px 44px -10px rgba(255, 92, 127, 0.75);
 }
 .btn.primary:hover {
-  background: color-mix(in srgb, var(--ruby) 86%, var(--ink));
+  background: #ff7a97;
   color: var(--ruby-ink);
+  box-shadow:
+    0 0 0 1px rgba(255, 92, 127, 0.6),
+    0 14px 54px -8px rgba(255, 92, 127, 0.95);
 }
 .btn.quiet {
   border-color: var(--line);
   background: var(--surface);
+  backdrop-filter: blur(8px);
 }
 .btn.quiet:hover {
-  border-color: var(--ink);
+  border-color: rgba(255, 255, 255, 0.4);
   color: var(--ink);
 }
 .btn.small {
   padding: 8px 14px;
   font-size: 14px;
+  box-shadow: none;
 }
 .actions {
   display: flex;
@@ -300,11 +285,11 @@ p {
   display: grid;
   align-items: center;
   min-height: calc(100svh - var(--header-h));
-  padding-block: clamp(48px, 8vh, 96px);
-  background: var(--bg);
+  padding-block: clamp(28px, 5vh, 64px) clamp(24px, 3.5vh, 40px);
 }
 /* two colored glows: ruby (action) and violet (merged) */
-.hero::before {
+.hero::before,
+.cta-panel::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -346,11 +331,7 @@ p {
 .hero h1 {
   font-size: clamp(46px, 7vw, 96px);
   line-height: 0.98;
-  background: linear-gradient(100deg, #ffffff 25%, #d9ceff 62%, #ffa3b8);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  padding-bottom: 0.06em; /* descenders are clipped by background-clip otherwise */
+  letter-spacing: -0.01em;
 }
 .hero-copy > * + * {
   margin-top: 22px;
@@ -383,49 +364,41 @@ p {
 .hero-copy .actions {
   margin-top: 30px;
 }
-.hero .btn.primary {
-  box-shadow:
-    0 0 0 1px rgba(255, 92, 127, 0.45),
-    0 12px 44px -10px rgba(255, 92, 127, 0.75);
+
+/* names a CTO recognizes, each one a project with my code merged in */
+.upstream {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px 30px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
 }
-.hero .btn.quiet {
-  backdrop-filter: blur(8px);
+.upstream p {
+  font-size: 14.5px;
+  color: var(--muted);
 }
-@media (prefers-reduced-motion: no-preference) {
-  .hero-floor {
-    animation: floor 2.4s linear infinite;
-  }
-  .availability::before,
-  .log-head .live::before {
-    animation: pulse 2.2s ease-out infinite;
-  }
-  .log::before {
-    animation: beam 7s linear infinite;
-  }
-  @keyframes floor {
-    to {
-      background-position: 0 64px;
-    }
-  }
-  @keyframes pulse {
-    from {
-      box-shadow: 0 0 0 0 color-mix(in srgb, var(--ok) 70%, transparent);
-    }
-    to {
-      box-shadow: 0 0 0 9px transparent;
-    }
-  }
-  @keyframes beam {
-    to {
-      --beam: 360deg;
-    }
-  }
+.upstream ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 28px;
+}
+.upstream a {
+  font-family: var(--display);
+  font-size: 23px;
+  line-height: 1.3;
+  color: rgba(255, 255, 255, 0.78);
+  text-decoration: none;
+}
+.upstream a:hover {
+  color: var(--merged);
 }
 
-/* ---------- merged pull request log (the page's signature) ---------- */
+/* ---------- merged pull request log ---------- */
 .log {
   position: relative;
-  background: rgba(14, 16, 24, 0.72);
+  background: var(--panel);
   backdrop-filter: blur(16px);
   border: 1px solid var(--line);
   border-radius: 14px;
@@ -484,7 +457,7 @@ p {
   line-height: 1.35;
 }
 .log-list a:hover {
-  background: color-mix(in srgb, var(--merged) 7%, transparent);
+  background: color-mix(in srgb, var(--merged) 9%, transparent);
   color: inherit;
 }
 .log-list svg {
@@ -523,75 +496,113 @@ p {
   font-weight: 400;
   font-variant-numeric: tabular-nums;
 }
+
 /* ---------- sections ---------- */
 .section {
   padding-block: clamp(56px, 9vh, 104px);
   border-top: 1px solid var(--line);
 }
 .section-head {
-  max-width: 44em;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  justify-content: space-between;
+  gap: 16px 32px;
   margin-bottom: clamp(28px, 4vw, 44px);
+}
+.section-head > div {
+  max-width: 42em;
 }
 .section-head p {
   margin-top: 14px;
   color: var(--muted);
 }
 
-/* case study: before / after */
+/* ---------- results: before and after, drawn to scale ---------- */
 .results {
-  width: 100%;
-  border-collapse: collapse;
-  background: var(--surface);
   border: 1px solid var(--line);
-  border-radius: 12px;
+  border-radius: 16px;
+  background: var(--surface);
   overflow: hidden;
-  /* border-radius needs separate borders to clip a table */
-  border-collapse: separate;
-  border-spacing: 0;
 }
-.results th,
-.results td {
-  padding: 18px 20px;
-  text-align: left;
-  vertical-align: baseline;
-  border-bottom: 1px solid var(--line);
+.result {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 2fr) minmax(8.5em, auto);
+  gap: 10px clamp(18px, 3vw, 36px);
+  align-items: center;
+  padding: clamp(18px, 2.4vw, 26px) clamp(18px, 2.6vw, 28px);
 }
-.results tr:last-child > * {
-  border-bottom: 0;
+.result + .result {
+  border-top: 1px solid var(--line);
 }
-.results thead th {
+.result h3 {
+  font-family: var(--body);
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1.35;
+}
+.bars {
+  display: grid;
+  gap: 8px;
+}
+.bar {
+  display: grid;
+  grid-template-columns: 3.6em minmax(0, 1fr);
+  align-items: center;
+  gap: 12px;
   font-size: 14px;
-  font-weight: 600;
   color: var(--muted);
-  padding-block: 12px;
 }
-.results tbody th {
-  font-weight: 600;
-  width: 22%;
+.bar .track {
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
-.results .before,
-.results .after {
+/* --w is the real ratio to the "before" value; 72% of the track is the full scale */
+.bar .fill {
+  flex: none;
+  width: calc(var(--w) * 72%);
+  min-width: 3px;
+  height: 22px;
+  border-radius: 5px;
+  transform-origin: 0 50%;
+}
+.bar.before .fill {
+  background: repeating-linear-gradient(-45deg, rgba(255, 255, 255, 0.2) 0 6px, rgba(255, 255, 255, 0.12) 6px 12px);
+}
+.bar.after .fill {
+  background: var(--ok);
+  box-shadow: 0 0 18px color-mix(in srgb, var(--ok) 70%, transparent);
+}
+.bar .value {
   font-family: var(--mono);
   font-variant-numeric: tabular-nums;
+  font-size: 15.5px;
   white-space: nowrap;
-  font-size: clamp(17px, 1.9vw, 22px);
 }
-.results .before {
+.bar.before .value {
   color: var(--muted);
-  text-decoration: line-through;
-  text-decoration-color: color-mix(in srgb, var(--muted) 55%, transparent);
 }
-.results .after {
+.bar.after .value {
   color: var(--ok);
 }
-.results .how {
+.gain {
+  text-align: right;
+  color: var(--muted);
+  font-size: 14.5px;
+  line-height: 1.3;
+}
+.gain b {
+  display: block;
+  font-family: var(--display);
+  font-size: clamp(34px, 3.6vw, 46px);
+  line-height: 1;
+  color: var(--ok);
+}
+.result .how {
+  grid-column: 2 / -1;
   color: var(--muted);
   font-size: 15.5px;
-}
-.aside-note {
-  margin-top: 20px;
-  color: var(--muted);
-  max-width: 44em;
 }
 
 /* recurring themes of the day job */
@@ -617,42 +628,75 @@ p {
   font-size: 15.5px;
 }
 
-/* open source list */
-.projects > li {
+/* ---------- open source: bento ---------- */
+.bento {
   display: grid;
-  grid-template-columns: minmax(0, 0.42fr) minmax(0, 1fr);
-  gap: 6px clamp(20px, 4vw, 56px);
-  padding-block: 18px;
-  border-top: 1px solid var(--line);
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 14px;
 }
-.projects > li:last-child {
-  border-bottom: 1px solid var(--line);
+.card {
+  grid-column: span 2;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: clamp(20px, 2.4vw, 28px);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--surface);
+  transition:
+    border-color 0.2s,
+    background-color 0.2s;
 }
-.projects h3 a {
+.card.wide {
+  grid-column: span 3;
+}
+.card:hover {
+  border-color: color-mix(in srgb, var(--merged) 55%, transparent);
+  background: color-mix(in srgb, var(--merged) 7%, transparent);
+}
+.card h3 a {
   text-decoration: none;
 }
-.projects h3 a:hover {
+.card h3 a:hover {
   text-decoration: underline;
 }
-.projects .role {
-  margin-top: 6px;
+.card .role {
+  font-size: 15px;
+  color: var(--merged);
+}
+.card .desc {
+  color: var(--muted);
+  font-size: 16px;
+}
+.card .count {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
   font-size: 15px;
   color: var(--muted);
 }
-.projects .desc {
-  max-width: 40em;
+.card .count b {
+  font-family: var(--display);
+  font-size: clamp(56px, 6vw, 76px);
+  line-height: 0.9;
+  font-variant-numeric: tabular-nums;
 }
-.projects .proof {
-  display: inline-block;
-  margin-top: 8px;
+.card .proof {
+  margin-top: auto;
+  padding-top: 6px;
   font-size: 15px;
+  align-self: start;
 }
 
-/* about + services */
-.split {
+/* ---------- work with me ---------- */
+.contact-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
-  gap: clamp(28px, 5vw, 72px);
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  gap: clamp(28px, 5vw, 64px);
+  align-items: start;
+}
+.services {
+  margin-top: 28px;
 }
 .services li {
   padding-block: 16px;
@@ -665,13 +709,43 @@ p {
   display: block;
   font-weight: 600;
 }
-.services span {
+.services span,
+.contact-grid .sub {
   color: var(--muted);
 }
-.contact-copy > * + * {
-  margin-top: 18px;
+.contact-grid .sub {
+  margin-top: 14px;
 }
-.contact-copy .actions {
+.cta-panel {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: clamp(26px, 4vw, 48px);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: var(--panel);
+  box-shadow: 0 40px 90px -40px rgba(255, 92, 127, 0.55);
+}
+.cta-panel > * + * {
+  margin-top: 20px;
+}
+.cta-panel p {
+  color: var(--muted);
+  max-width: 34em;
+}
+.principles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.principles li {
+  padding: 6px 12px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+  font-size: 14.5px;
+}
+.cta-panel .actions {
   margin-top: 28px;
 }
 
@@ -694,83 +768,49 @@ p {
   gap: 8px 20px;
 }
 
-/* ---------- responsive ---------- */
-@media (max-width: 900px) {
-  .themes {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+/* ---------- motion ----------
+   Every animated element rests in its final state: nothing is hidden waiting for
+   an animation to reveal it. */
+@media (prefers-reduced-motion: no-preference) {
+  .hero-floor {
+    animation: floor 2.4s linear infinite;
   }
-  .hero .container,
-  .split {
-    grid-template-columns: minmax(0, 1fr);
+  .availability::before,
+  .log-head .live::before {
+    animation: pulse 2.2s ease-out infinite;
   }
-  .site-nav {
-    display: none;
+  .log::before {
+    animation: beam 7s linear infinite;
   }
-  .lang {
-    margin-left: auto;
+  /* the "before" bar takes its time, the "after" bar is there at once */
+  .results.play .bar.before .fill {
+    animation: grow 2.6s cubic-bezier(0.3, 0, 0.2, 1);
   }
-}
-@media (max-width: 720px) {
-  body {
-    font-size: 16px;
+  .results.play .bar.after .fill {
+    animation: grow 0.12s linear;
   }
-  .projects > li {
-    grid-template-columns: minmax(0, 1fr);
+  @keyframes floor {
+    to {
+      background-position: 0 64px;
+    }
   }
-  .projects .desc {
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
-    line-clamp: 2;
-    overflow: hidden;
+  @keyframes pulse {
+    from {
+      box-shadow: 0 0 0 0 color-mix(in srgb, var(--ok) 70%, transparent);
+    }
+    to {
+      box-shadow: 0 0 0 9px transparent;
+    }
   }
-  .themes span {
-    display: none; /* titles only on phones: six labels scan faster than six paragraphs */
+  @keyframes beam {
+    to {
+      --beam: 360deg;
+    }
   }
-  .hero {
-    min-height: 0;
-  }
-  /* before/after table becomes stacked cards */
-  .results thead {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
-    clip-path: inset(50%);
-  }
-  .results,
-  .results tbody,
-  .results tr,
-  .results th,
-  .results td {
-    display: block;
-    width: auto;
-  }
-  .results tr {
-    padding: 16px 18px;
-    border-bottom: 1px solid var(--line);
-  }
-  .results tr:last-child {
-    border-bottom: 0;
-  }
-  .results tbody th,
-  .results td {
-    width: auto;
-    padding: 0;
-    border: 0;
-  }
-  .results .before,
-  .results .after {
-    display: inline-block;
-    margin: 6px 14px 6px 0;
-  }
-}
-@media (max-width: 480px) {
-  .brand span {
-    display: none;
-  }
-  .hero-copy .actions .btn {
-    flex: 1 1 100%;
+  @keyframes grow {
+    from {
+      transform: scaleX(0);
+    }
   }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -779,5 +819,74 @@ p {
   }
   * {
     transition: none !important;
+  }
+  #replay {
+    display: none;
+  }
+}
+
+/* ---------- responsive ---------- */
+@media (max-width: 900px) {
+  .hero .container,
+  .contact-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .themes {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .card,
+  .card.wide {
+    grid-column: span 3;
+  }
+  .site-nav {
+    display: none;
+  }
+  .lang {
+    margin-left: auto;
+  }
+  .result {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+  .result .bars,
+  .result .how {
+    grid-column: 1 / -1;
+  }
+  .result .gain {
+    grid-row: 1;
+    grid-column: 2;
+  }
+}
+@media (max-width: 720px) {
+  body {
+    font-size: 16px;
+  }
+  .hero {
+    min-height: 0;
+  }
+  .card,
+  .card.wide {
+    grid-column: 1 / -1;
+  }
+  .card .desc,
+  .themes span {
+    display: none; /* titles only on phones: labels scan faster than paragraphs, the links stay */
+  }
+  .upstream a {
+    font-size: 20px;
+  }
+  .bar .fill {
+    width: calc(var(--w) * 46%); /* leave room for the longest value label */
+  }
+  .card .count b {
+    font-size: 48px;
+  }
+}
+@media (max-width: 480px) {
+  .brand span {
+    display: none;
+  }
+  .hero-copy .actions .btn,
+  .cta-panel .actions .btn {
+    flex: 1 1 100%;
   }
 }

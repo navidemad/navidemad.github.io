@@ -8,7 +8,7 @@
       name="description"
       content="Navid Emad, lead Ruby on Rails developer and agentic AI engineer. Rails performance, AI agents in production, fractional lead. 170+ merged open-source pull requests in Lightpanda, Rails, Datadog and more."
     />
-    <meta name="color-scheme" content="light dark" />
+    <meta name="color-scheme" content="dark" />
     <meta name="theme-color" content="#07080c" />
     <link rel="canonical" href="https://navidemad.github.io/" />
     <link rel="alternate" hreflang="en" href="https://navidemad.github.io/" />
@@ -73,7 +73,7 @@
     </svg>
     <a class="skip" href="#main" data-i18n="skip">Skip to content</a>
 
-    <header class="site-header stage">
+    <header class="site-header">
       <div class="container">
         <a class="brand" href="#top">
           <img src="avatar.jpg" width="32" height="32" alt="" />
@@ -93,11 +93,11 @@
     </header>
 
     <main id="main">
-      <section class="hero stage" id="top">
+      <section class="hero" id="top">
         <div class="hero-floor" aria-hidden="true"></div>
         <div class="container">
           <div class="hero-copy">
-            <h1 data-i18n="hero.title">Rails systems and AI agents that hold up in production.</h1>
+            <h1 class="sheen" data-i18n="hero.title">Rails systems and AI agents that hold up in production.</h1>
             <p class="lede" data-i18n="hero.intro">
               I’m Navid, lead developer at Yespark. <span data-years>12</span> years building
               business-critical Rails apps, now wiring AI agents into real workflows. Still writing
@@ -185,54 +185,81 @@
               >
             </p>
           </aside>
+
+          <div class="upstream">
+            <p data-i18n="upstream.label">My code is merged upstream in</p>
+            <ul>
+              <li><a href="https://github.com/rails/rails">Rails</a></li>
+              <li><a href="https://github.com/lightpanda-io/browser">Lightpanda</a></li>
+              <li><a href="https://github.com/DataDog/dd-trace-rb">Datadog</a></li>
+              <li><a href="https://github.com/rack/rack">Rack</a></li>
+              <li><a href="https://github.com/newrelic/newrelic-ruby-agent">New Relic</a></li>
+              <li><a href="https://github.com/rtk-ai/rtk">RTK</a></li>
+              <li><a href="https://github.com/abhigyanpatwari/GitNexus">GitNexus</a></li>
+            </ul>
+          </div>
         </div>
       </section>
 
       <section class="section" id="results">
         <div class="container">
           <div class="section-head">
-            <h2 data-i18n="results.title">A slow production app, measured before and after</h2>
-            <p data-i18n="results.sub">
-              At Yespark, parking rental across France, I ran a Datadog-driven query and index
-              campaign on the slowest production paths.
-            </p>
+            <div>
+              <h2 data-i18n="results.title">A slow production app, measured before and after</h2>
+              <p data-i18n="results.sub">
+                At Yespark, parking rental across France, I ran a Datadog-driven query and index
+                campaign on the slowest production paths. Bars are drawn to scale.
+              </p>
+            </div>
+            <button class="btn quiet small" type="button" id="replay" data-i18n="results.replay">Replay</button>
           </div>
-          <table class="results">
-            <thead>
-              <tr>
-                <th scope="col" data-i18n="results.h.what">Where</th>
-                <th scope="col" data-i18n="results.h.before">Before</th>
-                <th scope="col" data-i18n="results.h.after">After</th>
-                <th scope="col" data-i18n="results.h.how">How</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row" data-i18n="results.r1.what">Worst production query</th>
-                <td class="before">52 s</td>
-                <td class="after">&lt; 1 ms</td>
-                <td class="how" data-i18n="results.r1.how">
-                  One composite index on a 5.6 GB payments table, measured with EXPLAIN ANALYZE in
-                  prod.
-                </td>
-              </tr>
-              <tr>
-                <th scope="row" data-i18n="results.r2.what">Invoice listing</th>
-                <td class="before" data-i18n="results.r2.before">~100 queries</td>
-                <td class="after" data-i18n="results.r2.after">2 queries</td>
-                <td class="how" data-i18n="results.r2.how">An ActiveStorage N+1, preloaded away.</td>
-              </tr>
-              <tr>
-                <th scope="row" data-i18n="results.r3.what">Admin and API endpoints, p95</th>
-                <td class="before">6-16 s</td>
-                <td class="after">&lt; 3 s</td>
-                <td class="how" data-i18n="results.r3.how">
-                  Partial indexes, cached aggregates, and OR-of-subqueries rewritten into
-                  index-backed BitmapOr plans (conservative estimate).
-                </td>
-              </tr>
-            </tbody>
-          </table>
+          <ol class="results" id="results-list">
+            <li class="result">
+              <h3 data-i18n="results.r1.what">Worst production query</h3>
+              <div class="bars">
+                <p class="bar before">
+                  <span data-i18n="results.before">Before</span>
+                  <span class="track"><i class="fill" style="--w: 1"></i><span class="value">52 s</span></span>
+                </p>
+                <p class="bar after">
+                  <span data-i18n="results.after">After</span>
+                  <span class="track"><i class="fill" style="--w: 0.00002"></i><span class="value">&lt; 1 ms</span></span>
+                </p>
+              </div>
+              <p class="gain" data-i18n="results.r1.gain"><b>52,000×</b> faster</p>
+              <p class="how" data-i18n="results.r1.how">One composite index on a 5.6 GB payments table, measured with EXPLAIN ANALYZE in prod.</p>
+            </li>
+            <li class="result">
+              <h3 data-i18n="results.r2.what">Invoice listing</h3>
+              <div class="bars">
+                <p class="bar before">
+                  <span data-i18n="results.before">Before</span>
+                  <span class="track"><i class="fill" style="--w: 1"></i><span class="value" data-i18n="results.r2.before">~100 queries</span></span>
+                </p>
+                <p class="bar after">
+                  <span data-i18n="results.after">After</span>
+                  <span class="track"><i class="fill" style="--w: 0.02"></i><span class="value" data-i18n="results.r2.after">2 queries</span></span>
+                </p>
+              </div>
+              <p class="gain" data-i18n="results.r2.gain"><b>50×</b> fewer queries</p>
+              <p class="how" data-i18n="results.r2.how">An ActiveStorage N+1, preloaded away.</p>
+            </li>
+            <li class="result">
+              <h3 data-i18n="results.r3.what">Admin and API endpoints, p95</h3>
+              <div class="bars">
+                <p class="bar before">
+                  <span data-i18n="results.before">Before</span>
+                  <span class="track"><i class="fill" style="--w: 1"></i><span class="value">6-16 s</span></span>
+                </p>
+                <p class="bar after">
+                  <span data-i18n="results.after">After</span>
+                  <span class="track"><i class="fill" style="--w: 0.19"></i><span class="value">&lt; 3 s</span></span>
+                </p>
+              </div>
+              <p class="gain" data-i18n="results.r3.gain"><b>2 to 5×</b> faster</p>
+              <p class="how" data-i18n="results.r3.how">Partial indexes, cached aggregates, and OR-of-subqueries rewritten into index-backed BitmapOr plans (conservative estimate).</p>
+            </li>
+          </ol>
           <h3 class="themes-title" data-i18n="work.title">The rest of the job, week after week</h3>
           <ul class="themes">
             <li data-i18n="work.b1">
@@ -266,142 +293,78 @@
       <section class="section" id="open-source">
         <div class="container">
           <div class="section-head">
-            <h2 data-i18n="oss.title">Where the code landed</h2>
-            <p data-i18n="oss.sub">
-              Open source is the best code review I know: these pull requests were judged by Rails
-              reviewers, Datadog engineers and browser-engine maintainers, not by a portfolio page.
-            </p>
+            <div>
+              <h2 data-i18n="oss.title">Where the code landed</h2>
+              <p data-i18n="oss.sub">
+                Open source is the best code review I know: these pull requests were judged by Rails
+                reviewers, Datadog engineers and browser-engine maintainers, not by a portfolio page.
+              </p>
+            </div>
           </div>
-          <ul class="projects">
-            <li>
-              <div>
-                <h3><a href="https://github.com/lightpanda-io/browser">Lightpanda</a></h3>
-                <p class="role" data-i18n="oss.lp.role">
-                  Headless browser engine in Zig, <span data-count="lightpanda-io/browser">97</span>
-                  merged PRs
-                </p>
-              </div>
-              <div>
-                <p class="desc" data-i18n="oss.lp.desc">
-                  Web platform internals: CDP protocol events, WebAPI surface (ClipboardEvent,
-                  DataTransfer, focus navigation), native CSS nesting, relative :has() selectors,
-                  WebSocket Origin handling, HTTP redirect edge cases.
-                </p>
-                <a
-                  class="proof"
-                  href="https://github.com/lightpanda-io/browser/pulls?q=is%3Apr+author%3Anavidemad+is%3Amerged"
-                  data-i18n="oss.proof"
-                  >See the merged PRs</a
-                >
-              </div>
+          <ul class="bento">
+            <li class="card wide">
+              <h3><a href="https://github.com/lightpanda-io/browser">Lightpanda</a></h3>
+              <p class="role" data-i18n="oss.lp.role">Headless browser engine in Zig</p>
+              <p class="count" data-i18n="oss.lp.count"><b class="sheen" data-count="lightpanda-io/browser">97</b> merged pull requests</p>
+              <p class="desc" data-i18n="oss.lp.desc">Web platform internals: CDP protocol events, WebAPI surface, native CSS nesting, relative :has() selectors, WebSocket and HTTP edge cases.</p>
+              <a class="proof" href="https://github.com/lightpanda-io/browser/pulls?q=is%3Apr+author%3Anavidemad+is%3Amerged" data-i18n="oss.proof">See the merged PRs</a>
             </li>
-            <li>
-              <div>
-                <h3><a href="https://pixel-cli.dev/">Pixel</a></h3>
-                <p class="role" data-i18n="oss.px.role">Co-author and top contributor, Rust CLI</p>
-              </div>
-              <div>
-                <p class="desc" data-i18n="oss.px.desc">
-                  A local CLI that takes over the deterministic part of repository work for AI
-                  coding agents: search, symbols, callers, task scope, history and Git. The agent
-                  spends its tokens on the hard part.
-                </p>
-                <a class="proof" href="https://github.com/Pixel-CLI/pixel" data-i18n="oss.source"
-                  >Source on GitHub</a
-                >
-              </div>
+            <li class="card wide">
+              <h3><a href="https://pixel-cli.dev/">Pixel</a></h3>
+              <p class="role" data-i18n="oss.px.role">Co-author and top contributor, Rust CLI</p>
+              <p class="desc" data-i18n="oss.px.desc">A local CLI that takes over the deterministic part of repository work for AI coding agents: search, symbols, callers, task scope, history and Git. The agent spends its tokens on the hard part.</p>
+              <a class="proof" href="https://github.com/Pixel-CLI/pixel" data-i18n="oss.source">Source on GitHub</a>
             </li>
-            <li>
-              <div>
-                <h3>
-                  <a href="https://github.com/navidemad/capybara-lightpanda">capybara-lightpanda</a>
-                </h3>
-                <p class="role" data-i18n="oss.cap.role">Author and maintainer, Ruby gem</p>
-              </div>
-              <div>
-                <p class="desc" data-i18n="oss.cap.desc">
-                  Capybara driver that runs Rails system tests on Lightpanda. It bridges the browser
-                  engine I contribute to and the framework I work in every day.
-                </p>
-                <a class="proof" href="https://rubygems.org/gems/capybara-lightpanda" data-i18n="oss.gem"
-                  >Gem on RubyGems</a
-                >
-              </div>
+            <li class="card">
+              <h3><a href="https://github.com/navidemad/capybara-lightpanda">capybara-lightpanda</a></h3>
+              <p class="role" data-i18n="oss.cap.role">Author and maintainer, Ruby gem</p>
+              <p class="desc" data-i18n="oss.cap.desc">Capybara driver that runs Rails system tests on Lightpanda: the browser engine I contribute to, wired into the framework I work in every day.</p>
+              <a class="proof" href="https://rubygems.org/gems/capybara-lightpanda" data-i18n="oss.gem">Gem on RubyGems</a>
             </li>
-            <li>
-              <div>
-                <h3><a href="https://github.com/rails">Rails ecosystem</a></h3>
-                <p class="role">rails, solid_cable, jsbundling-rails, cssbundling-rails</p>
-              </div>
-              <div>
-                <p class="desc" data-i18n="oss.rails.desc">
-                  CLI generator fixes, nil-logger support in Solid Cable, an assets:precompile
-                  build-skip option, CSS build wired into spec:prepare.
-                </p>
-                <a
-                  class="proof"
-                  href="https://github.com/search?q=org%3Arails+author%3Anavidemad+is%3Apr+is%3Amerged&amp;type=pullrequests"
-                  data-i18n="oss.proof"
-                  >See the merged PRs</a
-                >
-              </div>
+            <li class="card">
+              <h3><a href="https://github.com/rails">Rails ecosystem</a></h3>
+              <p class="role">rails, solid_cable, jsbundling-rails, cssbundling-rails</p>
+              <p class="desc" data-i18n="oss.rails.desc">CLI generator fixes, nil-logger support in Solid Cable, an assets:precompile build-skip option, CSS build wired into spec:prepare.</p>
+              <a class="proof" href="https://github.com/search?q=org%3Arails+author%3Anavidemad+is%3Apr+is%3Amerged&amp;type=pullrequests" data-i18n="oss.proof">See the merged PRs</a>
             </li>
-            <li>
-              <div>
-                <h3><a href="https://github.com/DataDog/dd-trace-rb">Datadog dd-trace-rb</a></h3>
-                <p class="role" data-i18n="oss.dd.role">APM tracer for Ruby</p>
-              </div>
-              <div>
-                <p class="desc" data-i18n="oss.dd.desc">
-                  Two production-crash fixes merged upstream: a heap-profiling SIGSEGV on Ruby 4,
-                  and distributed-tracing header injection broken by http.rb 6.x.
-                </p>
-                <a
-                  class="proof"
-                  href="https://github.com/DataDog/dd-trace-rb/pulls?q=is%3Apr+author%3Anavidemad+is%3Amerged"
-                  data-i18n="oss.proof"
-                  >See the merged PRs</a
-                >
-              </div>
+            <li class="card">
+              <h3><a href="https://github.com/DataDog/dd-trace-rb">Datadog dd-trace-rb</a></h3>
+              <p class="role" data-i18n="oss.dd.role">APM tracer for Ruby</p>
+              <p class="desc" data-i18n="oss.dd.desc">Two production-crash fixes merged upstream: a heap-profiling SIGSEGV on Ruby 4, and distributed-tracing header injection broken by http.rb 6.x.</p>
+              <a class="proof" href="https://github.com/DataDog/dd-trace-rb/pulls?q=is%3Apr+author%3Anavidemad+is%3Amerged" data-i18n="oss.proof">See the merged PRs</a>
             </li>
-            <li>
-              <div>
-                <h3><a href="https://github.com/hostolab/covidliste">Covidliste</a></h3>
-                <p class="role" data-i18n="oss.cl.role">
-                  French COVID-19 vaccination platform,
-                  <span data-count="hostolab/covidliste">43</span> merged PRs
-                </p>
-              </div>
-              <div>
-                <p class="desc" data-i18n="oss.cl.desc">
-                  Volunteer work during the pandemic: landing pages for health professionals,
-                  transactional email overhaul, payment status handling.
-                </p>
-                <a
-                  class="proof"
-                  href="https://github.com/hostolab/covidliste/pulls?q=is%3Apr+author%3Anavidemad+is%3Amerged"
-                  data-i18n="oss.proof"
-                  >See the merged PRs</a
-                >
-              </div>
+            <li class="card wide">
+              <h3><a href="https://github.com/hostolab/covidliste">Covidliste</a></h3>
+              <p class="role" data-i18n="oss.cl.role">French COVID-19 vaccination platform, volunteer work</p>
+              <p class="count" data-i18n="oss.cl.count"><b class="sheen" data-count="hostolab/covidliste">43</b> merged pull requests</p>
+              <p class="desc" data-i18n="oss.cl.desc">Landing pages for health professionals, transactional email overhaul, payment status handling.</p>
+              <a class="proof" href="https://github.com/hostolab/covidliste/pulls?q=is%3Apr+author%3Anavidemad+is%3Amerged" data-i18n="oss.proof">See the merged PRs</a>
+            </li>
+            <li class="card wide">
+              <h3 data-i18n="oss.also.title">And the long tail</h3>
+              <p class="desc" data-i18n="oss.also">
+                Fixes merged in Rack, the New Relic Ruby agent, RTK, GitNexus, i18n-tasks,
+                haml-lint, sidekiq-failures, Judoscale, the Scalingo Ruby API client and Gusto’s
+                fixture_kit.
+              </p>
+              <a
+                class="proof"
+                href="https://github.com/search?q=is%3Apr+author%3Anavidemad+is%3Amerged+-user%3Anavidemad+-user%3Ayespark+-user%3APixel-CLI&amp;type=pullrequests"
+                data-i18n="oss.all"
+                >All <span data-stat="prs">171</span> merged pull requests</a
+              >
             </li>
           </ul>
-          <p class="aside-note" data-i18n="oss.also">
-            Also merged in Rack, the New Relic Ruby agent, i18n-tasks, haml-lint, sidekiq-failures,
-            Judoscale, the Scalingo Ruby API client and Gusto’s fixture_kit.
-          </p>
         </div>
       </section>
 
       <section class="section" id="contact">
-        <div class="container split">
+        <div class="container contact-grid">
           <div>
-            <div class="section-head">
-              <h2 data-i18n="help.title">How I can help</h2>
-              <p data-i18n="help.sub">
-                I take on a small number of freelance engagements alongside my lead role.
-              </p>
-            </div>
+            <h2 data-i18n="help.title">How I can help</h2>
+            <p class="sub" data-i18n="help.sub">
+              I take on a small number of freelance engagements alongside my lead role.
+            </p>
             <ul class="services">
               <li data-i18n="help.b1">
                 <b>Rails performance and architecture</b
@@ -416,13 +379,18 @@
               </li>
             </ul>
           </div>
-          <div class="contact-copy">
-            <h3 data-i18n="contact.title">Tell me what you’re building</h3>
+          <div class="cta-panel">
+            <h2 class="sheen" data-i18n="contact.title">Tell me what you’re building.</h2>
             <p data-i18n="contact.desc">
               A few short lines is enough. I reply within 24 hours, frankly: what I can do and how
               I’d approach it. If I’m not the right person, I’ll say so and point you elsewhere if I
               can.
             </p>
+            <ul class="principles">
+              <li data-i18n="how.b1">Small, argued, benchmarked PRs</li>
+              <li data-i18n="how.b2">I say no to unprofitable AI</li>
+              <li data-i18n="how.b3">Frank from the first call</li>
+            </ul>
             <div class="actions">
               <a class="btn primary" href="https://calendly.com/design-navid/30min" data-i18n="cta.book"
                 >Book a 30-minute call</a
