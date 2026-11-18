@@ -16,6 +16,7 @@ bin/check        # the gate: run before every push (CI runs it too)
 | `index.html` | Markup and the English copy (source of truth, readable without JS) |
 | `site.js` | French copy (`FR`), language switch, live GitHub numbers |
 | `site.css` | Styles: one dark theme, tokens at the top; every animation rests in its final state |
+| `logos/` | Project logos used on the open-source cards (brand icons are inlined as SVG symbols in `index.html`) |
 | `tools/og-image.html` | Source of `og-image.png`; re-render with `bin/og` |
 
 ## Editing copy

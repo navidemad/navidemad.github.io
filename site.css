@@ -45,6 +45,8 @@
   --ruby-ink: #16040a;
   --merged: #b79bff;
   --ok: #4fe39a;
+  --star: #f5c542;
+  --bg-alt: #0b0d15;
   --sheen: linear-gradient(100deg, #ffffff 25%, #d9ceff 62%, #ffa3b8);
 
   --display: "Barlow Condensed", "Arial Narrow", sans-serif;
@@ -307,39 +309,57 @@ p {
   pointer-events: none;
   background: radial-gradient(420px circle at var(--mx, 70%) var(--my, 30%), rgba(255, 255, 255, 0.07), transparent 65%);
 }
-/* perspective grid receding to the horizon */
+/* Perspective grid receding to the horizon. The plane slides by exactly one cell
+   with a transform, so the browser moves a cached layer instead of repainting. */
 .hero-floor {
   position: absolute;
-  inset: auto -40% 0;
-  height: 85%;
+  inset: auto 0 0;
+  height: 46%;
   z-index: -2;
+  overflow: hidden;
+  perspective: 420px;
+  perspective-origin: 50% 0;
+  -webkit-mask-image: linear-gradient(to top, #000 10%, transparent 92%);
+  mask-image: linear-gradient(to top, #000 10%, transparent 92%);
+}
+.hero-floor::before {
+  content: "";
+  position: absolute;
+  inset: -100% -60% 0;
   background-image:
-    linear-gradient(rgba(183, 155, 255, 0.34) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(183, 155, 255, 0.34) 1px, transparent 1px);
-  background-size: 64px 64px;
-  transform: perspective(520px) rotateX(64deg);
+    linear-gradient(rgba(183, 155, 255, 0.3) 2px, transparent 2px),
+    linear-gradient(90deg, rgba(183, 155, 255, 0.3) 2px, transparent 2px);
+  background-size: 72px 72px;
+  background-position: 50% 100%;
+  transform: rotateX(70deg);
   transform-origin: 50% 100%;
-  -webkit-mask-image: linear-gradient(to top, #000 5%, transparent 85%);
-  mask-image: linear-gradient(to top, #000 5%, transparent 85%);
+  will-change: transform;
+  backface-visibility: hidden;
 }
 .hero .container {
   display: grid;
   grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
-  gap: clamp(32px, 5vw, 72px);
-  align-items: center;
+  gap: clamp(22px, 3.4vh, 36px) clamp(32px, 5vw, 72px);
+  align-items: start;
 }
 .hero h1 {
-  font-size: clamp(46px, 7vw, 96px);
-  line-height: 0.98;
+  grid-column: 1 / -1;
+  font-size: clamp(42px, 6vw, 76px);
+  line-height: 1;
   letter-spacing: -0.01em;
+  max-width: 17em; /* two balanced lines on desktop, in English and in French */
 }
 .hero-copy > * + * {
   margin-top: 22px;
 }
 .hero-copy .lede {
-  font-size: clamp(18px, 1.6vw, 20px);
+  font-size: clamp(18px, 1.7vw, 21px);
   color: var(--muted);
-  max-width: 34em;
+  max-width: 32em;
+}
+.hero-copy .lede strong {
+  font-weight: 600;
+  color: var(--ink);
 }
 .availability {
   display: inline-flex;
@@ -450,8 +470,8 @@ p {
 .log-list a {
   display: grid;
   grid-template-columns: 18px minmax(0, 1fr) auto;
-  gap: 4px 12px;
-  padding: 11px 18px;
+  gap: 2px 12px;
+  padding: 9px 18px;
   text-decoration: none;
   font-size: 15px;
   line-height: 1.35;
@@ -486,6 +506,11 @@ p {
 }
 .log-list .stars {
   font-variant-numeric: tabular-nums;
+  color: var(--star);
+}
+.log-list .stars::before {
+  content: "\2605";
+  margin-right: 5px;
 }
 .log-foot {
   color: var(--muted);
@@ -501,6 +526,36 @@ p {
 .section {
   padding-block: clamp(56px, 9vh, 104px);
   border-top: 1px solid var(--line);
+}
+.section.alt {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: var(--bg-alt);
+}
+/* dotted backdrop that fades out toward the bottom */
+.section.alt::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.09) 1px, transparent 1.5px);
+  background-size: 26px 26px;
+  -webkit-mask-image: linear-gradient(to bottom, #000, transparent 85%);
+  mask-image: linear-gradient(to bottom, #000, transparent 85%);
+}
+/* a violet glow that drifts as the section scrolls by (see "parallax" below) */
+.section.alt::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: -10%;
+  right: -10%;
+  width: min(720px, 80vw);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(124, 92, 255, 0.22), transparent);
+  pointer-events: none;
 }
 .section-head {
   display: flex;
@@ -635,30 +690,93 @@ p {
   gap: 14px;
 }
 .card {
+  position: relative;
   grid-column: span 2;
   display: flex;
   flex-direction: column;
   gap: 10px;
-  padding: clamp(20px, 2.4vw, 28px);
+  padding: clamp(20px, 2.4vw, 26px);
   border: 1px solid var(--line);
-  border-radius: 16px;
-  background: var(--surface);
+  border-radius: 18px;
+  /* the glow sits under the pointer; site.js sets --mx / --my */
+  background:
+    radial-gradient(340px circle at var(--mx, 50%) var(--my, -40%), rgba(183, 155, 255, 0.16), transparent 70%),
+    rgba(255, 255, 255, 0.04);
   transition:
     border-color 0.2s,
-    background-color 0.2s;
+    transform 0.2s;
 }
 .card.wide {
   grid-column: span 3;
 }
-.card:hover {
-  border-color: color-mix(in srgb, var(--merged) 55%, transparent);
-  background: color-mix(in srgb, var(--merged) 7%, transparent);
+.card:hover,
+.card:focus-within {
+  border-color: color-mix(in srgb, var(--merged) 60%, transparent);
+  transform: translateY(-3px);
 }
+.card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+.card .logo {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+}
+.card span.logo {
+  display: grid;
+  place-items: center;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid var(--line);
+}
+.card span.logo svg {
+  width: 24px;
+  height: 24px;
+  fill: var(--ink);
+}
+.card .i-rails svg {
+  fill: #ff5252;
+}
+.card .i-datadog svg {
+  fill: #b08cff;
+}
+.card .i-rubygems svg {
+  fill: #ff7a5c;
+}
+.card .go {
+  width: 22px;
+  height: 22px;
+  color: var(--muted);
+  transition:
+    transform 0.2s,
+    color 0.2s;
+}
+.card:hover .go,
+.card:focus-within .go {
+  color: var(--merged);
+  transform: translate(3px, -3px);
+}
+/* the whole card is the link */
 .card h3 a {
   text-decoration: none;
 }
+.card h3 a::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
 .card h3 a:hover {
-  text-decoration: underline;
+  color: inherit;
+}
+.card h3 a:focus-visible {
+  outline: none;
+}
+.card:has(a:focus-visible) {
+  outline: 2px solid var(--ruby);
+  outline-offset: 3px;
 }
 .card .role {
   font-size: 15px;
@@ -681,11 +799,20 @@ p {
   line-height: 0.9;
   font-variant-numeric: tabular-nums;
 }
-.card .proof {
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
   margin-top: auto;
-  padding-top: 6px;
-  font-size: 15px;
-  align-self: start;
+  padding-top: 8px;
+}
+.chips li {
+  padding: 3px 10px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-family: var(--mono);
+  font-size: 12.5px;
+  color: var(--muted);
 }
 
 /* ---------- work with me ---------- */
@@ -772,8 +899,8 @@ p {
    Every animated element rests in its final state: nothing is hidden waiting for
    an animation to reveal it. */
 @media (prefers-reduced-motion: no-preference) {
-  .hero-floor {
-    animation: floor 2.4s linear infinite;
+  .hero-floor::before {
+    animation: floor 5s linear infinite;
   }
   .availability::before,
   .log-head .live::before {
@@ -790,8 +917,11 @@ p {
     animation: grow 0.12s linear;
   }
   @keyframes floor {
+    from {
+      transform: rotateX(70deg) translateY(0);
+    }
     to {
-      background-position: 0 64px;
+      transform: rotateX(70deg) translateY(72px);
     }
   }
   @keyframes pulse {
@@ -810,6 +940,34 @@ p {
   @keyframes grow {
     from {
       transform: scaleX(0);
+    }
+  }
+}
+/* parallax: glows drift slower than the page. Scroll-driven, so it costs no JS;
+   browsers without animation-timeline simply keep the glows still. */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .hero::before {
+      animation: drift-down linear both;
+      animation-timeline: scroll(root);
+      animation-range: 0 100vh;
+    }
+    .section.alt::after {
+      animation: drift-up linear both;
+      animation-timeline: view();
+    }
+    @keyframes drift-down {
+      to {
+        transform: translateY(22%);
+      }
+    }
+    @keyframes drift-up {
+      from {
+        transform: translateY(30%);
+      }
+      to {
+        transform: translateY(-30%);
+      }
     }
   }
 }
@@ -863,13 +1021,27 @@ p {
   .hero {
     min-height: 0;
   }
+  /* phones: the projects become a swipeable row instead of seven stacked cards */
+  .bento {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: var(--gutter);
+    margin-inline: calc(-1 * var(--gutter));
+    padding: 4px var(--gutter) 12px;
+    scrollbar-width: none;
+  }
+  .bento::-webkit-scrollbar {
+    display: none;
+  }
   .card,
   .card.wide {
-    grid-column: 1 / -1;
+    flex: 0 0 84%;
+    scroll-snap-align: start;
   }
-  .card .desc,
   .themes span {
-    display: none; /* titles only on phones: labels scan faster than paragraphs, the links stay */
+    display: none; /* titles only on phones: six labels scan faster than six paragraphs */
   }
   .upstream a {
     font-size: 20px;

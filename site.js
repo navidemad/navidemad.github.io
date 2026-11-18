@@ -27,8 +27,6 @@
     "cta.results": "Voir les résultats mesurés",
     "cta.linkedin": "M’écrire sur LinkedIn",
     "hero.title": "Des systèmes Rails et des agents IA qui tiennent en production.",
-    "hero.intro":
-      "Moi c’est Navid, lead developer chez Yespark. <span data-years>12</span> ans à construire des applis Rails critiques, et aujourd’hui à brancher des agents IA sur de vrais workflows. Toujours du code au quotidien.",
     "hero.availability": "Ouvert à quelques missions freelance. Paris ou remote, réponse sous 24 h.",
     "log.title": "Fusionnées dans les projets les plus étoilés",
     "log.snapshot": "instantané, nov. 2026",
@@ -60,20 +58,8 @@
     "work.b6":
       "<b>Revue et mentorat</b><span>Revue de code quotidienne, mentorat structuré des développeurs juniors, vie privée et sécurité par défaut.</span>",
     "oss.title": "Où le code a atterri",
-    "oss.sub":
-      "L’open source est la meilleure revue de code que je connaisse : ces pull requests ont été jugées par des reviewers Rails, des ingénieurs Datadog et des mainteneurs de moteurs de navigateur, pas par une page portfolio.",
-    "oss.proof": "Voir les PRs fusionnées",
-    "oss.source": "Code source sur GitHub",
-    "oss.gem": "Gem sur RubyGems",
     "oss.px.role": "Co-auteur et premier contributeur, CLI en Rust",
-    "oss.px.desc":
-      "Une CLI locale qui prend en charge la partie déterministe du travail sur un dépôt pour les agents de code IA : recherche, symboles, appelants, périmètre de tâche, historique et Git. L’agent garde ses tokens pour la partie difficile.",
     "oss.cap.role": "Auteur et mainteneur, gem Ruby",
-    "oss.rails.desc":
-      "Correctifs du générateur CLI, support du logger nil dans Solid Cable, option de skip du build dans assets:precompile, build CSS branché sur spec:prepare.",
-    "oss.dd.role": "Traceur APM pour Ruby",
-    "oss.dd.desc":
-      "Deux correctifs de crash en production fusionnés upstream : un SIGSEGV du heap profiling sur Ruby 4, et l’injection des en-têtes de tracing distribué cassée par http.rb 6.x.",
     "help.title": "Comment je peux aider",
     "help.sub": "Je prends quelques missions freelance en parallèle de mon poste de lead.",
     "help.b1":
@@ -95,22 +81,24 @@
     "results.r3.gain": "<b>2 à 5×</b> plus rapide",
     "oss.lp.role": "Moteur de navigateur headless en Zig",
     "oss.lp.count": '<b class="sheen" data-count="lightpanda-io/browser">97</b> pull requests fusionnées',
-    "oss.lp.desc":
-      "Internals de plateforme web : événements du protocole CDP, surface WebAPI, CSS nesting natif, sélecteurs :has() relatifs, cas limites WebSocket et HTTP.",
-    "oss.cap.desc":
-      "Driver Capybara pour lancer les tests système Rails sur Lightpanda : le moteur de navigateur auquel je contribue, branché sur le framework que j’utilise tous les jours.",
-    "oss.cl.role": "Plateforme française de vaccination COVID-19, bénévolat",
     "oss.cl.count": '<b class="sheen" data-count="hostolab/covidliste">43</b> pull requests fusionnées',
-    "oss.cl.desc":
-      "Landing pages pour les professionnels de santé, refonte des e-mails transactionnels, gestion des statuts de paiement.",
-    "oss.also.title": "Et la longue traîne",
-    "oss.also":
-      "Des correctifs fusionnés dans Rack, l’agent Ruby de New Relic, RTK, GitNexus, i18n-tasks, haml-lint, sidekiq-failures, Judoscale, le client Ruby de l’API Scalingo et fixture_kit de Gusto.",
-    "oss.all": 'Les <span data-stat="prs">171</span> pull requests fusionnées',
     "contact.title": "Dites-moi ce que vous construisez.",
     "how.b1": "Des PRs petites, argumentées, benchmarkées",
     "how.b2": "Je dis non à l’IA non rentable",
     "how.b3": "Franc dès le premier appel",
+    "hero.intro":
+      "Moi c’est Navid, <strong>lead developer chez Yespark</strong>. <strong><span data-years>12</span> ans</strong> à construire des <strong>applis Rails critiques</strong>, et aujourd’hui à brancher des <strong>agents IA</strong> sur de vrais workflows. Toujours du code au quotidien.",
+    "oss.sub":
+      "Jugé par des reviewers Rails, des ingénieurs Datadog et des mainteneurs de moteurs de navigateur, pas par une page portfolio. Chaque carte ouvre la preuve.",
+    "oss.px.desc":
+      "Donne aux agents de code IA la partie déterministe du travail sur un dépôt, pour qu’ils gardent leurs tokens pour la partie difficile.",
+    "oss.cap.desc": "Les tests système Rails, sur Lightpanda.",
+    "oss.rails.role": "Correctifs de générateurs et de pipeline de build",
+    "oss.dd.role": "Deux correctifs de crash en production, fusionnés upstream",
+    "oss.cl.role": "La plateforme française de vaccination COVID-19, en bénévole",
+    "oss.also.title": "La longue traîne",
+    "oss.all":
+      'Les <span data-stat="prs">171</span> pull requests fusionnées, dans <span data-stat="repos">25</span> dépôts',
     "footer.source": "Code source de cette page",
   };
 
@@ -184,7 +172,7 @@
     var compact = new Intl.NumberFormat(lang, { notation: "compact", maximumFractionDigits: 1 });
     document.querySelectorAll("[data-stars]").forEach(function (el) {
       var count = Number(el.getAttribute("data-stars"));
-      el.textContent = "\u2605 " + compact.format(count);
+      el.textContent = compact.format(count);
       el.title = new Intl.NumberFormat(lang).format(count) + (lang === "fr" ? " étoiles sur GitHub" : " GitHub stars");
     });
     if (!live) return;
@@ -381,13 +369,15 @@
     applyLang();
   }
 
-  /* ================= hero spotlight ================= */
-  var hero = document.querySelector(".hero");
-  if (hero && matchMedia("(pointer: fine)").matches) {
-    hero.addEventListener("pointermove", function (event) {
-      var box = hero.getBoundingClientRect();
-      hero.style.setProperty("--mx", event.clientX - box.left + "px");
-      hero.style.setProperty("--my", event.clientY - box.top + "px");
+  /* ================= pointer glow ================= */
+  // The hero and each card light up under the pointer (CSS reads --mx / --my).
+  if (matchMedia("(pointer: fine)").matches) {
+    document.querySelectorAll(".hero, [data-glow]").forEach(function (el) {
+      el.addEventListener("pointermove", function (event) {
+        var box = el.getBoundingClientRect();
+        el.style.setProperty("--mx", event.clientX - box.left + "px");
+        el.style.setProperty("--my", event.clientY - box.top + "px");
+      });
     });
   }
 
