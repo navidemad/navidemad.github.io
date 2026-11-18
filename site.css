@@ -427,27 +427,23 @@ p {
   margin-top: 30px;
 }
 
-/* Three upstream changes, each linked to the maintainer-accepted PR. */
+/* The portrait and the years stand directly on the hero: no panel around them. */
 .profile {
-  padding: clamp(18px, 2.5vw, 32px);
-  border: 1px solid var(--line);
-  border-radius: 16px;
-  background: var(--bg-alt);
+  display: grid;
+  justify-items: center;
+  gap: clamp(18px, 2.4vw, 28px);
 }
-/* the face behind the page, at the top of the hero panel */
 .identity {
   display: grid;
   justify-items: center;
-  gap: 14px;
-  margin: 0 0 clamp(18px, 2.4vw, 26px);
-  padding-bottom: clamp(18px, 2.4vw, 26px);
-  border-bottom: 1px solid var(--line);
+  gap: 16px;
+  margin: 0;
   text-align: center;
 }
 /* The photo is a cut-out with a transparent background: the disc behind it is
    drawn here, in the page's colors, inside a gradient ring. */
 .identity img {
-  width: clamp(132px, 14vw, 168px);
+  width: clamp(150px, 17vw, 216px);
   height: auto;
   aspect-ratio: 1;
   border-radius: 50%;
@@ -455,7 +451,9 @@ p {
   background:
     radial-gradient(circle at 50% 30%, #262b47, #0d0f1a 75%) padding-box,
     var(--action) border-box;
-  box-shadow: 0 22px 60px -20px rgba(124, 150, 255, 0.95);
+  box-shadow:
+    0 0 0 10px rgba(169, 149, 255, 0.07),
+    0 30px 80px -24px rgba(124, 150, 255, 0.95);
 }
 .identity strong {
   font-family: var(--display);
@@ -466,32 +464,74 @@ p {
 .snapshot { font-size: 15px; color: var(--muted); }
 /* years of experience, computed from the start dates */
 .experience {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: clamp(14px, 2vw, 26px);
+  display: flex;
+  justify-content: center;
 }
 .experience li {
-  display: grid;
-  justify-items: center;
-  gap: 2px;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-align: left;
+  padding-inline: clamp(16px, 2.2vw, 28px);
 }
 .experience li + li {
-  padding-left: clamp(14px, 2vw, 26px);
   border-left: 1px solid var(--line);
 }
 .experience b {
   font-family: var(--display);
-  font-size: clamp(56px, 6.4vw, 84px);
+  font-size: clamp(48px, 5vw, 66px);
   line-height: 0.95;
   font-variant-numeric: tabular-nums;
 }
 .experience span {
+  max-width: 8ch;
+  font-size: 15px;
   font-weight: 600;
-}
-.experience small {
-  font-size: 14px;
+  line-height: 1.25;
   color: var(--muted);
+}
+/* Yespark's public figures: one hairline rule across the hero, no box */
+.scale {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px clamp(24px, 4vw, 56px);
+  padding-top: clamp(18px, 2.6vh, 28px);
+  border-top: 1px solid var(--line);
+}
+.scale p {
+  color: var(--muted);
+  font-size: 16px;
+}
+.scale .org {
+  text-decoration: none;
+}
+.scale .org:hover {
+  text-decoration: underline;
+}
+.scale ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px clamp(24px, 4.4vw, 64px);
+}
+.scale li {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+.scale b {
+  font-family: var(--display);
+  font-size: clamp(32px, 3.4vw, 46px);
+  line-height: 1;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.scale span {
+  color: var(--muted);
+  font-size: 15px;
 }
 .log {
   overflow: hidden;
@@ -1008,6 +1048,31 @@ p {
   }
 }
 @media (max-width: 560px) {
+  /* phones: each figure stacks over its label */
+  .experience li {
+    flex-direction: column;
+    gap: 4px;
+    text-align: center;
+  }
+  .experience span {
+    max-width: none;
+  }
+  .scale ul {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    justify-content: space-between;
+    width: 100%;
+  }
+  .scale li {
+    flex-direction: column;
+    gap: 4px;
+  }
+  .scale b {
+    font-size: 30px;
+  }
+  .scale span {
+    font-size: 14px;
+  }
   /* the same icons close the page, in the call panel */
   .site-header .socials {
     display: none;

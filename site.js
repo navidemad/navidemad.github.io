@@ -68,9 +68,14 @@
     "tag.11": "e-mails",
     "tag.12": "recherche dans la FAQ",
     "exp.dev": "ans de développement",
-    "exp.dev.since": "depuis 2012",
     "exp.yespark": "ans chez Yespark",
-    "exp.yespark.since": "depuis novembre 2019",
+    "scale.label": 'Ce que <a class="org" href="https://www.yespark.fr" target="_blank" rel="noopener"><img src="logos/yespark.svg" width="22" height="22" alt="" />Yespark</a> fait tourner sur le code que je dirige',
+    "scale.spaces.n": "76 000",
+    "scale.spaces": "places de parking",
+    "scale.subscribers.n": "55 000",
+    "scale.subscribers": "abonnés",
+    "scale.cities.n": "900+",
+    "scale.cities": "villes en Europe",
   };
 
   // English strings that are not in the initial markup.
