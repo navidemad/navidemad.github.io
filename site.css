@@ -30,7 +30,7 @@
 
 /* ---------- tokens ----------
    One dark identity. Three colors carry meaning, the rest is neutral:
-   --ruby   = what you can act on (links, the booking button)
+   --accent = what you can act on (links, focus, the booking button)
    --merged = GitHub's "merged" state (pull request log, open-source figures)
    --ok     = the improved side of a measurement, and "available" */
 :root {
@@ -41,13 +41,14 @@
   --ink: #f3f4f8;
   --muted: #a5abc0;
   --line: rgba(255, 255, 255, 0.11);
-  --ruby: #ff5c7f;
-  --ruby-ink: #16040a;
+  --accent: #a995ff;
+  --accent-ink: #0b0a1f;
+  --action: linear-gradient(135deg, #b9a8ff, #7cc4ff); /* the booking button */
   --merged: #b79bff;
   --ok: #4fe39a;
   --star: #f5c542;
   --bg-alt: #0b0d15;
-  --sheen: linear-gradient(100deg, #ffffff 25%, #d9ceff 62%, #ffa3b8);
+  --sheen: linear-gradient(100deg, #ffffff 25%, #d9ceff 62%, #a8d4ff);
 
   --display: "Barlow Condensed", "Arial Narrow", sans-serif;
   --body: "Barlow", system-ui, sans-serif;
@@ -91,20 +92,20 @@ img {
 }
 a {
   color: inherit;
-  text-decoration-color: var(--ruby);
+  text-decoration-color: var(--accent);
   text-decoration-thickness: 1.5px;
   text-underline-offset: 3px;
 }
 a:hover {
-  color: var(--ruby);
+  color: var(--accent);
 }
 :focus-visible {
-  outline: 2px solid var(--ruby);
+  outline: 2px solid var(--accent);
   outline-offset: 3px;
   border-radius: 2px;
 }
 ::selection {
-  background: color-mix(in srgb, var(--ruby) 30%, transparent);
+  background: color-mix(in srgb, var(--accent) 30%, transparent);
 }
 ul,
 ol {
@@ -194,7 +195,7 @@ p {
 .site-nav {
   display: flex;
   gap: 22px;
-  margin-left: auto;
+  margin-left: 12px;
   font-size: 15px;
 }
 .site-nav a {
@@ -203,6 +204,33 @@ p {
 }
 .site-nav a:hover {
   color: var(--ink);
+}
+.socials {
+  display: flex;
+  gap: 2px;
+}
+.site-header .socials {
+  margin-left: auto;
+}
+.socials a {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  color: var(--muted);
+}
+.socials a:hover {
+  color: var(--ink);
+  background: var(--surface);
+}
+.socials svg {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+}
+.cta-panel .socials {
+  margin-left: -9px;
 }
 .lang {
   display: flex;
@@ -246,18 +274,18 @@ p {
     box-shadow 0.15s;
 }
 .btn.primary {
-  background: var(--ruby);
-  color: var(--ruby-ink);
+  background: var(--action);
+  color: var(--accent-ink);
   box-shadow:
-    0 0 0 1px rgba(255, 92, 127, 0.45),
-    0 12px 44px -10px rgba(255, 92, 127, 0.75);
+    0 0 0 1px rgba(169, 149, 255, 0.5),
+    0 12px 44px -10px rgba(124, 150, 255, 0.8);
 }
 .btn.primary:hover {
-  background: #ff7a97;
-  color: var(--ruby-ink);
+  color: var(--accent-ink);
+  filter: brightness(1.1);
   box-shadow:
-    0 0 0 1px rgba(255, 92, 127, 0.6),
-    0 14px 54px -8px rgba(255, 92, 127, 0.95);
+    0 0 0 1px rgba(169, 149, 255, 0.7),
+    0 14px 54px -8px rgba(124, 150, 255, 1);
 }
 .btn.quiet {
   border-color: var(--line);
@@ -289,7 +317,7 @@ p {
   min-height: calc(100svh - var(--header-h));
   padding-block: clamp(28px, 5vh, 64px) clamp(24px, 3.5vh, 40px);
 }
-/* two colored glows: ruby (action) and violet (merged) */
+/* two colored glows: blue and violet */
 .hero::before,
 .cta-panel::before {
   content: "";
@@ -297,7 +325,7 @@ p {
   inset: 0;
   z-index: -3;
   background:
-    radial-gradient(52% 60% at 12% 8%, rgba(255, 92, 127, 0.2), transparent 70%),
+    radial-gradient(52% 60% at 12% 8%, rgba(70, 150, 255, 0.2), transparent 70%),
     radial-gradient(58% 70% at 88% 18%, rgba(124, 92, 255, 0.3), transparent 70%);
 }
 /* spotlight that follows the pointer (site.js sets --mx / --my) */
@@ -435,7 +463,7 @@ p {
   border-radius: inherit;
   padding: 1px;
   pointer-events: none;
-  background: conic-gradient(from var(--beam), transparent 0 68%, #b79bff 84%, #ff5c7f 96%, transparent 100%);
+  background: conic-gradient(from var(--beam), transparent 0 68%, #b79bff 84%, #7cc4ff 96%, transparent 100%);
   -webkit-mask:
     linear-gradient(#000 0 0) content-box,
     linear-gradient(#000 0 0);
@@ -775,7 +803,7 @@ p {
   outline: none;
 }
 .card:has(a:focus-visible) {
-  outline: 2px solid var(--ruby);
+  outline: 2px solid var(--accent);
   outline-offset: 3px;
 }
 .card .role {
@@ -851,7 +879,7 @@ p {
   border: 1px solid var(--line);
   border-radius: 20px;
   background: var(--panel);
-  box-shadow: 0 40px 90px -40px rgba(255, 92, 127, 0.55);
+  box-shadow: 0 40px 90px -40px rgba(124, 150, 255, 0.6);
 }
 .cta-panel > * + * {
   margin-top: 20px;
@@ -874,25 +902,6 @@ p {
 }
 .cta-panel .actions {
   margin-top: 28px;
-}
-
-/* ---------- footer ---------- */
-.site-footer {
-  border-top: 1px solid var(--line);
-  padding-block: 28px;
-  font-size: 15px;
-  color: var(--muted);
-}
-.site-footer .container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px 24px;
-  justify-content: space-between;
-}
-.site-footer ul {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px 20px;
 }
 
 /* ---------- motion ----------
@@ -999,8 +1008,8 @@ p {
   .site-nav {
     display: none;
   }
-  .lang {
-    margin-left: auto;
+  .site-header .container {
+    gap: 12px;
   }
   .result {
     grid-template-columns: minmax(0, 1fr) auto;
@@ -1051,6 +1060,15 @@ p {
   }
   .card .count b {
     font-size: 48px;
+  }
+}
+@media (max-width: 560px) {
+  /* the same icons close the page, in the call panel */
+  .site-header .socials {
+    display: none;
+  }
+  .lang {
+    margin-left: auto;
   }
 }
 @media (max-width: 480px) {

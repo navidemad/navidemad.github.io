@@ -99,7 +99,6 @@
     "oss.also.title": "La longue traîne",
     "oss.all":
       'Les <span data-stat="prs">171</span> pull requests fusionnées, dans <span data-stat="repos">25</span> dépôts',
-    "footer.source": "Code source de cette page",
   };
 
   // English strings that are not in the initial markup.
