@@ -33,7 +33,7 @@
     "oss.cap.role": "Auteur. Les tests système Rails, sur Lightpanda",
     "meta.title": "Navid Emad - Staff Engineer, plateforme IA & Rails",
     "hero.title": "Agents IA et systèmes web qui tiennent en production.",
-    "hero.intro": '<span>Staff Engineer chez <span class="org"><img src="logos/yespark.svg" width="22" height="22" alt="" />Yespark</span>, <span data-since="2012-01-01">14</span> ans d’expérience.</span><span>Responsable de la plateforme Rails et de l’outillage IA de l’équipe, et mainteneur open source.</span>',
+    "hero.intro": '<span>Staff Engineer chez <span class="org"><img src="logos/yespark.svg" width="22" height="22" alt="" />Yespark,</span> <span data-since="2012-01-01">14</span> ans d’expérience.</span><span>Responsable de la plateforme Rails et de l’outillage IA de l’équipe, et mainteneur open source.</span>',
     "hero.availability": "Disponible en freelance · Paris ou à distance",
     "oss.sub": "Une sélection de pull requests et les projets que je maintiens ou auxquels je contribue.",
     "oss.lp.role": "Navigateur headless conçu pour les agents IA et l’automatisation, en Zig",
