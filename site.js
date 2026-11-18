@@ -19,7 +19,7 @@
   var FR = {
     "meta.title": "Navid Emad - Lead Developer Rails & ingénieur IA agentique",
     skip: "Aller au contenu",
-    "nav.results": "Résultats",
+    "nav.results": "Le métier",
     "nav.oss": "Open source",
     "nav.contact": "Travailler ensemble",
     "cta.short": "Réserver un appel",
@@ -33,7 +33,6 @@
     "log.live": "en direct de GitHub",
     "log.foot":
       '<b data-stat="prs">171</b> pull requests fusionnées dans <b data-stat="repos">25</b> dépôts qui ne sont pas les miens. <a href="https://github.com/search?q=is%3Apr+author%3Anavidemad+is%3Amerged+-user%3Anavidemad+-user%3Ayespark+-user%3APixel-CLI&amp;type=pullrequests">Vérifier sur GitHub</a>',
-    "results.title": "Une appli lente en production, mesurée avant et après",
     "results.r1.what": "Pire requête en production",
     "results.r1.how":
       "Un index composite sur une table de paiements de 5,6 Go, mesuré à l’EXPLAIN ANALYZE en prod.",
@@ -71,14 +70,6 @@
     "oss.also.title": "La longue traîne",
     "oss.all":
       'Les <span data-stat="prs">171</span> pull requests fusionnées, dans <span data-stat="repos">25</span> dépôts',
-    "results.sub":
-      "Chez Yespark, location de parkings partout en France, j’ai mené une campagne requêtes et index pilotée par Datadog sur les chemins les plus lents en production. Le reste du métier est juste à côté.",
-    "work.b1":
-      "<h3>Fiabilité et CI/CD</h3><p>Suivi des incidents jusqu’au bout, surveillance des tâches planifiées, des alertes qui ne sonnent que pour de vraies pannes. Pipelines plus rapides, déploiements plus sûrs.</p>",
-    "work.b2":
-      "<h3>Outillage IA pour l’équipe</h3><p>Skills Claude Code, tri et revue automatisés, agents branchés sur les outils internes.</p>",
-    "work.b3":
-      "<h3>Migrations, intégrations, mentorat</h3><p>Des plateformes historiques ramenées sur un seul backend sans casser la production ; paiement et matériel d’accès ; revue quotidienne et mentorat des développeurs juniors.</p>",
     "oss.sub":
       "Jugé par des reviewers Rails, des ingénieurs Datadog et des mainteneurs de moteurs de navigateur, pas par une page portfolio. Chaque ligne ouvre la preuve.",
     "oss.lp.count": '<b data-count="lightpanda-io/browser">97</b> PRs fusionnées',
@@ -88,6 +79,21 @@
     "help.b2":
       "<h3>Agents IA en production</h3><p>De l’audit des cas d’usage aux agents branchés sur vos outils.</p>",
     "help.b3": "<h3>Lead fractionné</h3><p>Direction technique, culture de revue, mentorat.</p>",
+    "results.title": "Le métier, semaine après semaine",
+    "results.sub":
+      "Six domaines dont je m’occupe comme lead developer chez Yespark, location de parkings partout en France. La performance vient avec des chiffres de production.",
+    "work.b1":
+      "<h3>Performance</h3><p>Audits de base de données, requêtes lentes et index, montées de version majeures de la base. Trois résultats d’une même campagne pilotée par Datadog :</p>",
+    "work.b2":
+      "<h3>Fiabilité de la production</h3><p>Suivi des incidents jusqu’au bout, surveillance des tâches planifiées, des alertes qui ne sonnent que pour de vraies pannes.</p>",
+    "work.b3":
+      "<h3>CI/CD et DevOps</h3><p>Pipelines plus rapides, déploiements plus sûrs, environnements de staging, gestion des secrets.</p>",
+    "work.b4":
+      "<h3>Outillage IA pour l’équipe</h3><p>Skills Claude Code, tri et revue automatisés, agents branchés sur les outils internes.</p>",
+    "work.b5":
+      "<h3>Migrations et intégrations</h3><p>Des plateformes historiques ramenées sur un seul backend sans casser la production ; paiement, matériel d’accès et caméras ANPR.</p>",
+    "work.b6":
+      "<h3>Revue et mentorat</h3><p>Revue de code quotidienne, mentorat structuré des développeurs juniors, vie privée et sécurité par défaut.</p>",
   };
 
   // English strings that are not in the initial markup.

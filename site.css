@@ -648,38 +648,73 @@ p {
 .tile h3 {
   font-size: 24px;
 }
-.tile-body p,
-.tile .how {
+.tile-body p {
   margin-top: 8px;
   color: var(--muted);
   font-size: 15.5px;
 }
 
-/* a measured result: the multiplier leads, the raw before/after backs it */
-.metric .icon {
+/* six theme cards: Performance leads full width, then three, then two */
+.tiles.themes {
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+}
+.themes .tile {
+  grid-column: span 2;
+}
+.themes .tile.half {
+  grid-column: span 3;
+}
+.themes .tile.feature {
+  grid-column: 1 / -1;
+  gap: clamp(18px, 2.4vw, 26px);
+}
+.feature-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+}
+.feature-head .icon {
+  flex: none;
+  margin: 0;
+}
+.feature .icon {
   border-color: color-mix(in srgb, var(--ok) 40%, transparent);
   background: linear-gradient(145deg, rgba(79, 227, 154, 0.24), rgba(124, 196, 255, 0.08));
   box-shadow: 0 10px 30px -12px rgba(79, 227, 154, 0.8);
   color: #b9f7d6;
 }
-.metric .gain {
+.feature-head p {
+  max-width: 46em;
+}
+/* a measured result: the multiplier leads, the raw before/after backs it */
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(16px, 2.4vw, 32px);
+  padding-top: clamp(18px, 2.4vw, 26px);
+  border-top: 1px solid var(--line);
+}
+.metrics li {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.metrics .gain {
   color: var(--muted);
   font-size: 15px;
   line-height: 1.2;
 }
-.metric .gain b {
+.metrics .gain b {
   display: block;
   font-family: var(--display);
   font-size: clamp(48px, 5.4vw, 68px);
   line-height: 0.95;
   color: var(--ok);
 }
-.metric h3 {
-  font-family: var(--body);
+.metrics h4 {
   font-size: 17px;
   font-weight: 600;
   line-height: 1.35;
-  margin-top: 4px;
 }
 .delta {
   display: flex;
@@ -706,9 +741,9 @@ p {
   height: 16px;
   color: var(--muted);
 }
-.metric .how {
-  margin-top: auto;
-  padding-top: 4px;
+.metrics .how {
+  color: var(--muted);
+  font-size: 15px;
 }
 
 /* ---------- open source: one row per project ---------- */
@@ -961,6 +996,13 @@ p {
   .tiles {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+  .themes .tile,
+  .themes .tile.half {
+    grid-column: span 3;
+  }
+  .themes .tile.half:last-child {
+    grid-column: 1 / -1;
+  }
   .site-nav {
     display: none;
   }
@@ -1006,14 +1048,18 @@ p {
     flex: none;
     margin: 0;
   }
-  .tile.metric {
+  .tile.feature {
     flex-direction: column;
-    gap: 8px;
   }
-  .tile.metric .icon {
-    position: absolute;
-    top: 20px;
-    right: 20px;
+  .themes .tile,
+  .themes .tile.half {
+    grid-column: 1 / -1;
+  }
+  .metrics {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .feature-head {
+    gap: 14px;
   }
   .upstream a {
     font-size: 20px;
