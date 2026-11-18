@@ -507,9 +507,9 @@ p {
 }
 .scale li span {
   color: var(--muted);
-  font-size: 15.5px;
+  font-size: clamp(13.5px, 4vw, 15.5px);
   line-height: 1.3;
-  text-wrap: balance;
+  white-space: nowrap;
 }
 .log {
   overflow: hidden;

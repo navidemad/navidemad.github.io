@@ -87,11 +87,11 @@
     "scale.subscribers.n": "55 000",
     "scale.subscribers": "abonnés",
     "scale.requests.n": "66 M",
-    "scale.requests": "requêtes par mois",
+    "scale.requests": "requêtes / mois",
     "scale.jobs.n": "80 M",
-    "scale.jobs": "jobs asynchrones par mois",
+    "scale.jobs": "jobs async / mois",
     "scale.prs.n": "50+",
-    "scale.prs": "pull requests fusionnées par jour",
+    "scale.prs": "PRs mergées / jour",
   };
 
   // English strings that are not in the initial markup.
