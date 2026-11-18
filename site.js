@@ -11,7 +11,7 @@
   var QUERY = "is:pr author:" + USER + " is:merged -user:" + USER + " -user:yespark -user:Pixel-CLI";
   var LOG_SIZE = 6;
   var PER_REPO = 2; // rows per repository in the hero log
-  var CACHE_KEY = "gh-pulls-v2";
+  var CACHE_KEY = "gh-pulls-v3";
   var CACHE_TTL = 60 * 60 * 1000;
   var MAX_PAGES = 5; // 500 PRs; beyond that the per-repo counts keep their baked-in values
 
@@ -44,52 +44,24 @@
     "results.r3.what": "Endpoints admin et API, p95",
     "results.r3.how":
       "Index partiels, agrégats en cache, OR de sous-requêtes réécrits en plans BitmapOr indexés (estimation prudente).",
-    "work.title": "Le reste du métier, semaine après semaine",
-    "work.b1":
-      "<b>Fiabilité de la production</b><span>Suivi des incidents jusqu’au bout, surveillance des tâches planifiées, des alertes qui ne sonnent que pour de vraies pannes.</span>",
-    "work.b2":
-      "<b>Performance</b><span>Audits de base de données, requêtes lentes et index, montées de version majeures de la base.</span>",
-    "work.b3":
-      "<b>CI/CD et DevOps</b><span>Pipelines plus rapides, déploiements plus sûrs, environnements de staging, gestion des secrets.</span>",
-    "work.b4":
-      "<b>Outillage IA pour l’équipe</b><span>Skills Claude Code, tri et revue automatisés, agents branchés sur les outils internes.</span>",
-    "work.b5":
-      "<b>Migrations et intégrations</b><span>Des plateformes historiques ramenées sur un seul backend sans casser la production ; paiement, matériel d’accès et caméras ANPR.</span>",
-    "work.b6":
-      "<b>Revue et mentorat</b><span>Revue de code quotidienne, mentorat structuré des développeurs juniors, vie privée et sécurité par défaut.</span>",
     "oss.title": "Où le code a atterri",
     "oss.px.role": "Co-auteur et premier contributeur, CLI en Rust",
     "oss.cap.role": "Auteur et mainteneur, gem Ruby",
     "help.title": "Comment je peux aider",
     "help.sub": "Je prends quelques missions freelance en parallèle de mon poste de lead.",
-    "help.b1":
-      "<b>Performance et architecture Rails</b><span>Audits, optimisation de requêtes, pipelines de jobs.</span>",
-    "help.b2":
-      "<b>Agents IA en production</b><span>De l’audit des cas d’usage aux agents branchés sur vos outils.</span>",
-    "help.b3":
-      "<b>Lead fractionné</b><span>Direction technique, culture de revue, mentorat.</span>",
     "contact.desc":
       "Quelques lignes suffisent. Je réponds sous 24 h, avec franchise : ce que je peux faire et comment je m’y prendrais. Si je ne suis pas la bonne personne, je vous le dirai et vous aiguillerai si je peux.",
     "upstream.label": "Mon code est fusionné upstream dans",
-    "results.sub":
-      "Chez Yespark, location de parkings partout en France, j’ai mené une campagne requêtes et index pilotée par Datadog sur les chemins les plus lents en production. Les barres sont à l’échelle.",
-    "results.replay": "Rejouer",
-    "results.before": "Avant",
-    "results.after": "Après",
     "results.r1.gain": "<b>52 000×</b> plus rapide",
     "results.r2.gain": "<b>50×</b> moins de requêtes",
     "results.r3.gain": "<b>2 à 5×</b> plus rapide",
     "oss.lp.role": "Moteur de navigateur headless en Zig",
-    "oss.lp.count": '<b class="sheen" data-count="lightpanda-io/browser">97</b> pull requests fusionnées',
-    "oss.cl.count": '<b class="sheen" data-count="hostolab/covidliste">43</b> pull requests fusionnées',
     "contact.title": "Dites-moi ce que vous construisez.",
     "how.b1": "Des PRs petites, argumentées, benchmarkées",
     "how.b2": "Je dis non à l’IA non rentable",
     "how.b3": "Franc dès le premier appel",
     "hero.intro":
       "Moi c’est Navid, <strong>lead developer chez Yespark</strong>. <strong><span data-years>12</span> ans</strong> à construire des <strong>applis Rails critiques</strong>, et aujourd’hui à brancher des <strong>agents IA</strong> sur de vrais workflows. Toujours du code au quotidien.",
-    "oss.sub":
-      "Jugé par des reviewers Rails, des ingénieurs Datadog et des mainteneurs de moteurs de navigateur, pas par une page portfolio. Chaque carte ouvre la preuve.",
     "oss.px.desc":
       "Donne aux agents de code IA la partie déterministe du travail sur un dépôt, pour qu’ils gardent leurs tokens pour la partie difficile.",
     "oss.cap.desc": "Les tests système Rails, sur Lightpanda.",
@@ -99,6 +71,23 @@
     "oss.also.title": "La longue traîne",
     "oss.all":
       'Les <span data-stat="prs">171</span> pull requests fusionnées, dans <span data-stat="repos">25</span> dépôts',
+    "results.sub":
+      "Chez Yespark, location de parkings partout en France, j’ai mené une campagne requêtes et index pilotée par Datadog sur les chemins les plus lents en production. Le reste du métier est juste à côté.",
+    "work.b1":
+      "<h3>Fiabilité et CI/CD</h3><p>Suivi des incidents jusqu’au bout, surveillance des tâches planifiées, des alertes qui ne sonnent que pour de vraies pannes. Pipelines plus rapides, déploiements plus sûrs.</p>",
+    "work.b2":
+      "<h3>Outillage IA pour l’équipe</h3><p>Skills Claude Code, tri et revue automatisés, agents branchés sur les outils internes.</p>",
+    "work.b3":
+      "<h3>Migrations, intégrations, mentorat</h3><p>Des plateformes historiques ramenées sur un seul backend sans casser la production ; paiement et matériel d’accès ; revue quotidienne et mentorat des développeurs juniors.</p>",
+    "oss.sub":
+      "Jugé par des reviewers Rails, des ingénieurs Datadog et des mainteneurs de moteurs de navigateur, pas par une page portfolio. Chaque ligne ouvre la preuve.",
+    "oss.lp.count": '<b data-count="lightpanda-io/browser">97</b> PRs fusionnées',
+    "oss.cl.count": '<b data-count="hostolab/covidliste">43</b> PRs fusionnées',
+    "help.b1":
+      "<h3>Performance et architecture Rails</h3><p>Audits, optimisation de requêtes, pipelines de jobs.</p>",
+    "help.b2":
+      "<h3>Agents IA en production</h3><p>De l’audit des cas d’usage aux agents branchés sur vos outils.</p>",
+    "help.b3": "<h3>Lead fractionné</h3><p>Direction technique, culture de revue, mentorat.</p>",
   };
 
   // English strings that are not in the initial markup.
@@ -168,6 +157,12 @@
     document.querySelectorAll("#log-list time").forEach(function (el) {
       el.textContent = month.format(new Date(el.dateTime));
     });
+    if (live && live.stars) {
+      document.querySelectorAll("[data-repo]").forEach(function (el) {
+        var count = live.stars[el.getAttribute("data-repo")];
+        if (count != null) el.setAttribute("data-stars", count);
+      });
+    }
     var compact = new Intl.NumberFormat(lang, { notation: "compact", maximumFractionDigits: 1 });
     document.querySelectorAll("[data-stars]").forEach(function (el) {
       var count = Number(el.getAttribute("data-stars"));
@@ -297,11 +292,22 @@
         .filter(function (repo, i, all) {
           return all.indexOf(repo) === i;
         });
+      // project rows also show stars for repositories outside the PR search (my own)
+      var shown = [].map.call(document.querySelectorAll("[data-repo]"), function (el) {
+        return el.getAttribute("data-repo");
+      });
+      shown.forEach(function (repo) {
+        if (repos.indexOf(repo) < 0) repos.push(repo);
+      });
       return fetchStars(repos)
         .catch(function () {
           return null;
         })
         .then(function (stars) {
+          summary.stars = {};
+          shown.forEach(function (repo) {
+            if (stars && stars[repo.toLowerCase()] != null) summary.stars[repo] = stars[repo.toLowerCase()];
+          });
           summary.log = pickLog(summary.pulls, stars);
           delete summary.pulls; // keep the cached payload small
           return summary;
@@ -378,27 +384,6 @@
         el.style.setProperty("--my", event.clientY - box.top + "px");
       });
     });
-  }
-
-  /* ================= before / after bars ================= */
-  // Plays once when the measurements scroll into view, and again on demand.
-  var results = document.getElementById("results-list");
-  function playResults() {
-    results.classList.remove("play");
-    void results.offsetWidth; // restart the CSS animation
-    results.classList.add("play");
-  }
-  if (results && "IntersectionObserver" in window) {
-    var seen = new IntersectionObserver(
-      function (entries) {
-        if (!entries[0].isIntersecting) return;
-        seen.disconnect();
-        playResults();
-      },
-      { threshold: 0.4 },
-    );
-    seen.observe(results);
-    document.getElementById("replay").addEventListener("click", playResults);
   }
 
   applyLang(); // paint the right language immediately, hydrate live numbers after
