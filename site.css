@@ -751,7 +751,6 @@ p {
 }
 /* a link that leaves the page says so */
 .ext {
-  white-space: nowrap;
   color: var(--ink);
 }
 .ext::after {
