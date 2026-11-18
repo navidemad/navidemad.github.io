@@ -639,6 +639,14 @@ p {
   border-radius: 18px;
   background: var(--surface);
 }
+/* five cards: the first one spans the row */
+.project:first-child {
+  grid-column: 1 / -1;
+}
+.project .desc b {
+  font-weight: 600;
+  color: var(--ink);
+}
 .project h3 {
   font-size: 28px;
 }

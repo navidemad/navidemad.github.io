@@ -213,12 +213,12 @@
           <div class="section-head">
             <div>
               <h2 data-i18n="proj.title">What I build with AI agents</h2>
-              <p data-i18n="proj.sub">Tools I use every working day, each with its real status.</p>
+              <p data-i18n="proj.sub">What I maintain, contribute to and build at work, each with its real status.</p>
             </div>
           </div>
           <ul class="projects">
             <li class="project">
-              <p class="status live" data-i18n="proj.px.status">Open source · in daily use</p>
+              <p class="status live" data-i18n="proj.px.status">Open source · maintainer · in daily use</p>
               <h3>Pixel</h3>
               <p class="desc" data-i18n="proj.px.desc">A local CLI that answers the questions a coding agent keeps asking about a repository: where is this defined, who calls it, what breaks if it changes. The agent spends its tokens on the hard part.</p>
               <ul class="chips">
@@ -230,37 +230,49 @@
               <a class="more" href="https://pixel-cli.dev/" data-i18n="proj.px.link">pixel-cli.dev</a>
             </li>
             <li class="project">
-              <p class="status private" data-i18n="proj.harness.status">Private · in daily use</p>
-              <h3 data-i18n="proj.harness.name">My agent harness</h3>
-              <p class="desc" data-i18n="proj.harness.desc">The setup around my coding agents: notes they read on demand, hooks that enforce my rules, and skills I only keep after a blind A/B test against the previous version.</p>
+              <p class="status public" data-i18n="proj.lp.status">Open source · contributor</p>
+              <h3>Lightpanda browser</h3>
+              <p class="desc" data-i18n="proj.lp.desc">The headless browser built for AI agents and automation. I have <b data-count="lightpanda-io/browser">97</b> pull requests merged in the engine: web APIs, forms, CDP, CSS.</p>
               <ul class="chips">
+                <li>Zig</li>
+                <li>WebAPI</li>
+                <li>CDP</li>
+                <li>CSS</li>
+              </ul>
+              <a class="more" href="https://github.com/lightpanda-io/browser/pulls?q=is%3Apr+author%3Anavidemad+is%3Amerged" data-i18n="proj.lp.link">My merged pull requests</a>
+            </li>
+            <li class="project">
+              <p class="status live" data-i18n="proj.cap.status">Open source · maintainer · published gem</p>
+              <h3>capybara-lightpanda</h3>
+              <p class="desc" data-i18n="proj.cap.desc">The Capybara driver I wrote so a Rails test suite can run its system tests on Lightpanda instead of Chrome.</p>
+              <ul class="chips">
+                <li>Ruby</li>
+                <li>Capybara</li>
+                <li>system tests</li>
+                <li>Hotwire</li>
+              </ul>
+              <a class="more" href="https://github.com/navidemad/capybara-lightpanda" data-i18n="proj.code">Code on GitHub</a>
+            </li>
+            <li class="project">
+              <p class="status private" data-i18n="proj.yr.status">Private · in production</p>
+              <h3>yespark-rails</h3>
+              <p class="desc" data-i18n="proj.yr.desc">The Rails application behind Yespark, parking rental across France, where I am lead developer. The whole team works on it with coding agents: a shared Claude Code setup, Datadog through MCP, RTK and Pixel.</p>
+              <ul class="chips">
+                <li>Ruby on Rails</li>
+                <li>PostgreSQL</li>
                 <li>Claude Code</li>
-                <li>Codex</li>
-                <li>hooks</li>
-                <li>skills</li>
+                <li>MCP</li>
               </ul>
             </li>
             <li class="project">
-              <p class="status public" data-i18n="proj.pi.status">Public · personal use</p>
-              <h3>pi-navrness</h3>
-              <p class="desc" data-i18n="proj.pi.desc">Extensions for the Pi coding agent: a side panel that shows what each sub-agent is doing while it works, without taking over the orchestration.</p>
+              <p class="status private" data-i18n="proj.ko.status">Private · used daily by the team</p>
+              <h3>Kokoro</h3>
+              <p class="desc" data-i18n="proj.ko.desc">A desktop app for Mac and Windows, built with the Yespark team, that gathers projects, requests and missions run with Claude or Codex in one workspace, personal and shared.</p>
               <ul class="chips">
-                <li>TypeScript</li>
-                <li>Pi</li>
-                <li>sub-agents</li>
+                <li>Electron</li>
+                <li>Claude Agent SDK</li>
+                <li>Codex SDK</li>
               </ul>
-              <a class="more" href="https://github.com/navidemad/pi-navrness" data-i18n="proj.code">Code on GitHub</a>
-            </li>
-            <li class="project">
-              <p class="status public" data-i18n="proj.ccp.status">Public · 2025 experiment</p>
-              <h3>claude-code-plugins</h3>
-              <p class="desc" data-i18n="proj.ccp.desc">Skills that walk Claude Code through a spec-first workflow: write the product requirements, then code, test and review against them.</p>
-              <ul class="chips">
-                <li>Claude Code</li>
-                <li>skills</li>
-                <li>PRD</li>
-              </ul>
-              <a class="more" href="https://github.com/navidemad/claude-code-plugins" data-i18n="proj.code">Code on GitHub</a>
             </li>
           </ul>
         </div>
